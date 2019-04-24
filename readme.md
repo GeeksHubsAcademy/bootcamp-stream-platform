@@ -15,17 +15,18 @@ Una plataforma de comunicación entre alumnos
 ## Views
 
 PUBLIC
+
 /login
 /register
 
 PRIVATE
-/home  ->  redirect to main bootcamp
+
+/admin ->  creación bootcamp y gestión usuarios
 
 /profile  -> edit user info
 /profile/mis-bootcamps
-
-/admin ->  creación bootcamp y gestión usuarios
 /bootcamp/:id
+
 
 ## Roles
 
@@ -46,12 +47,6 @@ POST TIPO ACTIVIDADES
 CREACIÓN DE POST
         3 tabs: texto, video, actividad
 
-
-
-
-
-
-
 ## Features
 
-- [x] backend en express con dos endpoints
+- [x] backend en express
