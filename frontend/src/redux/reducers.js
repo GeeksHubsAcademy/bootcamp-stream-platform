@@ -18,8 +18,8 @@ const sampleState = {
           title: 'Redux must read',
           content: {
             snippet: {
-                code:'js code..',
-                format:'js'
+              code: 'js code..',
+              format: 'js',
             },
             text: {
               description: 'asdasdasd',
@@ -28,9 +28,7 @@ const sampleState = {
               url: 'http://...',
             },
             activity: {
-              repos: [
-                  'https://github.com/GeeksHubsAcademy/react-tareas', 'https://github.com/GeeksHubsAcademy/react-todos'
-                ],
+              repos: ['https://github.com/GeeksHubsAcademy/react-tareas', 'https://github.com/GeeksHubsAcademy/react-todos'],
             },
           },
         },
@@ -38,15 +36,25 @@ const sampleState = {
     },
   ],
   user: {
-      _id:123,
-      name:'Juan',
-      email:'juan@geekhubs.com',
-      token: 'AASFDSDFQ298723ÑLKJWD98723HJDW76D2YBD623YB326D',
+    _id: 123,
+    name: 'Juan',
+    email: 'juan@geekhubs.com',
+    token: 'AASFDSDFQ298723ÑLKJWD98723HJDW76D2YBD623YB326D',
   },
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'LOGGED_IN':
+      return {
+        ...state,
+        user: action.user,
+      };
+    case 'LOGGED_OUT':
+      return {
+        ...state,
+        user: null,
+      };
     default:
       return state;
   }
