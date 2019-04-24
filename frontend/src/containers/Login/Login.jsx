@@ -10,7 +10,7 @@ class Login extends Component {
     });
   };
   render() {
-    if (this.props.user) {
+    if (this.props.isLogged) {
       return <Redirect to='/profile' />;
     }
      return (
@@ -21,7 +21,7 @@ class Login extends Component {
        );
   }
 }
-const mapStateToProps = ({ user }) => ({ user });
+const mapStateToProps = ({user}) => ({ isLogged: !!user });
 const mapDispatchToProps = dispatch => ({ dispatch });
 
 export default connect(
