@@ -11,7 +11,7 @@ class Login extends Component {
   };
   render() {
     if (this.props.isLogged) {
-      return <Redirect to='/profile' />;
+      return <Redirect to='profile' />;
     }
      return (
          <section className='LoginView'>
