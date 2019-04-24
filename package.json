@@ -14,6 +14,7 @@
   "author": "jupegarnica",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^4.1.0"
+    "concurrently": "^4.1.0",
+    "redux-localstorage-simple": "^2.1.6"
   }
 }
