@@ -1,24 +1,57 @@
-# APP TAREAS
+# Bootcamp Stream
 
-Ejercicio práctico para conectar un API rest y un frontend
+Una plataforma de comunicación entre alumnos
 
-## Tech
+## Tech MERN
 
-- express
-- fetch
-- DOM manipulation vanilla JS
-- flexbox
+- API REST
+  - express
+  - mongo
+- FRONTEND
+  - react
+  - redux
+  - axios
+
+## Views
+
+PUBLIC
+/login
+/register
+
+PRIVATE
+/home  ->  redirect to main bootcamp
+
+/profile  -> edit user info
+/profile/mis-bootcamps
+
+/admin ->  creación bootcamp y gestión usuarios
+/bootcamp/:id
+
+## Roles
+
+alumno -> /profile, /bootcamp/:id
+admin ->  alumno + /admin
+
+## main view: /bootcamp/:id
+
+###  title
+description
+
+POST TIPO TEXTO
+
+POST TIPO VIDEO
+
+POST TIPO ACTIVIDADES
+
+CREACIÓN DE POST
+        3 tabs: texto, video, actividad
+
+
+
+
+
+
 
 ## Features
 
 - [x] backend en express con dos endpoints
-- [x] POST /tasks
-- [x] GET /tasks
-- [x] Load tasks from frontend
-- [x] Save new task from frontend to DB
-- [x] Delete task from DOM
-- [ ] DELETE /tasks/:id
-- [x] complete task in DOM
-- [ ] PUT /tasks/:id
-- [ ] edit color in front and save to back
-- [ ] edit task text in front and save to back
