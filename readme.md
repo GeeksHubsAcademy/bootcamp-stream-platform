@@ -25,6 +25,7 @@ PRIVATE
 
 /profile  -> edit user info
 /profile/mis-bootcamps
+
 /bootcamp/:id
 
 
