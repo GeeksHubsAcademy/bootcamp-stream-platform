@@ -1,4 +1,4 @@
-const initialState = {
+export let initialState = {
   bootcamps: [],
   user: null,
 };
@@ -6,29 +6,195 @@ const initialState = {
 const sampleState = {
   bootcamps: [
     {
-      _id: 1232342,
-      title: 'Fullstack Valencia Febrero 2019',
-      users: [123, 12321, 23534, 23534543],
+      _id: 123,
+      title: 'FSD VLC FEB19',
+      description: null,
+      startsAt: new Date(),
+      weeksDuration: 12,
+      users: [
+        {
+          _id: 1,
+          name: 'juan',
+        },
+        {
+          _id: 2,
+          name: 'pepe',
+        },
+        {
+          _id: 3,
+          name: 'paco',
+        },
+      ],
       posts: [
         {
-          _id: 123234,
-          type: 'text' /* 'text' | 'video' | 'activity'  | 'snippet' */,
-          author: { _id: 123, name: 'Juan' , photo:'765123'},
-          createdAt: new Date(),
-          title: 'Redux must read',
+          postType: 'text',
+          authorId: 1,
+          content: {
+            text: {
+              title: 'Recursos sobre react',
+              body: 'lorem ipsum asd sahdsahjaslk hg hhj lkjhj ',
+            },
+          },
+        },
+        {
+          postType: 'snippet',
+          authorId: 2,
           content: {
             snippet: {
-              code: 'js code..',
+              title: 'Recursos sobre react',
+              code: 'export default 42',
               format: 'js',
             },
-            text: {
-              description: 'asdasdasd',
-            },
+          },
+        },
+        {
+          postType: 'video',
+          authorId: 2,
+          content: {
             video: {
-              url: 'http://...',
+              title: 'redux',
+              url: 'https://accounts.eyeson.team/meetings/5cbec9076071c6000eebda78/recordings/5cbee1c928136e000e98d15f',
             },
+          },
+        },
+        {
+          postType: 'activity',
+          authorId: 2,
+          content: {
             activity: {
-              repos: ['https://github.com/GeeksHubsAcademy/react-tareas', 'https://github.com/GeeksHubsAcademy/react-todos'],
+              title: 'react activity',
+              body: 'lorem ipsum',
+              repo: 'https://github.com/GeeksHubsAcademy/learn-react-app',
+            },
+          },
+        },
+      ],
+    },
+    {
+      _id: 123,
+      title: 'FSD VLC FEB19',
+      description: null,
+      startsAt: new Date(),
+      weeksDuration: 12,
+      users: [
+        {
+          _id: 1,
+          name: 'juan',
+        },
+        {
+          _id: 2,
+          name: 'pepe',
+        },
+        {
+          _id: 3,
+          name: 'paco',
+        },
+      ],
+      posts: [
+        {
+          postType: 'text',
+          authorId: 1,
+          content: {
+            text: {
+              title: 'Recursos sobre react',
+              body: 'lorem ipsum asd sahdsahjaslk hg hhj lkjhj ',
+            },
+          },
+        },
+        {
+          postType: 'snippet',
+          authorId: 2,
+          content: {
+            snippet: {
+              title: 'Recursos sobre react',
+              code: 'export default 42',
+              format: 'js',
+            },
+          },
+        },
+        {
+          postType: 'video',
+          authorId: 2,
+          content: {
+            video: {
+              title: 'redux',
+              url: 'https://accounts.eyeson.team/meetings/5cbec9076071c6000eebda78/recordings/5cbee1c928136e000e98d15f',
+            },
+          },
+        },
+        {
+          postType: 'activity',
+          authorId: 2,
+          content: {
+            activity: {
+              title: 'react activity',
+              body: 'lorem ipsum',
+              repo: 'https://github.com/GeeksHubsAcademy/learn-react-app',
+            },
+          },
+        },
+      ],
+    },
+    {
+      _id: 123,
+      title: 'FSD VLC FEB19',
+      description: null,
+      startsAt: new Date(),
+      weeksDuration: 12,
+      users: [
+        {
+          _id: 1,
+          name: 'juan',
+        },
+        {
+          _id: 2,
+          name: 'pepe',
+        },
+        {
+          _id: 3,
+          name: 'paco',
+        },
+      ],
+      posts: [
+        {
+          postType: 'text',
+          authorId: 1,
+          content: {
+            text: {
+              title: 'Recursos sobre react',
+              body: 'lorem ipsum asd sahdsahjaslk hg hhj lkjhj ',
+            },
+          },
+        },
+        {
+          postType: 'snippet',
+          authorId: 2,
+          content: {
+            snippet: {
+              title: 'Recursos sobre react',
+              code: 'export default 42',
+              format: 'js',
+            },
+          },
+        },
+        {
+          postType: 'video',
+          authorId: 2,
+          content: {
+            video: {
+              title: 'redux',
+              url: 'https://accounts.eyeson.team/meetings/5cbec9076071c6000eebda78/recordings/5cbee1c928136e000e98d15f',
+            },
+          },
+        },
+        {
+          postType: 'activity',
+          authorId: 2,
+          content: {
+            activity: {
+              title: 'react activity',
+              body: 'lorem ipsum',
+              repo: 'https://github.com/GeeksHubsAcademy/learn-react-app',
             },
           },
         },
@@ -38,11 +204,14 @@ const sampleState = {
   user: {
     _id: 123,
     name: 'Juan',
+    surname: 'Garnica',
+    role: 'admin',
     email: 'juan@geekhubs.com',
+    imagePath: null,
     token: 'AASFDSDFQ298723ÑLKJWD98723HJDW76D2YBD623YB326D',
   },
 };
-
+initialState = sampleState;
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'LOGGED_IN':
