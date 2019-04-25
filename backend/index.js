@@ -3,7 +3,7 @@ const app = express();
 
 const fs = require( 'fs' );
 
-const port = Number( process.argv[ 2 ] ) || 3000;
+const port = Number( process.argv[ 2 ] ) || 3001;
 
 
 // BODY PARSE TO JSON
@@ -16,7 +16,6 @@ app.use( function ( req, res, next ) {
     res.header( "Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept" );
     next();
 } );
-
 
 app.get( '/tasks', ( req, res ) => {
 

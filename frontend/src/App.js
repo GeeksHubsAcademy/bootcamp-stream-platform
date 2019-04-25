@@ -17,13 +17,13 @@ function App() {
     <div className='App'>
       <Navigation />
       <Router className='main'>
-        <Bootcamp path='bootcamp/:id' />
-        <Register path='register' />
-        <EditProfile path='profile' />
-        <Admin path='admin' />
-        <MyBootcamps path='profile/my-bootcamps' />
-        <Login path='login' />
-        <NotFound path='notFound' />
+        <Bootcamp path='bootcamp/:id'  />
+        <Register path='register'  />
+        <EditProfile path='profile'  />
+        <Admin path='admin'  />
+        <MyBootcamps path='profile/my-bootcamps'  />
+        <Login path='login'  />
+        <NotFound path='notFound'  />
         <Redirect default from='*' to='notFound' noThrow />
       </Router>
       <Footer />

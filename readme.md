@@ -16,17 +16,15 @@ Una plataforma de comunicación entre alumnos
 
 PUBLIC
 
-/login
-/register
+- /login
+- /register
 
 PRIVATE
 
-/admin ->  creación bootcamp y gestión usuarios
-
-/profile  -> edit user info
-/profile/mis-bootcamps
-
-/bootcamp/:id
+- /admin ->  creación bootcamp y gestión usuarios
+- /profile  -> edit user info
+- /profile/mis-bootcamps
+- /bootcamp/:id
 
 
 ## Roles
