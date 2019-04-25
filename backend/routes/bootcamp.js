@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Bootcamp=require('../models/Bootcamp')
-
-router.get('/all',(req,res)=>{
+const {authorization,isAdmin} =require('../utils/middleware/authorization')
+router.get('/all',authorization,isAdmin,(req,res)=>{
     Bootcamp.find({}).then(Bootcamps=>res.send(Bootcamps)).catch(console.log)
 })
 router.get('/:id',(req,res)=>{
