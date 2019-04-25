@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 // styles
 import PropTypes from 'prop-types';
+
 // TODO import material styles 
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -25,6 +26,9 @@ class EditProfile extends Component {
   // TODO state interno // samplestate de user.js?
   state = {
     name: "Cristina",
+    lastname: "Pérez",
+    email: "email@gmail.com",
+    password: "1234"
   };
 
   handleChange = name => event => {
@@ -44,14 +48,48 @@ class EditProfile extends Component {
       
         <h1>Edit Profile</h1>
 
+
         {/* TODO import material styles  className={classes.container}  */}
-        <form noValidate autoComplete="off">
         {/* /* TODO import material styles className={classes.textField} */}
+
+        <form noValidate autoComplete="off">
           <TextField
             id="standard-name"
             label="Name"
             value={this.state.name}
             onChange={this.handleChange("name")}
+            margin="normal"
+          />
+          <TextField
+            id="standard-lastname"
+            label="Lastname"
+            value={this.state.lastname}
+            onChange={this.handleChange("lastname")}
+            margin="normal"
+          />
+
+          <TextField
+            id="standard-email-input"
+            label="Email"
+            value={this.state.email}
+            onChange={this.handleChange("email")}
+            type="email"
+            margin="normal"
+          />
+
+          <TextField
+            id="standard-password-input"
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+            margin="normal"
+          />
+
+          <TextField
+            id="standard-repeat-password-input"
+            label="Repeat password"
+            type="password"
+            autoComplete="current-password"
             margin="normal"
           />
 
@@ -61,14 +99,6 @@ class EditProfile extends Component {
             id="standard-disabled"
             label="Profile"
             defaultValue="Student"
-            margin="normal"
-          />
-
-          <TextField
-            id="standard-password-input"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
             margin="normal"
           />
 
