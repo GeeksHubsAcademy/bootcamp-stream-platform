@@ -1,8 +1,7 @@
 {
-  "name": "tareas-api-rest",
+  "name": "bootcamp-stream-platform",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start:front": "cd frontend && npm start",
     "start:back": "cd backend && npm start",
@@ -15,7 +14,6 @@
   "license": "ISC",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
-    "concurrently": "^4.1.0",
-    "redux-localstorage-simple": "^2.1.6"
+    "concurrently": "^4.1.0"
   }
 }

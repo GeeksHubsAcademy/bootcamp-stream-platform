@@ -13,7 +13,7 @@ const sampleState = {
         {
           _id: 123234,
           type: 'text' /* 'text' | 'video' | 'activity'  | 'snippet' */,
-          author: { _id: 123, name: 'Juan' },
+          author: { _id: 123, name: 'Juan' , photo:'765123'},
           createdAt: new Date(),
           title: 'Redux must read',
           content: {

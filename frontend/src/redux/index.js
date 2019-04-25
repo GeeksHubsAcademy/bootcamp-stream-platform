@@ -13,7 +13,7 @@ const createStoreWithMiddleware = applyMiddleware(
 const store = createStoreWithMiddleware(
   reducer,
   load(), // Loading done here
-    composeEnhancers(),
+  composeEnhancers(),
 );
 
 export default store;
