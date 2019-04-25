@@ -1,34 +1,52 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from '@reach/router';
-// import { loggedIn } from '../../redux/actions'
+import { loggedIn } from '../../redux/actions'
 
 
 
 class Login extends Component {
+  state = {
+    pass: '',
+    email:''
+  }
+
+  handleChange = (ev) => {
+    this.setState({ [ev.target.name]: ev.target.value });
+    console.log({ [ev.target.name]: ev.target.value });
+}
+
+
   login = () => {
-    // loggedIn(pass, email)
-    // .then(
-    //   () => this.navigation.push('/home')
-    // )
-    // .catch(
-    //   error => this.setState({error})
-    // )
+
+    //e.preventDefault();
+   console.log(this.state.email, this.state.pass)
+   // loggedIn(this.state.pass, this.state.email)
+
   };
   render() {
-    if (this.props.isLogged) {
-      return <Redirect to='profile' />;
-    }
-     return (
-         <section className='LoginView'>
-           <h1>Login</h1>
-           <button onClick={this.login}>login</button>
+    console.log(this.props);
 
-         </section>
-       );
+      // if (this.props.isLogged) {
+      //   return <Redirect to='profile' />;
+      // }
+
+    return (
+      <section className='LoginView'>
+        <h1>Login</h1>
+
+        <form onSubmit={this.login} className="">
+          <input name="email" placeholder="email" type="email" onChange={this.handleChange} required />
+          <input name="pass" placeholder="password" type="password" onChange={this.handleChange} required />
+
+
+          <button >login</button>
+        </form>
+      </section>
+    );
   }
 }
-const mapStateToProps = ({user}) => ({ isLogged: !!user });
+const mapStateToProps = ({ user }) => ({ isLogged: !!user });
 const mapDispatchToProps = dispatch => ({ dispatch });
 
 export default connect(

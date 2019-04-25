@@ -1,6 +1,6 @@
 const Multer = require( 'multer' );
 const path=require('path')
-const =['image/png','image/jpg','image/jpeg']
+const mimetypes=['image/png','image/jpg','image/jpeg']
 const multer = Multer(  {
     storage: Multer.diskStorage( {
         destination: ( req, file, callback ) => {
