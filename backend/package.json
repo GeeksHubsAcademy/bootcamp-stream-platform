@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "export NODE_ENV=test || NODE_ENV=test || SET \"NODE_ENV=test\" && nodemon server/",
-    "start": "export NODE_ENV=production || NODE_ENV=production || SET \"NODE_ENV=production\" && node server/",
-    "dev": "export NODE_ENV=development || NODE_ENV=development || SET \"NODE_ENV=development\" && nodemon server/"
+    "test": "export NODE_ENV=test || NODE_ENV=test || SET \"NODE_ENV=test\" && nodemon index.js",
+    "start": "export NODE_ENV=production || NODE_ENV=production || SET \"NODE_ENV=production\" && node index.js",
+    "dev": "export NODE_ENV=development || NODE_ENV=development || SET \"NODE_ENV=development\" && nodemon index.js"
   },
   "keywords": [],
   "author": "jupegarnica",
