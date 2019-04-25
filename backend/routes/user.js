@@ -32,4 +32,32 @@ router.post('/login', (req, res) => {
         }).catch(console.log)
     })
 });
+
+router.post('/register', (req, res) => {
+    console.log(req.body)
+    // jwt.sign({
+    //     user: req.body.email
+    // }, config.EMAIL_SECRET, {
+    //     expiresIn: '2d'
+    // }, (err, emailToken) => {
+    //     if (err) return res.send(err)
+    //     const url = `http://localhost:3001/user/confirmation/${emailToken}`
+    //     transporter.sendMail({
+    //         to: req.body.email,
+    //         subject: 'Confirm your email in my Trello-MERN Full Stack app.',
+    //         html: `<h3>Please click the following link to confirm your email:<br>
+    //             <a href="${url}">Click here to confirm your email</a><br>
+    //                 The link above will expire in 48 hours.</h3> `
+    //     }).then(()=>{
+            new User(
+                {...req.body}
+            ).save().then(user =>{
+                console.log('then')
+                res.send({user,'info': 'user succesfully created, please confirm your email '})
+            }).catch(err =>{
+                res.send({err,'error':'Email already in use, please choose another email'})
+            })
+        // }).catch(console.log)
+    // })
+});
 module.exports = router;
