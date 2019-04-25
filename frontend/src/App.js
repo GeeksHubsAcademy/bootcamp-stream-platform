@@ -10,6 +10,7 @@ import Register from './containers/Register/Register';
 import NotFound from './components/NotFound';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import EditBootcamp from './containers/Bootcamp/EditBootcamp.jsx'
 import './App.scss';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Navigation />
       <Router className='main'>
         <Bootcamp path='bootcamp/:id'  />
+        <EditBootcamp path='bootcamp/edit' />
         <Register path='register'  />
         <EditProfile path='profile'  />
         <Admin path='admin'  />

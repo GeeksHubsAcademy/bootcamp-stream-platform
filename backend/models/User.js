@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
-// const { pick } = require('lodash');
 const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
 const SALT_I = 9;
-// const jwt = require('jsonwebtoken');
-// const password = require('../config/password');
+const jwt = require('jsonwebtoken');
+const password = require('../config/password');
 
-// const PASS = password.SECRET;
+const PASS = password.SECRET;
 const UserSchema = new mongoose.Schema(
   {
     name: {
