@@ -1,15 +1,31 @@
 import React from 'react';
 
-import {Link } from '@reach/router';
+import { connect } from 'react-redux';
+import { Link } from '@reach/router';
 
 import './Navigation.scss'
 
 const Navigation = () => (
+  
   <nav className="navigation">
-    <Link to='movies/top_rated'>top rated</Link>
-    <Link to='movies/upcoming'>upcoming</Link>
-    <Link to='movies/popular'>popular</Link>
+
+      <div className="logo">
+      logo
+      </div>
+      <div className="user">
+
+          <div className="avatar">avatar</div>
+          <nav className="menu">
+            <Link to='movies/top_rated'>top rated</Link>
+
+            <Link to='movies/upcoming'>upcoming</Link>
+            <Link to='Login'>popular</Link>
+
+          </nav>
+      
+      </div>
+
   </nav>
 );
 
-export default Navigation;
+export default connect( state => ({user: state.user}) )(Navigation);
