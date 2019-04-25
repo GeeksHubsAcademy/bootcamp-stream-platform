@@ -9,12 +9,13 @@ class MyBootcamps extends Component {
     //console.log(JSON.stringify(this.props.bootcamps));
     console.log(this.props.bootcamps);
     return (
-        <section className="MyBootcampsView">
-          <h1>
-            
+      <section className="MyBootcampsView">
+        <div>
+          <h3>
+            Pertenece al/a los siguientes Bootcamps:
           {this.props.bootcamps.map(bootcamp => <div key={bootcamp._id}>{bootcamp.title}</div>)}
-            
-          </h1>
+
+          </h3>
 
 
           {/* <Link className="MyBootcamps" to={'/bootcamp/' + props.bootcamp.user.id} >
@@ -23,8 +24,8 @@ class MyBootcamps extends Component {
           </Link> */}
 
 
-
-        </section>
+        </div>
+      </section>
     )
   }
 }
@@ -33,7 +34,7 @@ class MyBootcamps extends Component {
 
 
 //export default MyBootcamps;
-const mapStateToProps = ({bootcamps}) => ({ bootcamps });
+const mapStateToProps = ({ bootcamps }) => ({ bootcamps });
 const mapDispatchToProps = dispatch => ({ dispatch });
 
 export default connect(
