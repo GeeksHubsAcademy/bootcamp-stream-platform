@@ -1,0 +1,25 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    background: black;
+    color:white;
+    padding: 4em;
+    box-align: center;
+    
+}
+.blurb {
+    word-wrap: break-word;
+}
+.social {
+    
+    margin: 5px 5px;
+    color: white;
+}
+.rights {
+    font-size: 9px;
+}
+
+ul
+{
+    list-style-type: none;
+}
