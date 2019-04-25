@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from '@reach/router';
-// import { loggedIn } from '../../redux/actions'
+import { loggedIn } from '../../redux/actions'
 
 
 
 class Login extends Component {
   login = () => {
-    // loggedIn(pass, email)
-    // .then(
-    //   () => this.navigation.push('/home')
-    // )
-    // .catch(
-    //   error => this.setState({error})
-    // )
+
+    loggedIn()
+
   };
   render() {
+    console.log(this.props);
+
     if (this.props.isLogged) {
       return <Redirect to='profile' />;
     }
