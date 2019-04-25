@@ -1,4 +1,4 @@
-const initialState = {
+export let initialState = {
   bootcamps: [],
   user: null,
 };
@@ -211,8 +211,8 @@ const sampleState = {
     token: 'AASFDSDFQ298723ÑLKJWD98723HJDW76D2YBD623YB326D',
   },
 };
-
-const reducer = (state = sampleState, action) => {
+initialState = sampleState;
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'LOGGED_IN':
       return {

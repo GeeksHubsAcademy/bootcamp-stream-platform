@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Bootcamp/EditBootcamp.sccs';
+import './EditBootcamp.scss';
 
 class EditBootcamp extends Component{
 
