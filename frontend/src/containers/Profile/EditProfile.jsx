@@ -1,10 +1,9 @@
-import React, { Component, Redirect} from 'react';
+import React, { Component} from 'react';
 import { connect } from 'react-redux';
-
 // styles
 import PropTypes from 'prop-types';
 
-// TODO import material styles 
+// TODO import material styles
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -38,14 +37,14 @@ class EditProfile extends Component {
   render() {
 
     // TODO after login task
-     if (!this.props.user) {
-       return <Redirect to='/login' />;
-     }
+    //  if (!this.props.user) {
+    //    return <Redirect to='/login' />;
+    //  }
 
     return (
 
       <section className='EditProfileView'>
-      
+
         <h1>Edit Profile</h1>
 
 
@@ -104,21 +103,21 @@ class EditProfile extends Component {
 
           <Button variant="contained">
             Save
-          </Button>    
+          </Button>
 
-        </form>   
+        </form>
 
         <form className="" action="/profile/delete" method="DELETE">
           <Button variant="contained">
           unsubscribe
           </Button>
-        </form> 
+        </form>
 
         {/* TODO review , it's in navbar?  className={classes.button} */}
         <Button variant="contained" onClick={this.logout}>
           Logout
         </Button>
-     
+
       </section>
     );
   }
