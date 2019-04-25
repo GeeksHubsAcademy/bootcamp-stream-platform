@@ -1,7 +1,6 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import { save, load } from 'redux-localstorage-simple';
-
-import reducer from './reducers'
+import reducer, {initialState} from './reducers'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -12,7 +11,7 @@ const createStoreWithMiddleware = applyMiddleware(
 
 const store = createStoreWithMiddleware(
   reducer,
-  load(), // Loading done here
+  load({ preloadedState:initialState }), // Loading done here
   composeEnhancers(),
 );
 
