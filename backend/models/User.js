@@ -97,7 +97,6 @@ UserSchema.methods.generateAuthToken = function() {
     exp: Date.now() / 1000 + 60 * 60 * 24 * 7, // will expire in 7 days
   };
   const token = jwt.sign(payload, PASS);
-  console.log(token);
   user.tokens.push({
     token,
     type: 'auth',
