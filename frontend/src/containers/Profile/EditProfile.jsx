@@ -71,9 +71,9 @@ class EditProfile extends Component {
 
           <TextField
             id="standard-lastname"
-            label="Lastname"
-            value={this.state.userDetails.lastname || ''} 
-            onChange={this.handleChange("lastname")}
+            label="Surname"
+            value={this.state.userDetails.surname || ''} 
+            onChange={this.handleChange("surname")}
             margin="normal"
             required
           />
