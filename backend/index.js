@@ -1,10 +1,8 @@
 const express = require( 'express' );
 const app = express();
-const fs = require( 'fs' );
 const morgan = require('morgan')
 const path = require('path')
 
-const userRoutes = require('./routes/user')
 const port = process.env.PORT || 3001;
 
 
@@ -24,6 +22,6 @@ app.use(function(req, res, next) {
 app.use(morgan('tiny'))
 app.use('/', express.static(path.join(__dirname, 'public')))
 
-app.use('/user', userRoutes)
+// app.use('/user', userRoutes)
 
 app.listen( port, () => console.log( 'Servidor levantado en ' + port ) );
