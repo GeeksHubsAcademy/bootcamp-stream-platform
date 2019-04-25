@@ -3,10 +3,9 @@ const config = require('../config/password')
 const User = require('../models/User');
 const Bootcamp = require('../models/Bootcamp')
 const bcrypt = require('bcrypt');
-router.get('/all', (req, res) => {
-    User.find({}).then(users => res.send(users)).catch(err => res.status(500).send(err))
-})
-router.get('/:user_id', (req, res) => {
+const {authorization} =require('../utils/middleware/authorization')
+
+router.get('/find/:user_id', (req, res) => {
     User.findById(req.params.user_id).then(userFound => {
         Bootcamp.find({
             user: {
@@ -20,31 +19,10 @@ router.get('/:user_id', (req, res) => {
         })
     }).catch(err => res.status(500).send(err))
 })
-router.post('/login', (req, res) => {
-    User.findOne({
-        email: req.body.email
-    }).then(userFound => {
-        if (!userFound) {
-            return res.send({
-                message: 'Email or password wrong'
-            });
-        }
-        // if(!userFound.confirmed) {       /* This will be added when the confirmed email property will be created at the User schema */
-        //     return res.send('error','Email or password wrong'); 
-        // }
-        bcrypt.compare(req.body.password, userFound.password).then(isMatch => {
-            if (!isMatch) {
-                return res.status(400).send({
-                    message: 'Email or password wrong'
-                });
-            }
-            userFound.generateAuthToken().then(token => {
-                res.header('Authorization', token).send(userFound)
-            }).catch(console.log)
-        }).catch(console.log)
-    })
-});
 
+router.get('/all', (req, res) => {
+    User.find({}).then(users => res.send(users)).catch(err => res.status(500).send(err))
+})
 router.post('/register', (req, res) => {
     // jwt.sign({                     /* This will be added when the confirmed email property will be created at the User schema */
     //     user: req.body.email
@@ -68,7 +46,7 @@ router.post('/register', (req, res) => {
     }).save().then(user => {
         res.send({
             user,
-            'info': 'user succesfully created, please confirm your email '
+            'info': 'user succesfully created'
         })
     }).catch(err => {
         res.send({
@@ -79,4 +57,36 @@ router.post('/register', (req, res) => {
     // }).catch(console.log)
     // })
 });
+
+router.post('/login', (req, res) => {
+    User.findOne({
+        email: req.body.email
+    }).then(userFound => {
+        if (!userFound) {
+            return res.status(400).send({
+                message: 'Email or password wrong'
+            });
+        }
+        // if(!userFound.confirmed) {       /* This will be added when the confirmed email property will be created at the User schema */
+        //     return res.send('error','Email or password wrong'); 
+        // }
+        bcrypt.compare(req.body.password, userFound.password).then(isMatch => {
+            if (!isMatch) {
+                return res.status(400).send({
+                    message: 'Email or password wrong'
+                });
+            }
+            userFound.generateAuthToken().then(token => {
+                res.header('Authorization', token).send(userFound)
+            }).catch(console.log)
+        }).catch(console.log)
+    })
+});
+
+router.get('/logout',authorization, (req, res) => {
+    const tokens=req.user.tokens.filter(token=>token.type!=='auth')
+    User.findByIdAndUpdate(req.user._id,{$set:{tokens}},{upsert:true})
+    .then(()=>res.status(200).json({message:'You have been sucessfully logged out'}))
+    .catch(err=>res.status(500).send(err))
+  });
 module.exports = router;
