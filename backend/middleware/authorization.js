@@ -28,8 +28,14 @@ const isOwner = async (req, res, next) => {
     }
     next();
 }
+const isAdmin = async (req, res, next) => {
+    if (req.user.role!=='admin') {
+        return res.status(403).send('You are not authorized')
+    }
+    next();
+}
 module.exports = {
     authorization,
-    isOwner
-
+    isOwner,
+    isAdmin
 }
