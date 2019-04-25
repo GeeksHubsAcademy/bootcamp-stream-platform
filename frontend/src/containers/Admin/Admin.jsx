@@ -7,6 +7,7 @@ class Admin extends Component {
     return (
         <section className="AdminView">
           <h1>Admin</h1>
+          
         </section>
     )
   }
