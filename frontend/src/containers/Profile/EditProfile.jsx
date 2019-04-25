@@ -22,19 +22,25 @@ class EditProfile extends Component {
     });
   };
 
-  // TODO state interno // samplestate de user.js?
+  // state initial
   state = {
-    name: "Cristina",
-    lastname: "Pérez",
-    email: "email@gmail.com",
-    password: "1234"
+    userDetails: this.props.user || [],
   };
+
+  // login = () => {
+  //   //e.preventDefault();
+  //  //console.log(this.state.email, this.state.pass)
+  //  // loggedIn(this.state.pass, this.state.email)
+
+  // };
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
   };
 
   render() {
+
+    console.log(this.props);
 
     // TODO after login task
     //  if (!this.props.user) {
@@ -47,40 +53,45 @@ class EditProfile extends Component {
 
         <h1>Edit Profile</h1>
 
-
         {/* TODO import material styles  className={classes.container}  */}
         {/* /* TODO import material styles className={classes.textField} */}
 
-        <form noValidate autoComplete="off">
+        <form autoComplete="off">
+
+        {/* error attribute */}
+
           <TextField
             id="standard-name"
             label="Name"
-            value={this.state.name}
+            value={this.state.userDetails.name || ''} 
             onChange={this.handleChange("name")}
             margin="normal"
+            required
           />
+
           <TextField
             id="standard-lastname"
             label="Lastname"
-            value={this.state.lastname}
+            value={this.state.userDetails.lastname || ''} 
             onChange={this.handleChange("lastname")}
             margin="normal"
+            required
           />
 
           <TextField
             id="standard-email-input"
             label="Email"
-            value={this.state.email}
+            value={this.state.userDetails.email || ''} 
             onChange={this.handleChange("email")}
             type="email"
             margin="normal"
+            required
           />
 
           <TextField
             id="standard-password-input"
             label="Password"
-            type="password"
-            autoComplete="current-password"
+            type="password"            
             margin="normal"
           />
 
@@ -130,7 +141,11 @@ class EditProfile extends Component {
 // };
 
 
-const mapStateToProps = ({ user }) => ({ user });
+const mapStateToProps = ({ user }) => ({ 
+  isLogged: !!user,
+  user
+});
+
 const mapDispatchToProps = dispatch => ({ dispatch });
 
 
