@@ -6,21 +6,42 @@ import { loggedIn } from '../../redux/actions'
 
 
 class Login extends Component {
+  state = {
+    pass: '',
+    email:''
+  }
+
+  handleChange = (ev) => {
+    this.setState({ [ev.target.name]: ev.target.value });
+    console.log({ [ev.target.name]: ev.target.value });
+}
+
+
   login = () => {
 
-    loggedIn()
+    //e.preventDefault();
+   console.log(this.state.email, this.state.pass)
+   // loggedIn(this.state.pass, this.state.email)
 
   };
   render() {
     console.log(this.props);
 
-    if (this.props.isLogged) {
-      return <Redirect to='profile' />;
-    }
+      // if (this.props.isLogged) {
+      //   return <Redirect to='profile' />;
+      // }
+
     return (
       <section className='LoginView'>
         <h1>Login</h1>
-        <button onClick={this.login}>login</button>
+
+        <form onSubmit={this.login} className="">
+          <input name="email" placeholder="email" type="email" onChange={this.handleChange} required />
+          <input name="pass" placeholder="password" type="password" onChange={this.handleChange} required />
+
+
+          <button >login</button>
+        </form>
       </section>
     );
   }
