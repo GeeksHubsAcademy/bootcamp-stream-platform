@@ -19,6 +19,17 @@ class Login extends Component {
     if (this.props.isLogged) {
       return <Redirect to='profile' />;
     }
+<<<<<<< HEAD
+    return (
+      <section className='LoginView'>
+        <h1>Login</h1>
+        <button onClick={this.login}>login</button>
+      </section>
+    );
+  }
+}
+const mapStateToProps = ({ user }) => ({ isLogged: !!user });
+=======
      return (
          <section className='LoginView'>
            <h1>Login</h1>
@@ -29,6 +40,7 @@ class Login extends Component {
   }
 }
 const mapStateToProps = ({user}) => ({ isLogged: !!user });
+>>>>>>> f9acba5f2f798e9c5b8e480dcf24de61349c3884
 const mapDispatchToProps = dispatch => ({ dispatch });
 
 export default connect(
