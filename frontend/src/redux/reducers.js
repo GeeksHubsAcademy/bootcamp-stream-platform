@@ -71,8 +71,8 @@ const sampleState = {
       ],
     },
     {
-      _id: 123,
-      title: 'FSD VLC FEB19',
+      _id: 1234,
+      title: 'FSD VLC MAY19',
       description: null,
       startsAt: new Date(),
       weeksDuration: 12,
@@ -136,8 +136,8 @@ const sampleState = {
       ],
     },
     {
-      _id: 123,
-      title: 'FSD VLC FEB19',
+      _id: 12345,
+      title: 'FSD VLC JUL19',
       description: null,
       startsAt: new Date(),
       weeksDuration: 12,
