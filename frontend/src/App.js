@@ -10,7 +10,8 @@ import Register from './containers/Register/Register';
 import NotFound from './components/NotFound';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
-import AdminEditBootcamp from './containers/Bootcamp/EditBootcamp.jsx'
+import AdminEditBootcamp from './containers/Bootcamp/EditBootcamp.jsx';
+import AdminBootcamps from './containers/Admin/bootcamps.jsx';
 import './App.scss';
 
 function App() {

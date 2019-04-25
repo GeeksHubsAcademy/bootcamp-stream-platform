@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
 
-class adminBootcamp extends Component {
+class AdminBootcamp extends Component {
     super(props);
-
+    
 
 
 
 
     render() {
-
+        console.log(this.props.bootcamps)
 
         return (
             <div className="">
@@ -19,4 +19,4 @@ class adminBootcamp extends Component {
     }
 
 }
-export default adminBootcamp;
+export default AdminBootcamp;
