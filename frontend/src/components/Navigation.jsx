@@ -5,7 +5,7 @@ import { Link } from '@reach/router';
 
 import './Navigation.scss'
 
-const Navigation = (props) => (
+export const NavigationComponent = (props) => (
 
   <nav className="navigation">
 
@@ -22,11 +22,11 @@ const Navigation = (props) => (
             <nav className="menu">
               <Link to='movies/top_rated'>top rated</Link>
 
-              { props.user.role === 'admin' && <Link to='/admin'>admin</Link> }
+              { props.user.role === 'admin' && <Link className="admin" to='/admin'>admin</Link> }
               <Link to='Login'>popular</Link>
             </nav>
           </div>)
-          : <Link to="/login">login</Link>
+          : <Link className="notLogged" to="/login">login</Link>
       }
 
 
@@ -36,5 +36,4 @@ const Navigation = (props) => (
   </nav>
 );
 
-export default connect(state => ({ user: state.user }))(Navigation);
-
+export default connect(state => ({ user: state.user }))(NavigationComponent);
