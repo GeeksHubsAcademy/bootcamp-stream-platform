@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import UserManagement from './UserManagement.jsx';
 import './EditBootcamp.scss';
 
 class EditBootcamp extends Component {
-    state = this.props.bootcamp ||   {
-            title: '',
-            description: '',
-            startsAt: '',
-        
-        }
+    state = this.props.bootcamp || {
+        title: '',
+        description: '',
+        startsAt: '',
+
+    }
 
     handleChange = (ev) => {
-        this.setState({  [ev.target.name] : ev.target.value });
+        this.setState({ [ev.target.name]: ev.target.value });
     }
     saveBootcamp = () => {
         // this.props.dispatch({type:'SAVE_BOOTCAMP',payload: this.state.id})
@@ -34,7 +35,7 @@ class EditBootcamp extends Component {
                     <button>Delete</button>
                 </div>
                 <div>
-                    
+                    <UserManagement></UserManagement>
                 </div>
             </div>
         )
