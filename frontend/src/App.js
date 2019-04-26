@@ -25,15 +25,13 @@ function App() {
           <Bootcamp path='bootcamp/:id' />
           <EditProfile path='profile' />
           <MyBootcamps path='bootcamps' />
-
           <AdminBootcamps path='admin/bootcamps' />
           <AdminEditBootcamp path='admin/bootcamps/new' />
           <AdminEditBootcamp path='admin/bootcamps/:id' />
-
           <Redirect from='admin' to='admin/bootcamps' noThrow />
         </PrivateZone>
-          <Register path='register' />
-          <Login path='login' />
+        <Register path='register' />
+        <Login path='login' />
         <NotFound path='notFound' />
         <Redirect default from='*' to='notFound' noThrow />
       </Router>

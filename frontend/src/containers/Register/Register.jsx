@@ -13,9 +13,6 @@ class _Register extends Component {
   }
 }
 
-
-
-
 const mapStateToProps = ({ user }) => ({ user });
 const mapDispatchToProps = dispatch => ({ dispatch });
 

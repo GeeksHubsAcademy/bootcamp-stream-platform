@@ -1,13 +1,15 @@
 import React from 'react';
-import { Redirect } from '@reach/router';
+import { Redirect, Match } from '@reach/router';
 import { connect } from 'react-redux';
 
-const PrivateZone = ({ children, user }) =>
-(
-<div>{user ? <Redirect from='' to='/bootcamps' noThrow /> :  children }</div>
+const PublicZone = ({ children, user }) => (
+  <Match path='/hot/:item'>
+    {({ location }) => {
+      const to = location.search && location.search.replace('?to=', '');
+      const redirectTo = to || '/bootcamps';
+      return user ? <Redirect from='' to={redirectTo} noThrow /> : children;
+    }}
+  </Match>
+);
 
-)
-
-
-
-export default connect(({ user }) => ({ user }))(PrivateZone);
+export default connect(({ user }) => ({ user }))(PublicZone);
