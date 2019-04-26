@@ -8,7 +8,6 @@ import { loggedIn } from '../../redux/actions';
 import './Login.scss'
 
 
-
 class Login extends Component {
   state = {
     pass: '',
@@ -39,6 +38,7 @@ class Login extends Component {
 
     } else {
 
+      console.log(pass, email);
       loggedIn(pass, email)
         .then(() => this.setState({ error: 'logged!!' }))
         .catch( (e) => this.setState({ error: 'email o contraseña incorrecta' }));
