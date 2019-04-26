@@ -5,27 +5,36 @@ import { Link } from '@reach/router';
 
 import './Navigation.scss'
 
-const Navigation = () => (
-  
+const Navigation = (props) => (
+
   <nav className="navigation">
 
-      <div className="logo">
+    <div className="logo">
       logo
       </div>
-      <div className="user">
+    <div className="user">
 
-          <div className="avatar">avatar</div>
-          <nav className="menu">
-            <Link to='movies/top_rated'>top rated</Link>
+      {
+        props.user
+          ? (
+          <div className="logged">
+            <div className="avatar">avatar</div>
+            <nav className="menu">
+              <Link to='movies/top_rated'>top rated</Link>
 
-            <Link to='movies/upcoming'>upcoming</Link>
-            <Link to='Login'>popular</Link>
+              { props.user.role === 'admin' && <Link to='/admin'>admin</Link> }
+              <Link to='Login'>popular</Link>
+            </nav>
+          </div>)
+          : <Link to="/login">login</Link>
+      }
 
-          </nav>
       
-      </div>
+
+    </div>
 
   </nav>
 );
 
-export default connect( state => ({user: state.user}) )(Navigation);
+export default connect(state => ({ user: state.user }))(Navigation);
+

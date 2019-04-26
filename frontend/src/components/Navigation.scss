@@ -1,13 +1,31 @@
 .navigation {
-    display: flex;
+    display:flex;
     justify-content: space-between;
     background: black;
     color:white;
     padding: 2em;
     a {
     color:white;
+    }
+    
+
+    .logo{
+        background: red;
+    }
+
+    .avatar{
+        background: red;
+    }
+
+    .menu{
+        background: green;
 
     }
+
+    .admin{
+
+    }
+    
 }
 
 // import React from 'react';
