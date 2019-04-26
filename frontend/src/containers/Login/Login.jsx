@@ -23,27 +23,25 @@ class Login extends Component {
     console.log({ [ev.target.name]: ev.target.value });
   }
 
-  login = (e) => {
+  login = (event) => {
 
+    event.preventDefault();
     let {pass, email} = this.state;
 
     if (pass === '') {
-      e.preventDefault();
 
       this.setState({errorPass:"No has introducido el password"});
 
     }
      if (email === '') {
-      e.preventDefault();
 
       this.setState({errorEmail:"No has introducido el email"});
 
     } else {
-      e.preventDefault();
 
       loggedIn(pass, email)
         .then(() => this.setState({ error: 'logged!!' }))
-        .catch( (e) => this.setState({ error: 'not logged!!' }));
+        .catch( (e) => this.setState({ error: 'email o contraseña incorrecta' }));
 
     }
   };

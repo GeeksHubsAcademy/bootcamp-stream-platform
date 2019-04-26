@@ -11,13 +11,39 @@ export async function loggedIn(password, email) {
    user,
  });
 
-  // return ;
 }
 
-export function loggedOut() {
+export async function loggedOut() {
+  const user = store.getState().user
+  let token = user && user.token;
+  let response = await Axios.get('http://localhost:3001/user/logout', {headers: {Authorization:token }} );
+  console.log(response);
+
+
   dispatch( {
     type: 'LOGGED_OUT',
   })
 }
+
+
+export async function getBootcamps() {
+  console.log('get bootcamps');
+
+  const user = store.getState().user
+  let token = user && user.token;
+  let response = await Axios.get('http://localhost:3001/bootcamps/mine/', {headers: {Authorization:token }} );
+  let bootcamps = response.data;
+  console.log(response);
+
+
+  dispatch({
+    type: 'BOOTCAMPS_LOADED',
+    bootcamps,
+  });
+}
+
+
+
+
 
 // export default { loggedIn, loggedOut };
