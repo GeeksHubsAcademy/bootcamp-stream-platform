@@ -5,7 +5,12 @@ const Bootcamp = require('../models/Bootcamp')
 const bcrypt = require('bcrypt');
 const {authorization, isAdmin} =require('../utils/middleware/authorization')
 
-router.get('/find/:user_id', (req, res) => {
+router.get('/find/:user_id', async (req, res) => {
+    try{
+
+    }catch(e){
+        
+    }
     User.findById(req.params.user_id).then(userFound => {
         Bootcamp.find({
             user: {
@@ -61,7 +66,7 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
     User.findOne({
         email: req.body.email
-    }).then(userFound => {
+    }).then((userFound) => {
         if (!userFound) {
             return res.status(401).send({
                 message: 'Email or password wrong'
@@ -77,9 +82,9 @@ router.post('/login', (req, res) => {
                 });
             }
             userFound.generateAuthToken().then(token => {
+                const {_id, name, lastname, email, imagePath}=userFound
                 userFound.token=token;
-                console.log(userFound)
-                res.status(200).send({userFound, token})
+                res.status(200).send({_id, name, lastname, email, imagePath, token})
             }).catch(err=>res.status(500).send(err))
         }).catch(err=>res.status(500).send(err))
     })
