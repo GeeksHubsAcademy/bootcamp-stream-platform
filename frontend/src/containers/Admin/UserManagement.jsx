@@ -62,7 +62,7 @@ class UserManagement extends Component {
         console.log(this.e())
         return (
             <div className="">
-                <div class="admin_edit_user_header">
+                <div className="admin_edit_user_header">
                     <span><h3>Users:</h3></span>
 
                 </div>
