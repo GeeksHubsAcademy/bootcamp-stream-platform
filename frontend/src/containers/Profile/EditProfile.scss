@@ -25,6 +25,7 @@
   justify-content: center;
 
     button,
+    .formControl,
     .textField {
       align-self: center;
       width: 70%;
@@ -36,5 +37,7 @@
   form + form {
     margin-top: 3em;
   }
+
+  // .hidden{display: none}
   
 }
