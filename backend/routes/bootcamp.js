@@ -11,12 +11,7 @@ router.get('/mine', authorization, (req, res) => {
     .then(bootcamps => res.status(200).send(bootcamps))
     .catch(res.send);
 });
-router.get('/:id', (req, res) => {
-  Bootcamp.findById(req.params.id)
-    .then(bootcamp => res.send(bootcamp))
-    .catch(res.send);
-});
-router.post('/new', (req, res) => {
+router.post('/new',authorization, isAdmin, (req, res) => {
   new Bootcamp({
     title: req.body.title,
     description: req.body.description,
@@ -31,7 +26,7 @@ router.post('/new', (req, res) => {
     })
     .catch(res.send);
 });
-router.patch('/update/:id', (req, res) => {
+router.patch('/update/:id',authorization, isAdmin, (req, res) => {
   console.log(req.params.id, req.body);
   Bootcamp.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(Bootcamp => res.send(Bootcamp));
 });
