@@ -1,19 +1,23 @@
 import store from './index.js';
+import Axios from 'axios';
+
 let { dispatch } = store;
 
-export async function loggedIn(pass, email) {
-  // let user = await axios.post('http://api.com/login', {pass, email});
-  // dispatch({
-  //   type: 'LOGGED_IN',
-  //   user
-  // });
+export async function loggedIn(password, email) {
+ let response = await Axios.post('http://localhost:3001/user/login', { password, email });
+ let user = response.data;
+ dispatch({
+   type: 'LOGGED_IN',
+   user,
+ });
+
   // return ;
 }
 
 export function loggedOut() {
-  return {
+  dispatch( {
     type: 'LOGGED_OUT',
-  };
+  })
 }
 
 // export default { loggedIn, loggedOut };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from '@reach/router';
-import { loggedIn } from '../../redux/actions'
+import { loggedIn } from '../../redux/actions';
 //import { set } from 'mongoose';
 
 //importamos scss
@@ -14,7 +14,8 @@ class Login extends Component {
     pass: '',
     email: '',
     errorPass: '',
-    errorEmail:''
+    errorEmail:'',
+    error:'',
   }
 
   handleChange = (ev) => {
@@ -24,33 +25,26 @@ class Login extends Component {
 
   login = (e) => {
 
-    // if (this.state.email === '' || this.state.pass === '') {
-    //   e.preventDefault();
-      
-    //   this.setState({error:"ERRORRRRRR"});
-      
+    let {pass, email} = this.state;
 
-    // } else {
-    //   e.preventDefault();
-    //   console.log(this.state.email, this.state.pass)
-    //   // loggedIn(this.state.pass, this.state.email)
-    // }
-
-
-    if (this.state.pass === '') {
+    if (pass === '') {
       e.preventDefault();
-      
+
       this.setState({errorPass:"No has introducido el password"});
 
-    } if (this.state.email === '') {
+    }
+     if (email === '') {
       e.preventDefault();
-      
+
       this.setState({errorEmail:"No has introducido el email"});
-      
+
     } else {
       e.preventDefault();
-      console.log(this.state.email, this.state.pass)
-      // loggedIn(this.state.pass, this.state.email)
+
+      loggedIn(pass, email)
+        .then(() => this.setState({ error: 'logged!!' }))
+        .catch( (e) => this.setState({ error: 'not logged!!' }));
+
     }
   };
 
@@ -66,19 +60,19 @@ class Login extends Component {
       <section className=''>
         <h1>Login</h1>
 
-        <form onSubmit={this.login} className="loginView">
-          <input name="email" placeholder="email" type="email" onChange={this.handleChange}/>
-          <input name="pass" placeholder="password" type="password" onChange={this.handleChange} />
-          <button >Login</button>
+        <form onSubmit={this.login} className='loginView'>
+          <input name='email' placeholder='email' type='email' onChange={this.handleChange} />
+          {this.state.errorEmail && <div className='errorLoginView'>{this.state.errorEmail}</div>}
+          <input name='pass' placeholder='password' type='password' onChange={this.handleChange} />
+          {this.state.errorPass && <div className='errorLoginView'>{this.state.errorPass}</div>}
+          <button>Login</button>
         </form>
-            
-        {this.state.errorPass && <div className="errorLoginView">{this.state.errorPass}</div>}
-        {this.state.errorEmail && <div className="errorLoginView">{this.state.errorEmail}</div>}
+
+        {this.state.error && <h1 className='errorLoginView'>{this.state.error}</h1>}
 
         {/* <div className="errorLoginView">
           {this.state.error}
         </div> */}
-
       </section>
     );
   }
