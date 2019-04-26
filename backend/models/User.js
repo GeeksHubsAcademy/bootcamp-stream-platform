@@ -67,7 +67,7 @@ const UserSchema = new mongoose.Schema(
 
 UserSchema.methods.toJSON = function() {
   const { _id, name, lastname, email, imagePath } = this;
-  return { _id, name, lastname, email, imagePath };
+  return { _id, name, lastname, email, imagePath  };
 };
 
 UserSchema.pre('save', function(next) {
