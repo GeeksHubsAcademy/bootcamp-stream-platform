@@ -5,47 +5,39 @@ import { loggedIn } from '../../redux/actions';
 //import { set } from 'mongoose';
 
 //importamos scss
-import './Login.scss'
+import './Login.scss';
+import PublicZone from '../../components/PublicZone';
 
-
-class Login extends Component {
+class _Login extends Component {
   state = {
     pass: '',
     email: '',
     errorPass: '',
-    errorEmail:'',
-    error:'',
-  }
+    errorEmail: '',
+    error: '',
+  };
 
-  handleChange = (ev) => {
+  handleChange = ev => {
     this.setState({ [ev.target.name]: ev.target.value });
     console.log({ [ev.target.name]: ev.target.value });
-  }
+  };
 
-  login = (event) => {
-
+  login = event => {
     event.preventDefault();
-    let {pass, email} = this.state;
+    let { pass, email } = this.state;
 
     if (pass === '') {
-
-      this.setState({errorPass:"No has introducido el password"});
-
+      this.setState({ errorPass: 'No has introducido el password' });
     }
-     if (email === '') {
-
-      this.setState({errorEmail:"No has introducido el email"});
-
+    if (email === '') {
+      this.setState({ errorEmail: 'No has introducido el email' });
     } else {
-
       console.log(pass, email);
       loggedIn(pass, email)
         .then(() => this.setState({ error: 'logged!!' }))
-        .catch( (e) => this.setState({ error: 'email o contraseña incorrecta' }));
-
+        .catch(e => this.setState({ error: 'email o contraseña incorrecta' }));
     }
   };
-
 
   render() {
     console.log(this.props);
@@ -78,7 +70,13 @@ class Login extends Component {
 const mapStateToProps = ({ user }) => ({ isLogged: !!user });
 const mapDispatchToProps = dispatch => ({ dispatch });
 
-export default connect(
+export const Login = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Login);
+)(_Login);
+
+export default () => (
+  <PublicZone>
+    <Login />
+  </PublicZone>
+);

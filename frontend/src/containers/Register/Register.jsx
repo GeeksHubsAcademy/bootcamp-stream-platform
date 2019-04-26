@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PublicZone from '../../components/PublicZone';
 
-
-class Register extends Component {
+class _Register extends Component {
 
   render() {
     return (
@@ -12,4 +13,19 @@ class Register extends Component {
   }
 }
 
-export default Register;
+
+
+
+const mapStateToProps = ({ user }) => ({ user });
+const mapDispatchToProps = dispatch => ({ dispatch });
+
+export const Register = connect(
+         mapStateToProps,
+         mapDispatchToProps,
+       )(_Register);
+
+export default () => (
+  <PublicZone>
+    <Register />
+  </PublicZone>
+);
