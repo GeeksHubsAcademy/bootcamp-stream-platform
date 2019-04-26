@@ -3,7 +3,7 @@ POST http://localhost:3001/user/register
 content-Type: application/json; charset=utf-8
 
 {
-    "email": "asdasdsad@gmail.com",
+    "email": "jupegarnica+2@gmail.com",
     "password": "12342342345"
 
 }
