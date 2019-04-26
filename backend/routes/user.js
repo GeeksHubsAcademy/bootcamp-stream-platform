@@ -63,7 +63,7 @@ router.post('/login', (req, res) => {
         email: req.body.email
     }).then(userFound => {
         if (!userFound) {
-            return res.status(400).send({
+            return res.status(401).send({
                 message: 'Email or password wrong'
             });
         }
@@ -72,12 +72,14 @@ router.post('/login', (req, res) => {
         // }
         bcrypt.compare(req.body.password, userFound.password).then(isMatch => {
             if (!isMatch) {
-                return res.status(400).send({
+                return res.status(401).send({
                     message: 'Email or password wrong'
                 });
             }
             userFound.generateAuthToken().then(token => {
-                res.status(200).send({...userFound,token})
+                userFound.token=token;
+                console.log(userFound)
+                res.status(200).send({userFound, token})
             }).catch(err=>res.status(500).send(err))
         }).catch(err=>res.status(500).send(err))
     })
