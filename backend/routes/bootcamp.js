@@ -1,11 +1,12 @@
 const router = require('express').Router();
 const Bootcamp=require('../models/Bootcamp')
 const {authorization,isAdmin} =require('../utils/middleware/authorization')
-router.get('/all',authorization,isAdmin,(req,res)=>{
-    Bootcamp.find({}).then(Bootcamps=>res.send(Bootcamps)).catch(console.log)
+router.get('/mine',authorization,(req,res)=>{
+    if(req.user.role==='admin')return Bootcamp.find({}.then).then(Bootcamps=>res.send(Bootcamps)).catch(console.log)
+    Bootcamp.find({ user: { _id: req.user._id } }).then(bootcamps=>res.status(200).send(Bootcamps)).catch(console.log)
 })
 router.get('/:id',(req,res)=>{
-    Bootcamp.findById(req.params.id).then(Bootcamp=>res.send(Bootcamp)).catch(console.log)
+   Bootcamp.findById(req.params.id).then(Bootcamp=>res.send(Bootcamp)).catch(console.log)
 })
 router.post('/new',(req,res)=>{
     new Bootcamp({

@@ -7,22 +7,12 @@ const {authorization, isAdmin} =require('../utils/middleware/authorization')
 
 router.get('/find/:user_id', async (req, res) => {
     try{
-
+        const userFound=await User.findById(req.params.user_id)
+        const Bootcamps=await Bootcamp.find({ user: { _id: userFound._id } })
+        res.status(200).send({userFound, Bootcamps})
     }catch(e){
-        
+        res.status(500).send(e)
     }
-    User.findById(req.params.user_id).then(userFound => {
-        Bootcamp.find({
-            user: {
-                _id: userFound._id
-            }
-        }).then(Bootcamps => {
-            res.status(200).json({
-                userFound,
-                Bootcamps
-            })
-        })
-    }).catch(err => res.status(500).send(err))
 })
 
 router.get('/all',authorization,isAdmin, (req, res) => {
