@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 //importamos redux
 import { connect } from 'react-redux';
 
+import './MyBootcamps.scss'
+
 class MyBootcamps extends Component {
 
   render() {
@@ -10,12 +12,11 @@ class MyBootcamps extends Component {
     console.log(this.props.bootcamps);
     return (
       <section className="MyBootcampsView">
-        <div>
-          <h3>
-            Pertenece a los siguientes Bootcamps:
-          {this.props.bootcamps.map(bootcamp => <div key={bootcamp._id}>{bootcamp.title}</div>)}
+      <h3>Pertenece a los siguientes Bootcamps:</h3>
+        
+        <div className="MyBootcamps">
+          {this.props.bootcamps.map(bootcamp => <div className="listBootcamps" key={bootcamp._id}>{bootcamp.title}</div>)}
 
-          </h3>
 
 
           {/* <Link className="MyBootcamps" to={'/bootcamp/' + props.bootcamp.user.id} >
