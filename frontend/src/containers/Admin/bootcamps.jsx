@@ -8,10 +8,10 @@ class AdminBootcamp extends Component {
         const boot = [];
         // let caca = this.props.bootcamps;
         for (let index = 0; index < this.props.bootcamps.length; index++) {
-            let ruta = 'admin/bootcamps/:' + this.props.bootcamps[index]._id;
+            let ruta = '/admin/bootcamps/' + this.props.bootcamps[index]._id;
             boot.push(<div><h3>{this.props.bootcamps[index].title}</h3>
-                <Link to='admin/bootcamps'> <strong>Edit</strong> </Link>
-                <Link to={ruta}>  <strong>See</strong></Link>
+                <Link edit='edit' to={ruta}> <strong>Edit</strong> </Link>
+                <Link edit='see' to={ruta}>  <strong>See</strong></Link>
             </div>)
 
         }

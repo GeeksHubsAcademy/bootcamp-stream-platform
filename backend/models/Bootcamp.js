@@ -6,6 +6,7 @@ const BootcampSchema = new mongoose.Schema(
       required: true,
       maxlength: 100,
       trim: true,
+      required: true,
     },
     description: {
       type: String,
