@@ -10,6 +10,7 @@ class EditBootcamp extends Component {
         startsAt: '',
 
     }
+    
 
     handleChange = (ev) => {
         this.setState({ [ev.target.name]: ev.target.value });
@@ -20,6 +21,7 @@ class EditBootcamp extends Component {
     }
     render() {
         console.log(this.props.bootcamp)
+        console.log(this.props.edit)
         return (
 
             <div className="editBootcamp">

@@ -247,6 +247,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         user: null,
       };
+    case 'BOOTCAMPS_LOADED':
+      return {
+        ...state,
+        bootcamps: action.bootcamps
+      };
     default:
       return state;
   }
