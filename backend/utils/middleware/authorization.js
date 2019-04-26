@@ -5,7 +5,6 @@ const authorization = async (req, res, next) => {
     try {
         const authToken = req.headers.authorization
         const { _id } = jwt.verify(authToken, password.SECRET);
-
         const user = await User.findOne({
             _id,
             tokens: {
@@ -30,7 +29,7 @@ const isOwner = async (req, res, next) => {
 }
 const isAdmin = async (req, res, next) => {
     if (req.user.role!=='admin') {
-        return res.status(403).send('You are not authorized')
+        return res.status(401).send('You are not authorized')
     }
     next();
 }
