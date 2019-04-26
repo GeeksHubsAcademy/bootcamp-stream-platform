@@ -14,11 +14,11 @@ const BootcampSchema = new mongoose.Schema(
     },
     startsAt: {
       type: Date,
-      required: true,
+      // required: true,
     },
     weeksDuration: {
       type: Number,
-      required: true,
+      // required: true,
     },
     users: [
       {
