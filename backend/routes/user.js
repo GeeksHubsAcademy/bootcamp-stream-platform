@@ -77,7 +77,7 @@ router.post('/login', (req, res) => {
                 });
             }
             userFound.generateAuthToken().then(token => {
-                res.header('Authorization', token).send(userFound)
+                res.status(200).send({...userFound,token})
             }).catch(err=>res.status(500).send(err))
         }).catch(err=>res.status(500).send(err))
     })
