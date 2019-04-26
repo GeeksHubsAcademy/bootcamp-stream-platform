@@ -8,36 +8,46 @@ import { loggedIn } from '../../redux/actions'
 class Login extends Component {
   state = {
     pass: '',
-    email:''
+    email: '',
+    error: 'Error Error Error'
   }
 
   handleChange = (ev) => {
     this.setState({ [ev.target.name]: ev.target.value });
     console.log({ [ev.target.name]: ev.target.value });
-}
+  }
 
 
-  login = () => {
 
-    //e.preventDefault();
-   console.log(this.state.email, this.state.pass)
-   // loggedIn(this.state.pass, this.state.email)
 
+  login = (e) => {
+
+    if (this.state.pass === '' || this.state.pass === '') {
+      e.preventDefault();
+      
+      alert(this.state.error);
+      
+
+    } else {
+      e.preventDefault();
+      console.log(this.state.email, this.state.pass)
+      // loggedIn(this.state.pass, this.state.email)
+    }
   };
   render() {
     console.log(this.props);
 
-      // if (this.props.isLogged) {
-      //   return <Redirect to='profile' />;
-      // }
+    // if (this.props.isLogged) {
+    //   return <Redirect to='profile' />;
+    // }
 
     return (
       <section className='LoginView'>
         <h1>Login</h1>
 
         <form onSubmit={this.login} className="">
-          <input name="email" placeholder="email" type="email" onChange={this.handleChange} required />
-          <input name="pass" placeholder="password" type="password" onChange={this.handleChange} required />
+          <input name="email" placeholder="email" type="email" onChange={this.handleChange}/>
+          <input name="pass" placeholder="password" type="password" onChange={this.handleChange} />
 
 
           <button >login</button>
