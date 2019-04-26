@@ -4,15 +4,13 @@ export let initialState = {
 };
 
 const sampleState = {
-  bootcamps: [
-    {
+  bootcamps: [{
       _id: 123,
       title: 'FSD VLC FEB19',
       description: null,
       startsAt: new Date(),
       weeksDuration: 12,
-      users: [
-        {
+      users: [{
           _id: 1,
           name: 'juan',
         },
@@ -25,8 +23,7 @@ const sampleState = {
           name: 'paco',
         },
       ],
-      posts: [
-        {
+      posts: [{
           postType: 'text',
           authorId: 1,
           content: {
@@ -76,8 +73,7 @@ const sampleState = {
       description: null,
       startsAt: new Date(),
       weeksDuration: 12,
-      users: [
-        {
+      users: [{
           _id: 1,
           name: 'juan',
         },
@@ -90,8 +86,7 @@ const sampleState = {
           name: 'paco',
         },
       ],
-      posts: [
-        {
+      posts: [{
           postType: 'text',
           authorId: 1,
           content: {
@@ -141,8 +136,7 @@ const sampleState = {
       description: null,
       startsAt: new Date(),
       weeksDuration: 12,
-      users: [
-        {
+      users: [{
           _id: 1,
           name: 'juan',
         },
@@ -155,8 +149,7 @@ const sampleState = {
           name: 'paco',
         },
       ],
-      posts: [
-        {
+      posts: [{
           postType: 'text',
           authorId: 1,
           content: {
@@ -210,6 +203,36 @@ const sampleState = {
     imagePath: null,
     token: 'AASFDSDFQ298723ÑLKJWD98723HJDW76D2YBD623YB326D',
   },
+  allUsers: [
+
+    {
+      _id: 1,
+      name: 'pepe',
+      surname: 'Garnica',
+      role: 'student',
+      email: 'juan@geekhubs.com',
+      imagePath: null,
+
+    },
+    {
+      _id: 2,
+      name: 'Juan',
+      surname: 'Garnica',
+      role: 'admin',
+      email: 'juan@geekhubs.com',
+      imagePath: null,
+
+    },
+    {
+      _id: 3,
+      name: 'paco',
+      surname: 'Garnica',
+      role: 'student',
+      email: 'juan@geekhubs.com',
+      imagePath: null,
+
+    },
+  ],
 };
 initialState = sampleState;
 const reducer = (state = initialState, action) => {

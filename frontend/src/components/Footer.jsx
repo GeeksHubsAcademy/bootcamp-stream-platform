@@ -12,10 +12,10 @@ const Footer = () => (
         All Rights Reserved</p>
     </div>
     <div className='social'> 
-    <span class="mdi mdi-facebook-box"></span>
+    {/* <span class="mdi mdi-facebook-box"></span>
     <span class="mdi mdi-twitter"></span>
     <span class="mdi mdi-linkedin-box"></span>
-    <span class="mdi mdi-youtube"></span>
+    <span class="mdi mdi-youtube"></span> */}
     </div>
     <div className='links'>
     <ul>
