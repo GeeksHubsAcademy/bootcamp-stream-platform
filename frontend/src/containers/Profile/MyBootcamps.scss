@@ -1,0 +1,29 @@
+.MyBootcampsView{
+    
+    display:flex;
+    flex-direction: column;
+   
+
+    
+    
+    .MyBootcamps{
+        border:1px solid black;
+        display:flex;
+        padding:1em;
+        justify-content: center;
+        flex-direction: column;
+        margin:0 auto;
+        width:500px;
+
+        .listBootcamps{
+            border:1px solid black;
+            padding:1em;
+            margin:5px;
+            
+
+
+        }
+
+    }
+    
+}

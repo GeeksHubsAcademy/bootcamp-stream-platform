@@ -3,7 +3,7 @@ const config = require('../config/password')
 const User = require('../models/User');
 const Bootcamp = require('../models/Bootcamp')
 const bcrypt = require('bcrypt');
-const {authorization} =require('../utils/middleware/authorization')
+const {authorization, isAdmin} =require('../utils/middleware/authorization')
 
 router.get('/find/:user_id', (req, res) => {
     User.findById(req.params.user_id).then(userFound => {
@@ -20,7 +20,7 @@ router.get('/find/:user_id', (req, res) => {
     }).catch(err => res.status(500).send(err))
 })
 
-router.get('/all', (req, res) => {
+router.get('/all',authorization,isAdmin, (req, res) => {
     User.find({}).then(users => res.send(users)).catch(err => res.status(500).send(err))
 })
 router.post('/register', (req, res) => {
@@ -77,9 +77,9 @@ router.post('/login', (req, res) => {
                 });
             }
             userFound.generateAuthToken().then(token => {
-                res.header('Authorization', token).send(userFound)
-            }).catch(console.log)
-        }).catch(console.log)
+                res.status(200).send({...userFound,token})
+            }).catch(err=>res.status(500).send(err))
+        }).catch(err=>res.status(500).send(err))
     })
 });
 
