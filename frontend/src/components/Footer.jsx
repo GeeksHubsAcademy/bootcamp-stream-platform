@@ -1,19 +1,21 @@
 import React from 'react';
 
 import { Link } from '@reach/router';
-
 import './Footer.scss';
 
 const Footer = () => (
   <footer className='footer'>
     <div>
-      <h1>Logo</h1>
+      <img src='https://geekshubsacademy.com/img/logo_Geeks_Alfatec.svg' alt='GeeksHubs Academy' />
       <p className='blurb'> “When a fullstack developer plays <br/> a game of thrones they win or they die.” </p>
-      <p className='rights'>All Content © GeeksHubs. FSD class of 2019.
+      <p className='rights'>All Content © GeeksHubs. VLC FSD class of 2019.
         All Rights Reserved</p>
     </div>
     <div className='social'> 
-    RRSS
+    <span class="mdi mdi-facebook-box"></span>
+    <span class="mdi mdi-twitter"></span>
+    <span class="mdi mdi-linkedin-box"></span>
+    <span class="mdi mdi-youtube"></span>
     </div>
     <div className='links'>
     <ul>
