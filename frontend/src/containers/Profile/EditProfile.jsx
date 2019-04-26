@@ -13,27 +13,24 @@ import Button from '@material-ui/core/Button';
 class EditProfile extends Component {
 
   // state initial
-  state = {
-    userDetails: this.props.user || [],
-  };
+  state =  this.props.user || {}
 
   saveProfile = (e) => {
     e.preventDefault();
-    //console.log(this.state.userDetails.name)
-   //console.log(name, email, password)
-   //loggedIn(name, password)
+    console.log('Saved', this.state)
+  };
+
+  // TODO
+  deleteProfile = (e) => {
+    e.preventDefault();
+    console.log('Delete', this.state.bootcamp)
   };
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
-
-    console.log({ [name]: event.target.value });
-
-
   };
 
   render() {
-
     //console.log(this.props);
 
     // TODO after login task
@@ -45,21 +42,20 @@ class EditProfile extends Component {
     
       <section className="EditProfileView">
 
-           <h1>Hi {this.state.userDetails.name || ''}</h1>
-           <p>Edit your profile: </p>
-
-          <form autoComplete="off" onSubmit={this.saveProfile}>
+          <h1>Hi {this.state.name }</h1>
+          <p>Edit your profile: </p>
+          <form autoComplete="off"
+                onClick={this.saveProfile}>
 
             {/* TODO
-              error attribute 
-              value={this.state.userDetails.name || ''}             
+              error attribute }             
             */}
             <TextField
               id="standard-name"
               label="Name"
               name="name"    
               className="textField"
-              value={this.state.userDetails.name || ''} 
+              value={this.state.name}
               onChange={this.handleChange("name")}
               margin="normal"
               required
@@ -69,7 +65,7 @@ class EditProfile extends Component {
               id="standard-surname"
               label="Surname"
               name="surname"
-              value={this.state.userDetails.surname || ''} 
+              value={this.state.surname} 
               onChange={this.handleChange("surname")}
               className="textField"
               margin="normal"
@@ -80,7 +76,7 @@ class EditProfile extends Component {
               id="standard-email-input"
               label="Email"
               name="email"
-              value={this.state.userDetails.email || ''} 
+              value={this.state.email} 
               onChange={this.handleChange("email")}
               type="email"
               className="textField"
@@ -90,7 +86,7 @@ class EditProfile extends Component {
 
             <TextField
               id="standard-password-input"
-              label="Password"
+              label="Change password"
               name="password"
               type="password"   
               className="textField"
@@ -107,25 +103,27 @@ class EditProfile extends Component {
               margin="normal"
             />
 
-            {/* NOTE disabled */}
+            {/* disabled */}
             <TextField
               disabled
               id="standard-disabled"
-              label="Profile"
+              label="Your profile"
               defaultValue="Student"
               className="textField"
               margin="normal"
             />
 
-            <Button variant="contained">
+            {/* TODO 
+              visibility on keyup form 
+              */}
+            <Button variant="contained" color="primary">
               Save
             </Button>
-
           </form>
 
-          <form className="" action="/profile/delete" method="DELETE">
+          <form onClick={this.deleteProfile} >
             <Button variant="contained">
-            unsubscribe
+            Unsubscribe
             </Button>
           </form>
 
