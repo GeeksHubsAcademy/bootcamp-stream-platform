@@ -1,0 +1,15 @@
+.users_edit_admin {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 15px;
+    border-bottom: 0.5px solid;
+    padding-bottom: 3px;
+}
+
+.admin_edit_user_header {
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+
+}
