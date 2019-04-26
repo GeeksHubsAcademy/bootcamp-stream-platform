@@ -27,7 +27,7 @@ router.post('/new',authorization, isAdmin, (req, res) => {
     .catch(res.send);
 });
 router.patch('/update/:id',authorization, isAdmin, (req, res) => {
-  console.log(req.params.id, req.body);
-  Bootcamp.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(Bootcamp => res.send(Bootcamp));
+  Bootcamp.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(bootcamp => res.send(bootcamp));
 });
+
 module.exports = router;

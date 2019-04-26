@@ -3,17 +3,7 @@ const config = require('../config/password')
 const User = require('../models/User');
 const Bootcamp = require('../models/Bootcamp')
 const bcrypt = require('bcrypt');
-const {authorization, isAdmin} =require('../utils/middleware/authorization')
-
-router.get('/find/:user_id', async (req, res) => {
-    try{
-        const userFound=await User.findById(req.params.user_id)
-        const Bootcamps=await Bootcamp.find({ user: { _id: userFound._id } })
-        res.status(200).send({userFound, Bootcamps})
-    }catch(e){
-        res.status(500).send(e)
-    }
-})
+const {authorization, isAdmin, isOwner} =require('../utils/middleware/authorization')
 
 router.get('/all',authorization,isAdmin, (req, res) => {
     User.find({}).then(users => res.send(users)).catch(err => res.status(500).send(err))
@@ -59,7 +49,7 @@ router.post('/login', (req, res) => {
     }).then((userFound) => {
         if (!userFound) {
             return res.status(401).send({
-                message: 'Email or password wrong'
+                message: 'Email or password wrong' /*Email Wrong */
             });
         }
         // if(!userFound.confirmed) {       /* This will be added when the confirmed email property will be created at the User schema */
@@ -68,7 +58,7 @@ router.post('/login', (req, res) => {
         bcrypt.compare(req.body.password, userFound.password).then(isMatch => {
             if (!isMatch) {
                 return res.status(401).send({
-                    message: 'Email or password wrong'
+                    message: 'Email or password wrong' /*Password Wrong */
                 });
             }
             userFound.generateAuthToken().then(token => {
@@ -79,7 +69,9 @@ router.post('/login', (req, res) => {
         }).catch(err=>res.status(500).send(err))
     })
 });
-
+router.patch('/update/:id',authorization,isOwner, (req, res) => {
+    User.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(user => res.send(user));
+  });
 router.get('/logout',authorization, (req, res) => {
     const tokens=req.user.tokens.filter(token=>token.type!=='auth')
     User.findByIdAndUpdate(req.user._id,{$set:{tokens}},{upsert:true})
