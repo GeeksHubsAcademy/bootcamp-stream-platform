@@ -9,8 +9,8 @@ const Navigation = (props) => (
 
   <nav className="navigation">
 
-    <div className="logo">
-      <img src='https://geekshubsacademy.com/img/logo_Geeks_Alfatec.svg' alt='GeeksHubs Academy' />
+    <img src='https://geekshubsacademy.com/img/logo_Geeks_Alfatec.svg' alt='GeeksHubs Academy' />
+    <div>
     </div>
     <div className="user">
 
