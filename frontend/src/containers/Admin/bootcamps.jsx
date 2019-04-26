@@ -18,9 +18,6 @@ class AdminBootcamp extends Component {
         return boot;
     }
 
-
-
-
     render() {
 
         console.log(this.e())
