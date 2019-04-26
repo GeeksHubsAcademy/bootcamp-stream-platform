@@ -33,5 +33,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-test-renderer": "^16.8.6"
+  },
+  "jest": {
+      "setupFiles": [
+          "<rootDir>/config/enzyme.js",
+          "raf/polyfill"
+      ]
   }
 }
