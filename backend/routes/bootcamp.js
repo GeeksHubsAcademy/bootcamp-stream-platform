@@ -29,7 +29,7 @@ router.post('/new', (req, res) => {
     .then(Bootcamp => {
       res.send(Bootcamp);
     })
-    .catch(console.log);
+    .catch(res.send);
 });
 router.patch('/update/:id', (req, res) => {
   console.log(req.params.id, req.body);

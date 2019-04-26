@@ -31,7 +31,7 @@ export async function getBootcamps() {
 
   const user = store.getState().user
   let token = user && user.token;
-  let response = await Axios.get('http://localhost:3001/bootcamps/mine/', {headers: {Authorization:token }} );
+  let response = await Axios.get('http://localhost:3001/bootcamp/mine/', {headers: {Authorization:token }} );
   let bootcamps = response.data;
   console.log(response);
 
