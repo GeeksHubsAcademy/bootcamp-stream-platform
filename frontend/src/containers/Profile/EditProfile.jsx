@@ -8,32 +8,72 @@ import './EditProfile.scss';
 // form styles
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+// form error styles
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
 
 
 class EditProfile extends Component {
 
   // state initial
+  //state =  this.props.user || {}
   state = {
-    userDetails: this.props.user || [],
+    name: this.props.user.name,
+    surname: this.props.user.surname,
+    email: this.props.user.email,
+    password: this.props.user.password,
+    password2: this.props.user.password2,
+    // TODO el input type submit tiene un name?
+    errorName: undefined,
+    errorSurname: undefined,
+    errorEmail: undefined,
+    errorPassword: undefined,
+    errorPassword2: undefined
+  }
+
+  // TODO
+  deleteProfile = (e) => {
+    e.preventDefault();
+    //console.log('Delete', this.state.bootcamp)
   };
 
+  // TODO post action
   saveProfile = (e) => {
     e.preventDefault();
-    //console.log(this.state.userDetails.name)
-   //console.log(name, email, password)
-   //loggedIn(name, password)
-  };
+    //console.log('Saved', this.state)
+    this.validate();
+  };  
 
   handleChange = name => event => {
-    this.setState({ [name]: event.target.value });
-
-    console.log({ [name]: event.target.value });
-
-
+    this.setState(
+      {[name]: event.target.value.trim() },
+      () =>{
+        console.log( this.state )
+        // validate onChange inside callback
+        this.validate();
+      }
+      );
   };
 
-  render() {
+  validate = () => {
+    console.log('hola, estamos validando!');
 
+    if( this.state.name === ''){
+      this.setState({ errorName: 'Please, write your name'});
+      console.log('campo vacío');
+    }
+    // if( this.state.password !== this.state.password2){
+    //   this.setState({ errorPassword2: 'las contraseñas no coinciden'});
+    //   console.log('no coinciden');
+    // } else {
+    //   this.setState({ errorPassword2: undefined});
+    //   console.log(' coinciden');      
+    // }
+
+  }
+  render() {
     //console.log(this.props);
 
     // TODO after login task
@@ -45,31 +85,50 @@ class EditProfile extends Component {
     
       <section className="EditProfileView">
 
-           <h1>Hi {this.state.userDetails.name || ''}</h1>
-           <p>Edit your profile: </p>
-
-          <form autoComplete="off" onSubmit={this.saveProfile}>
+          <h1>Hi {this.state.name}</h1>
+          <p>Edit your profile: </p>
+          <form autoComplete="off"
+                onClick={this.saveProfile}>
 
             {/* TODO
-              error attribute 
-              value={this.state.userDetails.name || ''}             
+              error attribute }             
             */}
-            <TextField
+            {/* <TextField
               id="standard-name"
               label="Name"
               name="name"    
               className="textField"
-              value={this.state.userDetails.name || ''} 
+              value={this.state.name}
               onChange={this.handleChange("name")}
               margin="normal"
               required
-            />
+            /> */}
+ 
+       <FormControl className="formControl" error={!!this.state.errorName }>
+              <InputLabel htmlFor="component-name">Name</InputLabel>
+              <Input
+                id="component-name"
+                value={this.state.name}
+                onChange={this.handleChange("name")}
+                aria-describedby="component-name-text"
+                required
+              />              
+              {/* <FormHelperText 
+                id="component-error-text"
+                className={ this.state.errorName ? 'visible': 'hidden'}>
+                {this.state.errorName}
+              </FormHelperText> */}
+              {this.state.errorName && 
+              <FormHelperText id="component-error-text">{this.state.errorName}</FormHelperText>
+              }  
+
+            </FormControl>
 
             <TextField
               id="standard-surname"
               label="Surname"
               name="surname"
-              value={this.state.userDetails.surname || ''} 
+              value={this.state.surname} 
               onChange={this.handleChange("surname")}
               className="textField"
               margin="normal"
@@ -80,7 +139,7 @@ class EditProfile extends Component {
               id="standard-email-input"
               label="Email"
               name="email"
-              value={this.state.userDetails.email || ''} 
+              value={this.state.email} 
               onChange={this.handleChange("email")}
               type="email"
               className="textField"
@@ -90,9 +149,10 @@ class EditProfile extends Component {
 
             <TextField
               id="standard-password-input"
-              label="Password"
+              label="Change password"
               name="password"
-              type="password"   
+              type="password"  
+              autoComplete="current-password" 
               className="textField"
               margin="normal"
             />
@@ -100,32 +160,33 @@ class EditProfile extends Component {
             <TextField
               id="standard-repeat-password-input"
               label="Repeat password"
-              name="repeat-password"
+              name="password2"
               type="password"
-              autoComplete="current-password"
               className="textField"
               margin="normal"
             />
 
-            {/* NOTE disabled */}
+            {/* disabled */}
             <TextField
               disabled
               id="standard-disabled"
-              label="Profile"
+              label="Your profile"
               defaultValue="Student"
               className="textField"
               margin="normal"
             />
 
-            <Button variant="contained">
+            {/* TODO 
+              visibility on keyup form 
+              */}
+            <Button variant="contained" color="primary">
               Save
             </Button>
-
           </form>
 
-          <form className="" action="/profile/delete" method="DELETE">
+          <form onClick={this.deleteProfile} >
             <Button variant="contained">
-            unsubscribe
+            Unsubscribe
             </Button>
           </form>
 

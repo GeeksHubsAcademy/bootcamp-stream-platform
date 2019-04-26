@@ -10,14 +10,22 @@
   margin: 2em auto;
   border-radius: 5px;
 
-    form {
+  p{
     display: flex;
-    flex-direction: column;
-    height: 100%; 
-    flex-wrap: nowrap;
+    padding: 1em;
     justify-content: center;
+    margin: 0 auto;
+  }
+
+  form {
+  display: flex;
+  flex-direction: column;
+  height: 100%; 
+  flex-wrap: nowrap;
+  justify-content: center;
 
     button,
+    .formControl,
     .textField {
       align-self: center;
       width: 70%;
@@ -25,11 +33,11 @@
     button{
       margin: 1em 0;
     }
-
   }
-
   form + form {
     margin-top: 3em;
   }
+
+  // .hidden{display: none}
   
 }
