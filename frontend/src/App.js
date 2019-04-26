@@ -10,7 +10,7 @@ import NotFound from './components/NotFound';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import AdminEditBootcamp from './containers/Admin/EditBootcamp.jsx'
-import AdminBootcamps from './containers/Admin/Admin'
+import AdminBootcamps from './containers/Admin/bootcamps.jsx'
 import './App.scss';
 
 function App() {

@@ -12,7 +12,7 @@ class MyBootcamps extends Component {
       <section className="MyBootcampsView">
         <div>
           <h3>
-            Pertenece al/a los siguientes Bootcamps:
+            Pertenece a los siguientes Bootcamps:
           {this.props.bootcamps.map(bootcamp => <div key={bootcamp._id}>{bootcamp.title}</div>)}
 
           </h3>

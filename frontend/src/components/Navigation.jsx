@@ -29,7 +29,7 @@ const Navigation = (props) => (
           : <Link to="/login">login</Link>
       }
 
-      
+
 
     </div>
 

@@ -1,10 +1,9 @@
-import React, { Component, Redirect} from 'react';
+import React, { Component} from 'react';
 import { connect } from 'react-redux';
-
 // styles
 import PropTypes from 'prop-types';
 
-// TODO import material styles 
+// TODO import material styles
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -23,13 +22,17 @@ class EditProfile extends Component {
     });
   };
 
-  // TODO state interno // samplestate de user.js?
+  // state initial
   state = {
-    name: "Cristina",
-    lastname: "Pérez",
-    email: "email@gmail.com",
-    password: "1234"
+    userDetails: this.props.user || [],
   };
+
+  // login = () => {
+  //   //e.preventDefault();
+  //  //console.log(this.state.email, this.state.pass)
+  //  // loggedIn(this.state.pass, this.state.email)
+
+  // };
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
@@ -37,51 +40,58 @@ class EditProfile extends Component {
 
   render() {
 
+    console.log(this.props);
+
     // TODO after login task
-     if (!this.props.user) {
-       return <Redirect to='/login' />;
-     }
+    //  if (!this.props.user) {
+    //    return <Redirect to='/login' />;
+    //  }
 
     return (
 
       <section className='EditProfileView'>
-      
-        <h1>Edit Profile</h1>
 
+        <h1>Edit Profile</h1>
 
         {/* TODO import material styles  className={classes.container}  */}
         {/* /* TODO import material styles className={classes.textField} */}
 
-        <form noValidate autoComplete="off">
+        <form autoComplete="off">
+
+        {/* error attribute */}
+
           <TextField
             id="standard-name"
             label="Name"
-            value={this.state.name}
+            value={this.state.userDetails.name || ''} 
             onChange={this.handleChange("name")}
             margin="normal"
+            required
           />
+
           <TextField
             id="standard-lastname"
-            label="Lastname"
-            value={this.state.lastname}
-            onChange={this.handleChange("lastname")}
+            label="Surname"
+            value={this.state.userDetails.surname || ''} 
+            onChange={this.handleChange("surname")}
             margin="normal"
+            required
           />
 
           <TextField
             id="standard-email-input"
             label="Email"
-            value={this.state.email}
+            value={this.state.userDetails.email || ''} 
             onChange={this.handleChange("email")}
             type="email"
             margin="normal"
+            required
           />
 
           <TextField
             id="standard-password-input"
             label="Password"
-            type="password"
-            autoComplete="current-password"
+            type="password"            
             margin="normal"
           />
 
@@ -104,21 +114,21 @@ class EditProfile extends Component {
 
           <Button variant="contained">
             Save
-          </Button>    
+          </Button>
 
-        </form>   
+        </form>
 
         <form className="" action="/profile/delete" method="DELETE">
           <Button variant="contained">
           unsubscribe
           </Button>
-        </form> 
+        </form>
 
         {/* TODO review , it's in navbar?  className={classes.button} */}
         <Button variant="contained" onClick={this.logout}>
           Logout
         </Button>
-     
+
       </section>
     );
   }
@@ -131,7 +141,11 @@ class EditProfile extends Component {
 // };
 
 
-const mapStateToProps = ({ user }) => ({ user });
+const mapStateToProps = ({ user }) => ({ 
+  isLogged: !!user,
+  user
+});
+
 const mapDispatchToProps = dispatch => ({ dispatch });
 
 
