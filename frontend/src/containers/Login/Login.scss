@@ -1,0 +1,41 @@
+h1{
+    display:flex;
+    padding:1em;
+    justify-content: center;
+    
+    margin:0 auto;
+    
+}
+
+
+
+.errorLoginView{
+        
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    margin:0 auto;
+    width:400px;
+}
+
+.loginView{
+    
+    border: 1px solid black;
+    display:flex;
+    flex-direction: column;
+    padding:1em;
+    margin:0px auto;
+    width:400px;
+    
+    
+    input{
+    padding:1em;
+    margin:5px;       
+}
+button{
+    padding:1em;
+    margin:5px;
+}
+
+}

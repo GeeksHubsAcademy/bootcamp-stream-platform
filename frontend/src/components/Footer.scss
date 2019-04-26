@@ -2,24 +2,31 @@
     display: flex;
     justify-content: space-between;
     background: black;
-    color:white;
-    padding: 4em;
+    color: white;
+    padding: 1em 4em;
     box-align: center;
-    
 }
+
+.img {
+    size: 0.5em;
+}
+
 .blurb {
     word-wrap: break-word;
 }
+
 .social {
-    
     margin: 5px 5px;
     color: white;
 }
+
 .rights {
     font-size: 9px;
 }
-
-ul
-{
+.ul:links {
+color: white;
+}
+ul {
+    padding-bottom: 5px;
     list-style-type: none;
 }

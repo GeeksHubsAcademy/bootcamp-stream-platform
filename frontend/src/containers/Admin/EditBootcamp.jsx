@@ -35,7 +35,8 @@ class EditBootcamp extends Component {
                     <button>Delete</button>
                 </div>
                 <div>
-                    <UserManagement></UserManagement>
+                    
+                    <UserManagement bootcampId={this.state._id}></UserManagement>
                 </div>
             </div>
         )
