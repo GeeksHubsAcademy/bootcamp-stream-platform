@@ -33,7 +33,7 @@ class UserManagement extends Component {
         for (let i = 0; i < this.props.allUsers.length; i++) {
 
 
-            boot_user.push(<div className="users_edit_admin">
+            boot_user.push(<div className="users_edit_admin" key={this.props.allUsers[i]._id}>
                 <span> {this.props.allUsers[i].name}</span>
                 <span> {this.props.allUsers[i].surname} </span>
                 <span>{this.props.allUsers[i].email} </span>
