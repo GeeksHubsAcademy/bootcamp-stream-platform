@@ -1,145 +1,200 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
-// styles
-import PropTypes from 'prop-types';
+import { Redirect } from '@reach/router';
 
-// TODO import material styles
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+// component styles
+import './EditProfile.scss';
 
 // form styles
 import TextField from '@material-ui/core/TextField';
-// button styles
 import Button from '@material-ui/core/Button';
+// form error styles
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
 
 
 class EditProfile extends Component {
 
-  // TODO it's necessary?
-  logout = () => {
-    this.props.dispatch({
-      type: 'LOGGED_OUT',
-    });
-  };
-
   // state initial
+  //state =  this.props.user || {}
   state = {
-    userDetails: this.props.user || [],
+    name: this.props.user.name,
+    surname: this.props.user.surname,
+    email: this.props.user.email,
+    password: this.props.user.password,
+    password2: this.props.user.password2,
+    // TODO el input type submit tiene un name?
+    errorName: undefined,
+    errorSurname: undefined,
+    errorEmail: undefined,
+    errorPassword: undefined,
+    errorPassword2: undefined
+  }
+
+  // TODO
+  deleteProfile = (e) => {
+    e.preventDefault();
+    //console.log('Delete', this.state.bootcamp)
   };
 
-  // login = () => {
-  //   //e.preventDefault();
-  //  //console.log(this.state.email, this.state.pass)
-  //  // loggedIn(this.state.pass, this.state.email)
-
-  // };
+  // TODO post action
+  saveProfile = (e) => {
+    e.preventDefault();
+    //console.log('Saved', this.state)
+    this.validate();
+  };  
 
   handleChange = name => event => {
-    this.setState({ [name]: event.target.value });
+    this.setState(
+      {[name]: event.target.value.trim() },
+      () =>{
+        console.log( this.state )
+        // validate onChange inside callback
+        this.validate();
+      }
+      );
   };
 
-  render() {
+  validate = () => {
+    console.log('hola, estamos validando!');
 
-    console.log(this.props);
+    if( this.state.name === ''){
+      this.setState({ errorName: 'Please, write your name'});
+      console.log('campo vacío');
+    }
+    // if( this.state.password !== this.state.password2){
+    //   this.setState({ errorPassword2: 'las contraseñas no coinciden'});
+    //   console.log('no coinciden');
+    // } else {
+    //   this.setState({ errorPassword2: undefined});
+    //   console.log(' coinciden');      
+    // }
+
+  }
+  render() {
+    //console.log(this.props);
 
     // TODO after login task
-    //  if (!this.props.user) {
-    //    return <Redirect to='/login' />;
-    //  }
+    // if (this.props.isLogged) {
+    //   return <Redirect to='login' />;
+    // }
 
     return (
+    
+      <section className="EditProfileView">
 
-      <section className='EditProfileView'>
+          <h1>Hi {this.state.name}</h1>
+          <p>Edit your profile: </p>
+          <form autoComplete="off"
+                onClick={this.saveProfile}>
 
-        <h1>Edit Profile</h1>
+            {/* TODO
+              error attribute }             
+            */}
+            {/* <TextField
+              id="standard-name"
+              label="Name"
+              name="name"    
+              className="textField"
+              value={this.state.name}
+              onChange={this.handleChange("name")}
+              margin="normal"
+              required
+            /> */}
+ 
+       <FormControl className="formControl" error={!!this.state.errorName }>
+              <InputLabel htmlFor="component-name">Name</InputLabel>
+              <Input
+                id="component-name"
+                value={this.state.name}
+                onChange={this.handleChange("name")}
+                aria-describedby="component-name-text"
+                required
+              />              
+              {/* <FormHelperText 
+                id="component-error-text"
+                className={ this.state.errorName ? 'visible': 'hidden'}>
+                {this.state.errorName}
+              </FormHelperText> */}
+              {this.state.errorName && 
+              <FormHelperText id="component-error-text">{this.state.errorName}</FormHelperText>
+              }  
 
-        {/* TODO import material styles  className={classes.container}  */}
-        {/* /* TODO import material styles className={classes.textField} */}
+            </FormControl>
 
-        <form autoComplete="off">
+            <TextField
+              id="standard-surname"
+              label="Surname"
+              name="surname"
+              value={this.state.surname} 
+              onChange={this.handleChange("surname")}
+              className="textField"
+              margin="normal"
+              required
+            />
 
-        {/* error attribute */}
+            <TextField
+              id="standard-email-input"
+              label="Email"
+              name="email"
+              value={this.state.email} 
+              onChange={this.handleChange("email")}
+              type="email"
+              className="textField"
+              margin="normal"
+              required
+            />
 
-          <TextField
-            id="standard-name"
-            label="Name"
-            value={this.state.userDetails.name || ''} 
-            onChange={this.handleChange("name")}
-            margin="normal"
-            required
-          />
+            <TextField
+              id="standard-password-input"
+              label="Change password"
+              name="password"
+              type="password"  
+              autoComplete="current-password" 
+              className="textField"
+              margin="normal"
+            />
 
-          <TextField
-            id="standard-lastname"
-            label="Surname"
-            value={this.state.userDetails.surname || ''} 
-            onChange={this.handleChange("surname")}
-            margin="normal"
-            required
-          />
+            <TextField
+              id="standard-repeat-password-input"
+              label="Repeat password"
+              name="password2"
+              type="password"
+              className="textField"
+              margin="normal"
+            />
 
-          <TextField
-            id="standard-email-input"
-            label="Email"
-            value={this.state.userDetails.email || ''} 
-            onChange={this.handleChange("email")}
-            type="email"
-            margin="normal"
-            required
-          />
+            {/* disabled */}
+            <TextField
+              disabled
+              id="standard-disabled"
+              label="Your profile"
+              defaultValue="Student"
+              className="textField"
+              margin="normal"
+            />
 
-          <TextField
-            id="standard-password-input"
-            label="Password"
-            type="password"            
-            margin="normal"
-          />
+            {/* TODO 
+              visibility on keyup form 
+              */}
+            <Button variant="contained" color="primary">
+              Save
+            </Button>
+          </form>
 
-          <TextField
-            id="standard-repeat-password-input"
-            label="Repeat password"
-            type="password"
-            autoComplete="current-password"
-            margin="normal"
-          />
-
-          {/* NOTE disabled */}
-          <TextField
-            disabled
-            id="standard-disabled"
-            label="Profile"
-            defaultValue="Student"
-            margin="normal"
-          />
-
-          <Button variant="contained">
-            Save
-          </Button>
-
-        </form>
-
-        <form className="" action="/profile/delete" method="DELETE">
-          <Button variant="contained">
-          unsubscribe
-          </Button>
-        </form>
-
-        {/* TODO review , it's in navbar?  className={classes.button} */}
-        <Button variant="contained" onClick={this.logout}>
-          Logout
-        </Button>
+          <form onClick={this.deleteProfile} >
+            <Button variant="contained">
+            Unsubscribe
+            </Button>
+          </form>
 
       </section>
     );
   }
 
 }
-
-// TODO review
-// EditProfile.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
-
 
 const mapStateToProps = ({ user }) => ({ 
   isLogged: !!user,
@@ -148,8 +203,6 @@ const mapStateToProps = ({ user }) => ({
 
 const mapDispatchToProps = dispatch => ({ dispatch });
 
-
-//export default withStyles(styles)(EditProfile);
 export default connect(
   mapStateToProps,
   mapDispatchToProps,

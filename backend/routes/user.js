@@ -3,22 +3,8 @@ const config = require('../config/password')
 const User = require('../models/User');
 const Bootcamp = require('../models/Bootcamp')
 const bcrypt = require('bcrypt');
-const {authorization, isAdmin} =require('../utils/middleware/authorization')
-
-router.get('/find/:user_id', (req, res) => {
-    User.findById(req.params.user_id).then(userFound => {
-        Bootcamp.find({
-            user: {
-                _id: userFound._id
-            }
-        }).then(Bootcamps => {
-            res.status(200).json({
-                userFound,
-                Bootcamps
-            })
-        })
-    }).catch(err => res.status(500).send(err))
-})
+const upload=require('../config/multer')
+const {authorization, isAdmin, isOwner} =require('../utils/middleware/authorization')
 
 router.get('/all',authorization,isAdmin, (req, res) => {
     User.find({}).then(users => res.send(users)).catch(err => res.status(500).send(err))
@@ -44,15 +30,9 @@ router.post('/register', (req, res) => {
         email: req.body.email,
         password: req.body.password
     }).save().then(user => {
-        res.send({
-            user,
-            'info': 'user succesfully created'
-        })
+        res.send({ user, 'info': 'user succesfully created' })
     }).catch(err => {
-        res.send({
-            err,
-            'error': 'Email already in use, please choose another email'
-        })
+        res.send({ err, 'error': 'Email already in use, please choose another email' })
     })
     // }).catch(console.log)
     // })
@@ -61,28 +41,31 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
     User.findOne({
         email: req.body.email
-    }).then(userFound => {
+    }).then((userFound) => {
         if (!userFound) {
-            return res.status(400).send({
-                message: 'Email or password wrong'
-            });
+            return res.status(401).send({ message: 'Email or password wrong'}); /*Email Wrong */ 
         }
         // if(!userFound.confirmed) {       /* This will be added when the confirmed email property will be created at the User schema */
         //     return res.send('error','Email or password wrong'); 
         // }
         bcrypt.compare(req.body.password, userFound.password).then(isMatch => {
             if (!isMatch) {
-                return res.status(400).send({
-                    message: 'Email or password wrong'
-                });
+                return res.status(401).send({ message: 'Email or password wrong' });/*Password Wrong */ 
             }
             userFound.generateAuthToken().then(token => {
-                res.header('Authorization', token).send(userFound)
+                const {_id, name, lastname, email, imagePath}=userFound
+                userFound.token=token;
+                res.status(200).send({_id, name, lastname, email, imagePath, token})
             }).catch(err=>res.status(500).send(err))
         }).catch(err=>res.status(500).send(err))
     })
 });
 
+router.patch('/update/',authorization,upload.single('image'), (req, res) => {
+    User.findOneAndUpdate({_id:req.user._id}, {...req.body, imagePath:req.file.filename }, { new: true })
+    .then(user => res.send(user));
+  });
+  
 router.get('/logout',authorization, (req, res) => {
     const tokens=req.user.tokens.filter(token=>token.type!=='auth')
     User.findByIdAndUpdate(req.user._id,{$set:{tokens}},{upsert:true})

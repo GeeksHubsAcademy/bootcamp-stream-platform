@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { Router, Redirect } from '@reach/router';
+
 import Bootcamp from './containers/Bootcamp/Bootcamp';
 import Login from './containers/Login/Login';
 import EditProfile from './containers/Profile/EditProfile';
@@ -9,23 +9,29 @@ import Register from './containers/Register/Register';
 import NotFound from './components/NotFound';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
-import AdminEditBootcamp from './containers/Admin/EditBootcamp.jsx'
-import AdminBootcamps from './containers/Admin/bootcamps.jsx'
+import AdminEditBootcamp from './containers/Admin/EditBootcamp.jsx';
+import AdminBootcamps from './containers/Admin/bootcamps.jsx';
+import PrivateZone from './components/PrivateZone';
+
 import './App.scss';
+import PublicZone from './components/PublicZone';
 
 function App() {
   return (
     <div className='App'>
       <Navigation />
       <Router className='main'>
+        <PrivateZone path='/'>
+          <Bootcamp path='bootcamp/:id' />
+          <EditProfile path='profile' />
+          <MyBootcamps path='bootcamps' />
+          <AdminBootcamps path='admin/bootcamps' />
+          <AdminEditBootcamp path='admin/bootcamps/new' />
+          <AdminEditBootcamp path='admin/bootcamps/:id' />
+          <Redirect from='admin' to='admin/bootcamps' noThrow />
+        </PrivateZone>
         <Register path='register' />
         <Login path='login' />
-        <Bootcamp path='bootcamp/:id' />
-        <EditProfile path='profile' />
-        <MyBootcamps path='profile/my-bootcamps' />
-        <AdminBootcamps path='admin/bootcamps' />
-        <AdminEditBootcamp path='admin/bootcamps/new' />
-        <AdminEditBootcamp path='admin/bootcamps/:id' />
         <NotFound path='notFound' />
         <Redirect default from='*' to='notFound' noThrow />
       </Router>

@@ -3,19 +3,27 @@ import React, { Component } from 'react';
 //importamos redux
 import { connect } from 'react-redux';
 
+import { getBootcamps} from '../../redux/actions'
+
+import './MyBootcamps.scss'
+
 class MyBootcamps extends Component {
+
+  componentDidMount() {
+    getBootcamps()
+  }
 
   render() {
     //console.log(JSON.stringify(this.props.bootcamps));
     console.log(this.props.bootcamps);
     return (
       <section className="MyBootcampsView">
-        <div>
-          <h3>
-            Pertenece a los siguientes Bootcamps:
-          {this.props.bootcamps.map(bootcamp => <div key={bootcamp._id}>{bootcamp.title}</div>)}
+      <h3>Pertenece a los siguientes Bootcamps:</h3>
 
-          </h3>
+        <div className="MyBootcamps">
+          {this.props.bootcamps.map(bootcamp => <button className="listBootcamps" key={bootcamp._id}>
+          {bootcamp.title}</button>)}
+
 
 
           {/* <Link className="MyBootcamps" to={'/bootcamp/' + props.bootcamp.user.id} >
