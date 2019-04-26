@@ -15,7 +15,8 @@ class MyBootcamps extends Component {
       <h3>Pertenece a los siguientes Bootcamps:</h3>
         
         <div className="MyBootcamps">
-          {this.props.bootcamps.map(bootcamp => <div className="listBootcamps" key={bootcamp._id}>{bootcamp.title}</div>)}
+          {this.props.bootcamps.map(bootcamp => <button className="listBootcamps" key={bootcamp._id}>
+          {bootcamp.title}</button>)}
 
 
 
