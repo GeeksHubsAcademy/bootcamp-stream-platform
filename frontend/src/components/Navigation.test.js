@@ -2,9 +2,14 @@ import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import { Navigation } from './Navigation';
 
-describe('A suite', function() {
-  it('should render without throwing an error', function() {
+describe('Navigation', function() {
+  it('Check not logged on props is correct', function() {
     expect(mount(<Navigation user={null} />).find('.notLogged').length).toBe(1);
+    expect(mount(<Navigation user={null} />).find('.logged').length).toBe(0);
+  });
+  it('Check  logged on props is correct', function() {
+    expect(mount(<Navigation user={{}} />).find('.notLogged').length).toBe(0);
+    expect(mount(<Navigation user={{}} />).find('.logged').length).toBe(1);
   });
 
   // it('should be selectable by class "foo"', function() {
@@ -21,13 +26,12 @@ describe('A suite', function() {
 });
 
 // test('Check not logged on props is correct', () => {
-  // const wrapper = shallow(<Navigation user={null} />);
+// const wrapper = shallow(<Navigation user={null} />);
 
-  // expect(wrapper.find('.notLogged')).toHaveLength(1);
-  // expect(wrapper.find('.logged')).toHaveLength(0);
+// expect(wrapper.find('.notLogged')).toHaveLength(1);
+// expect(wrapper.find('.logged')).toHaveLength(0);
 
 // });
-
 
 // test('Check  logged on props is correct', () => {
 //   const wrapper = shallow(<Navigation user={{}} />);
@@ -36,7 +40,6 @@ describe('A suite', function() {
 //   expect(wrapper.find('.logged')).toHaveLength(1);
 
 // });
-
 
 // test('Check different renders for navigation', () => {
 //   const wrapper = shallow(<Navigation user={{role:'admin'}} />);
