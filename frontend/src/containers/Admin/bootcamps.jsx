@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from '@reach/router';
+import './Bootcamps.scss';
 
 class AdminBootcamp extends Component {
 
