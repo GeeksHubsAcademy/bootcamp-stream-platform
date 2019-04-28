@@ -25,12 +25,13 @@ class EditProfile extends Component {
     email: this.props.user.email,
     password: this.props.user.password,
     password2: this.props.user.password2,
-    // TODO el input type submit tiene un name?
     errorName: undefined,
     errorSurname: undefined,
     errorEmail: undefined,
     errorPassword: undefined,
-    errorPassword2: undefined
+    errorPassword2: undefined,
+    successMessage: undefined
+
   }
 
   // TODO
@@ -42,8 +43,18 @@ class EditProfile extends Component {
   // TODO post action
   saveProfile = (e) => {
     e.preventDefault();
-    //console.log('Saved', this.state)
-    this.validate();
+
+    this.setState(
+      this.state,
+      () =>{
+        console.log('Saved', this.state)
+        //validate onChange inside callback
+        this.validate();
+      }
+      );
+      // TODO success message
+     // .then(() => this.setState({ successMessage: 'Updated profile!' }));
+    
   };  
 
   handleChange = name => event => {
@@ -62,15 +73,34 @@ class EditProfile extends Component {
 
     if( this.state.name === ''){
       this.setState({ errorName: 'Please, write your name'});
-      console.log('campo vacío');
+      console.log('empty name');
     }
-    // if( this.state.password !== this.state.password2){
-    //   this.setState({ errorPassword2: 'las contraseñas no coinciden'});
-    //   console.log('no coinciden');
-    // } else {
-    //   this.setState({ errorPassword2: undefined});
-    //   console.log(' coinciden');      
+    if( this.state.surname === ''){
+      this.setState({ errorSurname: 'Please, write your surname'});
+      console.log('empty surname');
+    }
+    //TODO restrictions
+    if( this.state.email === ''){
+      this.setState({ errorEmail: 'Please, write your email'});
+      console.log('empty email');
+    }    
+    // NOT required , TODO restrictions
+    // if( this.state.password === ''){
+    //   this.setState({ errorPassword: 'Please, write your password'});
+    //   console.log('empty password');
     // }
+    // if( this.state.password2 === ''){
+    //   this.setState({ errorPassword2: 'Please, repeat your password'});
+    //   console.log('empty repeat password');
+    // }
+    if( this.state.password !== this.state.password2){
+      this.setState({ errorPassword2: 'Please, passwords should be the same'});
+      console.log('no same passwords');
+    } else {
+      this.setState({ errorPassword2: undefined});
+      console.log(' coinciden');      
+    }
+    
 
   }
   render() {
@@ -89,106 +119,106 @@ class EditProfile extends Component {
           <p>Edit your profile: </p>
           <form autoComplete="off"
                 onClick={this.saveProfile}>
-
-            {/* TODO
-              error attribute }             
-            */}
-            {/* <TextField
-              id="standard-name"
-              label="Name"
-              name="name"    
-              className="textField"
+          <FormControl className="formControl" error={!!this.state.errorName }>
+            <InputLabel htmlFor="component-name">Name</InputLabel>
+            <Input
+              id="component-name"
               value={this.state.name}
               onChange={this.handleChange("name")}
-              margin="normal"
+              aria-describedby="component-name-text"
               required
-            /> */}
- 
-       <FormControl className="formControl" error={!!this.state.errorName }>
-              <InputLabel htmlFor="component-name">Name</InputLabel>
-              <Input
-                id="component-name"
-                value={this.state.name}
-                onChange={this.handleChange("name")}
-                aria-describedby="component-name-text"
-                required
-              />              
-              {/* <FormHelperText 
-                id="component-error-text"
-                className={ this.state.errorName ? 'visible': 'hidden'}>
-                {this.state.errorName}
-              </FormHelperText> */}
-              {this.state.errorName && 
-              <FormHelperText id="component-error-text">{this.state.errorName}</FormHelperText>
-              }  
+            />              
+            {/* <FormHelperText 
+              id="component-error-text"
+              className={ this.state.errorName ? 'visible': 'hidden'}>
+              {this.state.errorName}
+            </FormHelperText> */}
+            {this.state.errorName && 
+            <FormHelperText id="component-error-text">{this.state.errorName}</FormHelperText>
+            }
+          </FormControl>
 
-            </FormControl>
-
-            <TextField
-              id="standard-surname"
-              label="Surname"
-              name="surname"
-              value={this.state.surname} 
+          <FormControl className="formControl" error={!!this.state.errorSurname }>
+            <InputLabel htmlFor="component-surname">Surname</InputLabel>
+            <Input
+              id="component-surname"
+              value={this.state.surname}
               onChange={this.handleChange("surname")}
-              className="textField"
-              margin="normal"
+              aria-describedby="component-surname-text"
               required
-            />
+            />              
+            {this.state.errorSurname && 
+            <FormHelperText id="component-error-text">{this.state.errorSurname}</FormHelperText>
+            }
+          </FormControl>
 
-            <TextField
-              id="standard-email-input"
-              label="Email"
-              name="email"
-              value={this.state.email} 
+          <FormControl className="formControl" error={!!this.state.errorEmail }>
+            <InputLabel htmlFor="component-email">Email</InputLabel>
+            <Input
+              id="component-email"
+              value={this.state.email}
               onChange={this.handleChange("email")}
+              aria-describedby="component-email-text"
               type="email"
-              className="textField"
-              margin="normal"
               required
-            />
-
-            <TextField
-              id="standard-password-input"
-              label="Change password"
-              name="password"
-              type="password"  
-              autoComplete="current-password" 
-              className="textField"
-              margin="normal"
-            />
-
-            <TextField
-              id="standard-repeat-password-input"
-              label="Repeat password"
-              name="password2"
+            />              
+            {this.state.errorEmail && 
+            <FormHelperText id="component-error-text">{this.state.errorEmail}</FormHelperText>
+            }
+          </FormControl>
+          
+          {/* TODO autoComplete="current-password"  */}
+          <FormControl className="formControl" error={!!this.state.errorPassword }>
+            <InputLabel htmlFor="component-password">Change password</InputLabel>
+            <Input
+              id="component-password"
+              value={this.state.password}
+              onChange={this.handleChange("password")}
               type="password"
-              className="textField"
-              margin="normal"
-            />
+              aria-describedby="component-password-text"
+            />              
+            {this.state.errorPassword && 
+            <FormHelperText id="component-error-text">{this.state.errorPassword}</FormHelperText>
+            }
+          </FormControl>
 
-            {/* disabled */}
-            <TextField
-              disabled
-              id="standard-disabled"
-              label="Your profile"
-              defaultValue="Student"
-              className="textField"
-              margin="normal"
-            />
+          <FormControl className="formControl" error={!!this.state.errorPassword2 }>
+            <InputLabel htmlFor="component-password2">Repeat password</InputLabel>
+            <Input
+              id="component-password2"
+              value={this.state.password2}
+              onChange={this.handleChange("password2")}
+              type="password"
+              aria-describedby="component-password2-text"
+            />              
+            {this.state.errorPassword2 && 
+            <FormHelperText id="component-error-text">{this.state.errorPassword2}</FormHelperText>
+            }
+          </FormControl>            
 
-            {/* TODO 
-              visibility on keyup form 
-              */}
-            <Button variant="contained" color="primary">
-              Save
-            </Button>
-          </form>
+          {/* disabled field */}
+          <TextField
+            disabled
+            id="standard-disabled"
+            label="Your profile"
+            defaultValue="Student"
+            className="textField"
+            margin="normal"
+          />
 
-          <form onClick={this.deleteProfile} >
-            <Button variant="contained">
-            Unsubscribe
-            </Button>
-          </form>
+          {/* TODO 
+            visibility on keyup form 
+            */}
+          <Button variant="contained" color="primary">
+            Save
+          </Button>
+        </form>
+
+        <form onClick={this.deleteProfile} >
+          <Button variant="contained">
+          Unsubscribe
+          </Button>
+        </form>
 
       </section>
     );

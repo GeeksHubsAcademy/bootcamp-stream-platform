@@ -6,8 +6,8 @@
   flex-wrap: nowrap;
   justify-content: center;
   width: 70%;
-  border: 1px solid #c7181714;
   margin: 2em auto;
+  border: 1px solid rgba(56, 4, 4, 0.3);
   border-radius: 5px;
 
   p{
@@ -33,6 +33,9 @@
     button{
       margin: 1em 0;
     }
+  }
+  .formControl + .formControl {
+    margin-top: 1em;
   }
   form + form {
     margin-top: 3em;
