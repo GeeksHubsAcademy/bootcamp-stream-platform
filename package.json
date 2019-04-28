@@ -16,9 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "classnames": "^2.2.6",
-    "concurrently": "^4.1.0",
-    "morgan": "^1.9.1",
-    "redux-localstorage-simple": "^2.1.6"
+    "concurrently": "^4.1.0"
   },
   "devDependencies": {
     "enzyme": "^3.9.0",
