@@ -50,7 +50,7 @@ class EditProfile extends Component {
     open: false,
   }
 
-  // snackbar 
+  // snackbar
   handleClick = () => {
     this.setState({ open: true });
   };
@@ -85,8 +85,8 @@ class EditProfile extends Component {
         .catch(e => this.setState({ error: 'error' }));
         // show snackbar message
       }
-      ); 
-  };  
+      );
+  };
 
   handleChange = name => event => {
     this.setState(
@@ -141,9 +141,9 @@ class EditProfile extends Component {
       console.log('no same passwords');
     } else {
       this.setState({ errorPassword2: undefined});
-      //console.log(' coinciden');      
+      //console.log(' coinciden');
     }
-    
+
 
   }
   render() {
@@ -156,7 +156,7 @@ class EditProfile extends Component {
     // }
 
     return (
-    
+
       <section className="EditProfileView">
 
           <h1>Hi {this.state.name}</h1>
@@ -173,8 +173,8 @@ class EditProfile extends Component {
               disabled={!!this.state.disabled}
               onMouseOver={() => this.setState({ disabled: false })}
               onChange={this.handleChange("name")}
-            />                         
-            {this.state.errorName && 
+            />
+            {this.state.errorName &&
             <FormHelperText id="component-error-text">{this.state.errorName}</FormHelperText>
             }
           </FormControl>
@@ -189,8 +189,8 @@ class EditProfile extends Component {
               onMouseOver={() => this.setState({ disabled: false })}
               onChange={this.handleChange("surname")}
               required
-            />              
-            {this.state.errorSurname && 
+            />
+            {this.state.errorSurname &&
             <FormHelperText id="component-error-text">{this.state.errorSurname}</FormHelperText>
             }
           </FormControl>
@@ -206,14 +206,14 @@ class EditProfile extends Component {
               onMouseOver={() => this.setState({ disabled: false })}
               onChange={this.handleChange("email")}
               required
-            />              
-            {this.state.errorEmail && 
+            />
+            {this.state.errorEmail &&
             <FormHelperText id="component-error-text">{this.state.errorEmail}</FormHelperText>
             }
           </FormControl>
-          
+
           <FormControl className="formControl" error={!!this.state.errorPassword }>
-            <InputLabel htmlFor="component-password">Change password</InputLabel>           
+            <InputLabel htmlFor="component-password">Change password</InputLabel>
             <Input
               id="component-password"
               type={this.state.showPassword ? 'text' : 'password'}
@@ -232,7 +232,7 @@ class EditProfile extends Component {
               onMouseOver={() => this.setState({ disabled: false })}
               onChange={this.handleChange("password")}
             />
-            {this.state.errorPassword && 
+            {this.state.errorPassword &&
             <FormHelperText id="component-error-text">{this.state.errorPassword}</FormHelperText>
             }
           </FormControl>
@@ -257,11 +257,11 @@ class EditProfile extends Component {
               disabled={!!this.state.disabled}
               onMouseOver={() => this.setState({ disabled: false })}
               onChange={this.handleChange("password2")}
-            />             
-            {this.state.errorPassword2 && 
+            />
+            {this.state.errorPassword2 &&
             <FormHelperText id="component-error-text">{this.state.errorPassword2}</FormHelperText>
             }
-          </FormControl>            
+          </FormControl>
 
           {/* disabled field */}
           <TextField
@@ -273,14 +273,14 @@ class EditProfile extends Component {
             margin="normal"
           />
 
-          {/* TODO 
-            visibility on keyup form 
+          {/* TODO
+            visibility on keyup form
             */}
           <Button variant="contained" color="primary"
                   className={ !!this.state.disabled ? 'hidden': ''}
                   onClick={this.saveProfile}>
             Save
-          </Button>          
+          </Button>
         </form>
 
         <Snackbar
@@ -320,7 +320,7 @@ class EditProfile extends Component {
 
 }
 
-const mapStateToProps = ({ user }) => ({ 
+const mapStateToProps = ({ user }) => ({
   isLogged: !!user,
   user
 });

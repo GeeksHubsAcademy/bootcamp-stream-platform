@@ -3,7 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from '@reach/router';
 import {loggedOut} from '../redux/actions';
-import FontAwesome from './FontAwesome';
 import './Navigation.scss'
 
 export const Navigation = props => (
@@ -25,7 +24,6 @@ export const Navigation = props => (
              ) : (
                <div className='notLogged'>
                  <Link to='/login'>login</Link>
-                 <FontAwesome icon='sign-in-alt' />
                </div>
              )}
            </div>

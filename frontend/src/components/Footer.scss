@@ -19,7 +19,11 @@ img {
 }
 
 .social {
-    margin: 5px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px;
+    font-size: 40px;
     color: white;
 }
 
@@ -38,7 +42,7 @@ li {
 }
 
 @media screen and (max-width: 700px) {
-    .footer, .social, .links {   
+    .footer, .social, .links {
       flex-direction: column;
     }
     img {

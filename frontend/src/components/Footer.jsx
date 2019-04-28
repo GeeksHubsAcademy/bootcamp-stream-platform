@@ -16,12 +16,18 @@ const Footer = () => (
       <p className='rights'>All Content © GeeksHubs. VLC FSD class of 2019. All Rights Reserved</p>
     </div>
     <div className='social'>
-      <span className='mdi mdi-facebook-box'>
-        <FontAwesome icon='facebook-f' />
-      </span>
-      <span className='mdi mdi-twitter' />
-      <span className='mdi mdi-linkedin-box' />
-      <span className='mdi mdi-youtube' />
+      {/* <span className='facebook'/> */}
+      <FontAwesome icon='facebook-f' />
+      {/* <span className='mdi mdi-twitter' /> */}
+      <FontAwesome icon='twitter' />
+      {/* <span className='mdi mdi-linkedin-box' /> */}
+      <FontAwesome icon='linkedin-in' />
+      {/* <span className='mdi mdi-instagram' /> */}
+      <FontAwesome icon='instagram' />
+      {/* <span className='mdi mdi-youtube' /> */}
+      <FontAwesome icon='youtube' />
+      {/* <span className='mdi mdi-github' /> */}
+      <FontAwesome icon='github' />
     </div>
     <div>
       <ul className='links'>
