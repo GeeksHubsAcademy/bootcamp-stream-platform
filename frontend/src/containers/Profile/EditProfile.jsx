@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from '@reach/router';
+//import { Redirect } from '@reach/router';
 
 // component styles
 import './EditProfile.scss';
@@ -28,6 +28,7 @@ class EditProfile extends Component {
     name: this.props.user.name,
     surname: this.props.user.surname,
     email: this.props.user.email,
+    role: this.props.user.role,
     // REVIEW not loaded pass
     //password: this.props.user.password,
     //password2: this.props.user.password2,
@@ -40,17 +41,14 @@ class EditProfile extends Component {
     errorPassword2: undefined,
     successMessage: undefined,
     showPassword: false,
+    disabled: true,
 
   }
-
-  handleClickShowPassword = () => {
-    this.setState(state => ({ showPassword: !state.showPassword }));
-  };
 
   // TODO
   deleteProfile = (e) => {
     e.preventDefault();
-    //console.log('Delete', this.state.bootcamp)
+    //console.log('Delete', this.state.user)
   };
 
   // TODO post action
@@ -60,7 +58,7 @@ class EditProfile extends Component {
     this.setState(
       this.state,
       () =>{
-        console.log('Saved', this.state)
+        //console.log('Saved', this.state)
         //validate onChange inside callback
         this.validate();
       }
@@ -74,29 +72,41 @@ class EditProfile extends Component {
     this.setState(
       {[name]: event.target.value.trim() },
       () =>{
-        console.log( this.state )
+        console.log( 'changed', this.state )
         // validate onChange inside callback
         this.validate();
       }
       );
   };
 
+  handleClickShowPassword = () => {
+    this.setState(state => ({ showPassword: !state.showPassword }));
+  };
+
   validate = () => {
-    console.log('hola, estamos validando!');
+    //console.log('hola, estamos validando!');
 
     if( this.state.name === ''){
       this.setState({ errorName: 'Please, write your name'});
       console.log('empty name');
+    } else {
+      this.setState({ errorName: undefined});
     }
+
     if( this.state.surname === ''){
       this.setState({ errorSurname: 'Please, write your surname'});
       console.log('empty surname');
+    } else {
+      this.setState({ errorSurname: undefined});
     }
+
     //TODO restrictions
     if( this.state.email === ''){
       this.setState({ errorEmail: 'Please, write your email'});
       console.log('empty email');
-    }    
+    }  else {
+      this.setState({ errorEmail: undefined});
+    }
     // NOT required , TODO restrictions
     // if( this.state.password === ''){
     //   this.setState({ errorPassword: 'Please, write your password'});
@@ -111,13 +121,14 @@ class EditProfile extends Component {
       console.log('no same passwords');
     } else {
       this.setState({ errorPassword2: undefined});
-      console.log(' coinciden');      
+      //console.log(' coinciden');      
     }
     
 
   }
   render() {
     //console.log(this.props);
+
 
     // TODO after login task
     // if (this.props.isLogged) {
@@ -137,15 +148,12 @@ class EditProfile extends Component {
             <Input
               id="component-name"
               value={this.state.name}
-              onChange={this.handleChange("name")}
               aria-describedby="component-name-text"
               required
-            />              
-            {/* <FormHelperText 
-              id="component-error-text"
-              className={ this.state.errorName ? 'visible': 'hidden'}>
-              {this.state.errorName}
-            </FormHelperText> */}
+              disabled={!!this.state.disabled}
+              onMouseOver={() => this.setState({ disabled: false })}
+              onChange={this.handleChange("name")}
+            />                         
             {this.state.errorName && 
             <FormHelperText id="component-error-text">{this.state.errorName}</FormHelperText>
             }
@@ -156,8 +164,10 @@ class EditProfile extends Component {
             <Input
               id="component-surname"
               value={this.state.surname}
-              onChange={this.handleChange("surname")}
               aria-describedby="component-surname-text"
+              disabled={!!this.state.disabled}
+              onMouseOver={() => this.setState({ disabled: false })}
+              onChange={this.handleChange("surname")}
               required
             />              
             {this.state.errorSurname && 
@@ -170,36 +180,37 @@ class EditProfile extends Component {
             <Input
               id="component-email"
               value={this.state.email}
-              onChange={this.handleChange("email")}
               aria-describedby="component-email-text"
               type="email"
+              disabled={!!this.state.disabled}
+              onMouseOver={() => this.setState({ disabled: false })}
+              onChange={this.handleChange("email")}
               required
             />              
             {this.state.errorEmail && 
             <FormHelperText id="component-error-text">{this.state.errorEmail}</FormHelperText>
             }
           </FormControl>
-
           
-          {/* TODO autoComplete="current-password"  */}
           <FormControl className="formControl" error={!!this.state.errorPassword }>
             <InputLabel htmlFor="component-password">Change password</InputLabel>           
             <Input
               id="component-password"
               type={this.state.showPassword ? 'text' : 'password'}
               value={this.state.password}
-              onChange={this.handleChange("password")}
               aria-describedby="component-password-text"
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
                     aria-label="Toggle password visibility"
-                    onClick={this.handleClickShowPassword}
-                  >
+                    onClick={this.handleClickShowPassword}>
                     {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
               }
+              disabled={!!this.state.disabled}
+              onMouseOver={() => this.setState({ disabled: false })}
+              onChange={this.handleChange("password")}
             />
             {this.state.errorPassword && 
             <FormHelperText id="component-error-text">{this.state.errorPassword}</FormHelperText>
@@ -212,7 +223,6 @@ class EditProfile extends Component {
               id="component-password2"
               type={this.state.showPassword ? 'text' : 'password'}
               value={this.state.password2}
-              onChange={this.handleChange("password2")}
               aria-describedby="component-password2-text"
               endAdornment={
                 <InputAdornment position="end">
@@ -224,6 +234,9 @@ class EditProfile extends Component {
                   </IconButton>
                 </InputAdornment>
               }
+              disabled={!!this.state.disabled}
+              onMouseOver={() => this.setState({ disabled: false })}
+              onChange={this.handleChange("password2")}
             />             
             {this.state.errorPassword2 && 
             <FormHelperText id="component-error-text">{this.state.errorPassword2}</FormHelperText>
@@ -233,9 +246,9 @@ class EditProfile extends Component {
           {/* disabled field */}
           <TextField
             disabled
-            id="standard-disabled"
+            id="component-profile"
             label="Your profile"
-            defaultValue="Student"
+            value={this.state.role}
             className="textField"
             margin="normal"
           />
@@ -243,7 +256,8 @@ class EditProfile extends Component {
           {/* TODO 
             visibility on keyup form 
             */}
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary"
+                  className={ !!this.state.disabled ? 'hidden': ''}>
             Save
           </Button>
         </form>
