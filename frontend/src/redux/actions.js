@@ -51,4 +51,16 @@ export async function postRegister(name,surname,email,password,password2){
   //let response = await Axios.post('http://localhost:3001/register/', {name,surname,email,password,password2} );
 }
 
+export async function updateProfile(user) {  
+//  let response = await Axios.post('http://localhost:3001/user/profile', { user });
+//  let user = response.data;
+    dispatch({
+      type: 'UPDATE_PROFILE',
+      user,
+    });
+    console.log('Saved', user);
+  }
+
+
+
 // export default { loggedIn, loggedOut };

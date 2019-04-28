@@ -2,6 +2,9 @@ import React, { Component} from 'react';
 import { connect } from 'react-redux';
 //import { Redirect } from '@reach/router';
 
+// redux
+import { updateProfile } from '../../redux/actions';
+
 // component styles
 import './EditProfile.scss';
 
@@ -18,7 +21,9 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-
+// forms messages : snackbar
+import Snackbar from '@material-ui/core/Snackbar';
+import CloseIcon from '@material-ui/icons/Close';
 
 class EditProfile extends Component {
 
@@ -42,8 +47,20 @@ class EditProfile extends Component {
     successMessage: undefined,
     showPassword: false,
     disabled: true,
-
+    open: false,
   }
+
+  // snackbar 
+  handleClick = () => {
+    this.setState({ open: true });
+  };
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    this.setState({ open: false });
+  };
+
 
   // TODO
   deleteProfile = (e) => {
@@ -51,28 +68,31 @@ class EditProfile extends Component {
     //console.log('Delete', this.state.user)
   };
 
-  // TODO post action
+  //  action to updateProfile
   saveProfile = (e) => {
     e.preventDefault();
 
     this.setState(
       this.state,
       () =>{
-        //console.log('Saved', this.state)
         //validate onChange inside callback
         this.validate();
+        // TODO no ejecutar siempre, onClick // onSubmit
+        console.log('Data to save:', this.state)
+        updateProfile(this.state)
+        .then(() => this.setState({ successMessage: 'Great! updated profile!' }))
+        .then ( () => this.handleClick() )
+        .catch(e => this.setState({ error: 'error' }));
+        // show snackbar message
       }
-      );
-      // TODO success message
-     // .then(() => this.setState({ successMessage: 'Updated profile!' }));
-    
+      ); 
   };  
 
   handleChange = name => event => {
     this.setState(
       {[name]: event.target.value.trim() },
       () =>{
-        console.log( 'changed', this.state )
+        //console.log( 'changed', this.state )
         // validate onChange inside callback
         this.validate();
       }
@@ -141,8 +161,8 @@ class EditProfile extends Component {
 
           <h1>Hi {this.state.name}</h1>
           <p>Edit your profile: </p>
-          <form autoComplete="off"
-                onClick={this.saveProfile}>
+          <form autoComplete="off">
+
           <FormControl className="formControl" error={!!this.state.errorName }>
             <InputLabel htmlFor="component-name">Name</InputLabel>
             <Input
@@ -257,10 +277,36 @@ class EditProfile extends Component {
             visibility on keyup form 
             */}
           <Button variant="contained" color="primary"
-                  className={ !!this.state.disabled ? 'hidden': ''}>
+                  className={ !!this.state.disabled ? 'hidden': ''}
+                  onClick={this.saveProfile}>
             Save
-          </Button>
+          </Button>          
         </form>
+
+        <Snackbar
+            className="success"
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            open={this.state.open}
+            autoHideDuration={6000}
+            onClose={this.handleClose}
+            ContentProps={{
+              'aria-describedby': 'message-id',
+            }}
+            message={<span id="message-id">{ this.state.successMessage }</span>}
+            action={[
+              <IconButton
+                key="close"
+                aria-label="Close"
+                color="inherit"
+                onClick={this.handleClose}
+              >
+                <CloseIcon />
+              </IconButton>,
+            ]}
+          />
 
         <form onClick={this.deleteProfile} >
           <Button variant="contained">

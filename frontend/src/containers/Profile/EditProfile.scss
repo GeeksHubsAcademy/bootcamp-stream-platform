@@ -40,7 +40,7 @@
   .formControl + .formControl {
     margin-top: 1em;
   }
-  form + form {
+  form ~ form {
     margin-top: 3em;
   }
 
@@ -53,6 +53,12 @@
   [class*="MuiInput-disabled"]:before {
     content: none;
   }
+
+  /* snackbar */
+  .success [class*="MuiSnackbarContent"]{
+    background-color: #4CAF50;
+  }
+
   .hidden{
     display: none
   }

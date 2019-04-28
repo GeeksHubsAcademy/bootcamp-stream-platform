@@ -252,6 +252,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         bootcamps: action.bootcamps
       };
+    case 'UPDATE_PROFILE':
+      return {
+        ...state,
+        user: action.user,
+      };  
+      
     default:
       return state;
   }
