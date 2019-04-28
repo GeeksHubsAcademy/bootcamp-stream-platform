@@ -13,6 +13,11 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+// form icons (npm install @material-ui/icons)
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 
 class EditProfile extends Component {
@@ -23,16 +28,24 @@ class EditProfile extends Component {
     name: this.props.user.name,
     surname: this.props.user.surname,
     email: this.props.user.email,
-    password: this.props.user.password,
-    password2: this.props.user.password2,
+    // REVIEW not loaded pass
+    //password: this.props.user.password,
+    //password2: this.props.user.password2,
+    password: '',
+    password2: '',
     errorName: undefined,
     errorSurname: undefined,
     errorEmail: undefined,
     errorPassword: undefined,
     errorPassword2: undefined,
-    successMessage: undefined
+    successMessage: undefined,
+    showPassword: false,
 
   }
+
+  handleClickShowPassword = () => {
+    this.setState(state => ({ showPassword: !state.showPassword }));
+  };
 
   // TODO
   deleteProfile = (e) => {
@@ -166,17 +179,28 @@ class EditProfile extends Component {
             <FormHelperText id="component-error-text">{this.state.errorEmail}</FormHelperText>
             }
           </FormControl>
+
           
           {/* TODO autoComplete="current-password"  */}
           <FormControl className="formControl" error={!!this.state.errorPassword }>
-            <InputLabel htmlFor="component-password">Change password</InputLabel>
+            <InputLabel htmlFor="component-password">Change password</InputLabel>           
             <Input
               id="component-password"
+              type={this.state.showPassword ? 'text' : 'password'}
               value={this.state.password}
               onChange={this.handleChange("password")}
-              type="password"
               aria-describedby="component-password-text"
-            />              
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="Toggle password visibility"
+                    onClick={this.handleClickShowPassword}
+                  >
+                    {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
             {this.state.errorPassword && 
             <FormHelperText id="component-error-text">{this.state.errorPassword}</FormHelperText>
             }
@@ -186,11 +210,21 @@ class EditProfile extends Component {
             <InputLabel htmlFor="component-password2">Repeat password</InputLabel>
             <Input
               id="component-password2"
+              type={this.state.showPassword ? 'text' : 'password'}
               value={this.state.password2}
               onChange={this.handleChange("password2")}
-              type="password"
               aria-describedby="component-password2-text"
-            />              
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="Toggle password visibility"
+                    onClick={this.handleClickShowPassword}
+                  >
+                    {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />             
             {this.state.errorPassword2 && 
             <FormHelperText id="component-error-text">{this.state.errorPassword2}</FormHelperText>
             }
