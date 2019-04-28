@@ -2,6 +2,9 @@ import React, { Component} from 'react';
 import { connect } from 'react-redux';
 //import { Redirect } from '@reach/router';
 
+import { updateProfile } from '../../redux/actions';
+
+
 // component styles
 import './EditProfile.scss';
 
@@ -51,28 +54,29 @@ class EditProfile extends Component {
     //console.log('Delete', this.state.user)
   };
 
-  // TODO post action
+  //  action to updateProfile
   saveProfile = (e) => {
     e.preventDefault();
 
     this.setState(
       this.state,
       () =>{
-        //console.log('Saved', this.state)
         //validate onChange inside callback
         this.validate();
+        console.log('Data to save:', this.state)
+        updateProfile(this.state)
+        // TODO success message
+        .then(() => this.setState({ error: 'updated!!' }))
+        .catch(e => this.setState({ error: 'error' }));
       }
-      );
-      // TODO success message
-     // .then(() => this.setState({ successMessage: 'Updated profile!' }));
-    
+      ); 
   };  
 
   handleChange = name => event => {
     this.setState(
       {[name]: event.target.value.trim() },
       () =>{
-        console.log( 'changed', this.state )
+        //console.log( 'changed', this.state )
         // validate onChange inside callback
         this.validate();
       }
@@ -143,6 +147,7 @@ class EditProfile extends Component {
           <p>Edit your profile: </p>
           <form autoComplete="off"
                 onClick={this.saveProfile}>
+
           <FormControl className="formControl" error={!!this.state.errorName }>
             <InputLabel htmlFor="component-name">Name</InputLabel>
             <Input
