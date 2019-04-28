@@ -46,8 +46,9 @@ export async function getBootcamps() {
   });
 }
 
-
-
-
+//de Juanma, no se si va aqui o que
+export async function postRegister(name,surname,email,password,password2){
+  //let response = await Axios.post('http://localhost:3001/register/', {name,surname,email,password,password2} );
+}
 
 // export default { loggedIn, loggedOut };
