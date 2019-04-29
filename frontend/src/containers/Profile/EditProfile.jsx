@@ -171,7 +171,7 @@ class EditProfile extends Component {
               aria-describedby="component-name-text"
               required
               disabled={!!this.state.disabled}
-              onMouseOver={() => this.setState({ disabled: false })}
+              onClick={() => this.setState({ disabled: false })}
               onChange={this.handleChange("name")}
             />
             {this.state.errorName &&
@@ -186,7 +186,7 @@ class EditProfile extends Component {
               value={this.state.surname}
               aria-describedby="component-surname-text"
               disabled={!!this.state.disabled}
-              onMouseOver={() => this.setState({ disabled: false })}
+              onClick={() => this.setState({ disabled: false })}
               onChange={this.handleChange("surname")}
               required
             />
@@ -203,7 +203,7 @@ class EditProfile extends Component {
               aria-describedby="component-email-text"
               type="email"
               disabled={!!this.state.disabled}
-              onMouseOver={() => this.setState({ disabled: false })}
+              onClick={() => this.setState({ disabled: false })}
               onChange={this.handleChange("email")}
               required
             />
@@ -229,7 +229,7 @@ class EditProfile extends Component {
                 </InputAdornment>
               }
               disabled={!!this.state.disabled}
-              onMouseOver={() => this.setState({ disabled: false })}
+              onClick={() => this.setState({ disabled: false })}
               onChange={this.handleChange("password")}
             />
             {this.state.errorPassword &&
@@ -255,7 +255,7 @@ class EditProfile extends Component {
                 </InputAdornment>
               }
               disabled={!!this.state.disabled}
-              onMouseOver={() => this.setState({ disabled: false })}
+              onClick={() => this.setState({ disabled: false })}
               onChange={this.handleChange("password2")}
             />
             {this.state.errorPassword2 &&

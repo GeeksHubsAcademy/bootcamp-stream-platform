@@ -1,10 +1,8 @@
 const router = require('express').Router();
-const config = require('../config/password')
 const User = require('../models/User');
-const Bootcamp = require('../models/Bootcamp')
 const bcrypt = require('bcrypt');
 const upload=require('../config/multer')
-const {authorization, isAdmin, isOwner} =require('../utils/middleware/authorization')
+const {authorization, isAdmin} =require('../utils/middleware/authorization')
 
 router.get('/all',authorization,isAdmin, (req, res) => {
     User.find({}).then(users => res.send(users)).catch(err => res.status(500).send(err))
@@ -30,9 +28,9 @@ router.post('/register', (req, res) => {
         email: req.body.email,
         password: req.body.password
     }).save().then(user => {
-        res.send({ user, 'info': 'user succesfully created' })
+        res.status(200).send({ user, 'info': 'user succesfully created' })
     }).catch(err => {
-        res.send({ err, 'error': 'Email already in use, please choose another email' })
+        res.status(400).send({ err, 'error': 'Email already in use, please choose another email' })
     })
     // }).catch(console.log)
     // })
@@ -62,8 +60,10 @@ router.post('/login', (req, res) => {
 });
 
 router.patch('/update/',authorization,upload.single('image'), (req, res) => {
-    User.findOneAndUpdate({_id:req.user._id}, {...req.body, imagePath:req.file.filename }, { new: true })
-    .then(user => res.send(user));
+    if(req.file)User.findByIdAndUpdate(req.user._id, {...req.body, imagePath:req.file.filename }, { new: true })
+    .then(({ _id, name, lastname, email, imagePath }) => res.send({ _id, name, lastname, email, imagePath }));
+    else User.findByIdAndUpdate(req.user._id, req.body, { new: true })
+    .then(({ _id, name, lastname, email, imagePath }) => res.send({ _id, name, lastname, email, imagePath }));
   });
   
 router.get('/logout',authorization, (req, res) => {
@@ -72,4 +72,16 @@ router.get('/logout',authorization, (req, res) => {
     .then(()=>res.status(200).json({message:'You have been sucessfully logged out'}))
     .catch(err=>res.status(500).send(err))
   });
+router.delete('/delete/',authorization, (req, res) => {
+ User.findByIdAndDelete(req.user._id).then((userDeleted) =>{
+     if(!userDeleted)return res.status(400).send("User not found")
+     res.status(200).send({userDeleted,message:"User successfully deleted"});
+ }).catch(err=>res.status(500).send(err))
+});
+router.delete('/delete/byAdmin/:id',authorization,isAdmin, (req,res)=>{
+    User.findByIdAndDelete(req.params.id).then((userDeleted) =>{
+        if(!userDeleted)return res.status(400).send("User not found")
+              res.status(200).send({userDeleted,message:"User successfully deleted"});
+    }).catch(err=>res.status(500).send(err))
+});
 module.exports = router;

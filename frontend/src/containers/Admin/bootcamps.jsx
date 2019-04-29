@@ -36,6 +36,7 @@ class AdminBootcamp extends Component {
     }
 
 }
+
 const mapStateToProps = ({ bootcamps }) => ({ bootcamps });
 const mapDispatchToProps = dispatch => ({ dispatch });
 
