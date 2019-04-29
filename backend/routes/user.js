@@ -61,9 +61,11 @@ router.post('/login', (req, res) => {
     })
 });
 
-router.patch('/update/',authorization,upload.single('image'), (req, res) => {
-    User.findOneAndUpdate({_id:req.user._id}, {...req.body, imagePath:req.file.filename }, { new: true })
-    .then(user => res.send(user));
+router.patch('/update/',authorization,isOwner,upload.single('image'), (req, res) => {
+    if(req.file)User.findByIdAndUpdate(req.user._id, {...req.body, imagePath:req.file.filename }, { new: true })
+    .then(({ _id, name, lastname, email, imagePath }) => res.send({ _id, name, lastname, email, imagePath }));
+    else User.findByIdAndUpdate(req.user._id, req.body, { new: true })
+    .then(({ _id, name, lastname, email }) => res.send({ _id, name, lastname, email }));
   });
   
 router.get('/logout',authorization, (req, res) => {
