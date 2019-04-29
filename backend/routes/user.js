@@ -64,7 +64,7 @@ router.patch('/update/',authorization,upload.single('image'), (req, res) => {
     if(req.file)User.findByIdAndUpdate(req.user._id, {...req.body, imagePath:req.file.filename }, { new: true })
     .then(({ _id, name, lastname, email, imagePath }) => res.send({ _id, name, lastname, email, imagePath }));
     else User.findByIdAndUpdate(req.user._id, req.body, { new: true })
-    .then(({ _id, name, lastname, email }) => res.send({ _id, name, lastname, email }));
+    .then(({ _id, name, lastname, email, imagePath }) => res.send({ _id, name, lastname, email, imagePath }));
   });
   
 router.get('/logout',authorization, (req, res) => {
