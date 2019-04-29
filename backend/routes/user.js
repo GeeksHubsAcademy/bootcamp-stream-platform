@@ -1,10 +1,9 @@
 const router = require('express').Router();
 const config = require('../config/password')
 const User = require('../models/User');
-const Bootcamp = require('../models/Bootcamp')
 const bcrypt = require('bcrypt');
 const upload=require('../config/multer')
-const {authorization, isAdmin, isOwner} =require('../utils/middleware/authorization')
+const {authorization, isAdmin} =require('../utils/middleware/authorization')
 
 router.get('/all',authorization,isAdmin, (req, res) => {
     User.find({}).then(users => res.send(users)).catch(err => res.status(500).send(err))
@@ -61,7 +60,7 @@ router.post('/login', (req, res) => {
     })
 });
 
-router.patch('/update/',authorization,isOwner,upload.single('image'), (req, res) => {
+router.patch('/update/',authorization,upload.single('image'), (req, res) => {
     if(req.file)User.findByIdAndUpdate(req.user._id, {...req.body, imagePath:req.file.filename }, { new: true })
     .then(({ _id, name, lastname, email, imagePath }) => res.send({ _id, name, lastname, email, imagePath }));
     else User.findByIdAndUpdate(req.user._id, req.body, { new: true })
