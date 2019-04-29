@@ -25,9 +25,7 @@ router.post('/register', (req, res) => {
         req.body.role='student'
     new User(req.body).save().then(user => {
         res.status(200).send({ user, 'info': 'user succesfully created' })
-    }).catch(err => {
-        res.status(400).send({ err, 'error': 'Email already in use, please choose another email' })
-    })
+    }).catch(err =>res.status(400).send({ err, 'error': 'Email already in use, please choose another email' }))
     // }).catch(console.log)
     // })
 });
@@ -53,17 +51,19 @@ router.post('/login', (req, res) => {
     })
 });
 
-router.patch('/update/',authorization,uploadProfilePics.single('image'), (req, res) => {
+router.patch('/update/',authorization,uploadProfilePics.single('image'), async(req, res) => {
     req.body.role="student"
-    if(req.file) req.body.imagePath=req.file.filename
-    if(req.body.password)bcrypt.genSalt(9).then(salt =>bcrypt.hash(req.body.password, salt).then(hash => {
-        req.body.password = hash;
-        User.findByIdAndUpdate(req.user._id,req.body).then(({ _id, name, lastname, email, imagePath }) => res.send({ _id, name, lastname, email, imagePath }))
-                .catch(err=>res.status(500).json({err,message:"Something went wrong, our apologies"}))
-          }).catch(err=>res.status(500).json({err,message:"Something went wrong, our apologies"}))
-      ).catch(err=>res.status(500).json({err,message:"Something went wrong, our apologies"}));
-    else User.findByIdAndUpdate(req.user._id, req.body, { new: true })
-    .then(({ _id, name, lastname, email, imagePath }) => res.send({ _id, name, lastname, email, imagePath }));
+    try{
+        if(req.file) req.body.imagePath=req.file.filename
+        if(req.body.password){
+            const hash = await bcrypt.hash(req.body.password, 9);
+            req.body.password = hash;
+        }
+        const { _id, name, lastname, email, imagePath }= await User.findByIdAndUpdate(req.user._id,req.body, { new: true, useFindAndModify:false})
+        res.send({ _id, name, lastname, email, imagePath })
+    }catch(err){
+        res.status(500).json({err,message:"Something went wrong, our apologies"})
+    }
   });
   
 router.get('/logout',authorization, (req, res) => {
