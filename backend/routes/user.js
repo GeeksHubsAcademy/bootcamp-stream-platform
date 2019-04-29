@@ -22,12 +22,8 @@ router.post('/register', (req, res) => {
     //             <a href="${url}">Click here to confirm your email</a><br>
     //                 The link above will expire in 48 hours.</h3> `
     //     }).then(()=>{
-    new User({
-        name: req.body.name,
-        lastname: req.body.lastname,
-        email: req.body.email,
-        password: req.body.password
-    }).save().then(user => {
+        req.body.role='student'
+    new User(req.body).save().then(user => {
         res.status(200).send({ user, 'info': 'user succesfully created' })
     }).catch(err => {
         res.status(400).send({ err, 'error': 'Email already in use, please choose another email' })
@@ -47,9 +43,7 @@ router.post('/login', (req, res) => {
         //     return res.send('error','Email or password wrong'); 
         // }
         bcrypt.compare(req.body.password, userFound.password).then(isMatch => {
-            if (!isMatch) {
-                return res.status(401).send({ message: 'Email or password wrong' });/*Password Wrong */ 
-            }
+            if (!isMatch)return res.status(401).send({ message: 'Email or password wrong' }); /*Password Wrong */ 
             userFound.generateAuthToken().then(token => {
                 const {_id, name, lastname, email, imagePath}=userFound
                 userFound.token=token;
@@ -60,8 +54,14 @@ router.post('/login', (req, res) => {
 });
 
 router.patch('/update/',authorization,uploadProfilePics.single('image'), (req, res) => {
-    if(req.file)User.findByIdAndUpdate(req.user._id, {...req.body, imagePath:req.file.filename }, { new: true })
-    .then(({ _id, name, lastname, email, imagePath }) => res.send({ _id, name, lastname, email, imagePath }));
+    req.body.role="student"
+    if(req.file) req.body.imagePath=req.file.filename
+    if(req.body.password)bcrypt.genSalt(9).then(salt =>bcrypt.hash(req.body.password, salt).then(hash => {
+        req.body.password = hash;
+        User.findByIdAndUpdate(req.user._id,req.body).then(({ _id, name, lastname, email, imagePath }) => res.send({ _id, name, lastname, email, imagePath }))
+                .catch(err=>res.status(500).json({err,message:"Something went wrong, our apologies"}))
+          }).catch(err=>res.status(500).json({err,message:"Something went wrong, our apologies"}))
+      ).catch(err=>res.status(500).json({err,message:"Something went wrong, our apologies"}));
     else User.findByIdAndUpdate(req.user._id, req.body, { new: true })
     .then(({ _id, name, lastname, email, imagePath }) => res.send({ _id, name, lastname, email, imagePath }));
   });
