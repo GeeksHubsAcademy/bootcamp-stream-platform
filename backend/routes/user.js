@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const config = require('../config/password')
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const upload=require('../config/multer')
@@ -29,9 +28,9 @@ router.post('/register', (req, res) => {
         email: req.body.email,
         password: req.body.password
     }).save().then(user => {
-        res.send({ user, 'info': 'user succesfully created' })
+        res.status(200).send({ user, 'info': 'user succesfully created' })
     }).catch(err => {
-        res.send({ err, 'error': 'Email already in use, please choose another email' })
+        res.status(400).send({ err, 'error': 'Email already in use, please choose another email' })
     })
     // }).catch(console.log)
     // })
@@ -73,4 +72,16 @@ router.get('/logout',authorization, (req, res) => {
     .then(()=>res.status(200).json({message:'You have been sucessfully logged out'}))
     .catch(err=>res.status(500).send(err))
   });
+router.delete('/delete/',authorization, (req, res) => {
+ User.findByIdAndDelete(req.user._id).then((userDeleted) =>{
+     if(!userDeleted)return res.status(400).send("User not found")
+     res.status(200).send({userDeleted,message:"User successfully deleted"});
+ }).catch(err=>res.status(500).send(err))
+});
+router.delete('/delete/byAdmin/:id',authorization,isAdmin, (req,res)=>{
+    User.findByIdAndDelete(req.params.id).then((userDeleted) =>{
+        if(!userDeleted)return res.status(400).send("User not found")
+              res.status(200).send({userDeleted,message:"User successfully deleted"});
+    }).catch(err=>res.status(500).send(err))
+});
 module.exports = router;

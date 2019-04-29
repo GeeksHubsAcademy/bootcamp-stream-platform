@@ -41,7 +41,10 @@ const UserSchema = new mongoose.Schema(
       required: true,
       minlength: 8,
     },
-    imagePath: String,
+    imagePath: {
+      type: String,
+      default: 'profile.png'
+    },
     role: {
       type: String,
       enum: ['admin', 'student'],
