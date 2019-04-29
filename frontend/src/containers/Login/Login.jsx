@@ -8,6 +8,8 @@ import { loggedIn } from '../../redux/actions';
 import './Login.scss';
 import PublicZone from '../../components/PublicZone';
 
+
+
 class _Login extends Component {
   state = {
     pass: '',
