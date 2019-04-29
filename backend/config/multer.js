@@ -1,7 +1,7 @@
 const Multer = require( 'multer' );
 const path=require('path')
 const mimetypes=['image/png','image/jpg','image/jpeg']
-const upload = Multer(  {
+const uploadProfilePics = Multer(  {
     storage: Multer.diskStorage( {
         destination: ( req, file, callback ) => {
             callback( null, './public/uploads/profilePics' );
@@ -21,4 +21,4 @@ const upload = Multer(  {
     // limits: {fileSize: 2*1024*1024}
 });
 
-module.exports = upload;
+module.exports = uploadProfilePics;
