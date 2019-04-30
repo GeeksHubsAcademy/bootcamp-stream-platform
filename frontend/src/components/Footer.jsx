@@ -11,7 +11,7 @@ const Footer = () => (
       <img src='https://geekshubsacademy.com/img/logo_Geeks_Alfatec.svg' alt='GeeksHubs Academy' />
       <p className='blurb'>
         {' '}
-        "If at first you don't succeed, <br />
+        "If at first you don't succeed,{' '}
         try and try again.{' '}
       </p>
       <p className='rights'>All Content © GeeksHubs. VLC FSD class of 2019. All Rights Reserved</p>
@@ -22,13 +22,13 @@ const Footer = () => (
       <FontAwesome icon='facebook-f' />
       {/* <span className='twitter' /> */}
       <FontAwesome icon='twitter' />
-      
+      <span className='linkedin-in' />
       <FontAwesome icon='linkedin-in' />
-      
+      <span className='instagram' />
       <FontAwesome icon='instagram' />
-      
+      <span className='youtube' />
       <FontAwesome icon='youtube' />
-      
+      <span className='github' />
       <FontAwesome icon='github' />
     </div>
     <div>
