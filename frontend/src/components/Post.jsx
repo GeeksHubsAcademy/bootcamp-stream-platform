@@ -1,24 +1,30 @@
 import React from 'react';
-
+import './Post.scss'
 const PostText = ({data}) => <div className='postText'>postText  {JSON.stringify(data)} </div>;
 const PostCode = ({data}) => <div className='postCode'>postCode  {JSON.stringify(data)} </div>;
 const PostVideo = ({data}) => <div className='postVideo'>postVideo  {JSON.stringify(data)} </div>;
 const PostActivity = ({data}) => <div className='postActivity'>postActivity  {JSON.stringify(data)} </div>;
 
 const Post = ({data}) => {
+  let post;
   switch (data.postType) {
     case 'text':
-      return <PostText data={data} />;
+      post = <PostText data={data} />;
+      break;
     case 'code':
-      return <PostCode data={data} />;
+      post = <PostCode data={data} />;
+      break;
     case 'video':
-      return <PostVideo data={data} />;
+      post = <PostVideo data={data} />;
+      break;
     case 'activity':
-      return <PostActivity data={data} />;
+      post = <PostActivity data={data} />;
+      break;
 
     default:
-      return 'no valid postType';
+      post = 'no valid postType';
   }
+  return <div className='post'>{post}</div>;
 };
 
 export default Post;
