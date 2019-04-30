@@ -1,0 +1,65 @@
+.EditProfileView{
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-wrap: nowrap;
+  justify-content: center;
+  width: 70%;
+  margin: 2em auto;
+  border: 1px solid rgba(56, 4, 4, 0.3);
+  border-radius: 5px;
+
+  $dark-red: #380404;
+  $blue-mui: #3f51b5;
+
+  p{
+    display: flex;
+    padding: 1em;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  form {
+  display: flex;
+  flex-direction: column;
+  height: 100%; 
+  flex-wrap: nowrap;
+  justify-content: center;
+
+    button,
+    .formControl,
+    .textField {
+      align-self: center;
+      width: 70%;
+    }
+    button{
+      margin: 1em 0;
+    }
+  }
+  .formControl + .formControl {
+    margin-top: 1em;
+  }
+  form ~ form {
+    margin-top: 3em;
+  }
+
+  /* disabled inputs */
+  [class*="MuiInput-disabled"] {
+    color: $blue-mui;
+    }
+  //.MuiInput-underline-27.MuiInput-disabled-26:before,
+  //input[class*="MuiInput-disabled"]:before,
+  [class*="MuiInput-disabled"]:before {
+    content: none;
+  }
+
+  /* snackbar */
+  .success [class*="MuiSnackbarContent"]{
+    background-color: #4CAF50;
+  }
+
+  .hidden{
+    display: none
+  }
+}

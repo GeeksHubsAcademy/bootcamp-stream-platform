@@ -1,26 +1,10 @@
 const router = require('express').Router();
-const config = require('../config/password')
 const User = require('../models/User');
-const Bootcamp = require('../models/Bootcamp')
 const bcrypt = require('bcrypt');
-const {authorization} =require('../utils/middleware/authorization')
+const uploadProfilePics=require('../config/multer')
+const {authorization, isAdmin} =require('../utils/middleware/authorization')
 
-router.get('/find/:user_id', (req, res) => {
-    User.findById(req.params.user_id).then(userFound => {
-        Bootcamp.find({
-            user: {
-                _id: userFound._id
-            }
-        }).then(Bootcamps => {
-            res.status(200).json({
-                userFound,
-                Bootcamps
-            })
-        })
-    }).catch(err => res.status(500).send(err))
-})
-
-router.get('/all', (req, res) => {
+router.get('/all',authorization,isAdmin, (req, res) => {
     User.find({}).then(users => res.send(users)).catch(err => res.status(500).send(err))
 })
 router.post('/register', (req, res) => {
@@ -38,22 +22,10 @@ router.post('/register', (req, res) => {
     //             <a href="${url}">Click here to confirm your email</a><br>
     //                 The link above will expire in 48 hours.</h3> `
     //     }).then(()=>{
-    new User({
-        name: req.body.name,
-        lastname: req.body.lastname,
-        email: req.body.email,
-        password: req.body.password
-    }).save().then(user => {
-        res.send({
-            user,
-            'info': 'user succesfully created'
-        })
-    }).catch(err => {
-        res.send({
-            err,
-            'error': 'Email already in use, please choose another email'
-        })
-    })
+        req.body.role='student'
+    new User(req.body).save().then(user => {
+        res.status(200).send({ user, 'info': 'user succesfully created' })
+    }).catch(err =>res.status(400).send({ err, 'error': 'Email already in use, please choose another email' }))
     // }).catch(console.log)
     // })
 });
@@ -61,32 +33,55 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
     User.findOne({
         email: req.body.email
-    }).then(userFound => {
+    }).then((userFound) => {
         if (!userFound) {
-            return res.status(400).send({
-                message: 'Email or password wrong'
-            });
+            return res.status(401).send({ message: 'Email or password wrong'}); /*Email Wrong */ 
         }
         // if(!userFound.confirmed) {       /* This will be added when the confirmed email property will be created at the User schema */
         //     return res.send('error','Email or password wrong'); 
         // }
         bcrypt.compare(req.body.password, userFound.password).then(isMatch => {
-            if (!isMatch) {
-                return res.status(400).send({
-                    message: 'Email or password wrong'
-                });
-            }
+            if (!isMatch)return res.status(401).send({ message: 'Email or password wrong' }); /*Password Wrong */ 
             userFound.generateAuthToken().then(token => {
-                res.header('Authorization', token).send(userFound)
-            }).catch(console.log)
-        }).catch(console.log)
+                const {_id, name, lastname, email, imagePath}=userFound
+                userFound.token=token;
+                res.status(200).send({_id, name, lastname, email, imagePath, token})
+            }).catch(err=>res.status(500).json({err,message:"Something went wrong, our apologies"}))
+        }).catch(err=>res.status(500).json({err,message:"Something went wrong, our apologies"}))
     })
 });
 
+router.patch('/update/',authorization,uploadProfilePics.single('image'), async(req, res) => {
+    req.body.role="student"
+    try{
+        if(req.file) req.body.imagePath=req.file.filename
+        if(req.body.password){
+            const hash = await bcrypt.hash(req.body.password, 9);
+            req.body.password = hash;
+        }
+        const { _id, name, lastname, email, imagePath }= await User.findByIdAndUpdate(req.user._id,req.body, { new: true, useFindAndModify:false})
+        res.send({ _id, name, lastname, email, imagePath })
+    }catch(err){
+        res.status(500).json({err,message:"Something went wrong, our apologies"})
+    }
+  });
+  
 router.get('/logout',authorization, (req, res) => {
     const tokens=req.user.tokens.filter(token=>token.type!=='auth')
     User.findByIdAndUpdate(req.user._id,{$set:{tokens}},{upsert:true})
     .then(()=>res.status(200).json({message:'You have been sucessfully logged out'}))
-    .catch(err=>res.status(500).send(err))
+    .catch(err=>res.status(500).json({err,message:"Something went wrong, our apologies"}))
   });
+router.delete('/delete/',authorization, (req, res) => {
+ User.findByIdAndDelete(req.user._id).then((userDeleted) =>{
+     if(!userDeleted)return res.status(400).send("User not found")
+     res.status(200).send({userDeleted,message:"User successfully deleted"});
+ }).catch(err=>res.status(500).json({err,message:"Something went wrong, our apologies"}))
+});
+router.delete('/delete/byAdmin/:id',authorization,isAdmin, (req,res)=>{
+    User.findByIdAndDelete(req.params.id).then((userDeleted) =>{
+        if(!userDeleted)return res.status(400).send("User not found")
+              res.status(200).send({userDeleted,message:"User successfully deleted"});
+    }).catch(err=>res.status(500).json({err,message:"Something went wrong, our apologies"}))
+});
 module.exports = router;

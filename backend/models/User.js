@@ -41,7 +41,10 @@ const UserSchema = new mongoose.Schema(
       required: true,
       minlength: 8,
     },
-    imagePath: String,
+    imagePath: {
+      type: String,
+      default: 'profile.png'
+    },
     role: {
       type: String,
       enum: ['admin', 'student'],
@@ -72,22 +75,15 @@ UserSchema.methods.toJSON = function() {
 
 UserSchema.pre('save', function(next) {
   const user = this;
-  if (user.isModified('password')) {
-    bcrypt
-      .genSalt(SALT_I)
-      .then(salt =>
-        bcrypt
-          .hash(user.password, salt)
-          .then(hash => {
+  console.log('ei')
+  if (user.isModified('password'))bcrypt.genSalt(SALT_I).then(salt =>bcrypt.hash(user.password, salt)
+    .then(hash => {
             user.password = hash;
             return next();
-          })
-          .catch(err => next(err)),
-      )
-      .catch(err => next(err));
-  } else next();
+          }).catch(err => next(err))
+      ).catch(err => next(err));
+ else next();
 });
-
 
 UserSchema.methods.generateAuthToken = function() {
   const user = this;

@@ -1,39 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from '@reach/router';
-import { loggedIn } from '../../redux/actions'
+import { loggedIn } from '../../redux/actions';
+//import { set } from 'mongoose';
+
+//importamos scss
+import './Login.scss';
+import PublicZone from '../../components/PublicZone';
 
 
 
-class Login extends Component {
+class _Login extends Component {
   state = {
     pass: '',
     email: '',
-    error: 'Error Error Error'
-  }
+    errorPass: '',
+    errorEmail: '',
+    error: '',
+  };
 
-  handleChange = (ev) => {
+  handleChange = ev => {
     this.setState({ [ev.target.name]: ev.target.value });
     console.log({ [ev.target.name]: ev.target.value });
-  }
+  };
 
+  login = event => {
+    event.preventDefault();
+    let { pass, email } = this.state;
 
-
-
-  login = (e) => {
-
-    if (this.state.pass === '' || this.state.pass === '') {
-      e.preventDefault();
-      
-      alert(this.state.error);
-      
-
+    if (pass === '') {
+      this.setState({ errorPass: 'No has introducido el password' });
+    }
+    if (email === '') {
+      this.setState({ errorEmail: 'No has introducido el email' });
     } else {
-      e.preventDefault();
-      console.log(this.state.email, this.state.pass)
-      // loggedIn(this.state.pass, this.state.email)
+      console.log(pass, email);
+      loggedIn(pass, email)
+        .then(() => this.setState({ error: 'logged!!' }))
+        .catch(e => this.setState({ error: 'email o contraseña incorrecta' }));
     }
   };
+
   render() {
     console.log(this.props);
 
@@ -42,16 +49,22 @@ class Login extends Component {
     // }
 
     return (
-      <section className='LoginView'>
+      <section className=''>
         <h1>Login</h1>
 
-        <form onSubmit={this.login} className="">
-          <input name="email" placeholder="email" type="email" onChange={this.handleChange}/>
-          <input name="pass" placeholder="password" type="password" onChange={this.handleChange} />
-
-
-          <button >login</button>
+        <form onSubmit={this.login} className='loginView'>
+          <input name='email' placeholder='email' type='email' onChange={this.handleChange} />
+          {this.state.errorEmail && <div className='errorLoginView'>{this.state.errorEmail}</div>}
+          <input name='pass' placeholder='password' type='password' onChange={this.handleChange} />
+          {this.state.errorPass && <div className='errorLoginView'>{this.state.errorPass}</div>}
+          <button>Login</button>
         </form>
+
+        {this.state.error && <h1 className='errorLoginView'>{this.state.error}</h1>}
+
+        {/* <div className="errorLoginView">
+          {this.state.error}
+        </div> */}
       </section>
     );
   }
@@ -59,7 +72,13 @@ class Login extends Component {
 const mapStateToProps = ({ user }) => ({ isLogged: !!user });
 const mapDispatchToProps = dispatch => ({ dispatch });
 
-export default connect(
+export const Login = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Login);
+)(_Login);
+
+export default () => (
+  <PublicZone>
+    <Login />
+  </PublicZone>
+);

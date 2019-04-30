@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Deberia renderizar Error 404 correctamente 1`] = `
+<section
+  className="404"
+>
+  <h1>
+    Página no encontrada
+  </h1>
+  <h2>
+    404
+  </h2>
+  <ForwardRef
+    to="login"
+  >
+    Logeate
+  </ForwardRef>
+</section>
+`;
+
+exports[`Deberia renderizar Error 404 segun su snapshot 1`] = `
+<section
+  className="404"
+>
+  <h1>
+    Página no encontrada
+  </h1>
+  <h2>
+    404
+  </h2>
+  <ForwardRef
+    to="login"
+  >
+    Logeate
+  </ForwardRef>
+</section>
+`;

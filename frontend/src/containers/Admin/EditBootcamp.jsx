@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import UserManagement from './UserManagement.jsx';
 import './EditBootcamp.scss';
 
 class EditBootcamp extends Component {
-    state = this.props.bootcamp ||   {
-            title: '',
-            description: '',
-            startsAt: '',
-        
-        }
+    state = this.props.bootcamp || {
+        title: '',
+        description: '',
+        startsAt: '',
+
+    }
 
     handleChange = (ev) => {
-        this.setState({  [ev.target.name] : ev.target.value });
+        this.setState({ [ev.target.name]: ev.target.value });
     }
     saveBootcamp = () => {
         // this.props.dispatch({type:'SAVE_BOOTCAMP',payload: this.state.id})
@@ -23,18 +24,19 @@ class EditBootcamp extends Component {
 
             <div className="editBootcamp">
                 <div className="content-edit">
-                    <input onChange={this.handleChange} value={this.state.title || ''} name="title" type="text" />
-                    <input onChange={this.handleChange} value={this.state.description || ''} name="description" type="text" />
-                    <input onChange={this.handleChange} value={this.state.startsAt || ''} name="startsAt" type="date" />
-                    <input onChange={this.handleChange} value={this.state.weeksDuration || ''} name="weeksDuration" type="text" />
+                    <input onChange={this.handleChange} placeholder="title" value={this.state.title || ''} name="title" type="text" />
+                    <input onChange={this.handleChange} placeholder="description" value={this.state.description || ''} name="description" type="text" />
+                    <input onChange={this.handleChange} placeholder="Fecha de Inicio" value={this.state.startsAt || ''} name="startsAt" type="date" />
+                    <input onChange={this.handleChange} placeholder="Duracion (semanas)" value={this.state.weeksDuration || ''} name="weeksDuration" type="text" />
                 </div>
-                <div>
+                <div className="content-action">
                     <button onClick={() => this.saveBootcamp(this.state)}>
                         {(this.props.bootcamp ? 'Save' : 'Create')}</button>
                     <button>Delete</button>
                 </div>
                 <div>
-                    
+
+                    <UserManagement bootcampUsers={this.state.users}></UserManagement>
                 </div>
             </div>
         )
