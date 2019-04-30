@@ -6,51 +6,43 @@
     padding: 1em 7em;
     // box-align: center;
 }
-
 .footerLogo {
     height: 20%;
     width: 20%;
     padding: 0;
 }
-
 .blurb {
     flex-direction: row;
     margin: 0;
     width: 100%;
 }
-
-// .social {
-//     margin: 25px;
-//     color: white;
-// }
-
 .social {
+    margin: 20px;
+    color: white;
+}
+i {
     display: flex;
     flex-direction: row; //maintain row after resize
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     font-size: 30px;
     color: white;
-    span {
-        margin: 5px;
-    }
-    
+    margin-right: 10px;
+    // span {
+    //     margin: 0 3px;
+    // }
 }
-
 .rights {
     font-size: 10px;
 }
-
 ul {
     list-style-type: none;
 }
-
 li {
     color: white;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     cursor: pointer;
 }
-
 @media screen and (max-width: 768px) {
     .footer, .links {
         display: block;
@@ -58,5 +50,8 @@ li {
     //   width: 100%;
     //   flex: 0 0 auto; //prevent sentences and paragraphs from breaking
       word-wrap: none;
+    }
+    i {
+        font-size: 100%;
     }
   }
