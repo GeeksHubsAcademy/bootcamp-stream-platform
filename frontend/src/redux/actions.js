@@ -4,14 +4,13 @@ import Axios from 'axios';
 let { dispatch } = store;
 
 export async function loggedIn(password, email) {
-   let response = await Axios.post('http://localhost:3001/user/login', { password, email });
-   let user = response.data;
-   user.role = 'admin'
-   dispatch({
-     type: 'LOGGED_IN',
-     user,
-
-   });
+  let response = await Axios.post('http://localhost:3001/user/login', { password, email });
+  let user = response.data;
+  user.role = 'admin';
+  dispatch({
+    type: 'LOGGED_IN',
+    user,
+  });
   // dispatch({
   //   type: 'LOGGED_IN',
   //   user: {
@@ -53,18 +52,16 @@ export async function getBootcamps() {
 }
 
 //de Juanma, no se si va aqui o que
-export async function postRegister(name,lastname,email,password){
+export async function postRegister(name, lastname, email, password) {
   console.log(name, lastname, email, password);
 
-  let res = await Axios.post('http://localhost:3001/user/register', { name, lastname, email, password })
+  let res = await Axios.post('http://localhost:3001/user/register', { name, lastname, email, password });
   console.log(res);
 
-
   return 'Registro válido';
-
 }
 
-export async function updateProfile(userData) {
+export async function updateProfile(userData, img) {
   const user = store.getState().user;
   let token = user && user.token;
   let bodyFormData = new FormData();
@@ -73,8 +70,8 @@ export async function updateProfile(userData) {
       bodyFormData.set(key, userData[key]);
     }
   }
-  // bodyFormData.append('image', imageFile);
-  let response = await Axios.patch('http://localhost:3001/user/update', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token }});
+  // bodyFormData.append('imagePath', img);
+  let response = await Axios.patch('http://localhost:3001/user/update', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token } });
   let newUser = response.data;
   newUser.token = token;
   dispatch({

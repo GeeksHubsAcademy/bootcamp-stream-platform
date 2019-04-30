@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-const CreatePostText = () => <div className='postText'>postText</div>;
+import CreatePostText from './CreatePostText'
+
+
 const CreatePostCode = () => <div className='postCode'>postCode</div>;
 const CreatePostVideo = () => <div className='postVideo'>postVideo</div>;
 const CreatePostActivity = () => <div className='postActivity'>postActivity</div>;
 
 const Post = () => {
-  const [value, setValue] = useState('text');
+  const [value, setValue] = useState('Text');
 
   return (
     <div className='createPost'>

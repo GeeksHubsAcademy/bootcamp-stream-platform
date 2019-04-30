@@ -34,10 +34,10 @@ const sampleState = {
           },
         },
         {
-          postType: 'snippet',
+          postType: 'code',
           authorId: 2,
           content: {
-            snippet: {
+            code: {
               title: 'Recursos sobre react',
               code: 'export default 42',
               format: 'js',
@@ -97,10 +97,10 @@ const sampleState = {
           },
         },
         {
-          postType: 'snippet',
+          postType: 'code',
           authorId: 2,
           content: {
-            snippet: {
+            code: {
               title: 'Recursos sobre react',
               code: 'export default 42',
               format: 'js',
@@ -160,10 +160,10 @@ const sampleState = {
           },
         },
         {
-          postType: 'snippet',
+          postType: 'code',
           authorId: 2,
           content: {
-            snippet: {
+            code: {
               title: 'Recursos sobre react',
               code: 'export default 42',
               format: 'js',

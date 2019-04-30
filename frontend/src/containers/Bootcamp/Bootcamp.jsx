@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Post from '../../components/Post'
 
-import CreatePost from '../../components/CreatePost'
+import CreatePost from '../../components/CreatePost/CreatePost'
 const SearchPosts = () => <div>Search posts</div>
 
 
