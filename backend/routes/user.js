@@ -25,7 +25,7 @@ router.post('/register', (req, res) => {
         req.body.role='student'
     new User(req.body).save().then(user => {
         res.status(200).send({ user, 'info': 'user succesfully created' })
-    }).catch(err =>res.status(400).send({ err, 'error': 'Email already in use, please choose another email' }))
+    }).catch(err =>res.status(400).send( err))
     // }).catch(console.log)
     // })
 });
@@ -44,7 +44,6 @@ router.post('/login', (req, res) => {
             if (!isMatch)return res.status(401).send({ message: 'Email or password wrong' }); /*Password Wrong */ 
             userFound.generateAuthToken().then(token => {
                 const {_id, name, lastname, email, imagePath}=userFound
-                userFound.token=token;
                 res.status(200).send({_id, name, lastname, email, imagePath, token})
             }).catch(err=>res.status(500).json({err,message:"Something went wrong, our apologies"}))
         }).catch(err=>res.status(500).json({err,message:"Something went wrong, our apologies"}))

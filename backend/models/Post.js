@@ -13,7 +13,6 @@ const PostSchema = new mongoose.Schema({
           type: Object,
           required: true,
           enum: [
-            {
               code: {
                 title: String,
                 code: String,
@@ -39,7 +38,6 @@ const PostSchema = new mongoose.Schema({
                 body: String,
                 repo: String,
               },
-            },
           ],
         },
   },
