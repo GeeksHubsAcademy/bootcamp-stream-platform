@@ -16,9 +16,9 @@ const PostActivity = ({data}) => (
 
 <div className='postActivity'>
 Post Activity
-    <h3>{data.content.activity.title}</h3>
-    <p>{data.content.activity.body}</p>
-    <h6>{data.content.activity.repo}</h6>
+    <h3>{content.title}</h3>
+    <p>{content.body}</p>
+    <h6>{content.url}</h6>
 </div>
 
 
