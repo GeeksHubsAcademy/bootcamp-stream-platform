@@ -24,6 +24,11 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 // forms messages : snackbar
 import Snackbar from '@material-ui/core/Snackbar';
 import CloseIcon from '@material-ui/icons/Close';
+// edit button
+import Grid from '@material-ui/core/Grid';
+import Fab from '@material-ui/core/Fab';
+import Icon from '@material-ui/core/Icon';
+import Tooltip from '@material-ui/core/Tooltip';
 
 class EditProfile extends Component {
   // state initial
@@ -33,9 +38,6 @@ class EditProfile extends Component {
     lastname: this.props.user.lastname,
     email: this.props.user.email,
     role: this.props.user.role,
-    // REVIEW not loaded pass
-    //password: this.props.user.password,
-    //password2: this.props.user.password2,
     password: undefined,
     password2: undefined,
     errorName: undefined,
@@ -63,13 +65,11 @@ class EditProfile extends Component {
   // TODO
   deleteProfile = e => {
     e.preventDefault();
-    //console.log('Delete', this.state.user)
   };
 
-  //  action to updateProfile
+  // action to updateProfile
   saveProfile = e => {
     e.preventDefault();
-    // TODO no ejecutar siempre, onClick // onSubmit
     const { name, lastname, email, password } = this.state;
     const userData = { name, lastname, email, password };
     if (this.validate()) {
@@ -84,7 +84,6 @@ class EditProfile extends Component {
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value.trim() }, () => {
-      //console.log( 'changed', this.state )
       // validate onChange inside callback
       this.validate();
     });
@@ -94,12 +93,14 @@ class EditProfile extends Component {
     this.setState(state => ({ showPassword: !state.showPassword }));
   };
 
+  handleClickShowEdit = () => {
+    this.setState(state => ({ disabled: !state.disabled }));
+  };
+
   validate = () => {
-    //console.log('hola, estamos validando!');
     let isValid = true;
     if (this.state.name === '') {
       this.setState({ errorName: 'Please, write your name' });
-      console.log('empty name');
       isValid = false;
     } else {
       this.setState({ errorName: undefined });
@@ -107,16 +108,13 @@ class EditProfile extends Component {
 
     if (this.state.lastname === '') {
       this.setState({ errorlastname: 'Please, write your lastname' });
-      console.log('empty lastname');
       isValid = false;
     } else {
       this.setState({ errorlastname: undefined });
     }
 
-    //TODO restrictions
     if (this.state.email === '') {
       this.setState({ errorEmail: 'Please, write your email' });
-      console.log('empty email');
       isValid = false;
     } else {
       this.setState({ errorEmail: undefined });
@@ -136,13 +134,11 @@ class EditProfile extends Component {
       isValid = false;
     } else {
       this.setState({ errorPassword2: undefined });
-      //console.log(' coinciden');
     }
 
     return isValid;
   };
   render() {
-    //console.log(this.props);
 
     // TODO after login task
     // if (this.props.isLogged) {
@@ -152,7 +148,19 @@ class EditProfile extends Component {
     return (
       <section className='EditProfileView'>
         <h1>Hi {this.state.name}</h1>
-        <p>Edit your profile: </p>
+        <Grid
+          container
+          direction="row"
+          justify="flex-end"
+          alignItems="center"
+        >
+          <Tooltip title="Edit your profile" aria-label="Edit">
+          <Fab color={ !!this.state.disabled ? 'primary' : 'secondary'}
+               onClick={this.handleClickShowEdit}>
+          <Icon>edit_icon</Icon>
+          </Fab>
+        </Tooltip>  
+        </Grid>
         <form autoComplete='off'>
           <FormControl className='formControl' error={!!this.state.errorName}>
             <InputLabel htmlFor='component-name'>Name</InputLabel>
@@ -245,7 +253,9 @@ class EditProfile extends Component {
           {/* TODO
             visibility on keyup form
             */}
-          <Button variant='contained' color='primary' className={!!this.state.disabled ? 'hidden' : ''} onClick={this.saveProfile}>
+          <Button variant='contained' color='secondary' 
+                  className={!!this.state.disabled ? 'hidden' : ''} 
+                  onClick={this.saveProfile}>
             Save
           </Button>
         </form>
