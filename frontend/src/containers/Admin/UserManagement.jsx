@@ -9,7 +9,7 @@ class UserManagement extends Component {
         super(props);
         //  console.log(this.props.bootcampUsers)
         this.state = {
-            users_boot: this.props.bootcampUsers,
+            users_boot: this.props.bootcampUsers || [],
             boot_user: [],
             new_user: [],
             counter: 0,

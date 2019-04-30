@@ -3,8 +3,8 @@
     justify-content: space-between;
     background: rgb(56, 4, 4);
     color: white;
-    padding: 1.5em 7em;
-    box-align: center;
+    padding: 1em 7em;
+    // box-align: center;
 }
 
 .footerLogo {
@@ -20,6 +20,11 @@
 }
 
 .social {
+    margin: 25px;
+    color: white;
+}
+
+i {
     display: flex;
     flex-direction: row; //maintain row after resize
     justify-content: space-evenly;
