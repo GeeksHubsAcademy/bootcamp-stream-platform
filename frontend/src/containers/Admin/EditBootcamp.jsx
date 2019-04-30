@@ -20,8 +20,7 @@ class EditBootcamp extends Component {
         console.log('Saved', this.state)
     }
     render() {
-        console.log(this.props.bootcamp)
-        console.log(this.props.edit)
+        console.log(this.props)
         return (
 
             <div className="editBootcamp">
