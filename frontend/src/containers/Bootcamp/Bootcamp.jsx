@@ -8,7 +8,9 @@ const SearchPosts = () => <div>Search posts</div>
 
 const Bootcamp = ({ bootcamp }) => {
   console.log(bootcamp);
-
+  if (!bootcamp) {
+    return <h1>not bootcamp on the store</h1>
+  }
 
   return (
     <section className='bootcampView'>
@@ -16,7 +18,7 @@ const Bootcamp = ({ bootcamp }) => {
       <h4>{bootcamp.weeksDuration} Semanas</h4>
       <div className='post'>
        { bootcamp.posts.map(post => (
-          <Post data={post} />
+          <Post data={post} key={post._id} />
         ))}
       </div>
       <CreatePost />
