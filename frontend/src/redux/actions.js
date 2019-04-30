@@ -51,8 +51,17 @@ export async function getBootcamps() {
 }
 
 //de Juanma, no se si va aqui o que
-export async function postRegister(name, lastname, email, password, password2) {
-  //let response = await Axios.post('http://localhost:3001/register/', {name,lastname,email,password,password2} );
+export async function postRegister(name,surname,email,password,password2){
+  let response = Axios.post('http://localhost:3001/user/register',{email,password})
+  .then(res =>{
+    //localStorage.setItem('authorization', res.headers.authorization);//guardamos el token en localstorage para que la sesión se mantenga abierta
+   // setError('');
+  })
+  .catch(err => {
+      console.log(err);
+      //setError('Wrong credentials');
+  })
+  //let response = await Axios.post('http://localhost:3001/register/', {name,surname,email,password,password2} );
 }
 
 export async function updateProfile(userData) {
