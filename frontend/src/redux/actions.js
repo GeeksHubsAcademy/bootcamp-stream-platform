@@ -51,17 +51,15 @@ export async function getBootcamps() {
 }
 
 //de Juanma, no se si va aqui o que
-export async function postRegister(name,surname,email,password,password2){
-  let response = Axios.post('http://localhost:3001/user/register',{email,password})
-  .then(res =>{
-    //localStorage.setItem('authorization', res.headers.authorization);//guardamos el token en localstorage para que la sesión se mantenga abierta
-   // setError('');
-  })
-  .catch(err => {
-      console.log(err);
-      //setError('Wrong credentials');
-  })
-  //let response = await Axios.post('http://localhost:3001/register/', {name,surname,email,password,password2} );
+export async function postRegister(name,lastname,email,password){
+  console.log(name, lastname, email, password);
+
+  let res = await Axios.post('http://localhost:3001/user/register', { name, lastname, email, password })
+  console.log(res);
+
+
+  return 'Registro válido';
+
 }
 
 export async function updateProfile(userData) {
@@ -74,13 +72,6 @@ export async function updateProfile(userData) {
     }
   }
   // bodyFormData.append('image', imageFile);
-  // let response = await Axios({
-  //   method: 'patch',
-  //   url: 'http://localhost:3001/user/update',
-  //   data: bodyFormData,
-  //   config: { headers: { 'Content-Type': 'multipart/form-data', 'Authorization': 'Bearer '+token } },
-  // });
-
   let response = await Axios.patch('http://localhost:3001/user/update', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token }});
   let newUser = response.data;
   newUser.token = token;
