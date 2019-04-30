@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link } from '@reach/router';
+// import { Link } from '@reach/router';
 import FontAwesome from './FontAwesome';
 
 import './Footer.scss';
@@ -11,8 +11,8 @@ const Footer = () => (
       <img src='https://geekshubsacademy.com/img/logo_Geeks_Alfatec.svg' alt='GeeksHubs Academy' />
       <p className='blurb'>
         {' '}
-        "Mi código funciona y no tengo ni idea de por qué." <br />
-        -Desarrolladores web{' '}
+        "If at first you don't succeed, <br />
+        try and try again.{' '}
       </p>
       <p className='rights'>All Content © GeeksHubs. VLC FSD class of 2019. All Rights Reserved</p>
     </div>
@@ -21,13 +21,13 @@ const Footer = () => (
       <FontAwesome icon='facebook-f' />
       <span className='twitter' />
       <FontAwesome icon='twitter' />
-      {/* <span className='mdi mdi-linkedin-box' /> */}
+      
       <FontAwesome icon='linkedin-in' />
-      {/* <span className='mdi mdi-instagram' /> */}
+      
       <FontAwesome icon='instagram' />
-      {/* <span className='mdi mdi-youtube' /> */}
+      
       <FontAwesome icon='youtube' />
-      {/* <span className='mdi mdi-github' /> */}
+      
       <FontAwesome icon='github' />
     </div>
     <div>

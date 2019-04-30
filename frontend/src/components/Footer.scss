@@ -20,6 +20,7 @@ img {
 
 .social {
     display: flex;
+    flex-direction: row; //maintain row after resize
     justify-content: space-between;
     align-items: center;
     margin: 25px;
@@ -44,6 +45,7 @@ li {
 @media screen and (max-width: 700px) {
     .footer, .social, .links {
       flex-direction: column;
+      flex: 0 0 auto; //prevent sentences and paragraphs from breaking
     }
     img {
         height: 100%;
