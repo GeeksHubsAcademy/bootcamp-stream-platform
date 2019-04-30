@@ -57,7 +57,7 @@ class EditBootcamp extends Component {
                 </div>
                 <div>
 
-                    <UserManagement bootcampUsers={this.state.users}></UserManagement>
+                    <UserManagement bootcampUsers={this.state.users} onSelect={console.log}></UserManagement>
                 </div>
             </div>
         )

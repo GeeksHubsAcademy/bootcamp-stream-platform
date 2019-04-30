@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const PostSchema = new mongoose.Schema({
         postType: {
           type: String,
-          enum: ['text', 'video', 'activity', 'snippet'],
+          enum: ['text', 'video', 'activity', 'code'],
           required: true,
         },
         authorId: {
@@ -14,7 +14,7 @@ const PostSchema = new mongoose.Schema({
           required: true,
           enum: [
             {
-              snippet: {
+              code: {
                 title: String,
                 code: String,
                 format: String,

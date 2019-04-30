@@ -4,13 +4,15 @@ export let initialState = {
 };
 
 const sampleState = {
-  bootcamps: [{
+  bootcamps: [
+    {
       _id: 123,
       title: 'FSD VLC FEB19',
       description: null,
       startsAt: new Date(),
       weeksDuration: 12,
-      users: [{
+      users: [
+        {
           _id: 1,
           name: 'juan',
         },
@@ -23,7 +25,8 @@ const sampleState = {
           name: 'paco',
         },
       ],
-      posts: [{
+      posts: [
+        {
           postType: 'text',
           authorId: 1,
           content: {
@@ -34,10 +37,10 @@ const sampleState = {
           },
         },
         {
-          postType: 'snippet',
+          postType: 'code',
           authorId: 2,
           content: {
-            snippet: {
+            code: {
               title: 'Recursos sobre react',
               code: 'export default 42',
               format: 'js',
@@ -73,7 +76,8 @@ const sampleState = {
       description: null,
       startsAt: new Date(),
       weeksDuration: 12,
-      users: [{
+      users: [
+        {
           _id: 1,
           name: 'juan',
         },
@@ -86,21 +90,34 @@ const sampleState = {
           name: 'paco',
         },
       ],
-      posts: [{
+      posts: [
+        {
           postType: 'text',
           authorId: 1,
           content: {
             text: {
               title: 'Recursos sobre react',
-              body: 'lorem ipsum asd sahdsahjaslk hg hhj lkjhj ',
+              body: `# Bootcamp Stream
+Una plataforma de comunicación entre alumnos
+
+## Tech MERN
+
+- API REST
+  - express
+  - mongo
+- FRONTEND
+  - react
+  - redux
+  - axios
+`,
             },
           },
         },
         {
-          postType: 'snippet',
+          postType: 'code',
           authorId: 2,
           content: {
-            snippet: {
+            code: {
               title: 'Recursos sobre react',
               code: 'export default 42',
               format: 'js',
@@ -136,7 +153,8 @@ const sampleState = {
       description: null,
       startsAt: new Date(),
       weeksDuration: 12,
-      users: [{
+      users: [
+        {
           _id: 1,
           name: 'juan',
         },
@@ -149,7 +167,8 @@ const sampleState = {
           name: 'paco',
         },
       ],
-      posts: [{
+      posts: [
+        {
           postType: 'text',
           authorId: 1,
           content: {
@@ -160,10 +179,10 @@ const sampleState = {
           },
         },
         {
-          postType: 'snippet',
+          postType: 'code',
           authorId: 2,
           content: {
-            snippet: {
+            code: {
               title: 'Recursos sobre react',
               code: 'export default 42',
               format: 'js',
@@ -204,7 +223,6 @@ const sampleState = {
     token: 'AASFDSDFQ298723ÑLKJWD98723HJDW76D2YBD623YB326D',
   },
   allUsers: [
-
     {
       _id: 1,
       name: 'pepe',
@@ -212,7 +230,6 @@ const sampleState = {
       role: 'student',
       email: 'juan@geekhubs.com',
       imagePath: null,
-
     },
     {
       _id: 2,
@@ -221,7 +238,6 @@ const sampleState = {
       role: 'admin',
       email: 'juan@geekhubs.com',
       imagePath: null,
-
     },
     {
       _id: 3,
@@ -230,7 +246,6 @@ const sampleState = {
       role: 'student',
       email: 'juan@geekhubs.com',
       imagePath: null,
-
     },
   ],
 };
