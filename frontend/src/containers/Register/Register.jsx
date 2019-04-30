@@ -29,6 +29,7 @@ class _Register extends Component {
     this.setState({ [ev.target.name]: ev.target.value });
     this.validate();
   }
+  
   handleSubmit = (ev) => {
     ev.preventDefault();//esto es para que no se refresque 
     console.log(this.state);
@@ -47,7 +48,6 @@ class _Register extends Component {
       this.setState({ erroremail: 'Por favor, introduce un email válido' });
     }
   }
-
 
   render() {
 
