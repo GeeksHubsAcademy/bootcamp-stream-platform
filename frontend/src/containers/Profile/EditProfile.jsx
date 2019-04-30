@@ -77,7 +77,7 @@ class EditProfile extends Component {
       updateProfile(userData)
         .then(() => this.setState({ successMessage: 'Great! updated profile!' }))
         .then(() => this.handleClick())
-        .catch(e => this.setState({ error: e }));
+        .catch(e => this.setState({ error: e.message }));
       // show snackbar message
     }
   };
@@ -273,6 +273,7 @@ class EditProfile extends Component {
         <form onClick={this.deleteProfile}>
           <Button variant='contained'>Unsubscribe</Button>
         </form>
+        <div>{this.state.error}</div>
       </section>
     );
   }

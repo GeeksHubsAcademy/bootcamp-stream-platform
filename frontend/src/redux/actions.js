@@ -74,13 +74,6 @@ export async function updateProfile(userData) {
     }
   }
   // bodyFormData.append('image', imageFile);
-  // let response = await Axios({
-  //   method: 'patch',
-  //   url: 'http://localhost:3001/user/update',
-  //   data: bodyFormData,
-  //   config: { headers: { 'Content-Type': 'multipart/form-data', 'Authorization': 'Bearer '+token } },
-  // });
-
   let response = await Axios.patch('http://localhost:3001/user/update', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token }});
   let newUser = response.data;
   newUser.token = token;
