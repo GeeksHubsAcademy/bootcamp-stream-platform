@@ -10,6 +10,9 @@
   border: 1px solid rgba(56, 4, 4, 0.3);
   border-radius: 5px;
 
+  $dark-red: #380404;
+  $blue-mui: #3f51b5;
+
   p{
     display: flex;
     padding: 1em;
@@ -37,10 +40,26 @@
   .formControl + .formControl {
     margin-top: 1em;
   }
-  form + form {
+  form ~ form {
     margin-top: 3em;
   }
 
-  // .hidden{display: none}
-  
+  /* disabled inputs */
+  [class*="MuiInput-disabled"] {
+    color: $blue-mui;
+    }
+  //.MuiInput-underline-27.MuiInput-disabled-26:before,
+  //input[class*="MuiInput-disabled"]:before,
+  [class*="MuiInput-disabled"]:before {
+    content: none;
+  }
+
+  /* snackbar */
+  .success [class*="MuiSnackbarContent"]{
+    background-color: #4CAF50;
+  }
+
+  .hidden{
+    display: none
+  }
 }

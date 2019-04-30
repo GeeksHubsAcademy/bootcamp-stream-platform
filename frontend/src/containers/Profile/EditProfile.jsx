@@ -1,6 +1,9 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from '@reach/router';
+//import { Redirect } from '@reach/router';
+
+// redux
+import { updateProfile } from '../../redux/actions';
 
 // component styles
 import './EditProfile.scss';
@@ -18,7 +21,9 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-
+// forms messages : snackbar
+import Snackbar from '@material-ui/core/Snackbar';
+import CloseIcon from '@material-ui/icons/Close';
 
 class EditProfile extends Component {
 
@@ -28,6 +33,7 @@ class EditProfile extends Component {
     name: this.props.user.name,
     surname: this.props.user.surname,
     email: this.props.user.email,
+    role: this.props.user.role,
     // REVIEW not loaded pass
     //password: this.props.user.password,
     //password2: this.props.user.password2,
@@ -40,63 +46,87 @@ class EditProfile extends Component {
     errorPassword2: undefined,
     successMessage: undefined,
     showPassword: false,
-
+    disabled: true,
+    open: false,
   }
 
-  handleClickShowPassword = () => {
-    this.setState(state => ({ showPassword: !state.showPassword }));
+  // snackbar
+  handleClick = () => {
+    this.setState({ open: true });
   };
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    this.setState({ open: false });
+  };
+
 
   // TODO
   deleteProfile = (e) => {
     e.preventDefault();
-    //console.log('Delete', this.state.bootcamp)
+    //console.log('Delete', this.state.user)
   };
 
-  // TODO post action
+  //  action to updateProfile
   saveProfile = (e) => {
     e.preventDefault();
 
     this.setState(
       this.state,
       () =>{
-        console.log('Saved', this.state)
         //validate onChange inside callback
         this.validate();
+        // TODO no ejecutar siempre, onClick // onSubmit
+        console.log('Data to save:', this.state)
+        updateProfile(this.state)
+        .then(() => this.setState({ successMessage: 'Great! updated profile!' }))
+        .then ( () => this.handleClick() )
+        .catch(e => this.setState({ error: 'error' }));
+        // show snackbar message
       }
       );
-      // TODO success message
-     // .then(() => this.setState({ successMessage: 'Updated profile!' }));
-    
-  };  
+  };
 
   handleChange = name => event => {
     this.setState(
       {[name]: event.target.value.trim() },
       () =>{
-        console.log( this.state )
+        //console.log( 'changed', this.state )
         // validate onChange inside callback
         this.validate();
       }
       );
   };
 
+  handleClickShowPassword = () => {
+    this.setState(state => ({ showPassword: !state.showPassword }));
+  };
+
   validate = () => {
-    console.log('hola, estamos validando!');
+    //console.log('hola, estamos validando!');
 
     if( this.state.name === ''){
       this.setState({ errorName: 'Please, write your name'});
       console.log('empty name');
+    } else {
+      this.setState({ errorName: undefined});
     }
+
     if( this.state.surname === ''){
       this.setState({ errorSurname: 'Please, write your surname'});
       console.log('empty surname');
+    } else {
+      this.setState({ errorSurname: undefined});
     }
+
     //TODO restrictions
     if( this.state.email === ''){
       this.setState({ errorEmail: 'Please, write your email'});
       console.log('empty email');
-    }    
+    }  else {
+      this.setState({ errorEmail: undefined});
+    }
     // NOT required , TODO restrictions
     // if( this.state.password === ''){
     //   this.setState({ errorPassword: 'Please, write your password'});
@@ -111,13 +141,14 @@ class EditProfile extends Component {
       console.log('no same passwords');
     } else {
       this.setState({ errorPassword2: undefined});
-      console.log(' coinciden');      
+      //console.log(' coinciden');
     }
-    
+
 
   }
   render() {
     //console.log(this.props);
+
 
     // TODO after login task
     // if (this.props.isLogged) {
@@ -125,28 +156,25 @@ class EditProfile extends Component {
     // }
 
     return (
-    
+
       <section className="EditProfileView">
 
           <h1>Hi {this.state.name}</h1>
           <p>Edit your profile: </p>
-          <form autoComplete="off"
-                onClick={this.saveProfile}>
+          <form autoComplete="off">
+
           <FormControl className="formControl" error={!!this.state.errorName }>
             <InputLabel htmlFor="component-name">Name</InputLabel>
             <Input
               id="component-name"
               value={this.state.name}
-              onChange={this.handleChange("name")}
               aria-describedby="component-name-text"
               required
-            />              
-            {/* <FormHelperText 
-              id="component-error-text"
-              className={ this.state.errorName ? 'visible': 'hidden'}>
-              {this.state.errorName}
-            </FormHelperText> */}
-            {this.state.errorName && 
+              disabled={!!this.state.disabled}
+              onClick={() => this.setState({ disabled: false })}
+              onChange={this.handleChange("name")}
+            />
+            {this.state.errorName &&
             <FormHelperText id="component-error-text">{this.state.errorName}</FormHelperText>
             }
           </FormControl>
@@ -156,11 +184,13 @@ class EditProfile extends Component {
             <Input
               id="component-surname"
               value={this.state.surname}
-              onChange={this.handleChange("surname")}
               aria-describedby="component-surname-text"
+              disabled={!!this.state.disabled}
+              onClick={() => this.setState({ disabled: false })}
+              onChange={this.handleChange("surname")}
               required
-            />              
-            {this.state.errorSurname && 
+            />
+            {this.state.errorSurname &&
             <FormHelperText id="component-error-text">{this.state.errorSurname}</FormHelperText>
             }
           </FormControl>
@@ -170,38 +200,39 @@ class EditProfile extends Component {
             <Input
               id="component-email"
               value={this.state.email}
-              onChange={this.handleChange("email")}
               aria-describedby="component-email-text"
               type="email"
+              disabled={!!this.state.disabled}
+              onClick={() => this.setState({ disabled: false })}
+              onChange={this.handleChange("email")}
               required
-            />              
-            {this.state.errorEmail && 
+            />
+            {this.state.errorEmail &&
             <FormHelperText id="component-error-text">{this.state.errorEmail}</FormHelperText>
             }
           </FormControl>
 
-          
-          {/* TODO autoComplete="current-password"  */}
           <FormControl className="formControl" error={!!this.state.errorPassword }>
-            <InputLabel htmlFor="component-password">Change password</InputLabel>           
+            <InputLabel htmlFor="component-password">Change password</InputLabel>
             <Input
               id="component-password"
               type={this.state.showPassword ? 'text' : 'password'}
               value={this.state.password}
-              onChange={this.handleChange("password")}
               aria-describedby="component-password-text"
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
                     aria-label="Toggle password visibility"
-                    onClick={this.handleClickShowPassword}
-                  >
+                    onClick={this.handleClickShowPassword}>
                     {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
               }
+              disabled={!!this.state.disabled}
+              onClick={() => this.setState({ disabled: false })}
+              onChange={this.handleChange("password")}
             />
-            {this.state.errorPassword && 
+            {this.state.errorPassword &&
             <FormHelperText id="component-error-text">{this.state.errorPassword}</FormHelperText>
             }
           </FormControl>
@@ -212,7 +243,6 @@ class EditProfile extends Component {
               id="component-password2"
               type={this.state.showPassword ? 'text' : 'password'}
               value={this.state.password2}
-              onChange={this.handleChange("password2")}
               aria-describedby="component-password2-text"
               endAdornment={
                 <InputAdornment position="end">
@@ -224,29 +254,59 @@ class EditProfile extends Component {
                   </IconButton>
                 </InputAdornment>
               }
-            />             
-            {this.state.errorPassword2 && 
+              disabled={!!this.state.disabled}
+              onClick={() => this.setState({ disabled: false })}
+              onChange={this.handleChange("password2")}
+            />
+            {this.state.errorPassword2 &&
             <FormHelperText id="component-error-text">{this.state.errorPassword2}</FormHelperText>
             }
-          </FormControl>            
+          </FormControl>
 
           {/* disabled field */}
           <TextField
             disabled
-            id="standard-disabled"
+            id="component-profile"
             label="Your profile"
-            defaultValue="Student"
+            value={this.state.role}
             className="textField"
             margin="normal"
           />
 
-          {/* TODO 
-            visibility on keyup form 
+          {/* TODO
+            visibility on keyup form
             */}
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary"
+                  className={ !!this.state.disabled ? 'hidden': ''}
+                  onClick={this.saveProfile}>
             Save
           </Button>
         </form>
+
+        <Snackbar
+            className="success"
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            open={this.state.open}
+            autoHideDuration={6000}
+            onClose={this.handleClose}
+            ContentProps={{
+              'aria-describedby': 'message-id',
+            }}
+            message={<span id="message-id">{ this.state.successMessage }</span>}
+            action={[
+              <IconButton
+                key="close"
+                aria-label="Close"
+                color="inherit"
+                onClick={this.handleClose}
+              >
+                <CloseIcon />
+              </IconButton>,
+            ]}
+          />
 
         <form onClick={this.deleteProfile} >
           <Button variant="contained">
@@ -260,7 +320,7 @@ class EditProfile extends Component {
 
 }
 
-const mapStateToProps = ({ user }) => ({ 
+const mapStateToProps = ({ user }) => ({
   isLogged: !!user,
   user
 });

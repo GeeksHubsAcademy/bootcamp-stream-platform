@@ -1,9 +1,10 @@
 import React from 'react';
-import  "./FontAwesome.css";
+// import  "./FontAwesome.css";
 
 
 
-const FontAwesome = ({ icon }) => <i className={'fac fab fas fa-' + icon} />;
-// const FontAwesome = ({ icon }) => <i class='fab fa-facebook-f' />;;
+const FontAwesome = ({ icon }) => <i className={'fab fa-' + icon}/>;
+// const FontAwesome = ({ icon }) => <i className='fab fa-' />;;
 
-export default FontAwesome ;
+
+export default FontAwesome;
