@@ -6,7 +6,7 @@ router.get('/mine', authorization, (req, res) => {
     .then(bootcamps => res.send(bootcamps))
       .catch(res.send);
 
-  Bootcamp.find({ user: { _id: req.user._id } })
+  Bootcamp.find({ userIds:req.user._id})
     .then(bootcamps => res.status(200).send(bootcamps))
     .catch(res.send);
 });
@@ -16,8 +16,8 @@ router.post('/new',authorization, isAdmin, (req, res) => {
     description: req.body.description,
     startsAt: req.body.startsAt,
     weeksDuration: req.body.weeksDuration,
-    users: req.body.users,
-    posts: [],
+    userIds: req.body.users,
+    postIds: [],
   }).save().then(Bootcamp =>res.send(Bootcamp))
   .catch(err=>res.status(500).json({err,message:"Something went wrong, our apologies"}))
 });
