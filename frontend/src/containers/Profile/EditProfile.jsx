@@ -205,7 +205,7 @@ class EditProfile extends Component {
             {this.state.errorEmail && <FormHelperText id='component-error-text'>{this.state.errorEmail}</FormHelperText>}
           </FormControl>
 
-          <FormControl className='formControl' error={!!this.state.errorPassword}>
+          <FormControl className={!!this.state.disabled ? 'hidden' : 'formControl'}  error={!!this.state.errorPassword}>
             <InputLabel htmlFor='component-password'>Change password</InputLabel>
             <Input
               id='component-password'
@@ -226,7 +226,7 @@ class EditProfile extends Component {
             {this.state.errorPassword && <FormHelperText id='component-error-text'>{this.state.errorPassword}</FormHelperText>}
           </FormControl>
 
-          <FormControl className='formControl' error={!!this.state.errorPassword2}>
+          <FormControl className={!!this.state.disabled ? 'hidden' : 'formControl'} error={!!this.state.errorPassword2}>
             <InputLabel htmlFor='component-password2'>Repeat password</InputLabel>
             <Input
               id='component-password2'
@@ -250,9 +250,6 @@ class EditProfile extends Component {
           {/* disabled field */}
           <TextField disabled id='component-profile' label='Your profile' value={this.state.role} className='textField' margin='normal' />
 
-          {/* TODO
-            visibility on keyup form
-            */}
           <Button variant='contained' color='secondary' 
                   className={!!this.state.disabled ? 'hidden' : ''} 
                   onClick={this.saveProfile}>
