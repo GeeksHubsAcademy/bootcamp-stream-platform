@@ -197,7 +197,7 @@ const sampleState = {
   user: {
     _id: 123,
     name: 'Juan',
-    surname: 'Garnica',
+    lastname: 'Garnica',
     role: 'admin',
     email: 'juan@geekhubs.com',
     imagePath: null,
@@ -208,7 +208,7 @@ const sampleState = {
     {
       _id: 1,
       name: 'pepe',
-      surname: 'Garnica',
+      lastname: 'Garnica',
       role: 'student',
       email: 'juan@geekhubs.com',
       imagePath: null,
@@ -217,7 +217,7 @@ const sampleState = {
     {
       _id: 2,
       name: 'Juan',
-      surname: 'Garnica',
+      lastname: 'Garnica',
       role: 'admin',
       email: 'juan@geekhubs.com',
       imagePath: null,
@@ -226,7 +226,7 @@ const sampleState = {
     {
       _id: 3,
       name: 'paco',
-      surname: 'Garnica',
+      lastname: 'Garnica',
       role: 'student',
       email: 'juan@geekhubs.com',
       imagePath: null,
@@ -256,8 +256,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.user,
-      };  
-      
+      };
+
     default:
       return state;
   }
