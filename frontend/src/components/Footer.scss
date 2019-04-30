@@ -3,30 +3,50 @@
     justify-content: space-between;
     background: rgb(56, 4, 4);
     color: white;
-    padding: 1em 4em;
+    padding: 1em 7em;
     box-align: center;
 }
 
-.img {
-    size: 0.5em;
+img {
+    height: 40%;
+    width: 40%;
+    padding: 0;
 }
 
 .blurb {
+    margin: 0;
     word-wrap: break-word;
 }
 
 .social {
-    margin: 5px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px;
+    font-size: 40px;
     color: white;
 }
 
 .rights {
-    font-size: 9px;
+    font-size: 10px;
 }
-.ul:links {
-color: white;
-}
+
 ul {
-    padding-bottom: 5px;
     list-style-type: none;
 }
+
+li {
+    color: white;
+    padding-bottom: 20px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+    .footer, .social, .links {
+      flex-direction: column;
+    }
+    img {
+        height: 100%;
+        width: 100%;
+    }
+  }

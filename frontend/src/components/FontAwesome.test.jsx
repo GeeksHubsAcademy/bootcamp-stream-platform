@@ -1,16 +1,15 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
-import { Navigation } from './Navigation';
+import { FontAwesome } from './FontAwesome';
 
-describe('Navigation', function() {
-  it('Check not logged on props is correct', function() {
-    expect(mount(<Navigation user={null} />).find('.notLogged').length).toBe(1);
-    expect(mount(<Navigation user={null} />).find('.logged').length).toBe(0);
+describe('FontAwesome', function() {
+  test('it works', function() {
+    expect(mount(<FontAwesome icon='loquesea' />).find('i.fas.fa-loquesea').length).toBe(1);
   });
-  it('Check  logged on props is correct', function() {
-    expect(mount(<Navigation user={{}} />).find('.notLogged').length).toBe(0);
-    expect(mount(<Navigation user={{}} />).find('.logged').length).toBe(1);
-  });
+  //   it('Check  logged on props is correct', function() {
+  //     expect(mount(<Navigation user={{}} />).find('.notLogged').length).toBe(0);
+  //     expect(mount(<Navigation user={{}} />).find('.logged').length).toBe(1);
+  //   });
 
   // it('should be selectable by class "foo"', function() {
   //   expect(shallow(<Foo />).is('.foo')).toBe(true);
