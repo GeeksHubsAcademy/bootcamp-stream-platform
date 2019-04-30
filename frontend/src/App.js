@@ -12,7 +12,7 @@ import Footer from './components/Footer';
 import AdminEditBootcamp from './containers/Admin/EditBootcamp.jsx';
 import AdminBootcamps from './containers/Admin/bootcamps.jsx';
 import PrivateZone from './components/PrivateZone';
-
+import CreatePostCode from './components/CreatePost/CreatePostCode/CreatePostCode';
 import './App.scss';
 // import PublicZone from './components/PublicZone';
 
@@ -28,6 +28,7 @@ function App() {
           <AdminBootcamps path='admin/bootcamps' />
           <AdminEditBootcamp path='admin/bootcamps/new' />
           <AdminEditBootcamp path='admin/bootcamps/:id' />
+          <CreatePostCode path='asd' />
           <Redirect from='admin' to='admin/bootcamps' noThrow />
         </PrivateZone>
         <Register path='register' />
