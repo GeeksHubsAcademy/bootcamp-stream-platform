@@ -11,13 +11,13 @@ class _Register extends Component {
     super(props);
     this.state = {
       name: '',
-      surname: '',
+      lastname: '',
       email: '',
       password: '',
       password2: '',
       registrarme: '',
       errorname: undefined,
-      errorsurname: undefined,
+      errorlastname: undefined,
       erroremail: undefined,
       errorpassword: undefined,
       errorparssword2: undefined,
@@ -32,7 +32,7 @@ class _Register extends Component {
   handleSubmit = (ev) => {
     ev.preventDefault();//esto es para que no se refresque
     console.log(this.state);
-    postRegister(this.name,this.surname,this.email,this.password,this.password2);
+    postRegister(this.name,this.lastname,this.email,this.password,this.password2);
     // loggedIn(pass, email)
     //     .then(() => this.setState({ error: 'logged!!' }))
     //     .catch(e => this.setState({ error: 'email o contraseña incorrecta' }));
@@ -51,7 +51,7 @@ class _Register extends Component {
 
   render() {
 
-    const { errorname, errorsurname, erroremail, errorpassword, errorparssword2, name, surname, email, password, password2 }
+    const { errorname, errorlastname, erroremail, errorpassword, errorparssword2, name, lastname, email, password, password2 }
       = this.state;//esto lo hacemos para no tener que escribir tol rato this.name...
     return (
       <section className="RegisterView">
@@ -59,8 +59,8 @@ class _Register extends Component {
         <form className="Form" onSubmit={this.handleSubmit}>
           <input name="name" type="text" placeholder="name" onKeyUp={this.validate} value={name} />
           <div className="error">{errorname}</div>
-          <input name="surname" type="text" placeholder="surname" onChange={this.handleChange} value={surname} />
-          <div className="error">{errorsurname}</div>
+          <input name="lastname" type="text" placeholder="lastname" onChange={this.handleChange} value={lastname} />
+          <div className="error">{errorlastname}</div>
           <input name="email" type="email" placeholder="email" onChange={this.handleChange} value={email} />
           <div className="error">{erroremail}</div>
           <input name="password" type="password" placeholder="password" onChange={this.handleChange} value={password} />
