@@ -21,7 +21,8 @@ class _Register extends Component {
       erroremail: undefined,
       errorpassword: undefined,
       errorparssword2: undefined,
-    }
+      message: undefined,
+    };
   }
 
   handleChange = (ev) => {
@@ -32,9 +33,11 @@ class _Register extends Component {
 
   handleSubmit = (ev) => {
     ev.preventDefault();//esto es para que no se refresque
-    console.log(this.state);
-    if (this.password2 === this.password && this.password) {
-      postRegister(this.name, this.lastname, this.email, this.password);
+    console.log('handleSubmit', this.state);
+    if (this.state.password2 === this.state.password && this.state.password) {
+      postRegister(this.state.name, this.state.lastname, this.state.email, this.state.password)
+        .then(response => this.setState({ message: response }))
+        .catch(error => this.setState({ message: error.message }));
     }
     // loggedIn(pass, email)
     //     .then(() => this.setState({ error: 'logged!!' }))
@@ -42,7 +45,7 @@ class _Register extends Component {
 
   }
 
-  validate() {//only validate email
+  validate = () => {//only validate email
     if (validator.isEmail(this.state.email)) {
       this.setState({ erroremail: undefined });
     }
@@ -56,24 +59,23 @@ class _Register extends Component {
     const { errorname, errorlastname, erroremail, errorpassword, errorparssword2, name, lastname, email, password, password2 }
       = this.state;//esto lo hacemos para no tener que escribir tol rato this.name...
     return (
-      <section className="RegisterView">
+      <section className='RegisterView'>
         <h1>Register</h1>
-        <form className="Form" onSubmit={this.handleSubmit}>
-          <input name="name" type="text" placeholder="name" onKeyUp={this.validate} value={name} />
-          <div className="error">{errorname}</div>
-          <input name="lastname" type="text" placeholder="lastname" onChange={this.handleChange} value={lastname} />
-          <div className="error">{errorlastname}</div>
-          <input name="email" type="email" placeholder="email" onChange={this.handleChange} value={email} />
-          <div className="error">{erroremail}</div>
-          <input name="password" type="password" placeholder="password" onChange={this.handleChange} value={password} />
-          <div className="error">{errorpassword}</div>
-          <input name="password2" type="password" placeholder="repeat password" onChange={this.handleChange} value={password2} />
-          <div className="error">{errorparssword2}</div>
-          <input name="registrarme" type="submit" />
-
+        <form className='Form' onSubmit={this.handleSubmit}>
+          <input name='name' type='text' placeholder='name' onKeyUp={this.validate} value={name} onChange={this.handleChange} />
+          <div className='error'>{errorname}</div>
+          <input name='lastname' type='text' placeholder='lastname' onChange={this.handleChange} value={lastname} />
+          <div className='error'>{errorlastname}</div>
+          <input name='email' type='email' placeholder='email' onChange={this.handleChange} value={email} />
+          <div className='error'>{erroremail}</div>
+          <input name='password' type='password' placeholder='password' onChange={this.handleChange} value={password} />
+          <div className='error'>{errorpassword}</div>
+          <input name='password2' type='password' placeholder='repeat password' onChange={this.handleChange} value={password2} />
+          <div className='error'>{errorparssword2}</div>
+          <input name='registrarme' type='submit' />
+          <h1>{this.state.message}</h1>
         </form>
       </section>
-
     );
 
   }
