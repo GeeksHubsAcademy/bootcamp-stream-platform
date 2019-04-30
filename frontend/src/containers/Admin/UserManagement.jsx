@@ -83,13 +83,6 @@ class UserManagement extends Component {
 
                 adder = i;
 
-<<<<<<< HEAD
-            boot_user.push(<div className="users_edit_admin" key={this.props.allUsers[i]._id}>
-                <span> {this.props.allUsers[i].name}</span>
-                <span> {this.props.allUsers[i].surname} </span>
-                <span>{this.props.allUsers[i].email} </span>
-=======
->>>>>>> fc69a54494d25d3b0f1f6ee1d329baef5edb509d
 
             // this.state.new_user.splice( list.indexOf('foo'), 1 );
         }
