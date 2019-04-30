@@ -19,21 +19,22 @@
     width: 100%;
 }
 
-.social {
-    margin: 25px;
-    color: white;
-}
+// .social {
+//     margin: 25px;
+//     color: white;
+// }
 
-i {
+.social {
     display: flex;
     flex-direction: row; //maintain row after resize
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     font-size: 30px;
     color: white;
     span {
-        margin: 0 3px;
+        margin: 5px;
     }
+    
 }
 
 .rights {
