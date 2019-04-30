@@ -76,14 +76,16 @@ class EditProfile extends Component {
       console.log('Data to save:', userData);
       updateProfile(userData)
         .then(() => this.setState({ successMessage: 'Great! updated profile!' }))
-        .then(() => this.handleClick())
-        .catch(e => this.setState({ error: e.message }));
+        .catch(e => this.setState({ error: e.message }))
+        .then(() => this.handleClick());
+        
+        //.catch(e => this.setState({ error: e.response }));
       // show snackbar message
     }
   };
 
   handleChange = name => event => {
-    this.setState({ [name]: event.target.value.trim() }, () => {
+    this.setState({ [name]: event.target.value }, () => {
       // validate onChange inside callback
       this.validate();
     });
@@ -177,7 +179,7 @@ class EditProfile extends Component {
           </FormControl>
 
           <FormControl className='formControl' error={!!this.state.errorlastname}>
-            <InputLabel htmlFor='component-lastname'>lastname</InputLabel>
+            <InputLabel htmlFor='component-lastname'>Lastname</InputLabel>
             <Input
               id='component-lastname'
               value={this.state.lastname}
@@ -258,29 +260,29 @@ class EditProfile extends Component {
         </form>
 
         <Snackbar
-          className='success'
+          className={!!this.state.successMessage ? 'success' : 'error'}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'left',
           }}
           open={this.state.open}
-          autoHideDuration={6000}
+          autoHideDuration= {!!this.state.successMessage ? '6000' : null}
           onClose={this.handleClose}
           ContentProps={{
             'aria-describedby': 'message-id',
           }}
-          message={<span id='message-id'>{this.state.successMessage}</span>}
+          message={<span id='message-id'>{this.state.successMessage} {this.state.error}</span>}
           action={[
             <IconButton key='close' aria-label='Close' color='inherit' onClick={this.handleClose}>
               <CloseIcon />
             </IconButton>,
           ]}
-        />
+        /> 
 
         <form onClick={this.deleteProfile}>
           <Button variant='contained'>Unsubscribe</Button>
         </form>
-        <div>{this.state.error}</div>
+       
       </section>
     );
   }
