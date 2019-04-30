@@ -1,6 +1,7 @@
 import React from 'react';
+import PostText from './CreatePost/PostText'
 
-const PostText = ({data}) => <div className='postText'>postText  {JSON.stringify(data)} </div>;
+//const PostText = ({data}) => <div className='postText'>postText  {JSON.stringify(data)} </div>;
 const PostCode = ({data}) => <div className='postCode'>postCode  {JSON.stringify(data)} </div>;
 const PostVideo = ({data}) => <div className='postVideo'>postVideo  {JSON.stringify(data)} </div>;
 const PostActivity = ({data}) => <div className='postActivity'>postActivity  {JSON.stringify(data)} </div>;
