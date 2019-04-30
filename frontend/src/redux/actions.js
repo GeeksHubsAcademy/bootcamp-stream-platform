@@ -61,7 +61,7 @@ export async function postRegister(name, lastname, email, password) {
   return 'Registro válido';
 }
 
-export async function updateProfile(userData, img) {
+export async function updateProfile(userData, image) {
   const user = store.getState().user;
   let token = user && user.token;
   let bodyFormData = new FormData();
@@ -70,7 +70,8 @@ export async function updateProfile(userData, img) {
       bodyFormData.set(key, userData[key]);
     }
   }
-  // bodyFormData.append('imagePath', img);
+  image && bodyFormData.append('imagePath', image);
+  // To view server error bodyFormData/{}
   let response = await Axios.patch('http://localhost:3001/user/update', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token } });
   let newUser = response.data;
   newUser.token = token;
