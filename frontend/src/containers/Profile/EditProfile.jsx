@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import { Redirect } from '@reach/router';
 
@@ -26,21 +26,20 @@ import Snackbar from '@material-ui/core/Snackbar';
 import CloseIcon from '@material-ui/icons/Close';
 
 class EditProfile extends Component {
-
   // state initial
   //state =  this.props.user || {}
   state = {
     name: this.props.user.name,
-    surname: this.props.user.surname,
+    lastname: this.props.user.lastname,
     email: this.props.user.email,
     role: this.props.user.role,
     // REVIEW not loaded pass
     //password: this.props.user.password,
     //password2: this.props.user.password2,
-    password: '',
-    password2: '',
+    password: undefined,
+    password2: undefined,
     errorName: undefined,
-    errorSurname: undefined,
+    errorlastname: undefined,
     errorEmail: undefined,
     errorPassword: undefined,
     errorPassword2: undefined,
@@ -48,7 +47,7 @@ class EditProfile extends Component {
     showPassword: false,
     disabled: true,
     open: false,
-  }
+  };
 
   // snackbar
   handleClick = () => {
@@ -61,42 +60,34 @@ class EditProfile extends Component {
     this.setState({ open: false });
   };
 
-
   // TODO
-  deleteProfile = (e) => {
+  deleteProfile = e => {
     e.preventDefault();
     //console.log('Delete', this.state.user)
   };
 
   //  action to updateProfile
-  saveProfile = (e) => {
+  saveProfile = e => {
     e.preventDefault();
-
-    this.setState(
-      this.state,
-      () =>{
-        //validate onChange inside callback
-        this.validate();
-        // TODO no ejecutar siempre, onClick // onSubmit
-        console.log('Data to save:', this.state)
-        updateProfile(this.state)
+    // TODO no ejecutar siempre, onClick // onSubmit
+    const { name, lastname, email, password } = this.state;
+    const userData = { name, lastname, email, password };
+    if (this.validate()) {
+      console.log('Data to save:', userData);
+      updateProfile(userData)
         .then(() => this.setState({ successMessage: 'Great! updated profile!' }))
-        .then ( () => this.handleClick() )
-        .catch(e => this.setState({ error: 'error' }));
-        // show snackbar message
-      }
-      );
+        .then(() => this.handleClick())
+        .catch(e => this.setState({ error: e.message }));
+      // show snackbar message
+    }
   };
 
   handleChange = name => event => {
-    this.setState(
-      {[name]: event.target.value.trim() },
-      () =>{
-        //console.log( 'changed', this.state )
-        // validate onChange inside callback
-        this.validate();
-      }
-      );
+    this.setState({ [name]: event.target.value.trim() }, () => {
+      //console.log( 'changed', this.state )
+      // validate onChange inside callback
+      this.validate();
+    });
   };
 
   handleClickShowPassword = () => {
@@ -105,27 +96,30 @@ class EditProfile extends Component {
 
   validate = () => {
     //console.log('hola, estamos validando!');
-
-    if( this.state.name === ''){
-      this.setState({ errorName: 'Please, write your name'});
+    let isValid = true;
+    if (this.state.name === '') {
+      this.setState({ errorName: 'Please, write your name' });
       console.log('empty name');
+      isValid = false;
     } else {
-      this.setState({ errorName: undefined});
+      this.setState({ errorName: undefined });
     }
 
-    if( this.state.surname === ''){
-      this.setState({ errorSurname: 'Please, write your surname'});
-      console.log('empty surname');
+    if (this.state.lastname === '') {
+      this.setState({ errorlastname: 'Please, write your lastname' });
+      console.log('empty lastname');
+      isValid = false;
     } else {
-      this.setState({ errorSurname: undefined});
+      this.setState({ errorlastname: undefined });
     }
 
     //TODO restrictions
-    if( this.state.email === ''){
-      this.setState({ errorEmail: 'Please, write your email'});
+    if (this.state.email === '') {
+      this.setState({ errorEmail: 'Please, write your email' });
       console.log('empty email');
-    }  else {
-      this.setState({ errorEmail: undefined});
+      isValid = false;
+    } else {
+      this.setState({ errorEmail: undefined });
     }
     // NOT required , TODO restrictions
     // if( this.state.password === ''){
@@ -136,19 +130,19 @@ class EditProfile extends Component {
     //   this.setState({ errorPassword2: 'Please, repeat your password'});
     //   console.log('empty repeat password');
     // }
-    if( this.state.password !== this.state.password2){
-      this.setState({ errorPassword2: 'Please, passwords should be the same'});
+    if (this.state.password !== this.state.password2) {
+      this.setState({ errorPassword2: 'Please, passwords should be the same' });
       console.log('no same passwords');
+      isValid = false;
     } else {
-      this.setState({ errorPassword2: undefined});
+      this.setState({ errorPassword2: undefined });
       //console.log(' coinciden');
     }
 
-
-  }
+    return isValid;
+  };
   render() {
     //console.log(this.props);
-
 
     // TODO after login task
     // if (this.props.isLogged) {
@@ -156,173 +150,138 @@ class EditProfile extends Component {
     // }
 
     return (
-
-      <section className="EditProfileView">
-
-          <h1>Hi {this.state.name}</h1>
-          <p>Edit your profile: </p>
-          <form autoComplete="off">
-
-          <FormControl className="formControl" error={!!this.state.errorName }>
-            <InputLabel htmlFor="component-name">Name</InputLabel>
+      <section className='EditProfileView'>
+        <h1>Hi {this.state.name}</h1>
+        <p>Edit your profile: </p>
+        <form autoComplete='off'>
+          <FormControl className='formControl' error={!!this.state.errorName}>
+            <InputLabel htmlFor='component-name'>Name</InputLabel>
             <Input
-              id="component-name"
+              id='component-name'
               value={this.state.name}
-              aria-describedby="component-name-text"
+              aria-describedby='component-name-text'
               required
               disabled={!!this.state.disabled}
               onClick={() => this.setState({ disabled: false })}
-              onChange={this.handleChange("name")}
+              onChange={this.handleChange('name')}
             />
-            {this.state.errorName &&
-            <FormHelperText id="component-error-text">{this.state.errorName}</FormHelperText>
-            }
+            {this.state.errorName && <FormHelperText id='component-error-text'>{this.state.errorName}</FormHelperText>}
           </FormControl>
 
-          <FormControl className="formControl" error={!!this.state.errorSurname }>
-            <InputLabel htmlFor="component-surname">Surname</InputLabel>
+          <FormControl className='formControl' error={!!this.state.errorlastname}>
+            <InputLabel htmlFor='component-lastname'>lastname</InputLabel>
             <Input
-              id="component-surname"
-              value={this.state.surname}
-              aria-describedby="component-surname-text"
+              id='component-lastname'
+              value={this.state.lastname}
+              aria-describedby='component-lastname-text'
               disabled={!!this.state.disabled}
               onClick={() => this.setState({ disabled: false })}
-              onChange={this.handleChange("surname")}
+              onChange={this.handleChange('lastname')}
               required
             />
-            {this.state.errorSurname &&
-            <FormHelperText id="component-error-text">{this.state.errorSurname}</FormHelperText>
-            }
+            {this.state.errorlastname && <FormHelperText id='component-error-text'>{this.state.errorlastname}</FormHelperText>}
           </FormControl>
 
-          <FormControl className="formControl" error={!!this.state.errorEmail }>
-            <InputLabel htmlFor="component-email">Email</InputLabel>
+          <FormControl className='formControl' error={!!this.state.errorEmail}>
+            <InputLabel htmlFor='component-email'>Email</InputLabel>
             <Input
-              id="component-email"
+              id='component-email'
               value={this.state.email}
-              aria-describedby="component-email-text"
-              type="email"
+              aria-describedby='component-email-text'
+              type='email'
               disabled={!!this.state.disabled}
               onClick={() => this.setState({ disabled: false })}
-              onChange={this.handleChange("email")}
+              onChange={this.handleChange('email')}
               required
             />
-            {this.state.errorEmail &&
-            <FormHelperText id="component-error-text">{this.state.errorEmail}</FormHelperText>
-            }
+            {this.state.errorEmail && <FormHelperText id='component-error-text'>{this.state.errorEmail}</FormHelperText>}
           </FormControl>
 
-          <FormControl className="formControl" error={!!this.state.errorPassword }>
-            <InputLabel htmlFor="component-password">Change password</InputLabel>
+          <FormControl className='formControl' error={!!this.state.errorPassword}>
+            <InputLabel htmlFor='component-password'>Change password</InputLabel>
             <Input
-              id="component-password"
+              id='component-password'
               type={this.state.showPassword ? 'text' : 'password'}
               value={this.state.password}
-              aria-describedby="component-password-text"
+              aria-describedby='component-password-text'
               endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="Toggle password visibility"
-                    onClick={this.handleClickShowPassword}>
+                <InputAdornment position='end'>
+                  <IconButton aria-label='Toggle password visibility' onClick={this.handleClickShowPassword}>
                     {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
               }
               disabled={!!this.state.disabled}
               onClick={() => this.setState({ disabled: false })}
-              onChange={this.handleChange("password")}
+              onChange={this.handleChange('password')}
             />
-            {this.state.errorPassword &&
-            <FormHelperText id="component-error-text">{this.state.errorPassword}</FormHelperText>
-            }
+            {this.state.errorPassword && <FormHelperText id='component-error-text'>{this.state.errorPassword}</FormHelperText>}
           </FormControl>
 
-          <FormControl className="formControl" error={!!this.state.errorPassword2 }>
-            <InputLabel htmlFor="component-password2">Repeat password</InputLabel>
+          <FormControl className='formControl' error={!!this.state.errorPassword2}>
+            <InputLabel htmlFor='component-password2'>Repeat password</InputLabel>
             <Input
-              id="component-password2"
+              id='component-password2'
               type={this.state.showPassword ? 'text' : 'password'}
               value={this.state.password2}
-              aria-describedby="component-password2-text"
+              aria-describedby='component-password2-text'
               endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="Toggle password visibility"
-                    onClick={this.handleClickShowPassword}
-                  >
+                <InputAdornment position='end'>
+                  <IconButton aria-label='Toggle password visibility' onClick={this.handleClickShowPassword}>
                     {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
               }
               disabled={!!this.state.disabled}
               onClick={() => this.setState({ disabled: false })}
-              onChange={this.handleChange("password2")}
+              onChange={this.handleChange('password2')}
             />
-            {this.state.errorPassword2 &&
-            <FormHelperText id="component-error-text">{this.state.errorPassword2}</FormHelperText>
-            }
+            {this.state.errorPassword2 && <FormHelperText id='component-error-text'>{this.state.errorPassword2}</FormHelperText>}
           </FormControl>
 
           {/* disabled field */}
-          <TextField
-            disabled
-            id="component-profile"
-            label="Your profile"
-            value={this.state.role}
-            className="textField"
-            margin="normal"
-          />
+          <TextField disabled id='component-profile' label='Your profile' value={this.state.role} className='textField' margin='normal' />
 
           {/* TODO
             visibility on keyup form
             */}
-          <Button variant="contained" color="primary"
-                  className={ !!this.state.disabled ? 'hidden': ''}
-                  onClick={this.saveProfile}>
+          <Button variant='contained' color='primary' className={!!this.state.disabled ? 'hidden' : ''} onClick={this.saveProfile}>
             Save
           </Button>
         </form>
 
         <Snackbar
-            className="success"
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
-            }}
-            open={this.state.open}
-            autoHideDuration={6000}
-            onClose={this.handleClose}
-            ContentProps={{
-              'aria-describedby': 'message-id',
-            }}
-            message={<span id="message-id">{ this.state.successMessage }</span>}
-            action={[
-              <IconButton
-                key="close"
-                aria-label="Close"
-                color="inherit"
-                onClick={this.handleClose}
-              >
-                <CloseIcon />
-              </IconButton>,
-            ]}
-          />
+          className='success'
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={this.state.open}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id='message-id'>{this.state.successMessage}</span>}
+          action={[
+            <IconButton key='close' aria-label='Close' color='inherit' onClick={this.handleClose}>
+              <CloseIcon />
+            </IconButton>,
+          ]}
+        />
 
-        <form onClick={this.deleteProfile} >
-          <Button variant="contained">
-          Unsubscribe
-          </Button>
+        <form onClick={this.deleteProfile}>
+          <Button variant='contained'>Unsubscribe</Button>
         </form>
-
+        <div>{this.state.error}</div>
       </section>
     );
   }
-
 }
 
 const mapStateToProps = ({ user }) => ({
   isLogged: !!user,
-  user
+  user,
 });
 
 const mapDispatchToProps = dispatch => ({ dispatch });

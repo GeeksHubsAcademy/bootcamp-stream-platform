@@ -30,12 +30,12 @@ class UserManagement extends Component {
                   if (boot_id === this.props.bootcamps[i]._id) {
                       for (let y = 0; y < this.props.bootcamps[i].users.length; y++) {
                           boot_user.push(this.props.bootcamps[0].users);
-      
+
                       }
-      
-      
-      
-      
+
+
+
+
                   }
               }*/
 
@@ -45,16 +45,16 @@ class UserManagement extends Component {
 
                 /* boot_user_arr.push(<div className="users_edit_admin">
                      <span> {this.props.allUsers[i].name}</span>
-                     <span> {this.props.allUsers[i].surname} </span>
+                     <span> {this.props.allUsers[i].lastname} </span>
                      <span>{this.props.allUsers[i].email} </span>
-     
-     
+
+
                      <input type="button" value="+" ></input>
-     
+
                  </div>)*/
                 this.state.new_user.push(<div ref={the_ref} className="users_edit_admin new_users">
                     <span> {this.props.allUsers[i].name}</span>
-                    <span> {this.props.allUsers[i].surname} </span>
+                    <span> {this.props.allUsers[i].lastname} </span>
                     <span>{this.props.allUsers[i].email} </span>
 
 
@@ -181,7 +181,7 @@ class UserManagement extends Component {
 
                 this.state.boot_user.push(<div ref={the_ref} className="boot_users">
                     <span> {this.state.users_boot[i].name}</span>
-                    <span> {this.state.users_boot[i].surname || "none"} </span>
+                    <span> {this.state.users_boot[i].lastname || "none"} </span>
                     <span>{this.state.users_boot[i].email || "none"} </span>
 
 

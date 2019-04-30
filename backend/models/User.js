@@ -12,11 +12,13 @@ const UserSchema = new mongoose.Schema(
       type: String,
       maxlength: 50,
       trim: true,
+      required: true,
     },
     lastname: {
       type: String,
       maxlength: 50,
       trim: true,
+      required: true,
     },
     email: {
       type: String,
@@ -42,8 +44,7 @@ const UserSchema = new mongoose.Schema(
       minlength: 8,
     },
     imagePath: {
-      type: String,
-      default: 'profile.png'
+      type: String
     },
     role: {
       type: String,
@@ -75,13 +76,11 @@ UserSchema.methods.toJSON = function() {
 
 UserSchema.pre('save', function(next) {
   const user = this;
-  console.log('ei')
-  if (user.isModified('password'))bcrypt.genSalt(SALT_I).then(salt =>bcrypt.hash(user.password, salt)
+  if (user.isModified('password'))bcrypt.hash(user.password, SALT_I)
     .then(hash => {
             user.password = hash;
             return next();
           }).catch(err => next(err))
-      ).catch(err => next(err));
  else next();
 });
 
