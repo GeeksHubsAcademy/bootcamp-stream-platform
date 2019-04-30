@@ -3,29 +3,32 @@
     justify-content: space-between;
     background: rgb(56, 4, 4);
     color: white;
-    padding: 1em 7em;
+    padding: 1.5em 7em;
     box-align: center;
 }
 
-img {
-    height: 40%;
-    width: 40%;
+.footerLogo {
+    height: 20%;
+    width: 20%;
     padding: 0;
 }
 
 .blurb {
+    flex-direction: row;
     margin: 0;
-    word-wrap: break-word;
+    width: 100%;
 }
 
 .social {
     display: flex;
     flex-direction: row; //maintain row after resize
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    margin: 25px;
-    font-size: 40px;
+    font-size: 30px;
     color: white;
+    span {
+        margin: 0 3px;
+    }
 }
 
 .rights {
@@ -42,13 +45,12 @@ li {
     cursor: pointer;
 }
 
-@media screen and (max-width: 700px) {
-    .footer, .social, .links {
-      flex-direction: column;
-      flex: 0 0 auto; //prevent sentences and paragraphs from breaking
-    }
-    img {
-        height: 100%;
-        width: 100%;
+@media screen and (max-width: 768px) {
+    .footer, .links {
+        display: block;
+    //   flex-direction: column;
+    //   width: 100%;
+    //   flex: 0 0 auto; //prevent sentences and paragraphs from breaking
+      word-wrap: none;
     }
   }
