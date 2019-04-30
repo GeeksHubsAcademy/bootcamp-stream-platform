@@ -52,7 +52,7 @@ router.post('/login', (req, res) => {
 });
 
 router.patch('/update/',authorization,uploadProfilePics.single('image'), async(req, res) => {
-    req.body.role="student"
+    req.body.role=req.user.role
     try{
         if(req.file) req.body.imagePath=req.file.filename
         if(req.body.password){
