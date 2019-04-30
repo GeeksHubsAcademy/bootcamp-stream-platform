@@ -3,8 +3,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from '@reach/router';
 import {loggedOut} from '../redux/actions';
-// import FontAwesome from './FontAwesome.jsx';
-// import FontAwesome2 from './FontAwesome2';
+import FontAwesome from './FontAwesome';
+import FontAwesome2 from './FontAwesome2';
 
 import './Navigation.scss'
 import DropDownMenu from 'material-ui/DropDownMenu';
