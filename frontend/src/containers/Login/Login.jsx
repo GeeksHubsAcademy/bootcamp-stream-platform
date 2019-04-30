@@ -7,7 +7,21 @@ import { loggedIn } from '../../redux/actions';
 //importamos scss
 import './Login.scss';
 import PublicZone from '../../components/PublicZone';
+//material-ui
+// import Buton from './But.jsx'
+// import PropTypes from 'prop-types';
+// import { withStyles } from '@material-ui/core/styles';
+// import Button, {classes} from '@material-ui/core/Button';
 
+
+// const styles = theme => ({
+//   button: {
+//     margin: theme.spacing.unit,
+//   },
+//   input: {
+//     display: 'none',
+//   },
+// });
 
 
 class _Login extends Component {
@@ -18,6 +32,10 @@ class _Login extends Component {
     errorEmail: '',
     error: '',
   };
+
+  // static propTypes = {
+  //   classes: PropTypes.object.isRequired,
+  // };
 
   handleChange = ev => {
     this.setState({ [ev.target.name]: ev.target.value });
@@ -58,6 +76,7 @@ class _Login extends Component {
           <input name='pass' placeholder='password' type='password' onChange={this.handleChange} />
           {this.state.errorPass && <div className='errorLoginView'>{this.state.errorPass}</div>}
           <button>Login</button>
+          {/* <Buton/> */}
         </form>
 
         {this.state.error && <h1 className='errorLoginView'>{this.state.error}</h1>}
@@ -69,6 +88,20 @@ class _Login extends Component {
     );
   }
 }
+// //material-ui
+// function OutlinedButtons(props) {
+//   const { classes } = props;
+//   return (
+//         <Button variant='outlined' color='secondary' className={classes.button}>
+//           Login
+//         </Button>
+//   );
+// }
+
+
+
+// export const  withStyles(styles)(OutlinedButtons);
+
 const mapStateToProps = ({ user }) => ({ isLogged: !!user });
 const mapDispatchToProps = dispatch => ({ dispatch });
 
