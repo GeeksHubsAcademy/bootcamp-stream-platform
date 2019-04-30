@@ -6,9 +6,11 @@ let { dispatch } = store;
 export async function loggedIn(password, email) {
    let response = await Axios.post('http://localhost:3001/user/login', { password, email });
    let user = response.data;
+   user.role = 'admin'
    dispatch({
      type: 'LOGGED_IN',
      user,
+
    });
   // dispatch({
   //   type: 'LOGGED_IN',
