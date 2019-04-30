@@ -4,17 +4,24 @@ import Axios from 'axios';
 let { dispatch } = store;
 
 export async function loggedIn(password, email) {
-//  let response = await Axios.post('http://localhost:3001/user/login', { password, email });
-//  let user = response.data;
-//  dispatch({
-//    type: 'LOGGED_IN',
-//    user,
-//  });
-dispatch({
-  type: 'LOGGED_IN',
-  user: {role:'admin'},
-});
-
+   let response = await Axios.post('http://localhost:3001/user/login', { password, email });
+   let user = response.data;
+   dispatch({
+     type: 'LOGGED_IN',
+     user,
+   });
+  // dispatch({
+  //   type: 'LOGGED_IN',
+  //   user: {
+  //     _id: 123,
+  //     name: 'Juan',
+  //     lastname: 'Garnica',
+  //     role: 'admin',
+  //     email: 'juan@geekhubs.com',
+  //     imagePath: null,
+  //     token: 'AASFDSDFQ298723ÑLKJWD98723HJDW76D2YBD623YB326D',
+  //   },
+  // });
 }
 
 export async function loggedOut() {
@@ -23,22 +30,19 @@ export async function loggedOut() {
   // let response = await Axios.get('http://localhost:3001/user/logout', {headers: {Authorization:token }} );
   // console.log(response);
 
-
-  dispatch( {
+  dispatch({
     type: 'LOGGED_OUT',
-  })
+  });
 }
-
 
 export async function getBootcamps() {
   console.log('get bootcamps');
 
-  const user = store.getState().user
+  const user = store.getState().user;
   let token = user && user.token;
-  let response = await Axios.get('http://localhost:3001/bootcamp/mine/', {headers: {Authorization:token }} );
+  let response = await Axios.get('http://localhost:3001/bootcamp/mine/', { headers: { Authorization: token } });
   let bootcamps = response.data;
   console.log(response);
-
 
   dispatch({
     type: 'BOOTCAMPS_LOADED',
@@ -60,16 +64,30 @@ export async function postRegister(name,surname,email,password,password2){
   //let response = await Axios.post('http://localhost:3001/register/', {name,surname,email,password,password2} );
 }
 
-export async function updateProfile(user) {  
-//  let response = await Axios.post('http://localhost:3001/user/profile', { user });
-//  let user = response.data;
-    dispatch({
-      type: 'UPDATE_PROFILE',
-      user,
-    });
-    console.log('Saved', user);
+export async function updateProfile(userData) {
+  const user = store.getState().user;
+  let token = user && user.token;
+  let bodyFormData = new FormData();
+  for (const key in userData) {
+    if (userData[key]) {
+      bodyFormData.set(key, userData[key]);
+    }
   }
+  // bodyFormData.append('image', imageFile);
+  // let response = await Axios({
+  //   method: 'patch',
+  //   url: 'http://localhost:3001/user/update',
+  //   data: bodyFormData,
+  //   config: { headers: { 'Content-Type': 'multipart/form-data', 'Authorization': 'Bearer '+token } },
+  // });
 
-
+  let response = await Axios.patch('http://localhost:3001/user/update', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token }});
+  let newUser = response.data;
+  newUser.token = token;
+  dispatch({
+    type: 'UPDATE_PROFILE',
+    user: newUser,
+  });
+}
 
 // export default { loggedIn, loggedOut };
