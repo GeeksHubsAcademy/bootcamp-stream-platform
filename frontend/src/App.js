@@ -12,6 +12,8 @@ import Footer from './components/Footer';
 import AdminEditBootcamp from './containers/Admin/EditBootcamp.jsx';
 import AdminBootcamps from './containers/Admin/bootcamps.jsx';
 import PrivateZone from './components/PrivateZone';
+import Player from './components/CreatePost/Reproductor';
+
 
 import './App.scss';
 import PublicZone from './components/PublicZone';
@@ -30,6 +32,7 @@ function App() {
           <AdminEditBootcamp path='admin/bootcamps/:id' />
           <Redirect from='admin' to='admin/bootcamps' noThrow />
         </PrivateZone>
+        <Player path='micro' />
         <Register path='register' />
         <Login path='login' />
         <NotFound path='notFound' />
