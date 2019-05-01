@@ -14,7 +14,7 @@ import AdminBootcamps from './containers/Admin/bootcamps.jsx';
 import PrivateZone from './components/PrivateZone';
 
 import './App.scss';
-import PublicZone from './components/PublicZone';
+// import PublicZone from './components/PublicZone';
 
 function App() {
   return (
