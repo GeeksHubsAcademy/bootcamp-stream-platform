@@ -14,7 +14,7 @@ const Post = () => {
 
   return (
     <div className='createPost'>
-      <Tabs value={value} onChange={(event, newValue) => setValue(newValue)} indicatorColor='secondary' textColor='primary' variant='fullWidth'>
+      <Tabs value={value} onChange={(event, newValue) => setValue(newValue)} indicatorColor='secondary' textColor='secondary' variant='fullWidth'>
         <Tab label='Code' value='Code' />
         <Tab label='Text' value='Text' />
         <Tab label='Video' value='Video' />

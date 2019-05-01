@@ -1,11 +1,10 @@
 import React from 'react';
 import './Post.scss'
-import './CreatePost/PostActivity'
+import PostActivity from './CreatePost/PostActivity'
 
 const PostText = ({data}) => <div className='postText'>postText  {JSON.stringify(data)} </div>;
 const PostCode = ({data}) => <div className='postCode'>postCode  {JSON.stringify(data)} </div>;
 const PostVideo = ({data}) => <div className='postVideo'>postVideo  {JSON.stringify(data)} </div>;
-const PostActivity = ({data}) => <div className='postActivity'>postActivity  {JSON.stringify(data)} </div>;
 
 const Post = ({data}) => {
   let post;
