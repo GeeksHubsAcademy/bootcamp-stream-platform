@@ -30,6 +30,7 @@ function App() {
           <AdminEditBootcamp path='admin/bootcamps/:id' />
           <CreatePostCode path='asd' />
           <Redirect from='admin' to='admin/bootcamps' noThrow />
+          <Redirect from='/' to='bootcamps' noThrow />
         </PrivateZone>
         <Register path='register' />
         <Login path='login' />
