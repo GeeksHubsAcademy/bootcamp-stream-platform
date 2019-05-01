@@ -64,8 +64,9 @@
   .error [class*="MuiSnackbarContent"]{
     background-color: $red;
   }
-
+  input[type="file"].inputButton,
   .hidden{
     display: none
   }
+
 }
