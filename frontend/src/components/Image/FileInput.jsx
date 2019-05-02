@@ -1,10 +1,18 @@
 
-import React, { Component } from 'react';
+import React, { Component, useReducer } from 'react';
+
 // edit button
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
+
+// avatar
+// import LetterAvatars from './Avatar'
+// import ImageAvatars from './Avatar'
+import LetterAvatars from './LetterAvatar';
+import ImageAvatars from './ImageAvatar';
+
 
 class FileInput extends Component {
   constructor(props) {
@@ -16,7 +24,7 @@ class FileInput extends Component {
 
   state = {   
     disabled: true,
-    // TODO file from DB
+    // TODO file from DB for preview?
     file: '',
     imagePreviewUrl: '',
   };
@@ -56,44 +64,42 @@ class FileInput extends Component {
 
     return (
 
-<div className="wrapper">
+      <div className="wrapper">
 
-            <div className="previewComponent">        
-              <div className="imgPreview">
-                {$imagePreview}
-              </div>
-            </div>
-      
-
-                <Grid
-                container
-                direction="row"
-                justify="flex-end"
-                alignItems="center"
-              >
-                <input
-                  className="inputButton"
-                  accept="image/*"
-                  id="contained-button-file"
-                  type="file"
-                  ref={this.fileInput} 
-                  onChange={this.handleSubmit} 
-                  name='file-input'
-                />  
-
-                <label htmlFor="contained-button-file">
-                  <Tooltip title="Edit your photo" aria-label="Photo">
-                    {/* IMPORTANT component="span" to input file */}
-                    <Fab component="span"
-                         color={ !!this.state.disabled ? 'primary' : 'secondary'}>
-                      <Icon>image_icon</Icon>
-                    </Fab>
-                  </Tooltip>
-                </label>
-                <p></p>
+        <Grid container justify="center" alignItems="center">     
+           {/* TODO pasar user name */}  
+          <LetterAvatars userFromParent="AA" />
+          <ImageAvatars altFromParent="texto" srcFromParent={imagePreviewUrl} />
         </Grid>
 
-</div>
+        <Grid
+          container
+          direction="row"
+          justify="flex-end"
+          alignItems="center"
+          >
+          <input
+            className="inputButton"
+            accept="image/*"
+            id="contained-button-file"
+            type="file"
+            ref={this.fileInput} 
+            onChange={this.handleSubmit} 
+            name='file-input'
+          />  
+
+          <label htmlFor="contained-button-file">
+            <Tooltip title="Edit your photo" aria-label="Photo">
+              {/* IMPORTANT component="span" to input file */}
+              <Fab component="span"
+                    color={ !!this.state.disabled ? 'primary' : 'secondary'}>
+                <Icon>image_icon</Icon>
+              </Fab>
+            </Tooltip>
+          </label>
+        </Grid>
+
+      </div>
 
     );
   }
