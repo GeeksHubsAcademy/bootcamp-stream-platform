@@ -55,32 +55,22 @@ class FileInput extends Component {
   render() {
 
     let {imagePreviewUrl} = this.state;
-    let $imagePreview = null;
-    if (imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} />);
-    } else {
-      $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
-    }
 
     return (
      
-      <div className="wrapper">
-
-        <Grid container justify="center" alignItems="center">   
-
-        {/* TODO pasar user name */}  
-        { imagePreviewUrl ? 
-          <ImageAvatars altFromParent="texto" srcFromParent={imagePreviewUrl} />
-          : <LetterAvatars userFromParent="AA" /> }
-                  
-        </Grid>
-
         <Grid
           container
           direction="row"
-          justify="flex-end"
+          justify="center"
           alignItems="center"
           >
+
+          {/* TODO pasar user name userFromEditProfile */}  
+          { imagePreviewUrl ? 
+            <ImageAvatars altFromParent="texto" srcFromParent={imagePreviewUrl} />
+            : <LetterAvatars userFromParent="AA" /> }
+
+
           <input
             className="inputButton"
             accept="image/*"
@@ -101,8 +91,6 @@ class FileInput extends Component {
             </Tooltip>
           </label>
         </Grid>
-
-      </div>
 
     );
   }

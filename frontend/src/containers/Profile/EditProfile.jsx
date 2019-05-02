@@ -35,8 +35,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 // Image
 import FileInput from '../../components/Image/FileInput';
-// TODO
-import LetterAvatar from '../../components/Image/LetterAvatar';
 //TODO image path
 //var apiBaseUrl = "http://localhost:3001/api/";
 
@@ -169,19 +167,8 @@ class EditProfile extends Component {
     return (
       <section className='EditProfileView'>
         <h1>Hi {this.state.name}</h1>
-
-        {/* TODO 
-        letter avatar from letteravatar function 
-        NO SÉ CÓMO PASARLE PROPS DE PADRE A HIJO, me aparece error de props */}
-        {/* <LetterAvatar userFromParent="AAA"></LetterAvatar> */}
-
-        {/* TODO button upload and preview avatar 
-          Subir imagen con preview
-          ese preview estaría dentro del avatar tipo imagen
-        */}
+        {/* TODO userFromEditProfile */}
         <FileInput onChange={this.handleNewImageSelected} userFromEditProfile={this.state.name} />        
-        {/* TODO image view: this.props.user.imagePath, */}
-        {/* <img src={this.state.image} alt="Profile"/> */}
 
         <Grid
           container
