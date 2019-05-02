@@ -39,6 +39,8 @@ import FileInput from '../../components/Image/FileInput';
 //var apiBaseUrl = "http://localhost:3001/api/";
 
 
+
+
 class EditProfile extends Component {
   // state initial
   //state =  this.props.user || {}
@@ -165,9 +167,8 @@ class EditProfile extends Component {
     return (
       <section className='EditProfileView'>
         <h1>Hi {this.state.name}</h1>
-
-        {/* TODO image view: this.props.user.imagePath, */}
-        {/* <img src={this.state.image} alt="Profile"/> */}
+        {/* TODO userFromEditProfile */}
+        <FileInput onChange={this.handleNewImageSelected} userFromEditProfile={this.state.name} />        
 
         <Grid
           container
@@ -183,8 +184,6 @@ class EditProfile extends Component {
         </Tooltip>  
         </Grid>
         <form autoComplete='off'>
-
-          <FileInput onChange={this.handleNewImageSelected} />
 
           <FormControl className='formControl' error={!!this.state.errorName}>
             <InputLabel htmlFor='component-name'>Name</InputLabel>
