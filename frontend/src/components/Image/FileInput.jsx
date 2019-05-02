@@ -63,13 +63,16 @@ class FileInput extends Component {
     }
 
     return (
-
+     
       <div className="wrapper">
 
-        <Grid container justify="center" alignItems="center">     
-           {/* TODO pasar user name */}  
-          <LetterAvatars userFromParent="AA" />
+        <Grid container justify="center" alignItems="center">   
+
+        {/* TODO pasar user name */}  
+        { imagePreviewUrl ? 
           <ImageAvatars altFromParent="texto" srcFromParent={imagePreviewUrl} />
+          : <LetterAvatars userFromParent="AA" /> }
+                  
         </Grid>
 
         <Grid
