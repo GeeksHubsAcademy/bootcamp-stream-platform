@@ -1,7 +1,6 @@
 const router = require( 'express' ).Router();
 const Bootcamp = require( '../models/Bootcamp' );
 const { authorization, isAdmin } = require( '../utils/middleware/authorization' );
-const dayjs = require( 'dayjs' )
 const findAndResponseBootcamps = require( '../utils/middleware/findAndReturnBootcamps' )
 
 router.get( '/mine', authorization, findAndResponseBootcamps );
