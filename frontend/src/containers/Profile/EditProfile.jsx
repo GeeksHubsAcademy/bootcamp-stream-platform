@@ -167,8 +167,8 @@ class EditProfile extends Component {
     return (
       <section className='EditProfileView'>
         <h1>Hi {this.state.name}</h1>
-        {/* TODO userFromEditProfile */}
-        <FileInput onChange={this.handleNewImageSelected} userFromEditProfile={this.state.name} />        
+
+        <FileInput onChange={this.handleNewImageSelected} name={this.state.name} />        
 
         <Grid
           container
