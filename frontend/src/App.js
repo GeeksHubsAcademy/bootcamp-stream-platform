@@ -7,21 +7,20 @@ import EditProfile from './containers/Profile/EditProfile';
 import MyBootcamps from './containers/Profile/MyBootcamps';
 import Register from './containers/Register/Register';
 import NotFound from './components/NotFound';
-import Navigation2 from './components/Navigation2';
+import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import AdminEditBootcamp from './containers/Admin/EditBootcamp.jsx';
 import AdminBootcamps from './containers/Admin/bootcamps.jsx';
 import PrivateZone from './components/PrivateZone';
+import CreatePostCode from './components/CreatePost/CreatePostCode/CreatePostCode';
 import Player from './components/CreatePost/Reproductor';
 
-
 import './App.scss';
-import PublicZone from './components/PublicZone';
 
 function App() {
   return (
     <div className='App'>
-      <Navigation2 />
+      <Navigation />
       <Router className='main'>
         <PrivateZone path='/'>
           <Bootcamp path='bootcamp/:id' />
@@ -30,7 +29,9 @@ function App() {
           <AdminBootcamps path='admin/bootcamps' />
           <AdminEditBootcamp path='admin/bootcamps/new' />
           <AdminEditBootcamp path='admin/bootcamps/:id' />
+          <CreatePostCode path='asd' />
           <Redirect from='admin' to='admin/bootcamps' noThrow />
+          <Redirect from='/' to='bootcamps' noThrow />
         </PrivateZone>
         <Player path='micro' />
         <Register path='register' />

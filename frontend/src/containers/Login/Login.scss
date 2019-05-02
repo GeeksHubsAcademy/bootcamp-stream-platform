@@ -2,40 +2,50 @@ h1{
     display:flex;
     padding:1em;
     justify-content: center;
-    
+
     margin:0 auto;
-    
+
 }
 
 
 
 .errorLoginView{
-        
+
     display:flex;
     flex-direction: row;
     justify-content: center;
-    
+
     margin:0 auto;
     width:400px;
 }
 
+.loginSquare {
+    // display: flex;
+    // align-items: center;
+}
+
 .loginView{
-    
-    border: 1px solid black;
+
+    border: 1px solid rgb(202, 201, 201);
     display:flex;
     flex-direction: column;
+    align-items: center;
     padding:1em;
     margin:0px auto;
     width:400px;
-    
-    
+
+
     input{
     padding:1em;
-    margin:5px;       
-}
-button{
-    padding:1em;
-    margin:5px;
+    margin:0.5em 7em 0.5em 7em;
 }
 
 }
+    button{
+        padding:1em;
+        margin:0.5em 7em 0.5em 7em;
+        width: 9em;;
+        display: flex;
+        justify-content: center;
+        // align-items: center;
+    }

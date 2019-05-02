@@ -8,20 +8,16 @@ import { loggedIn } from '../../redux/actions';
 import './Login.scss';
 import PublicZone from '../../components/PublicZone';
 //material-ui
-// import Buton from './But.jsx'
-// import PropTypes from 'prop-types';
-// import { withStyles } from '@material-ui/core/styles';
-// import Button, {classes} from '@material-ui/core/Button';
-
-
-// const styles = theme => ({
-//   button: {
-//     margin: theme.spacing.unit,
-//   },
-//   input: {
-//     display: 'none',
-//   },
-// });
+import { withStyles } from '@material-ui/core/styles';
+import Button, {classes} from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+// form icons (npm install @material-ui/icons)
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 
 class _Login extends Component {
@@ -33,9 +29,6 @@ class _Login extends Component {
     error: '',
   };
 
-  // static propTypes = {
-  //   classes: PropTypes.object.isRequired,
-  // };
 
   handleChange = ev => {
     this.setState({ [ev.target.name]: ev.target.value });
@@ -67,16 +60,26 @@ class _Login extends Component {
     // }
 
     return (
-      <section className=''>
+      <section className='LoginSquare'>
         <h1>Login</h1>
 
         <form onSubmit={this.login} className='loginView'>
+          <FormControl className='formControl' error={!!this.state.errorName}>
+            <InputLabel htmlFor='component-name'>Email</InputLabel>
+            <Input />
+          </FormControl>
           <input name='email' placeholder='email' type='email' onChange={this.handleChange} />
           {this.state.errorEmail && <div className='errorLoginView'>{this.state.errorEmail}</div>}
+          <FormControl className='formControl' error={!!this.state.errorName}>
+            <InputLabel htmlFor='component-name'>Password</InputLabel>
+            <Input />
+          </FormControl>
           <input name='pass' placeholder='password' type='password' onChange={this.handleChange} />
           {this.state.errorPass && <div className='errorLoginView'>{this.state.errorPass}</div>}
           <button>Login</button>
-          {/* <Buton/> */}
+          <Button variant='outlined' color='secondary' className='Boton'>
+            Login
+          </Button>
         </form>
 
         {this.state.error && <h1 className='errorLoginView'>{this.state.error}</h1>}
@@ -88,15 +91,6 @@ class _Login extends Component {
     );
   }
 }
-// //material-ui
-// function OutlinedButtons(props) {
-//   const { classes } = props;
-//   return (
-//         <Button variant='outlined' color='secondary' className={classes.button}>
-//           Login
-//         </Button>
-//   );
-// }
 
 
 

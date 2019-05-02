@@ -21,7 +21,7 @@ class AdminBootcamp extends Component {
 
     render() {
 
-        console.log(this.e())
+        //console.log(this.e())
         return (
             !this.e() ?
                 'No hay datos'

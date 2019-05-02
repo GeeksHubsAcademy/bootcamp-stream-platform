@@ -61,5 +61,16 @@ LetterAvatars.propTypes = {
 };
 
 // export default connect(state => ({ user: state.user }))(Avatar);
+export const ImageAvatars = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ImageAvatars);
+
+export const LetterAvatars = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LetterAvatars);
+
+
 export default withStyles(styles)(ImageAvatars, LetterAvatars);
 //export default withStyles(styles)(LetterAvatars);
