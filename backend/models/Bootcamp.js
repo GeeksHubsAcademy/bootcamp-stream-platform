@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const {PostSchema}=require('./Post')
 const BootcampSchema = new mongoose.Schema(
   {
     title: {
@@ -22,7 +23,7 @@ const BootcampSchema = new mongoose.Schema(
       // required: true,
     },
     userIds:[String],
-    postIds:[String],
+    posts:[Object],
   },
   {
     timestamps: true,

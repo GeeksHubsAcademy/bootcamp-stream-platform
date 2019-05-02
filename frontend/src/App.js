@@ -13,6 +13,8 @@ import AdminEditBootcamp from './containers/Admin/EditBootcamp.jsx';
 import AdminBootcamps from './containers/Admin/Bootcamps';
 import PrivateZone from './components/PrivateZone';
 import CreatePostCode from './components/CreatePost/CreatePostCode/CreatePostCode';
+import Player from './components/CreatePost/Reproductor';
+
 import './App.scss';
 
 function App() {
@@ -31,6 +33,7 @@ function App() {
           <Redirect from='admin' to='admin/bootcamps' noThrow />
           <Redirect from='*' to='bootcamps' noThrow />
         </PrivateZone>
+        <Player path='micro' />
         <Register path='register' />
         <Login path='login' />
         <NotFound path='notFound' />
