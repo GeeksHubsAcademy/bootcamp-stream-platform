@@ -7,7 +7,7 @@ const {authorization, isAdmin} =require('../utils/middleware/authorization')
 router.get('/all',authorization,isAdmin, (req, res) => {
     UserModel.find({}).then(users => res.send(users)).catch(error => res.status(500).send(error))
 })
-router.post('/register', (req, res) => {
+router.post('/', (req, res) => {
     // jwt.sign({                     /* This will be added when the confirmed email property will be created at the User schema */
     //     user: req.body.email
     // }, config.EMAIL_SECRET, {
@@ -50,7 +50,7 @@ router.post('/login', (req, res) => {
     })
 });
 
-router.patch('/update/',authorization,uploadProfilePics.single('image'), async(req, res) => {
+router.patch('/',authorization,uploadProfilePics.single('image'), async(req, res) => {
     req.body.role=req.user.role
     try{
         if(req.file) req.body.imagePath=req.file.filename
