@@ -8,7 +8,7 @@ const sampleState = {
     {
       _id: 1234,
       title: 'FSD VLC MAY19',
-      description: null,
+      description: '',
       startsAt: new Date(),
       weeksDuration: 12,
       users: [
