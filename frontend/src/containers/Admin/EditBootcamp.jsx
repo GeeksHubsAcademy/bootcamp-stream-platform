@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import UsersManager from './UsersManager.jsx';
 import TextField from '@material-ui/core/TextField';
 import { DateFormatInput } from 'material-ui-next-pickers';
-
+import { editBootcamp } from '../../redux/actions';
 import './EditBootcamp.scss';
 
 class EditBootcamp extends Component {
   state = this.props.bootcamp || {
     title: '',
     description: '',
-    startsAt: '',
+    startsAt: new Date(),
     weeksDuration: 1,
     users: [],
     posts: [],
@@ -33,8 +33,14 @@ class EditBootcamp extends Component {
       });
     }
   };
+  createBootcamp = () => {
+    // this.props.dispatch({type:'SAVE_BOOTCAMP',payload: this.state.id})
+    console.log('Saved', this.state);
+    console.log('date', typeof this.state.startsAt);
+  };
   saveBootcamp = () => {
     // this.props.dispatch({type:'SAVE_BOOTCAMP',payload: this.state.id})
+    this.props.editBootcamp(this.state)
     console.log('Saved', this.state);
     console.log('date', typeof this.state.startsAt);
   };
@@ -47,26 +53,22 @@ class EditBootcamp extends Component {
         <div className='content-edit'>
           <TextField onChange={this.handleChange} label='title' value={this.state.title} name='title' type='text' />
           <TextField onChange={this.handleChange} label='description' value={this.state.description} name='description' type='text' />
-          <DateFormatInput name='startsAt' onChange={this.handleChange} value={this.state.startsAt} />
+          <DateFormatInput name='startsAt' onChange={date => this.handleChange({ target: { value: date, name: 'startsAt' } })} value={this.state.startsAt} />
           <div>
             <button onClick={this.dec}>-</button>
-            <TextField onChange={this.handleChange} value={this.state.weeksDuration} name='weeksDuration' type='text' min={1} max={12} readOnly />
+            <TextField onChange={this.handleChange} value={this.state.weeksDuration} name='weeksDuration' type='number' />
             <button onClick={this.inc}>+</button>
           </div>
         </div>
-        <div className='content-action'>
-          <button onClick={this.saveBootcamp}>{this.props.bootcamp ? 'Save' : 'Create'}</button>
-          <button>Delete</button>
-        </div>
-        <div>
-          <UsersManager users={this.state.users} onChange={this.usersChanged} />
-        </div>
+
+        <UsersManager users={this.state.users} onChange={this.usersChanged} />
+        <div className='content-action'>{this.props.bootcamp ? <button onClick={this.saveBootcamp}>saveBootcamp</button> : <button onClick={this.createBootcamp}>Create</button>}</div>
       </div>
     );
   }
 }
 const mapStateToProps = ({ bootcamps }, { id }) => ({ bootcamp: bootcamps.find(el => String(el._id) === id) });
-const mapDispatchToProps = dispatch => ({ dispatch });
+const mapDispatchToProps = () => ({ editBootcamp });
 
 export default connect(
   mapStateToProps,
