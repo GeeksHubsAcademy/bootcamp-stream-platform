@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 // redux
 import { updateProfile } from '../../redux/actions';
 
+//validate
+import validator from 'validator';
+
 // component styles
 import './EditProfile.scss';
 
@@ -34,6 +37,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import FileInput from '../../components/Image/FileInput';
 //TODO image path
 //var apiBaseUrl = "http://localhost:3001/api/";
+
+
 
 
 class EditProfile extends Component {
@@ -81,11 +86,11 @@ class EditProfile extends Component {
     const userData = { name, lastname, email, password};
     if (this.validate()) {
       //console.log('Data to save:', userData);
+      console.log('Data to save:', image);
       updateProfile(userData, image)
         .then(() => this.setState({ successMessage: 'Great! updated profile!' }))
         .catch(e => this.setState({ error: e.message }))
-        .then(() => this.handleClick());
-        
+        .then(() => this.handleClick());        
         //.catch(e => this.setState({ error: e.response }));
       // show snackbar message
     }
@@ -123,20 +128,19 @@ class EditProfile extends Component {
     }
 
     if (this.state.email === '') {
+      console.log('entra en vacío')
       this.setState({ errorEmail: 'Please, write your email' });
       isValid = false;
     } else {
       this.setState({ errorEmail: undefined });
     }
-    // NOT required , TODO restrictions
-    // if( this.state.password === ''){
-    //   this.setState({ errorPassword: 'Please, write your password'});
-    //   console.log('empty password');
-    // }
-    // if( this.state.password2 === ''){
-    //   this.setState({ errorPassword2: 'Please, repeat your password'});
-    //   console.log('empty repeat password');
-    // }
+    if (validator.isEmail(this.state.email) !== true && this.state.email !== '') {
+      console.log('entra en validador')
+      this.setState({ errorEmail: 'Please, write your email in correct format' });
+      isValid = false;
+    }
+
+    // NOT required , REVIEW restrictions?
     if (this.state.password !== this.state.password2) {
       this.setState({ errorPassword2: 'Please, passwords should be the same' });
       isValid = false;
@@ -149,6 +153,8 @@ class EditProfile extends Component {
 
   handleNewImageSelected = (imageBlob) => {
     this.setState(({ image: imageBlob }));
+    console.log('handleNewImageSelected:', imageBlob);
+    this.handleClickShowEdit();
   }
 
   render() {
@@ -162,12 +168,7 @@ class EditProfile extends Component {
       <section className='EditProfileView'>
         <h1>Hi {this.state.name}</h1>
 
-        {/* TODO image view: this.props.user.imagePath, */}
-        {/* <img src={this.state.image} alt="Profile"/> */}
-
-        {/* <input type="file" onClick={this.handleClickShowEdit} /> */}
-
-        <FileInput onChange={this.handleNewImageSelected} />
+        <FileInput onChange={this.handleNewImageSelected} name={this.state.name} />        
 
         <Grid
           container
@@ -183,29 +184,6 @@ class EditProfile extends Component {
         </Tooltip>  
         </Grid>
         <form autoComplete='off'>
-
-          {/* TODO image upload */}
-          <Grid
-            container
-            direction="row"
-            justify="flex-end"
-            alignItems="center"
-          >
-            <input
-              className="inputButton"
-              accept="image/*"
-              id="contained-button-file"
-              type="file"
-            />          
-            <label htmlFor="contained-button-file">
-              <Tooltip title="Edit your photo" aria-label="Photo">
-                {/* IMPORTANT component="span" to input file */}
-                <Fab color="primary" component="span" onClick={this.handleClickShowEdit}>
-                  <Icon>image_icon</Icon>
-                </Fab>
-              </Tooltip>
-            </label>
-          </Grid>
 
           <FormControl className='formControl' error={!!this.state.errorName}>
             <InputLabel htmlFor='component-name'>Name</InputLabel>

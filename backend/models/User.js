@@ -99,6 +99,7 @@ UserSchema.methods.generateAuthToken = function() {
   return user.save().then(() => token);
 };
 
-const User = mongoose.model('user', UserSchema);
+const UserModel = mongoose.model('user', UserSchema);
 
-module.exports = User;
+module.exports = {UserModel,
+  UserSchema};

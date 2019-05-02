@@ -47,7 +47,7 @@ class _Login extends Component {
     } else {
       console.log(pass, email);
       loggedIn(pass, email)
-        .then(() => this.setState({ error: 'logged!!' }))
+        // .then(() => this.setState({ error: 'logged!!' }))
         .catch(e => this.setState({ error: 'email o contraseña incorrecta' }));
     }
   };
