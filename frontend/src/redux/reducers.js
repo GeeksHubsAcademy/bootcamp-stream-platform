@@ -1,6 +1,7 @@
 export let initialState = {
   bootcamps: [],
   user: null,
+  allUsers: []
 };
 
 const sampleState = {
@@ -111,7 +112,7 @@ Una plataforma de comunicación entre alumnos
     },
   ],
 };
-initialState = sampleState;
+// initialState = sampleState;
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'LOGGED_IN':
@@ -128,6 +129,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         bootcamps: action.bootcamps,
+      };
+    case 'USERS_LOADED':
+      return {
+        ...state,
+        allUsers: action.users,
       };
     case 'UPDATE_PROFILE':
       return {

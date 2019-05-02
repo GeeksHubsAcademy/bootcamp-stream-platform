@@ -11,6 +11,8 @@ export async function loggedIn(password, email) {
     type: 'LOGGED_IN',
     user,
   });
+   getUsers();
+   getBootcamps();
   // dispatch({
   //   type: 'LOGGED_IN',
   //   user: {
@@ -50,7 +52,7 @@ export async function getBootcamps() {
 export async function postRegister(name, lastname, email, password) {
   console.log(name, lastname, email, password);
 
-  let res = await Axios.post('http://localhost:3001/user/', { name, lastname, email, password });
+  let res = await Axios.post('http://localhost:3001/user/register', { name, lastname, email, password });
   console.log(res);
 
   return 'Registro válido';
@@ -105,8 +107,9 @@ export async function newBootcamp(bootcamp) {
 
 
 export async function getUsers() {
-
-  let response = await Axios.get('http://localhost:3001/user/all')
+   const user = store.getState().user;
+   let token = user && user.token;
+  let response = await Axios.get('http://localhost:3001/user/', { headers: { Authorization: token } });
 
   let users = response.data
   dispatch({
