@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 // redux
 import { updateProfile } from '../../redux/actions';
 
+//validate
+import validator from 'validator';
+
 // component styles
 import './EditProfile.scss';
 
@@ -123,20 +126,19 @@ class EditProfile extends Component {
     }
 
     if (this.state.email === '') {
+      console.log('entra en vacío')
       this.setState({ errorEmail: 'Please, write your email' });
       isValid = false;
     } else {
       this.setState({ errorEmail: undefined });
     }
-    // NOT required , TODO restrictions
-    // if( this.state.password === ''){
-    //   this.setState({ errorPassword: 'Please, write your password'});
-    //   console.log('empty password');
-    // }
-    // if( this.state.password2 === ''){
-    //   this.setState({ errorPassword2: 'Please, repeat your password'});
-    //   console.log('empty repeat password');
-    // }
+    if (validator.isEmail(this.state.email) !== true && this.state.email !== '') {
+      console.log('entra en validador')
+      this.setState({ errorEmail: 'Please, write your email in correct format' });
+      isValid = false;
+    }
+
+    // NOT required , REVIEW restrictions?
     if (this.state.password !== this.state.password2) {
       this.setState({ errorPassword2: 'Please, passwords should be the same' });
       isValid = false;
