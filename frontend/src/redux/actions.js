@@ -67,7 +67,7 @@ export async function updateProfile(userData, image) {
       bodyFormData.set(key, userData[key]);
     }
   }
-  image && bodyFormData.append('imagePath', image);
+  image && bodyFormData.append('image', image);
   // To view server error bodyFormData/{}
   let response = await Axios.patch('http://localhost:3001/user', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token } });
   let newUser = response.data;
