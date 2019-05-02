@@ -22,7 +22,7 @@ const BootcampSchema = new mongoose.Schema( {
         type: Number,
         // required: true,
     },
-    users: [ UserSchema ],
+    users: [ String ],
     posts: [ PostSchema ],
 }, {
     timestamps: true,

@@ -4,10 +4,10 @@ const bcrypt = require('bcrypt');
 const uploadProfilePics=require('../config/multer')
 const {authorization, isAdmin} =require('../utils/middleware/authorization')
 
-router.get('/all',authorization,isAdmin, (req, res) => {
+router.get('/',authorization, (req, res) => {
     UserModel.find({}).then(users => res.send(users)).catch(error => res.status(500).send(error))
 })
-router.post('/', (req, res) => {
+router.post('/register', (req, res) => {
     // jwt.sign({                     /* This will be added when the confirmed email property will be created at the User schema */
     //     user: req.body.email
     // }, config.EMAIL_SECRET, {
@@ -35,13 +35,13 @@ router.post('/login', (req, res) => {
         email: req.body.email
     }).then((userFound) => {
         if (!userFound) {
-            return res.status(401).send({ message: 'Email or password wrong'}); /*Email Wrong */ 
+            return res.status(401).send({ message: 'Email or password wrong'}); /*Email Wrong */
         }
         // if(!userFound.confirmed) {       /* This will be added when the confirmed email property will be created at the User schema */
-        //     return res.send('error','Email or password wrong'); 
+        //     return res.send('error','Email or password wrong');
         // }
         bcrypt.compare(req.body.password, userFound.password).then(isMatch => {
-            if (!isMatch)return res.status(401).send({ message: 'Email or password wrong' }); /*Password Wrong */ 
+            if (!isMatch)return res.status(401).send({ message: 'Email or password wrong' }); /*Password Wrong */
             userFound.generateAuthToken().then(token => {
                 const {_id, name, lastname, email, imagePath}=userFound
                 res.status(200).send({_id, name, lastname, email, imagePath, token})
@@ -64,7 +64,7 @@ router.patch('/',authorization,uploadProfilePics.single('image'), async(req, res
         res.status(500).json({error,message:"Something went wrong, our apologies"})
     }
   });
-  
+
 router.get('/logout',authorization, (req, res) => {
     const tokens=req.user.tokens.filter(token=>token.type!=='auth')
     UserModel.findByIdAndUpdate(req.user._id,{$set:{tokens}},{upsert:true})

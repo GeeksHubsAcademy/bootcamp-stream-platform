@@ -3,8 +3,6 @@ import  {connect} from 'react-redux';
 
 import './UsersManager.css';
 const UsersManager = ({ users = [], onChange, allUsers }) => {
-  console.log(users);
-
   const [usersSelected, setSeleted] = useState(users);
   const [search, setSearch] = useState('');
   const onSelect = (user) => {
@@ -15,21 +13,26 @@ const UsersManager = ({ users = [], onChange, allUsers }) => {
      setSeleted(usersSelected.filter(el => user._id !== el._id ));
      onChange(usersSelected.filter(el => user._id !== el._id ));
    };
+
+   const selectedMapped = usersSelected.map(user => (
+     <div key={user._id} className='usersSelected'>
+       <span className='_id'>{user._id}:&nbsp; </span>
+       <span className='_id'>{user.name}&nbsp; </span>
+       <span className='email'>{user.email}</span>
+       <button onClick={() => onRemove(user)}>-</button>
+     </div>
+   ));
   return (
     <div className='usersManager'>
       <div className='selected'>
-        {usersSelected.map(user => (
-          <div key={user._id} className='usersSelected'>
-            <span className='_id'>{user._id}:&nbsp; </span>
-            <span className='_id'>{user.name}&nbsp; </span>
-            <span className='email'>{user.email}</span>
-            <button onClick={() => onRemove(user)}>-</button>
-          </div>
-        ))}
+        <h1>Users:</h1>
+        {selectedMapped.length > 0 ? selectedMapped : <span>not user selected, select some from bellow</span>}
       </div>
       <div className='select'>
         <input type='text' value={search} placeholder='filter users to add' onChange={e => setSearch(e.target.value)} />
         <div className='toSelect' />
+        <h1>Select Users:</h1>
+
         {allUsers
           .filter(u => JSON.stringify(u).match(search))
           .map(user => (
