@@ -77,6 +77,7 @@ class _Register extends Component {
         </form>
       </section>
     );
+
   }
 }
 
