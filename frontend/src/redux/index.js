@@ -4,15 +4,17 @@ import reducer, {initialState} from './reducers'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const createStoreWithMiddleware = applyMiddleware(
-  save(), // Saving done here
-)(createStore);
+// const createStoreWithMiddleware = applyMiddleware(
+//   save(), // Saving done here
+// )(createStore);
 
 
-const store = createStoreWithMiddleware(
-  reducer,
-  load({ preloadedState:initialState }), // Loading done here
-  composeEnhancers(),
-);
+// const store = createStoreWithMiddleware(
+//   reducer,
+//   load({ preloadedState:initialState }), // Loading done here
+//   composeEnhancers(),
+// );
 
-export default store;
+// export default store;
+
+export default createStore(reducer,composeEnhancers())
