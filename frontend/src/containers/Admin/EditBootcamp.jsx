@@ -10,6 +10,7 @@ class EditBootcamp extends Component {
     startsAt: '',
     weeksDuration: 1,
     users: [],
+    posts: [],
   };
 
   handleChange = ev => {
@@ -54,7 +55,7 @@ class EditBootcamp extends Component {
           <button>Delete</button>
         </div>
         <div>
-          <UsersManager bootcampUsers={this.state.users} onChange={this.usersChanged} />
+          <UsersManager users={this.state.users} onChange={this.usersChanged} />
         </div>
       </div>
     );

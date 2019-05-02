@@ -3,11 +3,13 @@ import  {connect} from 'react-redux';
 import './UsersManager.css';
 
 const UsersManager = ({ users = [], onChange, allUsers }) => {
+  console.log(users);
+
   const [usersSelected, setSeleted] = useState(users);
   const [search, setSearch] = useState('');
   const onSelect = (user) => {
     setSeleted([...new Set([...usersSelected, user])]);
-    onChange([...usersSelected, user]);
+    onChange([...new Set([...usersSelected, user])]);
   };
    const onRemove = user => {
      setSeleted(usersSelected.filter(el => user._id !== el._id ));

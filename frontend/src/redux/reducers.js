@@ -13,15 +13,15 @@ const sampleState = {
       weeksDuration: 12,
       users: [
         {
-          _id: 1,
+          _id: 10,
           name: 'juan',
         },
         {
-          _id: 2,
+          _id: 25,
           name: 'pepe',
         },
         {
-          _id: 3,
+          _id: 34,
           name: 'paco',
         },
       ],
