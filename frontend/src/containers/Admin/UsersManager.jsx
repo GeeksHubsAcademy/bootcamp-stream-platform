@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import  {connect} from 'react-redux';
-import './UsersManager.css';
 
+import './UsersManager.css';
 const UsersManager = ({ users = [], onChange, allUsers }) => {
   console.log(users);
 
