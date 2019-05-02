@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../../models/User');
+const {UserModel} = require('../../models/User');
 const password = require('../../config/password')
 const authorization = async (req, res, next) => {
     
@@ -7,7 +7,7 @@ const authorization = async (req, res, next) => {
         const authToken = req.headers.authorization
         const { _id } = jwt.verify(authToken, password.SECRET);
 
-        const user = await User.findOne({
+        const user = await UserModel.findOne({
             _id,
             tokens: {
                 $elemMatch: {

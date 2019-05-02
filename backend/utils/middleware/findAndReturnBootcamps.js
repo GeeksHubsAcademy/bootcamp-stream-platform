@@ -1,5 +1,4 @@
 const Bootcamp = require( '../../models/Bootcamp' );
-const dayjs = require( 'dayjs' );
 const findAndResponseBootcamps = async ( req, res ) => {
     try {
         if ( req.user.role === 'admin' ) {
