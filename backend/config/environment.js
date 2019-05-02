@@ -4,9 +4,9 @@ const environments = {
     test: "test"
 }
 const ENV = process.env.NODE_ENV || environments.development;
-console.log('Your enviorment is '+ENV)
+console.log( 'Your environment is ' + ENV )
 const config = {
-    [environments.production]: {
+    [ environments.production ]: {
         PORT: 80,
         MongoDB: {
             PORT: 27017,
@@ -14,9 +14,9 @@ const config = {
             DB: 'Bootcamp-Stream-Platform'
         }
     },
-    [environments.development]: {
+    [ environments.development ]: {
         PORT: 3001,
-        DOMAIN:'localhost',
+        DOMAIN: 'localhost',
         MongoDB: {
             PORT: 27017,
             HOST: 'localhost',
@@ -24,7 +24,7 @@ const config = {
         }
     },
 
-    [environments.test]: {
+    [ environments.test ]: {
         PORT: 3001,
         MongoDB: {
             PORT: 27017,
@@ -33,11 +33,11 @@ const config = {
         }
     }
 }
-const CONFIG=config[ENV]
-if(!CONFIG){
-    throw new Error(`NODE_ENV ${ENV} is not a valir environment. `)
+const CONFIG = config[ ENV ]
+if ( !CONFIG ) {
+    throw new Error( `NODE_ENV ${ENV} is not a valid environment. ` )
 }
-process.env={
+process.env = {
     ...process.env,
     ...CONFIG
 }

@@ -37,25 +37,20 @@ export async function loggedOut() {
 }
 
 export async function getBootcamps() {
-  console.log('get bootcamps');
-
   const user = store.getState().user;
   let token = user && user.token;
   let response = await Axios.get('http://localhost:3001/bootcamp/mine/', { headers: { Authorization: token } });
   let bootcamps = response.data;
-  console.log(response);
-
   dispatch({
     type: 'BOOTCAMPS_LOADED',
     bootcamps,
   });
 }
 
-//de Juanma, no se si va aqui o que
 export async function postRegister(name, lastname, email, password) {
   console.log(name, lastname, email, password);
 
-  let res = await Axios.post('http://localhost:3001/user/register', { name, lastname, email, password });
+  let res = await Axios.post('http://localhost:3001/user/', { name, lastname, email, password });
   console.log(res);
 
   return 'Registro válido';
@@ -72,7 +67,7 @@ export async function updateProfile(userData, image) {
   }
   image && bodyFormData.append('imagePath', image);
   // To view server error bodyFormData/{}
-  let response = await Axios.patch('http://localhost:3001/user/update', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token } });
+  let response = await Axios.patch('http://localhost:3001/user', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token } });
   let newUser = response.data;
   newUser.token = token;
   dispatch({
@@ -81,4 +76,13 @@ export async function updateProfile(userData, image) {
   });
 }
 
-// export default { loggedIn, loggedOut };
+export async function editBootcamp(bootcamp) {
+
+  let bootcamps = await Axios.patch('http://localhost:3001/bootcamps', bootcamp);
+  console.log(bootcamps);
+  dispatch({
+    type: 'BOOTCAMPS_LOADED',
+    bootcamps,
+  });
+
+}
