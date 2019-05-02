@@ -1,2 +1,2 @@
-require('./environment')
-const mongooseConnection=require("./mongoose")
+require( './environment' )
+const mongooseConnection = require( "./mongoose" )

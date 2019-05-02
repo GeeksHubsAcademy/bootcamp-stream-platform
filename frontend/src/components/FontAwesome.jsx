@@ -3,8 +3,7 @@ import React from 'react';
 
 
 
-const FontAwesome = ({ icon }) => <i className={'fab fa-' + icon}/>;
-// const FontAwesome = ({ icon }) => <i className='fab fa-' />;;
+const FontAwesome = ({ icon , family = 'fab'}) => <i className={family +  ' fa-' + icon}/>;
 
 
 export default FontAwesome;

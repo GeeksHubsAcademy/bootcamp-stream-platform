@@ -42,9 +42,21 @@ class _Register extends Component {
     // loggedIn(pass, email)
     //     .then(() => this.setState({ error: 'logged!!' }))
     //     .catch(e => this.setState({ error: 'email o contraseña incorrecta' }));
-
+  }
+  handleChange = (ev) => {
+    console.log('ENTRA en handlechange');
+    this.setState({ [ev.target.name]: ev.target.value });
+    this.validate();
   }
 
+  handleSubmit = (ev) => {
+    ev.preventDefault();//esto es para que no se refresque
+    console.log(this.state);
+    postRegister(this.name, this.surname, this.email, this.password, this.password2);
+    // loggedIn(pass, email)
+    //     .then(() => this.setState({ error: 'logged!!' }))
+    //     .catch(e => this.setState({ error: 'email o contraseÃ±a incorrecta' }));
+  }
   validate = () => {//only validate email
     if (validator.isEmail(this.state.email)) {
       this.setState({ erroremail: undefined });
@@ -55,7 +67,6 @@ class _Register extends Component {
   }
 
   render() {
-
     const { errorname, errorlastname, erroremail, errorpassword, errorparssword2, name, lastname, email, password, password2 }
       = this.state;//esto lo hacemos para no tener que escribir tol rato this.name...
     return (
@@ -77,9 +88,9 @@ class _Register extends Component {
         </form>
       </section>
     );
-
   }
 }
+
 
 const mapStateToProps = ({ user }) => ({ user });
 const mapDispatchToProps = dispatch => ({ dispatch });
@@ -94,3 +105,4 @@ export default () => (
     <Register />
   </PublicZone>
 );
+

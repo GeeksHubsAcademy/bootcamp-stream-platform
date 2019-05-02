@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 // redux
 import { updateProfile } from '../../redux/actions';
 
+//validate
+import validator from 'validator';
+
 // component styles
 import './EditProfile.scss';
 
@@ -30,6 +33,14 @@ import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
 
+// Image
+import FileInput from '../../components/Image/FileInput';
+//TODO image path
+//var apiBaseUrl = "http://localhost:3001/api/";
+
+
+
+
 class EditProfile extends Component {
   // state initial
   //state =  this.props.user || {}
@@ -38,6 +49,7 @@ class EditProfile extends Component {
     lastname: this.props.user.lastname,
     email: this.props.user.email,
     role: this.props.user.role,
+    image: undefined,
     password: undefined,
     password2: undefined,
     errorName: undefined,
@@ -51,7 +63,7 @@ class EditProfile extends Component {
     open: false,
   };
 
-  // snackbar
+   // snackbar
   handleClick = () => {
     this.setState({ open: true });
   };
@@ -70,15 +82,15 @@ class EditProfile extends Component {
   // action to updateProfile
   saveProfile = e => {
     e.preventDefault();
-    const { name, lastname, email, password } = this.state;
-    const userData = { name, lastname, email, password };
+    const { name, lastname, email, password, image} = this.state;
+    const userData = { name, lastname, email, password};
     if (this.validate()) {
-      console.log('Data to save:', userData);
-      updateProfile(userData)
+      //console.log('Data to save:', userData);
+      console.log('Data to save:', image);
+      updateProfile(userData, image)
         .then(() => this.setState({ successMessage: 'Great! updated profile!' }))
         .catch(e => this.setState({ error: e.message }))
-        .then(() => this.handleClick());
-        
+        .then(() => this.handleClick());        
         //.catch(e => this.setState({ error: e.response }));
       // show snackbar message
     }
@@ -116,23 +128,21 @@ class EditProfile extends Component {
     }
 
     if (this.state.email === '') {
+      console.log('entra en vacío')
       this.setState({ errorEmail: 'Please, write your email' });
       isValid = false;
     } else {
       this.setState({ errorEmail: undefined });
     }
-    // NOT required , TODO restrictions
-    // if( this.state.password === ''){
-    //   this.setState({ errorPassword: 'Please, write your password'});
-    //   console.log('empty password');
-    // }
-    // if( this.state.password2 === ''){
-    //   this.setState({ errorPassword2: 'Please, repeat your password'});
-    //   console.log('empty repeat password');
-    // }
+    if (validator.isEmail(this.state.email) !== true && this.state.email !== '') {
+      console.log('entra en validador')
+      this.setState({ errorEmail: 'Please, write your email in correct format' });
+      isValid = false;
+    }
+
+    // NOT required , REVIEW restrictions?
     if (this.state.password !== this.state.password2) {
       this.setState({ errorPassword2: 'Please, passwords should be the same' });
-      console.log('no same passwords');
       isValid = false;
     } else {
       this.setState({ errorPassword2: undefined });
@@ -140,6 +150,13 @@ class EditProfile extends Component {
 
     return isValid;
   };
+
+  handleNewImageSelected = (imageBlob) => {
+    this.setState(({ image: imageBlob }));
+    console.log('handleNewImageSelected:', imageBlob);
+    this.handleClickShowEdit();
+  }
+
   render() {
 
     // TODO after login task
@@ -150,6 +167,9 @@ class EditProfile extends Component {
     return (
       <section className='EditProfileView'>
         <h1>Hi {this.state.name}</h1>
+        {/* TODO userFromEditProfile */}
+        <FileInput onChange={this.handleNewImageSelected} userFromEditProfile={this.state.name} />        
+
         <Grid
           container
           direction="row"
@@ -164,6 +184,7 @@ class EditProfile extends Component {
         </Tooltip>  
         </Grid>
         <form autoComplete='off'>
+
           <FormControl className='formControl' error={!!this.state.errorName}>
             <InputLabel htmlFor='component-name'>Name</InputLabel>
             <Input

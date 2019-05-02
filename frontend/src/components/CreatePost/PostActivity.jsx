@@ -4,7 +4,6 @@ import React from 'react';
 // "postType":"activity",
 // "authorId": "2",
 // "content": {
-//     "activity":{
 //         "title":"",
 //         "body":"",
 //         "repo":""
@@ -16,9 +15,9 @@ const PostActivity = ({data}) => (
 
 <div className='postActivity'>
 Post Activity
-    <h3>{data.content.activity.title}</h3>
-    <p>{data.content.activity.body}</p>
-    <h6>{data.content.activity.repo}</h6>
+    <h3>{data.content.title}</h3>
+    <p>{data.content.body}</p>
+    <h6>{data.content.url}</h6>
 </div>
 
 

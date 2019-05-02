@@ -3,7 +3,6 @@
     flex-direction: column;
     height: 100%;
     width: 500px;
-    border: 1px solid yellow;
     margin: 0 auto;
     padding: 15px;
 
@@ -13,31 +12,10 @@
             padding: 10px;
             margin: 5px;
 
-            input{
-                padding: 10px;
-                margin: 5px;
-
-                &:focus{
-                    border: 2px solid black;
-
-                    &::placeholder{
-                        font-style: italic;
-                        font-size: 11px;
-                        
-
-                    }
-                    
-                }
-            }
         }
         .content-action{
             display: flex;
             justify-content: space-around;
 
-            button{
-                border: 1px solid black;
-                width: 15%;
-                padding: 8px;
-            }    
         }
 }
