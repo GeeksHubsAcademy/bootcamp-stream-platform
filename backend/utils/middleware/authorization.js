@@ -33,7 +33,7 @@ const isAdmin = async ( req, res, next ) => {
 }
 const isMember = async ( req, res, next ) => {
     /**Should be middleware that checks if the user is a bootcamp member and have the right to post */
-    if ( req.user.role !== 'admin' )  next();
+    if ( req.user.role === 'admin' )  next();
     const bootcamp = await Bootcamp.findOne( {
         _id: req.params.bootcamp_id,
         users: {
@@ -47,9 +47,10 @@ const isMember = async ( req, res, next ) => {
 }
 const isAuthor = async ( req, res, next ) => {
     /**Should be middleware that checks if the user is the post author and have the right to edit the post */
-    if ( req.user.role !== 'admin' )  next();
+    if ( req.user.role === 'admin' )  next();
     else next()
 }
+
 module.exports = {
     authorization,
     isAdmin,
