@@ -18,6 +18,8 @@ router.patch( '/:id', authorization, isAdmin, async ( req, res, next ) => {
         weeksDuration,
         users
     } = req.body
+    console.log(req.body);
+
     await Bootcamp.findByIdAndUpdate( req.params.id, { title, description, startsAt, weeksDuration, users } );
     next();
 }, findAndResponseBootcamps );
