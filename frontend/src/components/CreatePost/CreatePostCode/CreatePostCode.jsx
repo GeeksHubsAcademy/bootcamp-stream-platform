@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import Highlight from 'react-highlight';
 
 
@@ -38,10 +38,12 @@ class CreatePostCode extends Component{
         )
     }
 }
-const mapStateToProps = ({ undefined}) => ({ undefined});
-const mapDispatchToProps = dispatch => ({ dispatch });
+// const mapStateToProps = ({ undefined}) => ({ undefined});
+// const mapDispatchToProps = dispatch => ({ dispatch });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(CreatePostCode);
+// export default connect(
+//     mapStateToProps,
+//     mapDispatchToProps,
+// )(CreatePostCode);
+
+export default CreatePostCode;
