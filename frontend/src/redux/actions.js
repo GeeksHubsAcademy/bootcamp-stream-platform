@@ -81,7 +81,8 @@ export async function updateProfile(userData, image) {
 export async function editBootcamp(bootcamp) {
   const user = store.getState().user;
   let token = user && user.token;
-  let bootcamps = await Axios.patch('http://localhost:3001/bootcamp/' + bootcamp._id, bootcamp, { headers: {  Authorization: token } });
+  let response = await Axios.patch('http://localhost:3001/bootcamp/' + bootcamp._id, bootcamp, { headers: { Authorization: token } });
+   let bootcamps = response.data;
   console.log(bootcamps);
   dispatch({
     type: 'BOOTCAMPS_LOADED',
@@ -92,6 +93,8 @@ export async function editBootcamp(bootcamp) {
 
 
 export async function newBootcamp(bootcamp) {
+  console.log(bootcamp);
+
   const user = store.getState().user;
   let token = user && user.token;
   let response = await Axios.post('http://localhost:3001/bootcamp/', bootcamp, { headers: {  Authorization: token } });
@@ -101,6 +104,7 @@ export async function newBootcamp(bootcamp) {
     type: 'BOOTCAMPS_LOADED',
     bootcamps,
   });
+
 
 }
 
