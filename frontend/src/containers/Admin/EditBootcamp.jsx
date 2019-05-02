@@ -9,20 +9,13 @@ import './EditBootcamp.scss';
 class EditBootcamp extends Component {
   constructor(props) {
     super(props);
-    this.state = this.props.bootcamp || {
-      title: '',
-      description: '',
-      startsAt: new Date(),
-      weeksDuration: 1,
-      users: [],
-      posts: [],
-    };
+    this.state = { ...this.props.bootcamp } || {};
   }
   static getDerivedStateFromProps(props, state) {
-    if (props.bootcamp) {
+    if (props.bootcamp ) {
       return {
-        ...state,
-        ...props.bootcamp,
+           ...props.bootcamp,
+           ...state,
       };
     }
     return null;
@@ -46,13 +39,22 @@ class EditBootcamp extends Component {
     }
   };
   createBootcamp = () => {
-    this.props.newBootcamp(this.state);
+    this.props
+      .newBootcamp(this.state)
+      .then(this.props.navigate('/admin/bootcamps'))
+      .catch(console.error);
   };
   saveBootcamp = () => {
-    this.props.editBootcamp(this.state);
+
+    this.props
+      .editBootcamp(this.state)
+      .then(this.props.navigate('/admin/bootcamps'))
+      .catch(console.error);;
   };
   usersChanged = users => {
-    this.setState({ users });
+      console.log(users);
+
+    this.setState({ users }, () => console.log(this.state));
   };
   render() {
       if (this.props.id && !this.props.bootcamp) {
@@ -62,13 +64,14 @@ class EditBootcamp extends Component {
           </div>
         );
       }
+      const date = this.state.startsAt ? new Date(this.state.startsAt): new Date();
        return (
          <div className='editBootcamp'>
            <h1>{this.props.bootcamp ? 'edit': 'create new'} bootcamp</h1>
            <div className='content-edit'>
              <TextField onChange={this.handleChange} label='title' value={this.state.title} name='title' type='text' required />
              <TextField onChange={this.handleChange} label='description' value={this.state.description} name='description' type='text' required />
-             <DateFormatInput name='startsAt' onChange={date => this.handleChange({ target: { value: date, name: 'startsAt' } })} value={new Date(this.state.startsAt)} />
+             <DateFormatInput name='startsAt' onChange={date => this.handleChange({ target: { value: date, name: 'startsAt' } })} value={date} />
              <div>
                <button onClick={this.dec}>-</button>
                <TextField required onChange={this.handleChange} value={this.state.weeksDuration} name='weeksDuration' type='number' />

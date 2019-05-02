@@ -18,7 +18,7 @@ const AdminBootcamps = ({ bootcamps }) => (
     </div>
     <div className='list'>
       {bootcamps.map(bootcamp => (
-        <div className='bootcamp'>
+        <div className='bootcamp' key={bootcamp._id}>
           <h3>{bootcamp.title}</h3>
           <Link to={'/admin/bootcamp/' + bootcamp._id}>
             <FontAwesome icon='edit' family='fas' />

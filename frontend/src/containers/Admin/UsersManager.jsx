@@ -3,8 +3,6 @@ import  {connect} from 'react-redux';
 
 import './UsersManager.css';
 const UsersManager = ({ users = [], onChange, allUsers }) => {
-  console.log(users);
-
   const [usersSelected, setSeleted] = useState(users);
   const [search, setSearch] = useState('');
   const onSelect = (user) => {

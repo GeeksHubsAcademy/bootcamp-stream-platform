@@ -79,6 +79,8 @@ export async function updateProfile(userData, image) {
 }
 
 export async function editBootcamp(bootcamp) {
+  console.log('editBootcamp', bootcamp);
+
   const user = store.getState().user;
   let token = user && user.token;
   let response = await Axios.patch('http://localhost:3001/bootcamp/' + bootcamp._id, bootcamp, { headers: { Authorization: token } });
