@@ -1,10 +1,18 @@
 
-import React, { Component } from 'react';
+import React, { Component, useReducer } from 'react';
+
 // edit button
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
+
+// avatar
+// import LetterAvatars from './Avatar'
+// import ImageAvatars from './Avatar'
+import LetterAvatars from './LetterAvatar';
+import ImageAvatars from './ImageAvatar';
+
 
 class FileInput extends Component {
   constructor(props) {
@@ -16,7 +24,7 @@ class FileInput extends Component {
 
   state = {   
     disabled: true,
-    // TODO file from DB
+    // TODO file from DB for preview?
     file: '',
     imagePreviewUrl: '',
   };
@@ -47,53 +55,42 @@ class FileInput extends Component {
   render() {
 
     let {imagePreviewUrl} = this.state;
-    let $imagePreview = null;
-    if (imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} />);
-    } else {
-      $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
-    }
 
     return (
+     
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          >
 
-<div className="wrapper">
+          {/* TODO pasar user name userFromEditProfile */}  
+          { imagePreviewUrl ? 
+            <ImageAvatars altFromParent="texto" srcFromParent={imagePreviewUrl} />
+            : <LetterAvatars userFromParent="AA" /> }
 
-            <div className="previewComponent">        
-              <div className="imgPreview">
-                {$imagePreview}
-              </div>
-            </div>
-      
 
-                <Grid
-                container
-                direction="row"
-                justify="flex-end"
-                alignItems="center"
-              >
-                <input
-                  className="inputButton"
-                  accept="image/*"
-                  id="contained-button-file"
-                  type="file"
-                  ref={this.fileInput} 
-                  onChange={this.handleSubmit} 
-                  name='file-input'
-                />  
+          <input
+            className="inputButton"
+            accept="image/*"
+            id="contained-button-file"
+            type="file"
+            ref={this.fileInput} 
+            onChange={this.handleSubmit} 
+            name='file-input'
+          />  
 
-                <label htmlFor="contained-button-file">
-                  <Tooltip title="Edit your photo" aria-label="Photo">
-                    {/* IMPORTANT component="span" to input file */}
-                    <Fab component="span"
-                         color={ !!this.state.disabled ? 'primary' : 'secondary'}>
-                      <Icon>image_icon</Icon>
-                    </Fab>
-                  </Tooltip>
-                </label>
-                <p></p>
+          <label htmlFor="contained-button-file">
+            <Tooltip title="Edit your photo" aria-label="Photo">
+              {/* IMPORTANT component="span" to input file */}
+              <Fab component="span"
+                    color={ !!this.state.disabled ? 'primary' : 'secondary'}>
+                <Icon>image_icon</Icon>
+              </Fab>
+            </Tooltip>
+          </label>
         </Grid>
-
-</div>
 
     );
   }

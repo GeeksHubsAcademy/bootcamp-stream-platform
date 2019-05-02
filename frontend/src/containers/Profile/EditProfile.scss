@@ -89,4 +89,8 @@
     display: none
   }
 
+  input[type="file"].inputButton + label{
+    margin-left: -40px;
+  }
+
 }

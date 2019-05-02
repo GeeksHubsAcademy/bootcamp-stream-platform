@@ -48,7 +48,13 @@ const isMember = async ( req, res, next ) => {
 const isAuthor = async ( req, res, next ) => {
     /**Should be middleware that checks if the user is the post author and have the right to edit the post */
     if ( req.user.role === 'admin' )  next();
-    else next()
+    PostModel.findOne({
+        _id: req.params.post_id,
+        $elemMatch: {
+            authorId: req.user._id
+        }
+     })
+     next()
 }
 
 module.exports = {
