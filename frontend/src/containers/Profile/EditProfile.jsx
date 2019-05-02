@@ -84,11 +84,11 @@ class EditProfile extends Component {
     const userData = { name, lastname, email, password};
     if (this.validate()) {
       //console.log('Data to save:', userData);
+      console.log('Data to save:', image);
       updateProfile(userData, image)
         .then(() => this.setState({ successMessage: 'Great! updated profile!' }))
         .catch(e => this.setState({ error: e.message }))
-        .then(() => this.handleClick());
-        
+        .then(() => this.handleClick());        
         //.catch(e => this.setState({ error: e.response }));
       // show snackbar message
     }
@@ -151,6 +151,8 @@ class EditProfile extends Component {
 
   handleNewImageSelected = (imageBlob) => {
     this.setState(({ image: imageBlob }));
+    console.log('handleNewImageSelected:', imageBlob);
+    this.handleClickShowEdit();
   }
 
   render() {
@@ -167,10 +169,6 @@ class EditProfile extends Component {
         {/* TODO image view: this.props.user.imagePath, */}
         {/* <img src={this.state.image} alt="Profile"/> */}
 
-        {/* <input type="file" onClick={this.handleClickShowEdit} /> */}
-
-        <FileInput onChange={this.handleNewImageSelected} />
-
         <Grid
           container
           direction="row"
@@ -186,28 +184,7 @@ class EditProfile extends Component {
         </Grid>
         <form autoComplete='off'>
 
-          {/* TODO image upload */}
-          <Grid
-            container
-            direction="row"
-            justify="flex-end"
-            alignItems="center"
-          >
-            <input
-              className="inputButton"
-              accept="image/*"
-              id="contained-button-file"
-              type="file"
-            />          
-            <label htmlFor="contained-button-file">
-              <Tooltip title="Edit your photo" aria-label="Photo">
-                {/* IMPORTANT component="span" to input file */}
-                <Fab color="primary" component="span" onClick={this.handleClickShowEdit}>
-                  <Icon>image_icon</Icon>
-                </Fab>
-              </Tooltip>
-            </label>
-          </Grid>
+          <FileInput onChange={this.handleNewImageSelected} />
 
           <FormControl className='formControl' error={!!this.state.errorName}>
             <InputLabel htmlFor='component-name'>Name</InputLabel>
