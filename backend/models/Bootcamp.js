@@ -1,36 +1,33 @@
-const mongoose = require('mongoose');
-const {PostSchema}=require('./Post')
-const BootcampSchema = new mongoose.Schema(
-  {
+const mongoose = require( 'mongoose' );
+const { PostSchema } = require( './Post' )
+const { UserSchema } = require( './User' )
+const BootcampSchema = new mongoose.Schema( {
     title: {
-      type: String,
-      required: true,
-      maxlength: 100,
-      trim: true,
-      required: true,
+        type: String,
+        required: true,
+        maxlength: 100,
+        trim: true,
+        required: true,
     },
     description: {
-      type: String,
-      maxlength: 500,
-      trim: true,
+        type: String,
+        maxlength: 500,
+        trim: true,
     },
     startsAt: {
-      type: Date,
-      // required: true,
+        type: Date,
+        // required: true,
     },
     weeksDuration: {
-      type: Number,
-      // required: true,
+        type: Number,
+        // required: true,
     },
-    userIds:[String],
-    posts:[Object],
-  },
-  {
+    users: [ UserSchema ],
+    posts: [ PostSchema ],
+}, {
     timestamps: true,
-  },
-);
+}, );
 
-
-const Bootcamp = mongoose.model('bootcamp', BootcampSchema);
+const Bootcamp = mongoose.model( 'bootcamp', BootcampSchema );
 
 module.exports = Bootcamp;

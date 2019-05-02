@@ -1,23 +1,12 @@
 const router = require('express').Router();
 const Bootcamp = require('../models/Bootcamp');
 const { authorization, isAdmin } = require('../utils/middleware/authorization');
-
-const findAndResponseBootcamps=async(req, res) => {
-  try{
-    if (req.user.role === 'admin') {
-    const bootcamps = await Bootcamp.find({})
-    return res.status(200).send(bootcamps)
-  }
-   const bootcamps = await Bootcamp.find({ userIds:req.user._id})
-        res.status(200).send(bootcamps)
-  }catch(err){
-    res.json({err,message:"Something went wrong, our apologies"})
-  }
-};
+const dayjs=require('dayjs')
+const findAndResponseBootcamps=require('../utils/middleware/findAndReturnBootcamps')
 
 router.get('/mine', authorization, findAndResponseBootcamps);
 
-router.post('/new',authorization, isAdmin, async(req, res, next) => {
+router.post('/',authorization, isAdmin, async(req, res, next) => {
   await new Bootcamp(req.body).save();
   next();
 },findAndResponseBootcamps);
