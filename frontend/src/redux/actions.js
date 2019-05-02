@@ -50,7 +50,7 @@ export async function getBootcamps() {
 export async function postRegister(name, lastname, email, password) {
   console.log(name, lastname, email, password);
 
-  let res = await Axios.post('http://localhost:3001/user/register', { name, lastname, email, password });
+  let res = await Axios.post('http://localhost:3001/user/', { name, lastname, email, password });
   console.log(res);
 
   return 'Registro válido';
@@ -67,7 +67,7 @@ export async function updateProfile(userData, image) {
   }
   image && bodyFormData.append('imagePath', image);
   // To view server error bodyFormData/{}
-  let response = await Axios.patch('http://localhost:3001/user/update', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token } });
+  let response = await Axios.patch('http://localhost:3001/user', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token } });
   let newUser = response.data;
   newUser.token = token;
   dispatch({
