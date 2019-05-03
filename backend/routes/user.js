@@ -43,8 +43,8 @@ router.post('/login', (req, res) => {
         bcrypt.compare(req.body.password, userFound.password).then(isMatch => {
             if (!isMatch)return res.status(401).send({ message: 'Email or password wrong' }); /*Password Wrong */
             userFound.generateAuthToken().then(token => {
-                const {_id, name, lastname, email, imagePath}=userFound
-                res.status(200).send({_id, name, lastname, email, imagePath, token})
+                const {_id, name, lastname, email, imagePath, role}=userFound
+                res.status(200).send({_id, name, lastname, email, imagePath, token, role})
             }).catch(error=>res.status(500).json({error,message:"Something went wrong, our apologies"}))
         }).catch(error=>res.status(500).json({error,message:"Something went wrong, our apologies"}))
     })
