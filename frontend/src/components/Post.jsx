@@ -5,8 +5,8 @@ import './Post.scss';
 import PostActivity from './CreatePost/PostActivity';
 
 const PostCode = ({data}) => <div className='postCode'>postCode  {JSON.stringify(data)} </div>;
-const PostVideo = ({data}) => <div className='postVideo'>postVideo  {JSON.stringify(data)} <Player url={data.content.url}/> </div>;
-const PostActivity = ({data}) => <div className='postActivity'>postActivity  {JSON.stringify(data)} </div>;
+//const PostVideo = ({data}) => <div className='postVideo'>postVideo  {JSON.stringify(data)} <Player url={data.content.url}/> </div>;
+//const PostActivity = ({data}) => <div className='postActivity'>postActivity  {JSON.stringify(data)} </div>;
 
 const Post = ({data}) => {
   let post;
@@ -18,7 +18,7 @@ const Post = ({data}) => {
       post = <PostCode data={data} />;
       break;
     case 'video':
-      post = <PostVideo data={data} />;
+      //post = <PostVideo data={data} />;
       break;
     case 'activity':
       post = <PostActivity data={data} />;
