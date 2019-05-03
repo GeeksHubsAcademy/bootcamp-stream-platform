@@ -1,9 +1,9 @@
 import React from 'react';
+import PostText from './CreatePost/PostText';
+import './CreatePost/PostActivity';
 import './Post.scss';
-import './CreatePost/PostActivity'
-import Player from './CreatePost/Reproductor';
-import PostText from './CreatePost/PostActivity'
-//const PostText = ({data}) => <div className='postText'>postText  {JSON.stringify(data)} </div>;
+import PostActivity from './CreatePost/PostActivity';
+
 const PostCode = ({data}) => <div className='postCode'>postCode  {JSON.stringify(data)} </div>;
 const PostVideo = ({data}) => <div className='postVideo'>postVideo  {JSON.stringify(data)} <Player url={data.content.url}/> </div>;
 const PostActivity = ({data}) => <div className='postActivity'>postActivity  {JSON.stringify(data)} </div>;
