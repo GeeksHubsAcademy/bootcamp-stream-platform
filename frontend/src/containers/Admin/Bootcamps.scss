@@ -1,5 +1,20 @@
-.adminBootcamps {
-    i {
-        margin-right: 10px;
+.bootcamps {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+   
+    
+    .log{
+        border: 2px solid black;
+        padding: 15px;
+        background: {
+            color:red;
+        };
+        font: {
+            size: 2rem;
+
+        } 
+         
     }
 }

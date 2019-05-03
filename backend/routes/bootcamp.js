@@ -27,7 +27,7 @@ router.post( '/', authorization, isAdmin, async ( req, res, next ) => {
 }, findAndResponseBootcamps );
 
 router.patch( '/:id', authorization, isAdmin, async ( req, res, next ) => {
-  
+
   const {
     title,
     description,

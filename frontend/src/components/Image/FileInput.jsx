@@ -7,11 +7,8 @@ import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
 
-// avatar
-// import LetterAvatars from './Avatar'
-// import ImageAvatars from './Avatar'
-import LetterAvatars from './LetterAvatar';
-import ImageAvatars from './ImageAvatar';
+
+import Avatar from './Avatar';
 
 
 class FileInput extends Component {
@@ -64,12 +61,8 @@ class FileInput extends Component {
           justify="center"
           alignItems="center"
           >
-
-          {/* TODO pasar user name userFromEditProfile */}  
-          { imagePreviewUrl ? 
-            <ImageAvatars altFromParent="texto" srcFromParent={imagePreviewUrl} />
-            : <LetterAvatars userFromParent="AA" /> }
-
+       
+          <Avatar name={this.props.name} src={imagePreviewUrl}/>
 
           <input
             className="inputButton"
