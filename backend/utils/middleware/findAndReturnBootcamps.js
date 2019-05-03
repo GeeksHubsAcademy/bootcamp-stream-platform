@@ -13,18 +13,19 @@ const findAndResponseBootcamps = async ( req, res ) => {
              } ])
             return res.status( 200 ).send( bootcamps )
         }
-        const bootcamps = await Bootcamp.aggregate([ {
-            _id: req.user._id
+        const bootcamps = await Bootcamp.aggregate( [
+            { 
+                $match: { userIds: ObjectId("5cc6ca23771c3019dc38a521") }
+            }, {
+                $lookup:
+                  {
+                    from: 'users',
+                    localField: 'userIds',
+                    foreignField: '_id',
+                    as: 'users'
+                  }
+             }]  )
 
-        }, {
-            $lookup:
-              {
-                from: 'users',
-                localField: 'userIds',
-                foreignField: '_id',
-                as: 'users'
-              }
-         } ])
         res.status( 200 ).send( bootcamps )
     } catch ( error ) {
         console.log( error )
