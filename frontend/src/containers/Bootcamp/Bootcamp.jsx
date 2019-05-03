@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Post from '../../components/Post'
 
-import CreatePost from '../../components/CreatePost/CreatePost'
-const SearchPosts = () => <div>Search posts</div>
-
 // material-ui
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -14,6 +11,10 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
+
+
+import CreatePost from '../../components/CreatePost/CreatePost'
+const SearchPosts = () => <div>Search posts</div>
 
 
 const Bootcamp = ({ bootcamp }) => {
@@ -33,7 +34,7 @@ const Bootcamp = ({ bootcamp }) => {
       </div>
       <CreatePost />
       {/* //////////////// */}
-      <Card className={classes.card}>
+      {/* <Card className={classes.card}>
         <CardHeader
           avatar={
             <Avatar aria-label='Recipe' className={classes.avatar}>
@@ -89,7 +90,7 @@ const Bootcamp = ({ bootcamp }) => {
             <Typography>Set aside off of the heat to let rest for 10 minutes, and then serve.</Typography>
           </CardContent>
         </Collapse>
-      </Card>
+      </Card> */}
       {/* //////////////// */}
       <SearchPosts />
     </section>
