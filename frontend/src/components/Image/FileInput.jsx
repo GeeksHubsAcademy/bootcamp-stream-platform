@@ -48,15 +48,21 @@ class FileInput extends Component {
     // send image
     const image  = this.fileInput.current.files[0]
     this.props.onChange(image);
-    //URL.revokeObjectURL(urlGenerated) 
     // to change color
     this.setState({ disabled: false });
   }
 
   removeImage = () => {
+
+     // send image
+     const image  =  '';
+     this.props.onChange(image);
+     // to change color
+
     this.setState(state => ({ 
       file: '',
       imagePreviewUrl: '',      
+      disabled: false
     }));
   };
 
@@ -99,7 +105,7 @@ class FileInput extends Component {
             <Tooltip title="Remove your photo" aria-label="Remove">
               <Fab onClick={this.removeImage} 
                    className="removeButton"
-                   color="default">
+                   color={ !!this.state.disabled ? 'default' : 'secondary'}>
                 <Icon>delete_icon</Icon>
               </Fab>
             </Tooltip>

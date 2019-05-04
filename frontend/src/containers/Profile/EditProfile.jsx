@@ -144,8 +144,9 @@ class EditProfile extends Component {
   };
 
   handleNewImageSelected = (imageBlob) => {
+    // TODO image empty => remove
     this.setState(({ image: imageBlob }));
-    //console.log('handleNewImageSelected:', imageBlob);
+    console.log('handleNewImageSelected:', imageBlob);
     this.handleClickShowEdit();
   }
 
