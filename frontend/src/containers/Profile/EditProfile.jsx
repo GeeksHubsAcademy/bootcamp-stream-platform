@@ -35,8 +35,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 // Image
 import FileInput from '../../components/Image/FileInput';
-//TODO image path
-//var apiBaseUrl = "http://localhost:3001/uploads/profilePics/";
 
 class EditProfile extends Component {
   // state initial
@@ -46,7 +44,6 @@ class EditProfile extends Component {
     lastname: this.props.user.lastname,
     email: this.props.user.email,
     //role: this.props.user.role,
-    image: undefined,
     password: undefined,
     password2: undefined,
     errorName: undefined,
@@ -83,7 +80,7 @@ class EditProfile extends Component {
     const userData = { name, lastname, email, password};
     if (this.validate()) {
       //console.log('Data to save:', userData);
-      console.log('Data to save:', image);
+      //console.log('Data to save:', image);
       updateProfile(userData, image)
         .then(() => this.setState({ successMessage: 'Great! updated profile!' }))
         .catch(e => this.setState({ error: e.message }))
@@ -125,14 +122,12 @@ class EditProfile extends Component {
     }
 
     if (this.state.email === '') {
-      console.log('entra en vacío')
       this.setState({ errorEmail: 'Please, write your email' });
       isValid = false;
     } else {
       this.setState({ errorEmail: undefined });
     }
     if (validator.isEmail(this.state.email) !== true && this.state.email !== '') {
-      console.log('entra en validador')
       this.setState({ errorEmail: 'Please, write your email in correct format' });
       isValid = false;
     }
@@ -150,7 +145,7 @@ class EditProfile extends Component {
 
   handleNewImageSelected = (imageBlob) => {
     this.setState(({ image: imageBlob }));
-    console.log('handleNewImageSelected:', imageBlob);
+    //console.log('handleNewImageSelected:', imageBlob);
     this.handleClickShowEdit();
   }
 
@@ -165,7 +160,8 @@ class EditProfile extends Component {
       <section className='EditProfileView'>
         <h1>Hi {this.state.name}</h1>
 
-        <FileInput onChange={this.handleNewImageSelected} name={this.state.name} />        
+          <FileInput onChange={this.handleNewImageSelected} 
+                     name={this.state.name}/>        
 
         <Grid
           container

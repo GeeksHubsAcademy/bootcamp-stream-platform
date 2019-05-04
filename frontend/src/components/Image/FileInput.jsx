@@ -1,5 +1,6 @@
 
-import React, { Component, useReducer } from 'react';
+import React, { Component} from 'react';
+import { connect } from 'react-redux';
 
 // edit button
 import Grid from '@material-ui/core/Grid';
@@ -7,9 +8,10 @@ import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
 
-
 import Avatar from './Avatar';
 
+// image path
+var apiImageUrl = "http://localhost:3001/uploads/profilePics/";
 
 class FileInput extends Component {
   constructor(props) {
@@ -21,9 +23,8 @@ class FileInput extends Component {
 
   state = {   
     disabled: true,
-    // TODO file from DB for preview?
     file: '',
-    imagePreviewUrl: '',
+    imagePreviewUrl: apiImageUrl + this.props.user.imagePath,
   };
 
   handleSubmit(e) {
@@ -40,11 +41,14 @@ class FileInput extends Component {
       });
     }
 
-    reader.readAsDataURL(file)
+    if (file) {
+      reader.readAsDataURL(file);
+      }
 
     // send image
     const image  = this.fileInput.current.files[0]
     this.props.onChange(image);
+    //URL.revokeObjectURL(urlGenerated) 
     // to change color
     this.setState({ disabled: false });
   }
@@ -62,8 +66,8 @@ class FileInput extends Component {
           alignItems="center"
           >
        
-          <Avatar name={this.props.name} src={imagePreviewUrl}/>
-
+          <Avatar name={this.props.name} src={ imagePreviewUrl} />
+         
           <input
             className="inputButton"
             accept="image/*"
@@ -89,4 +93,5 @@ class FileInput extends Component {
   }
 }
 
-export default FileInput;
+//export default FileInput;
+export default connect(state => ({ user: state.user }))(FileInput);
