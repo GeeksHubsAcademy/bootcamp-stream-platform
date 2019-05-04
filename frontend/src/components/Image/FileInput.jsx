@@ -53,6 +53,13 @@ class FileInput extends Component {
     this.setState({ disabled: false });
   }
 
+  removeImage = () => {
+    this.setState(state => ({ 
+      file: '',
+      imagePreviewUrl: '',      
+    }));
+  };
+
   render() {
 
     let {imagePreviewUrl} = this.state;
@@ -67,26 +74,35 @@ class FileInput extends Component {
           >
        
           <Avatar name={this.props.name} src={ imagePreviewUrl} />
-         
-          <input
-            className="inputButton"
-            accept="image/*"
-            id="contained-button-file"
-            type="file"
-            ref={this.fileInput} 
-            onChange={this.handleSubmit} 
-            name='file-input'
-          />  
 
-          <label htmlFor="contained-button-file">
-            <Tooltip title="Edit your photo" aria-label="Photo">
-              {/* IMPORTANT component="span" to input file */}
-              <Fab component="span"
-                    color={ !!this.state.disabled ? 'primary' : 'secondary'}>
-                <Icon>image_icon</Icon>
+          <div>         
+            <input
+              className="inputButton"
+              accept="image/*"
+              id="contained-button-file"
+              type="file"
+              ref={this.fileInput} 
+              onChange={this.handleSubmit} 
+              name='file-input'
+            />  
+            <label htmlFor="contained-button-file" >
+              <Tooltip title="Edit your photo" aria-label="Photo">
+                {/* IMPORTANT component="span" to input file */}
+                <Fab component="span"
+                      color={ !!this.state.disabled ? 'primary' : 'secondary'}>
+                  <Icon>image_icon</Icon>
+                </Fab>
+              </Tooltip>
+            </label>
+          </div>
+
+            <Tooltip title="Remove your photo" aria-label="Remove">
+              <Fab onClick={this.removeImage} 
+                   className="removeButton"
+                   color="default">
+                <Icon>delete_icon</Icon>
               </Fab>
             </Tooltip>
-          </label>
         </Grid>
 
     );
