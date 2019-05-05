@@ -38,16 +38,26 @@ class EditBootcamp extends Component {
         return (
 
             <div className="editBootcamp">
-                <div className="content-edit">
-                    <input onChange={this.handleChange} placeholder="title" value={this.state.title || ''} name="title" type="text" />
-                    <input onChange={this.handleChange} placeholder="description" value={this.state.description || ''} name="description" type="text" />
-                    <input onChange={this.handleChange} placeholder="Fecha de Inicio" value={this.state.startsAt || ''} name="startsAt" type="date" />
-                    <div>
-                        <button onClick={ this.dec}>-</button> 
-                        <input onChange={this.handleChange}
-                            value={this.state.weeksDuration} 
-                            name="weeksDuration" type="text" min={1} max={12} readOnly/>
-                        <button onClick={ this.inc}>+</button>
+                <div className="content-edit">  
+                    <div className="div-title">
+                        <div>Nombre del Bootcamp</div>
+                        <input onChange={this.handleChange} placeholder="title" value={this.state.title || ''} name="title" type="text" />                    
+                    </div>
+                    <div className="div-description">
+                        <div>Descripcion</div>
+                        <input onChange={this.handleChange} placeholder="description" value={this.state.description || ''} name="description" type="text" />
+                    </div>
+                    <div className="div-start">
+                        <div>Fecha de inicio</div>
+                        <input onChange={this.handleChange} placeholder="Fecha de Inicio" value={this.state.startsAt || ''} name="startsAt" type="date" />
+                    </div>
+                    <div className="div-duration">
+                        <div>Duración en semanas</div>
+                        <div>
+                            <button onClick={ this.dec}>-</button> 
+                            <p>{this.state.weeksDuration}</p>
+                            <button onClick={ this.inc}>+</button>
+                        </div>
                     </div>
                 </div>
                 <div className="content-action">
