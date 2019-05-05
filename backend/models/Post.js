@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const PostSchema = new mongoose.Schema({
+ const PostSchema = new mongoose.Schema({
         postType: {
           type: String,
           enum: ['text', 'video', 'activity', 'code'],
@@ -23,6 +23,7 @@ const PostSchema = new mongoose.Schema({
 );
 
 
-const Post = mongoose.model('post', PostSchema);
+const PostModel = mongoose.model('post', PostSchema);
 
-module.exports = Post;
+module.exports = {PostModel,
+  PostSchema};

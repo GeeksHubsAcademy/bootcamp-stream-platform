@@ -1,0 +1,18 @@
+.bigAvatar[class^="MuiAvatar-root"] {
+  margin: 10px;
+  width: 300px;
+  height: 300px;
+  font-size: 10em;
+}
+.letterAvatar[class^="MuiAvatar-root"] {
+  color: "#fff";
+  background-color: #380404;
+}
+input[type="file"].inputButton + label{
+  margin-left: -40px;
+}
+
+.removeButton[class^="MuiButtonBase"]{
+  margin-top: 120px;
+  margin-left: -70px;
+}

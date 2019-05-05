@@ -12,59 +12,10 @@
             padding: 10px;
             margin: 5px;
 
-            div{
-                display: flex;
-
-                input{
-                    padding: 10px;
-                    margin: 5px;
-                    
-                    &:focus{
-                        border: 2px solid black;
-    
-                        &::placeholder{
-                            font-style: italic;
-                            font-size: 11px;
-                            
-    
-                        }
-                        
-                    }
-                }
-                
-                div{
-                    width: 32%;
-                }
-
-            }
-            .div-duration{
-                display: flex;
-                flex-direction: row;
-                
-                div{
-                    justify-content: space-between;
-                    align-items: center;
-            
-                    button{
-                        margin: 0;
-                        width: 12px;
-                        height: 12px;
-                        align-items: center;
-                    }
-                }
-                
-            }
-
-            
         }
         .content-action{
             display: flex;
             justify-content: space-around;
 
-            button{
-                border: 1px solid black;
-                width: 15%;
-                padding: 8px;
-            }    
         }
 }
