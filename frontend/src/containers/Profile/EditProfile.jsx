@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 //import { Redirect } from '@reach/router';
 
 // redux
-import { updateProfile, deleteUser, loggedOut } from '../../redux/actions';
+import { updateProfile, deleteUser } from '../../redux/actions';
 
 //validate
 import validator from 'validator';
@@ -162,8 +162,8 @@ class EditProfile extends Component {
   };
 
   handleNewImageSelected = (imageBlob) => {
-    // TODO image empty => remove
-    this.setState(({ image: imageBlob }));
+    // TODO image empty => send empty field 
+    this.setState(({ image: imageBlob}));
     console.log('handleNewImageSelected:', imageBlob);
     this.handleClickShowEdit();
   }
@@ -334,7 +334,7 @@ class EditProfile extends Component {
           >
           <Button size="small" variant="outlined" color="primary" 
                   onClick={this.onClickDialog}>
-            Delete mi account
+            Delete my {this.state.role} account
           </Button>
         </Grid>
 
