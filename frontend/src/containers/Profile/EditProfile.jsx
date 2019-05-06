@@ -163,7 +163,7 @@ class EditProfile extends Component {
 
   handleNewImageSelected = (imageBlob) => {
     // TODO image empty => send empty field 
-    this.setState(({ image: imageBlob}));
+    this.setState(({ image: imageBlob || ''}));
     console.log('handleNewImageSelected:', imageBlob);
     this.handleClickShowEdit();
   }
