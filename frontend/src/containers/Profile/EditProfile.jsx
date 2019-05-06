@@ -36,6 +36,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 // Image
 import FileInput from '../../components/Image/FileInput';
 
+// Alert dialog
+import AlertDialog from '../../components/Messages/AlertDialog';
+
 class EditProfile extends Component {
   // state initial
   //state =  this.props.user || {}
@@ -57,7 +60,7 @@ class EditProfile extends Component {
     open: false,
   };
 
-   // snackbar
+   // snackbar component
   handleClick = () => {
     this.setState({ open: true });
   };
@@ -73,6 +76,11 @@ class EditProfile extends Component {
     e.preventDefault();
   };
 
+  // to receive function to child to parent
+  onClickDialog = () => {
+    this.child.handleClickOpenDialog();
+  }
+ 
   // action to updateProfile
   saveProfile = e => {
     e.preventDefault();
@@ -151,11 +159,6 @@ class EditProfile extends Component {
   }
 
   render() {
-
-    // TODO after login task
-    // if (this.props.isLogged) {
-    //   return <Redirect to='login' />;
-    // }
 
     return (
       <section className='EditProfileView'>
@@ -294,10 +297,14 @@ class EditProfile extends Component {
           ]}
         /> 
 
-        <form onClick={this.deleteProfile}>
-          <Button variant='contained'>Unsubscribe</Button>
-        </form>
-       
+        <AlertDialog onRef={ref => (this.child = ref)} 
+        title="Really do you want delete your profile?"
+        message="Your user and personal data will be deleted and you will not be able to access your account again" />
+        <Button variant="outlined" color="primary" 
+                onClick={this.onClickDialog}>
+          Delete mi account
+        </Button>
+
       </section>
     );
   }
