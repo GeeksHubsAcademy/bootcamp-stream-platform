@@ -1,0 +1,29 @@
+{
+  "name": "express-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=test || NODE_ENV=test || SET \"NODE_ENV=test\" && nodemon index.js",
+    "mongo_start": "~/Downloads/mongodb-osx-x86_64-4.0.6/bin/mongod --dbpath=/data/db",
+    "start": "export NODE_ENV=production || NODE_ENV=production || SET \"NODE_ENV=production\" && node index.js",
+    "dev": "export NODE_ENV=development || NODE_ENV=development || SET \"NODE_ENV=development\" && nodemon index.js"
+  },
+  "keywords": [],
+  "author": "jupegarnica",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.5",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.4.19",
+    "multer": "^1.4.1",
+    "nodemailer": "^6.0.0",
+    "validator": "^10.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10",
+    "morgan": "^1.9.1"
+  }
+}

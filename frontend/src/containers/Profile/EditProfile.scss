@@ -1,0 +1,99 @@
+.EditProfileView{
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-wrap: nowrap;
+  justify-content: center;
+  width: 70%;
+  margin: 2em auto 1em;
+  border: 1px solid rgba(56, 4, 4, 0.3);
+  border-radius: 5px;
+
+  $dark-red: #380404;
+  $blue-mui: #3f51b5;
+  $red: #d32f2f;
+  $green: #4CAF50;
+
+  p{
+    display: flex;
+    padding: 1em;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  form {
+  display: flex;
+  flex-direction: column;
+  height: 100%; 
+  flex-wrap: nowrap;
+  justify-content: center;
+
+    button,
+    .formControl,
+    .textField {
+      align-self: center;
+      width: 70%;
+    }
+    button{
+      margin: 1em 0;
+    }
+  }
+  .formControl + .formControl {
+    margin-top: 1em;
+  }
+  form ~ form {
+    margin-top: 3em;
+  }
+
+  /* disabled inputs */
+  [class*="MuiInput-disabled"] {
+    color: $blue-mui;
+    }
+  [class*="MuiInput-disabled"]:before {
+    content: none;
+  }
+
+  /* snackbar */
+  .success [class*="MuiSnackbarContent"]{
+    background-color: $green;
+  }
+  .error [class*="MuiSnackbarContent"]{
+    background-color: $red;
+  }
+
+  // input file 
+  .imgPreview{
+  text-align: center;
+  margin: 5px 15px;
+  height: 200px;
+  width: 500px;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  border-top: 5px solid gray;
+  border-bottom: 5px solid gray;
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  
+  .previewText{
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  input[type="file"].inputButton,
+  .hidden{
+    display: none
+  }
+
+}
+
+section.EditProfileView + div.endSection{
+  padding: 2em;
+
+  button{
+    flex-grow: 0.75;
+  }
+}

@@ -1,0 +1,41 @@
+.navigation {
+    display:flex;
+    justify-content: space-between;
+    background: rgb(56, 4, 4);
+    box-shadow: 0 15px 15px -10px rgba(10, 10, 0, 0.87);
+    color:white;
+    padding: 2em;
+    a {
+    color:white;
+    }
+    img {
+        width: 20em;
+    // box-shadow: 0 20px 20px -20px rgba(231, 231, 226, 0.87);
+
+    }
+    .logo{
+
+
+    }
+
+    .avatar{
+        background: red;
+    }
+
+    .menu{
+        background: green;
+
+    }
+
+    .admin{
+
+    }
+
+    .i{
+        color: white;
+        display: flex;
+        font-size: 20px;
+    }
+   
+
+}

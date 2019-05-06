@@ -1,0 +1,21 @@
+.editBootcamp{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 500px;
+    margin: 0 auto;
+    padding: 15px;
+
+        .content-edit{
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            margin: 5px;
+
+        }
+        .content-action{
+            display: flex;
+            justify-content: space-around;
+
+        }
+}
