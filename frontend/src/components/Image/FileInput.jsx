@@ -24,7 +24,8 @@ class FileInput extends Component {
   state = {   
     disabled: true,
     file: '',
-    imagePreviewUrl: this.props.user.imagePath,
+    // TODO error avatar undefined:1 GET http://localhost:3001/uploads/profilePics/undefined 404 (Not Found)
+    imagePreviewUrl: apiImageUrl + this.props.user.imagePath,
   };
 
   handleSubmit(e) {
@@ -60,7 +61,7 @@ class FileInput extends Component {
      // to change color
 
     this.setState(state => ({ 
-      // TODO send image empty to imageBlob
+      // TODO send image empty to imageBlob // delete imagePath field, not exist by default
       image: '',
       file: '',
       imagePreviewUrl: '',      
@@ -81,7 +82,9 @@ class FileInput extends Component {
           alignItems="center"
           >
        
-          <Avatar name={this.props.name} src={!!imagePreviewUrl && apiImageUrl + imagePreviewUrl} />
+          {/* TODO error ruta */}
+          {/* <Avatar name={this.props.name} src={!!imagePreviewUrl && apiImageUrl + imagePreviewUrl} /> */}
+          <Avatar name={this.props.name} src={!!imagePreviewUrl && imagePreviewUrl} />
 
           <div>         
             <input
