@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-
+import Fab from '@material-ui/core/Fab';
 import CreatePostText from './CreatePostText'
 
 
@@ -11,6 +11,16 @@ const CreatePostActivity = () => <div className='postActivity'>postActivity</div
 
 const Post = () => {
   const [value, setValue] = useState('Text');
+  const [creating, setCreating] = useState(false);
+
+  if (!creating) {
+    return <Fab onClick={() => setCreating(true)}
+          variant="extended"
+          size="large"
+          color="secondary"
+          aria-label="Add"
+        >+</Fab>
+  }
 
   return (
     <div className='createPost'>
