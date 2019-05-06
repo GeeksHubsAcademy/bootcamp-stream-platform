@@ -174,8 +174,7 @@ class EditProfile extends Component {
           <h1>Hi {this.state.name}</h1>
 
           <FileInput onChange={this.handleNewImageSelected} 
-                     name={this.state.name}/>        
-
+                     name={this.state.name.trim()[0] + this.state.lastname.trim()[0]}/>        
           <Grid
             container
             direction="row"
