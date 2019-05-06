@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 //import { Redirect } from '@reach/router';
 
 // redux
-import { updateProfile } from '../../redux/actions';
+import { updateProfile, deleteUser, loggedOut } from '../../redux/actions';
 
 //validate
 import validator from 'validator';
@@ -71,9 +71,16 @@ class EditProfile extends Component {
     this.setState({ open: false });
   };
 
-  // TODO
   deleteProfile = e => {
     e.preventDefault();
+    // go to action
+    deleteUser()
+    .then(() => this.setState({ successMessage: 'Deleted user in DB!' }))
+    .catch(e => this.setState({ error: e.message }))
+    .then(() => this.child.handleCloseDialog()) // close dialog component as child component
+    .then(() => this.handleClick()); // show error in snackbar
+      // TODO  go to login/logout?
+      //().then(() => this.loggedOut() );        
   };
 
   // Alert Dialog component 
@@ -302,9 +309,12 @@ class EditProfile extends Component {
 
         </section>       
 
+        {/* NOTE: receive/send props to parent to child */}
         <AlertDialog onRef={ref => (this.child = ref)} 
         title="Really do you want delete your profile?"
-        message="Your user and personal data will be deleted and you will not be able to access your account again" />
+        message="Your user and personal data will be deleted and you will not be able to access your account again"
+        actionAgree={this.deleteProfile}
+         />
         
         <Grid
           container
