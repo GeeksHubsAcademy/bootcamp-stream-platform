@@ -24,7 +24,7 @@ class FileInput extends Component {
   state = {   
     disabled: true,
     file: '',
-    imagePreviewUrl: apiImageUrl + this.props.user.imagePath,
+    imagePreviewUrl: this.props.user.imagePath,
   };
 
   handleSubmit(e) {
@@ -60,6 +60,8 @@ class FileInput extends Component {
      // to change color
 
     this.setState(state => ({ 
+      // TODO send image empty to imageBlob
+      image: '',
       file: '',
       imagePreviewUrl: '',      
       disabled: false
@@ -79,7 +81,7 @@ class FileInput extends Component {
           alignItems="center"
           >
        
-          <Avatar name={this.props.name} src={ !imagePreviewUrl} />
+          <Avatar name={this.props.name} src={!!imagePreviewUrl && apiImageUrl + imagePreviewUrl} />
 
           <div>         
             <input
@@ -101,13 +103,16 @@ class FileInput extends Component {
               </Tooltip>
             </label>
           </div>
-
             <Tooltip title="Remove your photo" aria-label="Remove">
+            {/* NOTE div for tooltip target when fab is disabled */}
+            <div>
               <Fab onClick={this.removeImage} 
+                   disabled={ !this.props.user.imagePath && !this.state.file}
                    className="removeButton"
                    color={ !!this.state.disabled ? 'default' : 'secondary'}>
                 <Icon>delete_icon</Icon>
               </Fab>
+              </div>
             </Tooltip>
         </Grid>
 
