@@ -24,6 +24,7 @@ class FileInput extends Component {
   state = {   
     disabled: true,
     file: '',
+    // TODO error avatar undefined:1 GET http://localhost:3001/uploads/profilePics/undefined 404 (Not Found)
     imagePreviewUrl: apiImageUrl + this.props.user.imagePath,
   };
 
@@ -60,6 +61,8 @@ class FileInput extends Component {
      // to change color
 
     this.setState(state => ({ 
+      // TODO send image empty to imageBlob // delete imagePath field, not exist by default
+      image: '',
       file: '',
       imagePreviewUrl: '',      
       disabled: false
@@ -79,7 +82,9 @@ class FileInput extends Component {
           alignItems="center"
           >
        
-          <Avatar name={this.props.name} src={ imagePreviewUrl} />
+          {/* TODO error ruta */}
+          {/* <Avatar name={this.props.name} src={!!imagePreviewUrl && apiImageUrl + imagePreviewUrl} /> */}
+          <Avatar name={this.props.name} src={!!imagePreviewUrl && imagePreviewUrl} />
 
           <div>         
             <input
@@ -101,13 +106,16 @@ class FileInput extends Component {
               </Tooltip>
             </label>
           </div>
-
             <Tooltip title="Remove your photo" aria-label="Remove">
+            {/* NOTE div for tooltip target when fab is disabled */}
+            <div>
               <Fab onClick={this.removeImage} 
+                   disabled={ !this.props.user.imagePath && !this.state.file}
                    className="removeButton"
                    color={ !!this.state.disabled ? 'default' : 'secondary'}>
                 <Icon>delete_icon</Icon>
               </Fab>
+              </div>
             </Tooltip>
         </Grid>
 

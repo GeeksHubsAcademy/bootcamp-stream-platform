@@ -51,8 +51,7 @@ class _Register extends Component {
 
   handleSubmit = (ev) => {
     ev.preventDefault();//esto es para que no se refresque
-    console.log(this.state);
-    postRegister(this.name, this.surname, this.email, this.password, this.password2);
+    postRegister(this.state);
     // loggedIn(pass, email)
     //     .then(() => this.setState({ error: 'logged!!' }))
     //     .catch(e => this.setState({ error: 'email o contraseÃ±a incorrecta' }));

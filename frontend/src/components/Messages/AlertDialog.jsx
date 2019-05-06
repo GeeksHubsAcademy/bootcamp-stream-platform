@@ -15,9 +15,6 @@ class AlertDialog extends React.Component {
   componentWillUnmount() {
     this.props.onRef(undefined)
   }
-  method() {
-    window.alert('child function')
-  }
 
   state = {
     openDialog: false,
@@ -47,12 +44,12 @@ class AlertDialog extends React.Component {
         </DialogContent>
         <DialogActions>
 
-          <Button onClick={this.handleCloseDialog} color="primary">
+          <Button size="small" variant="outlined" onClick={this.handleCloseDialog} color="primary">
             Disagree
           </Button>
 
-          {/* TODO send action deleteProfile in parent */}
-          <Button onClick={this.handleCloseDialog} color="primary" autoFocus>
+          {/* NOTE: send action by props to parent component */}
+          <Button size="small" variant="outlined" onClick={this.props.actionAgree} color="primary" autoFocus>
             Agree
           </Button>
         </DialogActions>
