@@ -21,13 +21,13 @@ export const Navigation = props => {
       <div className='user'>
         {props.user ? (
           <div className='logged'>
-            
+
             <nav className='menu'>
               {/* <Link to='movies/top_rated'>top rated</Link> */}
-  
+
               <div className="menu2">
                 {/*menu nuevo con varias opciones dandole al boton */}
-  
+
                 <Button
                   aria-owns='simple-menu'
                   aria-haspopup="true"
@@ -43,19 +43,19 @@ export const Navigation = props => {
                   <MenuItem onClick={() => setMenuVisible(false)}><Link to='/profile'>profile</Link></MenuItem>
                   <MenuItem onClick={() => setMenuVisible(false)}><Link to='/bootcamp'>bootcamps</Link></MenuItem>
                   {props.user.role === 'admin' && <MenuItem onClick={() => setMenuVisible(false)}><Link to='/admin'>admin</Link></MenuItem>}
-                  <MenuItem onClick={() => setMenuVisible(false)}><Link to='/bootcamp'><FontAwesome2 onClick={loggedOut} icon='sign-out-alt' /></Link></MenuItem>
-                  
+                  <MenuItem onClick={() => {setMenuVisible(false); loggedOut()}}><Link to='/bootcamp'><FontAwesome2 icon='sign-out-alt' /></Link></MenuItem>
+
                 </Menu>
-  
-  
+
+
               </div>
-  
-              
-              
-              
-              
-            
-              
+
+
+
+
+
+
+
             </nav>
           </div>
         ) : (
@@ -70,7 +70,3 @@ export const Navigation = props => {
 }
 
 export default connect(state => ({ user: state.user }))(Navigation);
-
-
-
-

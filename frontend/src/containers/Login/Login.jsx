@@ -46,7 +46,7 @@ class _Login extends Component {
       this.setState({ errorEmail: 'No has introducido el email' });
     } else {
       console.log(pass, email);
-      loggedIn(pass, email)
+      this.props.loggedIn(pass, email)
         // .then(() => this.setState({ error: 'logged!!' }))
         .catch(e => this.setState({ error: 'email o contraseña incorrecta' }));
     }
@@ -97,7 +97,7 @@ class _Login extends Component {
 // export const  withStyles(styles)(OutlinedButtons);
 
 const mapStateToProps = ({ user }) => ({ isLogged: !!user });
-const mapDispatchToProps = dispatch => ({ dispatch });
+const mapDispatchToProps = () => ({ loggedIn: loggedIn });
 
 export const Login = connect(
   mapStateToProps,
