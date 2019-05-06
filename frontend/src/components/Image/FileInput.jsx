@@ -79,7 +79,7 @@ class FileInput extends Component {
           alignItems="center"
           >
        
-          <Avatar name={this.props.name} src={ imagePreviewUrl} />
+          <Avatar name={this.props.name} src={ !imagePreviewUrl} />
 
           <div>         
             <input
