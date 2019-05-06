@@ -73,14 +73,14 @@ class EditProfile extends Component {
 
   deleteProfile = e => {
     e.preventDefault();
-    // go to action
+    //close dialog
+    // this.child.handleCloseDialog();
+    //show message
+    //this.handleClick({ successMessage: 'Deleted user in DB!' });
+    // go to action and logout by default when user isn't exists
     deleteUser()
     .then(() => this.setState({ successMessage: 'Deleted user in DB!' }))
-    .catch(e => this.setState({ error: e.message }))
-    .then(() => this.child.handleCloseDialog()) // close dialog component as child component
-    .then(() => this.handleClick()); // show error in snackbar
-      // TODO  go to login/logout?
-      //().then(() => this.loggedOut() );        
+    .catch(e => this.setState({ error: e.message }));
   };
 
   // Alert Dialog component 

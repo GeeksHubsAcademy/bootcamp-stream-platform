@@ -128,11 +128,9 @@ export async function getUsers() {
 export async function deleteUser() {
   const user = store.getState().user;
   let token = user && user.token;
-  console.log(user);
-  let response = await Axios.delete('http://localhost:3001/delete/', user, { headers: {  Authorization: token } });
+  let response = await Axios.delete('http://localhost:3001/user/delete/', { headers: {  Authorization: token } });
   let deletedUser = response.data;
   deletedUser.token = token;
-  console.log(deletedUser);
   dispatch({
     type: 'DELETE_USER',
     deletedUser,
