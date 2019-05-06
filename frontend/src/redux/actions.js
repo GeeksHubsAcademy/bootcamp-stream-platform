@@ -49,7 +49,7 @@ export async function getBootcamps() {
   });
 }
 
-export async function postRegister(name, lastname, email, password) {
+export async function postRegister({name, lastname, email, password}) {
   console.log(name, lastname, email, password);
 
   let res = await Axios.post('http://localhost:3001/user/register', { name, lastname, email, password });
