@@ -2,6 +2,9 @@
    display: flex;
    justify-content: center;
    flex-direction: column;
-
-
+    .posts {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
 }

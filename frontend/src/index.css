@@ -18,6 +18,9 @@ code {
   display: flex;
   align-items: center;
   flex-direction: column;
+  background: #222;
+  color: white;
+
 }
 
 .main > div {
