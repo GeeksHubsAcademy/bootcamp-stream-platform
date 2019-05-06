@@ -112,7 +112,7 @@ Una plataforma de comunicación entre alumnos
     },
   ],
 };
-initialState = sampleState;
+initialState = {};
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'LOGGED_IN':
