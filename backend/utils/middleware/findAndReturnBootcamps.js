@@ -1,31 +1,31 @@
 const Bootcamp = require( '../../models/Bootcamp' );
+const lookupUsersByUserIdsFromBootcamps=[
+    {
+        $lookup: {
+            from: 'users',
+            localField: 'userIds',
+            foreignField: '_id',
+            as: 'users'
+        }
+    },
+    {
+        $project: {
+            users:{
+                password: false,
+                tokens: false,
+                __v:false}
+        }
+    }
+]
 const findAndResponseBootcamps = async ( req, res ) => {
     try {
         if ( req.user.role === 'admin' ) {
-            let bootcamps = await Bootcamp.aggregate([ {
-                $lookup:
-                  {
-                    from: 'users',
-                    localField: 'userIds',
-                    foreignField: '_id',
-                    as: 'users'
-                  }
-             } ])
+            let bootcamps = await Bootcamp.aggregate( [ ...lookupUsersByUserIdsFromBootcamps] )
             return res.status( 200 ).send( bootcamps )
         }
-        const bootcamps = await Bootcamp.aggregate( [
-            { 
-                $match: { userIds: ObjectId("5cc6ca23771c3019dc38a521") }
-            }, {
-                $lookup:
-                  {
-                    from: 'users',
-                    localField: 'userIds',
-                    foreignField: '_id',
-                    as: 'users'
-                  }
-             }]  )
-
+        const bootcamps = await Bootcamp.aggregate( [ {
+                $match: { userIds: req.user._id }
+            }, ...lookupUsersByUserIdsFromBootcamps ] )
         res.status( 200 ).send( bootcamps )
     } catch ( error ) {
         console.log( error )
