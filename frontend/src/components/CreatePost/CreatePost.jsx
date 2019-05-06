@@ -12,6 +12,7 @@ const CreatePostActivity = () => <div className='postActivity'>postActivity</div
 
 const Post = () => {
   const [value, setValue] = useState('Text');
+  const [body, setBody] = useState('');
   const [creating, setCreating] = useState(false);
 
   if (!creating) {
@@ -34,15 +35,17 @@ const Post = () => {
         </Tabs>
         <div className='create'>
           {value === 'Code' && <CreatePostCode />}
-          {value === 'Text' && <CreatePostText />}
+          {value === 'Text' && <CreatePostText value={body} onChange={setBody} />}
           {value === 'Video' && <CreatePostVideo />}
           {value === 'Activity' && <CreatePostActivity />}
         </div>
         <div className='actions'>
-          <Button onClick={() => setCreating(false)}  variant='outlined' color='secondary' component='span'>
+          <Button onClick={() => setCreating(false)} variant='outlined' color='secondary' component='span'>
             Save
           </Button>
-          <Button component='span' onClick={() => setCreating(false)}>Cancel</Button>
+          <Button component='span' onClick={() => setCreating(false)}>
+            Cancel
+          </Button>
         </div>
       </div>
     </Modal>
