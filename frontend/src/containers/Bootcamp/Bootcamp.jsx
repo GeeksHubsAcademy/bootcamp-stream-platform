@@ -27,7 +27,7 @@ const Bootcamp = ({ bootcamp }) => {
     <section className='bootcampView'>
       <h1>{bootcamp.title}</h1>
       <h4>{bootcamp.weeksDuration} Semanas</h4>
-      <div className='post'>
+      <div className='posts'>
         {bootcamp.posts.map(post => (
           <Post data={post} key={post._id} />
         ))}
