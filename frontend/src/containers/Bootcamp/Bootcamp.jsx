@@ -17,7 +17,7 @@ import CreatePost from '../../components/CreatePost/CreatePost'
 const SearchPosts = () => <div>Search posts</div>
 
 
-const Bootcamp = ({ bootcamp }) => {
+const Bootcamp = ({ bootcamp, id }) => {
   console.log(bootcamp);
   if (!bootcamp) {
     return <h1>not bootcamp on the store</h1>
@@ -32,7 +32,7 @@ const Bootcamp = ({ bootcamp }) => {
           <Post data={post} key={post._id} />
         ))}
       </div>
-      <CreatePost />
+      <CreatePost streamId={id} />
 
       {/* <SearchPosts /> */}
     </section>
