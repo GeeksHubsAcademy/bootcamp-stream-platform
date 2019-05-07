@@ -52,7 +52,14 @@ Una plataforma de comunicación entre alumnos
           authorId: 2,
           content: {
             title: 'Recursos sobre react',
-            code: 'export default 42',
+            code: `
+            export let initialState = {
+  bootcamps: [],
+  user: null,
+  allUsers: []
+};
+
+            `,
             format: 'js',
           },
         },
@@ -149,7 +156,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.user,
-      };      
+      };
 
     default:
       return state;
