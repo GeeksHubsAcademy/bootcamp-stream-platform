@@ -29,9 +29,7 @@ const isAdmin = async ( req, res, next ) => {
     next();
 }
 const isMember = async ( req, res, next ) => {
-    /**Should be middleware that checks if the user is a bootcamp member and have the right to post */
     if ( req.user.role === 'admin' ) return next();
-    console.log(req.params.bootcamp_id,req.user._id)
     const bootcamp = await Bootcamp.findOne( {
         _id: req.params.bootcamp_id,
         userIds:req.user._id
@@ -40,9 +38,8 @@ const isMember = async ( req, res, next ) => {
     else return next();
 }
 const isAuthor = async ( req, res, next ) => {
-    /**Should be middleware that checks if the user is the post author and have the right to edit the post */
     if ( req.user.role === 'admin' )return  next();
-    const Post=PostModel.findOne({
+    const Post=await PostModel.findOne({
         _id: req.params.post_id,
         authorId: req.user._id
      })
