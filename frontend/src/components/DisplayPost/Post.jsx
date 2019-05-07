@@ -6,6 +6,7 @@ import PostActivity from './PostActivity';
 import PostCode from '../CreatePost/CreatePostCode/CreatePostCode';
 import FontAwesome from '../FontAwesome';
 import {removePost} from '../../redux/actions';
+import { connect } from 'react-redux';
 
 // const PostCode = ({data}) => <div className='postCode'>postCode  {JSON.stringify(data)} </div>;
 const PostVideo = ({data}) => <div className='postVideo'>postVideo  {JSON.stringify(data)}  </div>;
@@ -15,9 +16,10 @@ const PostVideo = ({data}) => <div className='postVideo'>postVideo  {JSON.string
 
 //const PostActivity = ({data}) => <div className='postActivity'>postActivity  {JSON.stringify(data)} </div>;
 
-const Post = ({data}) => {
+const Post = ({data, user}) => {
+  console.log(data.authorId);
+
   function deletePost() {
-    console.log('hola?');
 
       removePost(data._id);
   }
@@ -42,9 +44,9 @@ const Post = ({data}) => {
   return (
     <div className='postItem'>
       {post}
-      <FontAwesome onClick={deletePost} icon='trash' family='fas' />
+      {user._id === data.authorId && <FontAwesome onClick={deletePost} icon='trash' family='fas' />}
     </div>
   );
 };
 
-export default Post;
+export default connect(({user}) => ({user}))(Post);

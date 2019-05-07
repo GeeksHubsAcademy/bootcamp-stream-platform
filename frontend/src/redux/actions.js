@@ -4,7 +4,6 @@ import Axios from 'axios';
 let { dispatch } = store;
 
 export async function removePost(postId) {
-  console.log(postId);
 
   const user = store.getState().user
   let token = user && user.token;
