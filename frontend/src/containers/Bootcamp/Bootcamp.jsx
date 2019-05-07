@@ -1,20 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Post from '../../components/DisplayPost/Post'
-
-// material-ui
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-
-
 import CreatePost from '../../components/CreatePost/CreatePost'
-const SearchPosts = () => <div>Search posts</div>
 
 
 const Bootcamp = ({ bootcamp, id }) => {
@@ -33,8 +20,6 @@ const Bootcamp = ({ bootcamp, id }) => {
         ))}
       </div>
       <CreatePost streamId={id} />
-
-      {/* <SearchPosts /> */}
     </section>
   );
 }
