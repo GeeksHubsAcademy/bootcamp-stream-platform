@@ -3,9 +3,14 @@ import PostText from './CreatePost/PostText';
 import './CreatePost/PostActivity';
 import './Post.scss';
 import PostActivity from './CreatePost/PostActivity';
+import PostCode from './CreatePost/CreatePostCode/CreatePostCode';
 
-const PostCode = ({data}) => <div className='postCode'>postCode  {JSON.stringify(data)} </div>;
+// const PostCode = ({data}) => <div className='postCode'>postCode  {JSON.stringify(data)} </div>;
 const PostVideo = ({data}) => <div className='postVideo'>postVideo  {JSON.stringify(data)}  </div>;
+
+
+
+
 //const PostActivity = ({data}) => <div className='postActivity'>postActivity  {JSON.stringify(data)} </div>;
 
 const Post = ({data}) => {
@@ -15,7 +20,7 @@ const Post = ({data}) => {
       post = <PostText data={data} />;
       break;
     case 'code':
-      post = <PostCode data={data} />;
+      post = <PostCode data={data} key={data.authorId} />;
       break;
     case 'video':
       post = <PostVideo data={data} />;

@@ -20,18 +20,11 @@ class CreatePostCode extends Component{
         return(
             <div className="CreatePostCode">
             <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/railscasts.css" />
-                <div>
-                        <textarea cols='45' rows='5' name="text" onChange={this.handleChange}>
-                        </textarea>
-                </div>
-                <Highlight>               
+ 
 
-                        {this.state.text}
-    
-                </Highlight>
                 <Highlight>
                     <div>
-                        {"<?php echo 'hola' ?>"}
+                    {this.props.data.content.code}
                         </div>
                 </Highlight>
             </div>
