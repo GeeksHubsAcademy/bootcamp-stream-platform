@@ -67,7 +67,7 @@ class EditBootcamp extends Component {
       const date = this.state.startsAt ? new Date(this.state.startsAt): new Date();
        return (
          <div className='editBootcamp'>
-           <h1>{this.props.bootcamp ? 'edit': 'create new'} bootcamp</h1>
+           <h1>{this.props.bootcamp ? 'Editar': 'Crear'} bootcamp</h1>
            <div className='content-edit'>
               <TextField onChange={this.handleChange} label='title' value={this.state.title} name='title' type='text' required />
               <TextField onChange={this.handleChange} label='description' value={this.state.description} name='description' type='text' required />
