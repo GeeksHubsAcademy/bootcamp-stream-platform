@@ -1,7 +1,6 @@
 import React from 'react';
 import './CreatePostText.scss';
-// import Editor from 'for-editor';
-const Editor = () => 'hola'
+import Editor from 'for-editor';
 
 const CreatePostText = props => <Editor {...props} placeholder="Escribe markdown..." />;
 
