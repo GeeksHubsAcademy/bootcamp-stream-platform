@@ -135,6 +135,20 @@ export async function deleteUser() {
     type: 'DELETE_USER',
     deletedUser,
   });
-
-
 }
+
+export async function unsuscribeUser(bootcamp) {
+  console.log('bootcamp que llega al actions', bootcamp);
+
+  const user = store.getState().user;
+  let token = user && user.token;
+  // TODO
+  let response = await Axios.delete('http://localhost:3001/bootcamp/unsubscribed/'+ bootcamp._id, bootcamp, { headers: {  Authorization: token } });
+  let bootcampModified = response.data;
+  console.log(bootcamp);
+  dispatch({
+    type: 'UNSUSCRIBE_USER',
+    bootcampModified,
+  });
+}
+

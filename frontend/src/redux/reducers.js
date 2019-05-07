@@ -145,6 +145,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         user: action.user,
       };
+    case 'UNSUSCRIBE_USER':
+      return {
+        ...state,
+        user: action.user,
+      };      
 
     default:
       return state;
