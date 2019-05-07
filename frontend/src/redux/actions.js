@@ -3,6 +3,22 @@ import Axios from 'axios';
 
 let { dispatch } = store;
 
+export async function removePost(postId) {
+  console.log(postId);
+
+  const user = store.getState().user
+  let token = user && user.token;
+  let response = await Axios.delete('http://localhost:3001/post/' + postId, { headers: { Authorization: token } });
+
+   let bootcamps = response.data;
+   dispatch({
+     type: 'BOOTCAMPS_LOADED',
+     bootcamps,
+   });
+}
+
+
+
 export async function sendPost(post, streamId) {
   const user = store.getState().user
   let token = user && user.token;
