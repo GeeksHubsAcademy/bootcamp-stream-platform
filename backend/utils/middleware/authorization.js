@@ -40,7 +40,7 @@ const isMember = async ( req, res, next ) => {
             userIds: req.user._id
         }
     } )
-    if ( bootcamp ) return res.send( 'is member' )
+    if ( bootcamp ) return next();
     else return res.send( 'is not a member' )
 }
 const isAuthor = async ( req, res, next ) => {
@@ -53,7 +53,7 @@ const isAuthor = async ( req, res, next ) => {
         }
      })
      if(!Post) return res.status(401).send('You are not the author of the post')
-     next()
+     next();
 }
 
 module.exports = {
