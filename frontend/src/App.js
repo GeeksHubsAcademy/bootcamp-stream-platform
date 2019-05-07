@@ -10,7 +10,7 @@ import NotFound from './components/NotFound';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import AdminEditBootcamp from './containers/Admin/EditBootcamp.jsx';
-import AdminBootcamps from './containers/Admin/Bootcamps';
+import AdminBootcamps from './containers/Admin/bootcamps';
 import PrivateZone from './components/PrivateZone';
 import CreatePostCode from './components/CreatePost/CreatePostCode/CreatePostCode';
 import Player from './components/CreatePost/Reproductor';

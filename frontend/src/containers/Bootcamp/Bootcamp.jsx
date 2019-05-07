@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Post from '../../components/Post'
 
-import CreatePost from '../../components/CreatePost/CreatePost'
-const SearchPosts = () => <div>Search posts</div>
-
 // material-ui
 // import Card from '@material-ui/core/Card';
 // import CardHeader from '@material-ui/core/CardHeader';
@@ -51,6 +48,10 @@ const SearchPosts = () => <div>Search posts</div>
 
 
 
+import CreatePost from '../../components/CreatePost/CreatePost'
+const SearchPosts = () => <div>Search posts</div>
+
+
 const Bootcamp = ({ bootcamp }) => {
   console.log(bootcamp);
   if (!bootcamp) {
@@ -67,8 +68,8 @@ const Bootcamp = ({ bootcamp }) => {
         ))}
       </div>
       <CreatePost />
-
-      {/* <Card className='card'>
+      {/* //////////////// */}
+      {/* <Card className={classes.card}>
         <CardHeader
           avatar={
             <Avatar aria-label='Recipe' className='avatar'>
@@ -121,7 +122,7 @@ const Bootcamp = ({ bootcamp }) => {
           </CardContent>
         </Collapse>
       </Card> */}
-
+      {/* //////////////// */}
       <SearchPosts />
     </section>
   );

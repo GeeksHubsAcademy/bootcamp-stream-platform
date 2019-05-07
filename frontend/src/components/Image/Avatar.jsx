@@ -3,10 +3,10 @@ import './Avatar.scss';
 import ImageAvatar from './ImageAvatar'
 import LetterAvatar from './LetterAvatar'
 
-const Avatar = ({name, src}) => (
+const Avatar = ({name, altImage, src}) => (
  <>
   { src ? 
-            <ImageAvatar altFromParent="texto" srcFromParent={src} />
+            <ImageAvatar altFromParent={name} srcFromParent={src} />
             : <LetterAvatar userFromParent={name} /> }
  </>
 )
