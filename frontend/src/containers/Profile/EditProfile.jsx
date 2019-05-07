@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 //import { Redirect } from '@reach/router';
 
 // redux
-import { updateProfile, deleteUser, loggedOut } from '../../redux/actions';
+import { updateProfile, deleteUser } from '../../redux/actions';
 
 //validate
 import validator from 'validator';
@@ -12,7 +12,6 @@ import validator from 'validator';
 import './EditProfile.scss';
 
 // form styles
-//import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 // form error styles
 import FormControl from '@material-ui/core/FormControl';
@@ -32,6 +31,9 @@ import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
+//chips
+import Chip from '@material-ui/core/Chip';
+import FaceIcon from '@material-ui/icons/Face';
 
 // Image
 import FileInput from '../../components/Image/FileInput';
@@ -46,7 +48,7 @@ class EditProfile extends Component {
     name: this.props.user.name,
     lastname: this.props.user.lastname,
     email: this.props.user.email,
-    //role: this.props.user.role,
+    role: this.props.user.role,
     password: undefined,
     password2: undefined,
     errorName: undefined,
@@ -73,14 +75,14 @@ class EditProfile extends Component {
 
   deleteProfile = e => {
     e.preventDefault();
-    // go to action
+    //close dialog
+    // this.child.handleCloseDialog();
+    //show message
+    //this.handleClick({ successMessage: 'Deleted user in DB!' });
+    // go to action and logout by default when user isn't exists
     deleteUser()
     .then(() => this.setState({ successMessage: 'Deleted user in DB!' }))
-    .catch(e => this.setState({ error: e.message }))
-    .then(() => this.child.handleCloseDialog()) // close dialog component as child component
-    .then(() => this.handleClick()); // show error in snackbar
-      // TODO  go to login/logout?
-      //().then(() => this.loggedOut() );        
+    .catch(e => this.setState({ error: e.message }));
   };
 
   // Alert Dialog component 
@@ -160,8 +162,8 @@ class EditProfile extends Component {
   };
 
   handleNewImageSelected = (imageBlob) => {
-    // TODO image empty => remove
-    this.setState(({ image: imageBlob }));
+    // TODO image empty => send empty field 
+    this.setState(({ image: imageBlob || ''}));
     console.log('handleNewImageSelected:', imageBlob);
     this.handleClickShowEdit();
   }
@@ -171,11 +173,21 @@ class EditProfile extends Component {
     return (
       <div>
         <section className='EditProfileView'>
+
+        <Grid
+            container
+            direction="row"
+            justify="flex-end"
+            alignItems="center"
+          >
+            <Chip color="primary" label={this.state.role} icon={<FaceIcon />} />
+          </Grid>
+          
+
           <h1>Hi {this.state.name}</h1>
 
           <FileInput onChange={this.handleNewImageSelected} 
-                     name={this.state.name}/>        
-
+                     name={this.state.name.trim()[0] + this.state.lastname.trim()[0]}/>        
           <Grid
             container
             direction="row"
@@ -277,9 +289,6 @@ class EditProfile extends Component {
               {this.state.errorPassword2 && <FormHelperText id='component-error-text'>{this.state.errorPassword2}</FormHelperText>}
             </FormControl>
 
-            {/* disabled field */}
-            {/* <TextField disabled id='component-profile' label='Your profile' value={this.state.role} className='textField' margin='normal' /> */}
-
             <Button variant='contained' color='secondary' 
                     className={!!this.state.disabled ? 'hidden' : ''} 
                     onClick={this.saveProfile}>
@@ -325,7 +334,7 @@ class EditProfile extends Component {
           >
           <Button size="small" variant="outlined" color="primary" 
                   onClick={this.onClickDialog}>
-            Delete mi account
+            Delete my {this.state.role} account
           </Button>
         </Grid>
 

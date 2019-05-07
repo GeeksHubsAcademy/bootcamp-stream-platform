@@ -6,7 +6,7 @@ let { dispatch } = store;
 export async function loggedIn(password, email) {
   let response = await Axios.post('http://localhost:3001/user/login', { password, email });
   let user = response.data;
-  user.role = 'admin';
+  //user.role = 'admin';
   dispatch({
     type: 'LOGGED_IN',
     user,
@@ -49,7 +49,7 @@ export async function getBootcamps() {
   });
 }
 
-export async function postRegister(name, lastname, email, password) {
+export async function postRegister({name, lastname, email, password}) {
   console.log(name, lastname, email, password);
 
   let res = await Axios.post('http://localhost:3001/user/register', { name, lastname, email, password });
@@ -128,11 +128,9 @@ export async function getUsers() {
 export async function deleteUser() {
   const user = store.getState().user;
   let token = user && user.token;
-  console.log(user);
-  let response = await Axios.delete('http://localhost:3001/delete/', user, { headers: {  Authorization: token } });
+  let response = await Axios.delete('http://localhost:3001/user/delete/', { headers: {  Authorization: token } });
   let deletedUser = response.data;
   deletedUser.token = token;
-  console.log(deletedUser);
   dispatch({
     type: 'DELETE_USER',
     deletedUser,
