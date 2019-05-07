@@ -3,6 +3,19 @@ import Axios from 'axios';
 
 let { dispatch } = store;
 
+export async function sendPost(post, streamId) {
+  const user = store.getState().user
+  let token = user && user.token;
+  let response = await Axios.post('http://localhost:3001/post/' + streamId, post, { headers: { Authorization: token } });
+
+   let bootcamps = response.data;
+   dispatch({
+     type: 'BOOTCAMPS_LOADED',
+     bootcamps,
+   });
+}
+
+
 export async function loggedIn(password, email) {
   let response = await Axios.post('http://localhost:3001/user/login', { password, email });
   let user = response.data;
@@ -151,4 +164,3 @@ export async function unsuscribeUser(bootcamp) {
     bootcampModified,
   });
 }
-

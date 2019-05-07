@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Post from '../../components/Post'
+import Post from '../../components/DisplayPost/Post'
 
 // material-ui
 import Card from '@material-ui/core/Card';
@@ -17,7 +17,7 @@ import CreatePost from '../../components/CreatePost/CreatePost'
 const SearchPosts = () => <div>Search posts</div>
 
 
-const Bootcamp = ({ bootcamp }) => {
+const Bootcamp = ({ bootcamp, id }) => {
   console.log(bootcamp);
   if (!bootcamp) {
     return <h1>not bootcamp on the store</h1>
@@ -32,7 +32,7 @@ const Bootcamp = ({ bootcamp }) => {
           <Post data={post} key={post._id} />
         ))}
       </div>
-      <CreatePost />
+      <CreatePost streamId={id} />
 
       {/* <SearchPosts /> */}
     </section>

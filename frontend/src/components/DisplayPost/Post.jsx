@@ -1,9 +1,9 @@
 import React from 'react';
-import PostText from './CreatePost/PostText';
-import './CreatePost/PostActivity';
+import PostText from './PostText';
+import './PostActivity';
 import './Post.scss';
-import PostActivity from './CreatePost/PostActivity';
-import PostCode from './CreatePost/CreatePostCode/CreatePostCode';
+import PostActivity from './PostActivity';
+import PostCode from '../CreatePost/CreatePostCode/CreatePostCode';
 
 // const PostCode = ({data}) => <div className='postCode'>postCode  {JSON.stringify(data)} </div>;
 const PostVideo = ({data}) => <div className='postVideo'>postVideo  {JSON.stringify(data)}  </div>;
