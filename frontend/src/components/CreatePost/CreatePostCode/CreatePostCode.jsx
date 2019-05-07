@@ -24,7 +24,7 @@ class CreatePostCode extends Component{
 
                 <Highlight>
                     <div>
-                        {console.log(this.props)};
+                    {this.props.data.content.code}
                         </div>
                 </Highlight>
             </div>
