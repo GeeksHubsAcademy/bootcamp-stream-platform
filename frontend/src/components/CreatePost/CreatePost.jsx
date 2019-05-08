@@ -52,7 +52,7 @@ const CreatePost = ({streamId}) => {
         </Tabs>
         <div className='create'>
           {postType === 'code' && <CreatePostCode />}
-          {postType === 'text' && <CreatePostText value={body} onChange={setBody} />}
+          {postType === 'text' && <CreatePostText value={body} onChange={setBody} onSave={savePost} />}
           {postType === 'video' && <CreatePostVideo />}
           {postType === 'activity' && <CreatePostActivity />}
         </div>

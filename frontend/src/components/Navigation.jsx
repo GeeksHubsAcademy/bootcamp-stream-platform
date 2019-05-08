@@ -56,6 +56,10 @@ export const Navigation = props => {
         ) : (
           <div className='notLogged'>
             <Link to='/login'>login</Link>
+            <br/>
+            <Link to='/register'>Register</Link>
+           
+            
             <FontAwesome2 icon='sign-in-alt' />
           </div>
         )}

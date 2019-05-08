@@ -15,7 +15,7 @@ router.post( '/:bootcamp_id', authorization,isMember, async ( req, res, next ) =
         res.status( 500 ).json( { error, message: "Something went wrong, our apologies" } )
     }
 }, findAndResponseBootcamps );
-router.patch('/:post_id', authorization,isMember,isAuthor, async ( req, res, next ) => {
+router.patch('/:post_id', authorization,isAuthor, async ( req, res, next ) => {
     try {
         await PostModel.findByIdAndUpdate(req.params.post_id, req.body, { useFindAndModify: false, new:true }  )
         /* Here we update the post in the Post collection**/
@@ -25,7 +25,7 @@ router.patch('/:post_id', authorization,isMember,isAuthor, async ( req, res, nex
         res.status( 500 ).json( { error, message: "Something went wrong, our apologies" } )
     }
 }, findAndResponseBootcamps);
-router.delete('/:post_id', authorization, isMember, isAuthor, async ( req, res, next ) => {
+router.delete('/:post_id', authorization, isAuthor, async ( req, res, next ) => {
     try {
         await Bootcamp.findOneAndUpdate( {
             postIds:ObjectId(req.params.post_id)
