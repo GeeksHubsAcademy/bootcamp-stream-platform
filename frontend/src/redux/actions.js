@@ -106,6 +106,21 @@ export async function updateProfile(userData, image) {
   });
 }
 
+export async function deleteImage() {
+  const user = store.getState().user;
+  let token = user && user.token;
+  let bodyFormData = new FormData();
+  bodyFormData.set("imagePath", '');
+  let response = await Axios.patch('http://localhost:3001/user', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token } });
+  let updatedUser = response.data;
+  console.log(updatedUser);
+  updatedUser.token = token;
+  dispatch({
+    type: 'UPDATE_PROFILE',
+    user: updatedUser,
+  });
+}
+
 export async function editBootcamp(bootcamp) {
   console.log('editBootcamp', bootcamp);
 
@@ -162,20 +177,5 @@ export async function deleteUser() {
   dispatch({
     type: 'DELETE_USER',
     deletedUser,
-  });
-}
-
-export async function unsuscribeUser(bootcamp) {
-  console.log('bootcamp que llega al actions', bootcamp);
-
-  const user = store.getState().user;
-  let token = user && user.token;
-  // TODO
-  let response = await Axios.delete('http://localhost:3001/bootcamp/unsubscribed/'+ bootcamp._id, bootcamp, { headers: {  Authorization: token } });
-  let bootcampModified = response.data;
-  console.log(bootcamp);
-  dispatch({
-    type: 'UNSUSCRIBE_USER',
-    bootcampModified,
   });
 }

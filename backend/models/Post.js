@@ -17,6 +17,12 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
           format: String,
           url: String,
         },
+        reactions:{
+          Likes:[ObjectId],
+          Loves:[ObjectId],
+          Hahas:[ObjectId],
+          Wow:[ObjectId],
+        },
   },
   {
     timestamps: true,

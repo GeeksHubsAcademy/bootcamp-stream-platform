@@ -7,14 +7,15 @@ import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import {sendPost} from '../../redux/actions'
 import './CreatePost.scss';
-const CreatePostCode = () => <div className='postCode'>postCode</div>;
+import CreatePostCode from './CreatePostCode/CreatePostCode';
+
 const CreatePostVideo = () => <div className='postVideo'>postVideo</div>;
 const CreatePostActivity = () => <div className='postActivity'>postActivity</div>;
 
 const CreatePost = ({streamId}) => {
 
 
-  const [postType, setPostType] = useState('text');
+  const [postType, setPostType] = useState('code');
   const [body, setBody] = useState('');
   const [creating, setCreating] = useState(false);
   function savePost() {
@@ -51,7 +52,7 @@ const CreatePost = ({streamId}) => {
           <Tab label='Activity' value='activity' />
         </Tabs>
         <div className='create'>
-          {postType === 'code' && <CreatePostCode />}
+          {postType === 'code' && <CreatePostCode value={body} onChange={setBody} />}
           {postType === 'text' && <CreatePostText value={body} onChange={setBody} onSave={savePost} />}
           {postType === 'video' && <CreatePostVideo />}
           {postType === 'activity' && <CreatePostActivity />}

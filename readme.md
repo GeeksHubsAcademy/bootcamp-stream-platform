@@ -55,3 +55,5 @@ CREACIÓN DE POST
 
 - https://jpuri.github.io/react-draft-wysiwyg/#/
 - https://github.com/kkfor/for-editor
+- https://github.com/thlorenz/brace
+- https://github.com/securingsincity/react-ace

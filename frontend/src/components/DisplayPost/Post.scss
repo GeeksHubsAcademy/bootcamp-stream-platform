@@ -11,16 +11,21 @@ height: 50%;
     border-radius: 5px;
     box-shadow: 2px 2px black;
     position: relative;
-    .icon {
+    display: flex;
+    flex-direction: column;
+    .actions {
         position: absolute;
         top:8px;
         right:8px;
         color: purple;
         display: none;
         cursor: pointer;
+        & > * {
+            margin: 3px;
+        }
 
     }
-    &:hover .icon{
+    &:hover .actions{
         display: initial;
     }
 

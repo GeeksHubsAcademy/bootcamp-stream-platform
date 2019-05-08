@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Post from '../../components/DisplayPost/Post';
 import CreatePost from '../../components/CreatePost/CreatePost';
 
 const Bootcamp = ({ bootcamp, id }) => {
   const [search, setSearch] = useState('');
+  useEffect(() => {
+    if (!window.location.hash) {
+      window.scroll({
+      top: 9999999999999999,
+      left: 0,
+      behavior: 'smooth',
+    });
+    }
+  }, [bootcamp]);
+
   if (!bootcamp) {
     return <h1>not bootcamp on the store</h1>;
   }
