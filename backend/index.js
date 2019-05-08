@@ -20,7 +20,7 @@ app.use( function ( req, res, next ) {
     next();
 } );
 
-app.use( morgan( 'tiny' ) )
+app.use( morgan( 'dev' ) )
 app.use( '/', express.static( path.join( __dirname, 'public' ) ) )
 
 app.use( '/user', userRoutes )
