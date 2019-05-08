@@ -48,7 +48,7 @@ class _Login extends Component {
     } else if (pass === '') {
       this.setState({ errorPass: 'No has introducido el password' });
     } else {
-      console.log(pass, email);
+      //console.log(pass, email);
       this.props.loggedIn(pass, email)
         // .then(() => this.setState({ error: 'logged!!' }))
         .catch(e => this.setState({ error: 'El email y/o la contraseña incorrecta' }));
