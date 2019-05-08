@@ -15,12 +15,7 @@
   "author": "jupegarnica",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^4.1.0",
-    "material-ui-next-pickers": "^0.0.20",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-mde": "^7.3.2",
-    "video-react": "^0.13.6"
+    "concurrently": "^4.1.0"
   },
   "devDependencies": {}
 }
