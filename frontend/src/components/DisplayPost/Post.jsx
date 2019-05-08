@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from '@reach/router';
 
 import PostText from './PostText';
 import PostActivity from './PostActivity';
@@ -36,9 +37,14 @@ const Post = ({data, user}) =>  {
       post = 'no valid postType';
   }
   return (
-    <div className='postItem'>
+    <div className='postItem' id={data._id}>
+      <div className='actions'>
+        <a href={'#'+data._id}>
+          <FontAwesome icon='link' family='fas' />
+        </a>
+        {user._id === data.authorId && <FontAwesome onClick={deletePost} icon='trash' family='fas' />}
+      </div>
       {post}
-      {user._id === data.authorId && <FontAwesome onClick={deletePost} icon='trash' family='fas' />}
     </div>
   );
 };

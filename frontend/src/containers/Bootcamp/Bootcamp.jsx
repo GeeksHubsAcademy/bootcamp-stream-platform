@@ -6,11 +6,13 @@ import CreatePost from '../../components/CreatePost/CreatePost';
 const Bootcamp = ({ bootcamp, id }) => {
   const [search, setSearch] = useState('');
   useEffect(() => {
-    window.scroll({
+    if (!window.location.hash) {
+      window.scroll({
       top: 9999999999999999,
       left: 0,
       behavior: 'smooth',
     });
+    }
   }, [bootcamp]);
 
   if (!bootcamp) {
