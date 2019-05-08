@@ -1,12 +1,7 @@
 import React from 'react';
-import 'react-mde/lib/styles/css/react-mde-all.css';
-import ReactMde, { commands } from 'react-mde';
+import './CreatePostText.scss';
+import Editor from 'for-editor';
 
-const listCommands = [
-  {
-    commands: [commands.orderedListCommand, commands.unorderedListCommand, commands.checkedListCommand],
-  },
-];
-const CreatePostText = props => <ReactMde {...props}  commands={listCommands} />;
+const CreatePostText = props => <Editor {...props} placeholder="Escribe markdown..." />;
 
 export default CreatePostText;

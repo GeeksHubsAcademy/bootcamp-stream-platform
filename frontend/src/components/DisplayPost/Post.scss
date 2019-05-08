@@ -1,0 +1,32 @@
+.postVideo{
+height: 50%;
+
+}
+
+.postItem {
+    background: white;
+    color: black;
+    padding: 2em;
+    margin: 1em 0;
+    border-radius: 5px;
+    box-shadow: 2px 2px black;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    .actions {
+        position: absolute;
+        top:8px;
+        right:8px;
+        color: purple;
+        display: none;
+        cursor: pointer;
+        & > * {
+            margin: 3px;
+        }
+
+    }
+    &:hover .actions{
+        display: initial;
+    }
+
+}

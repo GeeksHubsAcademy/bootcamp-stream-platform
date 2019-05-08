@@ -3,7 +3,7 @@ import './Avatar.scss';
 import ImageAvatar from './ImageAvatar'
 import LetterAvatar from './LetterAvatar'
 
-const Avatar = ({name, altImage, src}) => (
+const Avatar = ({name, src}) => (
  <>
   { src ? 
             <ImageAvatar altFromParent={name} srcFromParent={src} />

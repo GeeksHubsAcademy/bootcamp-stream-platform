@@ -1,13 +1,12 @@
 .createPost {
     background: white;
-    width: 80vw;
+    width: 95vw;
     height:  95vh;
     outline: 'none';
     display: flex;
     flex-direction: column;
     .create {
         flex:1;
-        padding: 1em;
     }
     .actions {
         display: flex;

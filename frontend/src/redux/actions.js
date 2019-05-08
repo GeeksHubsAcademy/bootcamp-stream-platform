@@ -3,6 +3,34 @@ import Axios from 'axios';
 
 let { dispatch } = store;
 
+export async function removePost(postId) {
+
+  const user = store.getState().user
+  let token = user && user.token;
+  let response = await Axios.delete('http://localhost:3001/post/' + postId, { headers: { Authorization: token } });
+
+   let bootcamps = response.data;
+   dispatch({
+     type: 'BOOTCAMPS_LOADED',
+     bootcamps,
+   });
+}
+
+
+
+export async function sendPost(post, streamId) {
+  const user = store.getState().user
+  let token = user && user.token;
+  let response = await Axios.post('http://localhost:3001/post/' + streamId, post, { headers: { Authorization: token } });
+
+   let bootcamps = response.data;
+   dispatch({
+     type: 'BOOTCAMPS_LOADED',
+     bootcamps,
+   });
+}
+
+
 export async function loggedIn(password, email) {
   let response = await Axios.post('http://localhost:3001/user/login', { password, email });
   let user = response.data;
@@ -78,6 +106,21 @@ export async function updateProfile(userData, image) {
   });
 }
 
+export async function deleteImage() {
+  const user = store.getState().user;
+  let token = user && user.token;
+  let bodyFormData = new FormData();
+  bodyFormData.set("imagePath", '');
+  let response = await Axios.patch('http://localhost:3001/user', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token } });
+  let updatedUser = response.data;
+  console.log(updatedUser);
+  updatedUser.token = token;
+  dispatch({
+    type: 'UPDATE_PROFILE',
+    user: updatedUser,
+  });
+}
+
 export async function editBootcamp(bootcamp) {
   console.log('editBootcamp', bootcamp);
 
@@ -136,19 +179,3 @@ export async function deleteUser() {
     deletedUser,
   });
 }
-
-export async function unsuscribeUser(bootcamp) {
-  console.log('bootcamp que llega al actions', bootcamp);
-
-  const user = store.getState().user;
-  let token = user && user.token;
-  // TODO
-  let response = await Axios.delete('http://localhost:3001/bootcamp/unsubscribed/'+ bootcamp._id, bootcamp, { headers: {  Authorization: token } });
-  let bootcampModified = response.data;
-  console.log(bootcamp);
-  dispatch({
-    type: 'UNSUSCRIBE_USER',
-    bootcampModified,
-  });
-}
-
