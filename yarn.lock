@@ -525,6 +525,11 @@ react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
   integrity sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA==
 
+react-mde@^7.3.2:
+  version "7.3.2"
+  resolved "https://registry.yarnpkg.com/react-mde/-/react-mde-7.3.2.tgz#8954a8122a68a12ca77a821fc88b1f59615d59cd"
+  integrity sha512-IvqelDuGFdSf1CfMbBd9dcsx23dLf/9ZusfvgLpu2Cmggbt+N52Rz/WB1fOBdAfJGw5p2JiMkWTigTl8aIbipA==
+
 react-swipeable-views-core@^0.12.17:
   version "0.12.17"
   resolved "https://registry.yarnpkg.com/react-swipeable-views-core/-/react-swipeable-views-core-0.12.17.tgz#0998f55fd2f8595bcd01bead1c19516dc561c1cf"
