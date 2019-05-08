@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const ObjectId = mongoose.Schema.Types.ObjectId;
  const PostSchema = new mongoose.Schema({
         postType: {
           type: String,
@@ -6,7 +7,7 @@ const mongoose = require('mongoose');
           required: true,
         },
         authorId: {
-          type: String,
+          type: ObjectId,
           required: true,
         },
         content: {

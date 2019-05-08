@@ -190,6 +190,14 @@ find-up@^3.0.0:
   dependencies:
     locate-path "^3.0.0"
 
+for-editor@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/for-editor/-/for-editor-0.1.1.tgz#5676a89864d392dfa2150c43dec64d673fe0af95"
+  integrity sha512-9NlO9vj97TilHB7r18aicMu+BtQSE4zOX5D9WnPQNOp62QeG2fjGoIaDOECOoSbHxJxe9vFS8ztzpSJvU8KjHA==
+  dependencies:
+    highlight.js "^9.13.1"
+    marked "^0.5.2"
+
 get-caller-file@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.3.tgz#f978fa4c90d1dfe7ff2d6beda2a515e713bdcf4a"
@@ -211,6 +219,11 @@ has-flag@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-3.0.0.tgz#b5d454dc2199ae225699f3467e5a07f3b955bafd"
   integrity sha1-tdRU3CGZriJWmfNGfloH87lVuv0=
+
+highlight.js@^9.13.1:
+  version "9.15.6"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.15.6.tgz#72d4d8d779ec066af9a17cb14360c3def0aa57c4"
+  integrity sha512-zozTAWM1D6sozHo8kqhfYgsac+B+q0PmsjXeyDrYIHHcBN0zTVT66+s2GW1GZv7DbyaROdLXKdabwS/WqPyIdQ==
 
 hosted-git-info@^2.1.4:
   version "2.7.1"
@@ -317,6 +330,11 @@ map-age-cleaner@^0.1.1:
   integrity sha512-bJzx6nMoP6PDLPBFmg7+xRKeFZvFboMrGlxmNj9ClvX53KrmvM5bXFXEWjbz4cz1AFn+jWJ9z/DJSz7hrs0w3w==
   dependencies:
     p-defer "^1.0.0"
+
+marked@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-0.5.2.tgz#3efdb27b1fd0ecec4f5aba362bddcd18120e5ba9"
+  integrity sha512-fdZvBa7/vSQIZCi4uuwo2N3q+7jJURpMVCcbaX0S1Mg65WZ5ilXvC67MviJAsdjqqgD+CEq4RKo5AYGgINkVAA==
 
 material-ui-next-pickers@^0.0.20:
   version "0.0.20"

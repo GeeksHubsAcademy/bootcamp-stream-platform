@@ -54,3 +54,4 @@ CREACIÓN DE POST
 ##  vendor code
 
 - https://jpuri.github.io/react-draft-wysiwyg/#/
+- https://github.com/kkfor/for-editor

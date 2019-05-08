@@ -5,12 +5,28 @@
     width: 500px;
     margin: 0 auto;
     padding: 15px;
+    border-radius: 5px;
+    background-color: rgb(219, 230, 240);
 
+    h1{
+        color: rgb(21, 21, 94);
+    }
         .content-edit{
             display: flex;
             flex-direction: column;
+            align-content: center;
             padding: 10px;
             margin: 5px;
+            
+            div{
+                height: 55px;
+
+            }
+            .week-duration{
+                    width: 50%;
+                    font-size: 10px;
+                }
+            
 
         }
         .content-action{
