@@ -6,7 +6,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 
 
-// const CreatePostActivity = ({data, onChange}) => (
+const CreatePostActivity = ({data, onChange}) => (null
 // <div>
 //   <FormControl className='formControl'>
 //     <InputLabel htmlFor='component-name'>Title</InputLabel>
@@ -23,7 +23,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 //     <Input name='url' type='text' placeholder='url' value={data.content.url} onChange={this.handleChange} />
 //   </FormControl>
 // </div>
-// );
+);
 
 
-// export default CreatePostActivity;
+export default CreatePostActivity;
