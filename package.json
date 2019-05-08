@@ -15,8 +15,7 @@
   "author": "jupegarnica",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^4.1.0",
-    "react-player": "^1.11.0"
+    "concurrently": "^4.1.0"
   },
   "devDependencies": {}
 }

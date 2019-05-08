@@ -199,4 +199,3 @@ export default () => (
     <Register />
   </PublicZone>
 );
-
