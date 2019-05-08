@@ -7,16 +7,14 @@ import PostCode from '../CreatePost/CreatePostCode/CreatePostCode';
 import FontAwesome from '../FontAwesome';
 import {removePost} from '../../redux/actions';
 import { connect } from 'react-redux';
+import PostVideo from './Reproductor'
 
 // const PostCode = ({data}) => <div className='postCode'>postCode  {JSON.stringify(data)} </div>;
-const PostVideo = ({data}) => <div className='postVideo'>postVideo  {JSON.stringify(data)}  </div>;
-
-
-
+//const PostVideo = ({data}) => <div className='postVideo'>postVideo  {JSON.stringify(data)}  </div>;
 
 //const PostActivity = ({data}) => <div className='postActivity'>postActivity  {JSON.stringify(data)} </div>;
 
-const Post = ({data, user}) => {
+const Post = ({data, user}) =>  {
   console.log(data.authorId);
 
   function deletePost() {
