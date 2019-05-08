@@ -1,40 +1,56 @@
-h1{
-    display:flex;
-    padding:1em;
-    justify-content: center;
-    margin:0 auto;
-
-}
+.LoginSquare{
 
 
-
-.errorLoginView{
-
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    color:red;
-    margin:0 auto;
-    width:320px;
-}
-
-.loginView{
-
-    border: 1px solid rgb(202, 201, 201);
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    padding:1em;
-    margin:0px auto;
-    width:320px;
-    background-color: white;
-
-    Button{
-
-        margin-top:35px;           
-        width: 14em;;
-    }
-
+    h1{
+        display:flex;
+        padding:1em;
+        justify-content: center;
+        margin:0 auto;
     
-}
-
+    }
+    
+    
+    
+    .errorLoginView{
+    
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        color:red;
+        margin:0 auto;
+        width:320px;
+    }
+    
+    .loginView{
+    
+        border: 1px solid rgb(202, 201, 201);
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        padding:1em;
+        margin:0px auto;
+        width:320px;
+        background-color: white;
+    
+        .formControl + .formControl {
+            margin-top: 1em;
+          }
+    
+        .botonLogin{
+    
+            margin-top:35px;           
+            width: 14em;;
+        }
+    
+        .linkLogin{
+    
+            margin-top:20px;
+            margin-right: -140px;
+        }
+    
+        
+    }
+    
+    }
+    
+    

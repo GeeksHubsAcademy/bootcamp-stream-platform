@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import { Redirect } from '@reach/router';
+import { Link as RouterLink  } from '@reach/router';
 import { loggedIn } from '../../redux/actions';
 //import { set } from 'mongoose';
 
@@ -9,7 +9,7 @@ import './Login.scss';
 import PublicZone from '../../components/PublicZone';
 //material-ui
 //import { withStyles } from '@material-ui/core/styles';
-import Button, {classes} from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 // form icons (npm install @material-ui/icons)
@@ -18,6 +18,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 //import TextField from '@material-ui/core/TextField';
 //import FormHelperText from '@material-ui/core/FormHelperText';
+import Link from '@material-ui/core/Link';
 
 
 class _Login extends Component {
@@ -28,7 +29,6 @@ class _Login extends Component {
     errorEmail: '',
     error: '',
   };
-
 
   handleChange = ev => {
     this.setState({ [ev.target.name]: ev.target.value });
@@ -70,7 +70,6 @@ class _Login extends Component {
             <InputLabel htmlFor='component-name'>Email</InputLabel>
             <Input 
               name='email'
-            
               type='email' 
               onChange={this.handleChange} 
             />
@@ -80,8 +79,7 @@ class _Login extends Component {
           <FormControl className='formControl' error={!!this.state.errorName}>
             <InputLabel htmlFor='component-name'>Password</InputLabel>
             <Input 
-            name='pass'
-           
+            name='pass'          
             type='password'
             onChange={this.handleChange}
             />
@@ -90,11 +88,35 @@ class _Login extends Component {
           {this.state.errorPass && <div className='errorLoginView'>{this.state.errorPass}</div>}
           
           <Button 
-          variant='outlined' 
+          variant='contained'
+          className='botonLogin' 
           color='secondary' 
           onClick={this.login}>
             Login
           </Button>
+
+          <div className="linkLogin">
+              <Link
+                  component={RouterLink} 
+                  to="/register"
+                  variant="body2"              
+              >
+                  Register
+              </Link>
+
+                {/* <Link
+                  component="button"
+                  variant="body2"
+                  onClick={() => {
+                    alert("I'm a button.");
+                  }}
+                  >
+                  
+                Recuperar password
+                </Link> */}
+
+            </div>
+
         {this.state.error && <div className='errorLoginView'>{this.state.error}</div>}
         </form>
 
