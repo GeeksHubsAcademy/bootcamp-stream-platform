@@ -1,0 +1,27 @@
+.createPost {
+    background: white;
+    width: 80vw;
+    height:  95vh;
+    outline: 'none';
+    display: flex;
+    flex-direction: column;
+    .create {
+        flex:1;
+        padding: 1em;
+    }
+    .actions {
+        display: flex;
+        justify-content: center;
+        padding: 0.5em;
+        & > * {
+            margin: 1em;
+        }
+
+    }
+
+}
+[role="presentation"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

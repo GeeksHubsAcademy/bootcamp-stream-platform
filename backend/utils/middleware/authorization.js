@@ -36,10 +36,8 @@ const isMember = async ( req, res, next ) => {
     if ( req.user.role === 'admin' )  next();
     const bootcamp = await Bootcamp.findOne( {
         _id: req.params.bootcamp_id,
-        users: {
-            $elemMatch: {
-                _id: req.user._id
-            }
+        $elemMatch: {
+            userIds: req.user._id
         }
     } )
     if ( bootcamp ) return res.send( 'is member' )
@@ -48,17 +46,19 @@ const isMember = async ( req, res, next ) => {
 const isAuthor = async ( req, res, next ) => {
     /**Should be middleware that checks if the user is the post author and have the right to edit the post */
     if ( req.user.role === 'admin' )  next();
-    PostModel.findOne({
+    const Post=PostModel.findOne({
         _id: req.params.post_id,
         $elemMatch: {
             authorId: req.user._id
         }
      })
+     if(!Post) return res.status(401).send('You are not the author of the post')
      next()
 }
 
 module.exports = {
     authorization,
     isAdmin,
-    isMember
+    isMember,
+    isAuthor
 }

@@ -6,7 +6,7 @@ let { dispatch } = store;
 export async function loggedIn(password, email) {
   let response = await Axios.post('http://localhost:3001/user/login', { password, email });
   let user = response.data;
-  user.role = 'admin';
+  //user.role = 'admin';
   dispatch({
     type: 'LOGGED_IN',
     user,
@@ -49,7 +49,7 @@ export async function getBootcamps() {
   });
 }
 
-export async function postRegister(name, lastname, email, password) {
+export async function postRegister({name, lastname, email, password}) {
   console.log(name, lastname, email, password);
 
   let res = await Axios.post('http://localhost:3001/user/register', { name, lastname, email, password });
@@ -124,3 +124,31 @@ export async function getUsers() {
   });
 
 }
+
+export async function deleteUser() {
+  const user = store.getState().user;
+  let token = user && user.token;
+  let response = await Axios.delete('http://localhost:3001/user/delete/', { headers: {  Authorization: token } });
+  let deletedUser = response.data;
+  deletedUser.token = token;
+  dispatch({
+    type: 'DELETE_USER',
+    deletedUser,
+  });
+}
+
+export async function unsuscribeUser(bootcamp) {
+  console.log('bootcamp que llega al actions', bootcamp);
+
+  const user = store.getState().user;
+  let token = user && user.token;
+  // TODO
+  let response = await Axios.delete('http://localhost:3001/bootcamp/unsubscribed/'+ bootcamp._id, bootcamp, { headers: {  Authorization: token } });
+  let bootcampModified = response.data;
+  console.log(bootcamp);
+  dispatch({
+    type: 'UNSUSCRIBE_USER',
+    bootcampModified,
+  });
+}
+

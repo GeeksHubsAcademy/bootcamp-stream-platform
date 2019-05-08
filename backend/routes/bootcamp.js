@@ -6,6 +6,8 @@ const findAndResponseBootcamps = require( '../utils/middleware/findAndReturnBoot
 router.get( '/mine', authorization, findAndResponseBootcamps );
 
 router.post( '/', authorization, isAdmin, async ( req, res, next ) => {
+  try{
+
     const {
         title,
         description,
@@ -13,8 +15,8 @@ router.post( '/', authorization, isAdmin, async ( req, res, next ) => {
         weeksDuration,
         users
     } = req.body
-    userIds = users.map( el => el._id )
-
+    // const userIds = users.map( user => user._id ),
+    const userIds=[req.user._id]
     await new Bootcamp( {
         title,
         description,
@@ -22,22 +24,26 @@ router.post( '/', authorization, isAdmin, async ( req, res, next ) => {
         weeksDuration,
         userIds,
         posts: []
-    } ).save();
+      } ).save();
     next();
+  }catch(error){
+    res.status(500).send( error)
+  }
 }, findAndResponseBootcamps );
 
 router.patch( '/:id', authorization, isAdmin, async ( req, res, next ) => {
-
-  const {
-    title,
-    description,
-    startsAt,
-    weeksDuration,
-    users
-  } = req.body
-  userIds = users.map( el => el._id )
-    await Bootcamp.findByIdAndUpdate( req.params.id, { title, description, startsAt, weeksDuration, userIds } );
-    next();
+  try{
+   let body;
+   if(req.body.users){
+     userIds = req.body.users.map( user => user._id )
+    body={...req.body,userIds}
+    }else body=req.body
+      await Bootcamp.findByIdAndUpdate( req.params.id, body );
+      next();
+  }catch(error){
+    console.log(error)
+    res.status(500).send( error)
+  }
 }, findAndResponseBootcamps );
 
 router.patch( '/unsubscribed/:id', authorization, ( req, res, next ) => {
@@ -49,7 +55,7 @@ router.patch( '/unsubscribed/:id', authorization, ( req, res, next ) => {
 
 router.delete( '/delete/:id', authorization, isAdmin, ( req, res, next ) => {
     Bootcamp.findByIdAndDelete( req.params.id ).then( bootcampDeleted => {
-        if ( !bootcampDeleted ) return res.send( 'bootcamp not found' )
+        if ( !bootcampDeleted ) return res.status(400).send( 'bootcamp not found' )
         next();
     } );
 }, findAndResponseBootcamps );

@@ -63,7 +63,7 @@ class EditBootcamp extends Component {
             <h1>loading</h1>
           </div>
         );
-      }
+        }else {
       const date = this.state.startsAt ? new Date(this.state.startsAt): new Date();
        return (
          <div className='editBootcamp'>
@@ -83,9 +83,11 @@ class EditBootcamp extends Component {
            <div className='content-action'>{this.props.bootcamp ? <button onClick={this.saveBootcamp}>saveBootcamp</button> : <button onClick={this.createBootcamp}>Create</button>}</div>
          </div>
        );
-
-  }
-}
+       }
+  
+      }
+    }
+  
 const mapStateToProps = ({ bootcamps }, { id }) => ({ bootcamp: bootcamps.find(el => String(el._id) === id) });
 const mapDispatchToProps = () => ({ editBootcamp, newBootcamp });
 

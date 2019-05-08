@@ -1,6 +1,6 @@
 const mongoose = require( 'mongoose' );
-const { PostSchema } = require( './Post' )
-const { UserSchema } = require( './User' )
+const ObjectId = mongoose.Schema.Types.ObjectId;
+
 const BootcampSchema = new mongoose.Schema( {
     title: {
         type: String,
@@ -22,8 +22,8 @@ const BootcampSchema = new mongoose.Schema( {
         type: Number,
         // required: true,
     },
-    userIds: [ String ],
-    postIds: [ String ],
+    userIds: [ ObjectId ],
+    postIds: [ ObjectId ],
 }, {
     timestamps: true,
 }, );

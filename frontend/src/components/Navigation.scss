@@ -1,15 +1,16 @@
 .navigation {
     display:flex;
     justify-content: space-between;
-    background: rgb(56, 4, 4);
-    box-shadow: 0 15px 15px -10px rgba(10, 10, 0, 0.87);
+    align-items: center;
+    background: #111;
+    // box-shadow: 0 15px 15px -10px rgba(10, 10, 0, 0.87);
     color:white;
-    padding: 2em;
+    padding: 1em;
     a {
     color:white;
     }
     img {
-        width: 20em;
+        width: 10em;
     // box-shadow: 0 20px 20px -20px rgba(231, 231, 226, 0.87);
 
     }
@@ -23,7 +24,7 @@
     }
 
     .menu{
-        background: green;
+        background: white;
 
     }
 
@@ -34,7 +35,7 @@
     .i{
         color: white;
         display: flex;
-        font-size: 20px;
+        font-size: 15px;
     }
 
 
