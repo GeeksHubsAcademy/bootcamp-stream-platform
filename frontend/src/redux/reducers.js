@@ -8,7 +8,7 @@ const sampleState = {
   bootcamps: [
     {
       _id: 1234,
-      title: 'FSD VLC MAY19',
+      title: 'FSD VLC MAY 19',
       description: '',
       startsAt: new Date(),
       weeksDuration: 12,
