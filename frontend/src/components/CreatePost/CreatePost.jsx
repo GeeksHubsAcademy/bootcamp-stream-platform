@@ -5,9 +5,10 @@ import Fab from '@material-ui/core/Fab';
 import CreatePostText from './CreatePostText'
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-import {sendPost} from '../../redux/actions'
-import './CreatePost.scss';
+import TextField from '@material-ui/core/TextField';
+import {sendPost} from '../../redux/actions';
 import CreatePostCode from './CreatePostCode/CreatePostCode';
+import './CreatePost.scss';
 
 const CreatePostVideo = () => <div className='postVideo'>postVideo</div>;
 const CreatePostActivity = () => <div className='postActivity'>postActivity</div>;
@@ -17,19 +18,26 @@ const CreatePost = ({streamId}) => {
 
   const [postType, setPostType] = useState('code');
   const [body, setBody] = useState('');
+  const [title, setTitle] = useState('');
+
   const [creating, setCreating] = useState(false);
   function savePost() {
-    setCreating(false);
-    let post = {
-      postType,
-      content: {body}
-    }
+   if (title && body) {
+      setCreating(false);
+      let post = {
+        postType,
+        content: { body, title },
+      };
 
-    sendPost( post , streamId)
-      .then(() => {
-        setBody('')
-      })
-      .catch( console.error)
+      sendPost(post, streamId)
+        .then(() => {
+          setBody('');
+        })
+        .catch(console.error);
+   } else {
+     alert('title and body required')
+   }
+
 
   }
 
@@ -52,6 +60,10 @@ const CreatePost = ({streamId}) => {
           <Tab label='Activity' value='activity' />
         </Tabs>
         <div className='create'>
+          <div className='title'>
+            <TextField required id='title' label='Título' value={title} onChange={e => setTitle(e.target.value)} margin='normal' />
+          </div>
+
           {postType === 'code' && <CreatePostCode value={body} onChange={setBody} />}
           {postType === 'text' && <CreatePostText value={body} onChange={setBody} onSave={savePost} />}
           {postType === 'video' && <CreatePostVideo />}
