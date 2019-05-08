@@ -1,22 +1,46 @@
 import React, { Component } from 'react';
-
-//importamos redux
 import { connect } from 'react-redux';
 import { Link } from '@reach/router';
-
-import './MyBootcamps.scss'
+import Card from '@material-ui/core/Card';
+import './MyBootcamps.scss';
 
 
 class MyBootcamps extends Component {
 
   render() {
-    //console.log(JSON.stringify(this.props.bootcamps));
-    //console.log(this.props.bootcamps);
+    console.log(this.props);
     if (!this.props.bootcamps) {
-      return <div className="MyBootcamps">No bootcamps yet</div>
-    }
+      return (
+          <section className='MyBootcampsView'>
+           <div className='content-bootcamp'>
+              <h2>Aún no pertence a ningún bootcamp</h2>
+           </div>
+          </section>
+          )
+    }else{
     return (
       <section className='MyBootcampsView'>
+<<<<<<< HEAD
+        <h2 className="center">Pertenece a los siguientes Bootcamps:</h2>
+          {this.props.bootcamps.map(bootcamp => (
+        <div className='content-bootcamp'>
+              {/* <Link to={'/bootcamp/' + bootcamp._id} key={bootcamp._id} className='listBootcamps'>
+                <Link to={'/bootcamp/' + bootcamp._id} key={bootcamp._id}>
+                </Link>
+                <div className="boot-title">{bootcamp.title}</div>
+                <div className="boot-card"></div>
+                <div className="boot-description">{bootcamp.description}</div>
+              </Link> */}
+              <div className="center boot-card" style={{backgroundImage:`url(https://source.unsplash.com/240x150/?code,computer)`}}>
+                <div><h4>{bootcamp.title}</h4></div>
+                <div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius </p></div>
+              </div>
+              <div className="center boot-card">
+                b</div>
+              <div className="center boot-card">
+                c</div>
+        </div>
+=======
         <h3>Pertenece a los siguientes Bootcamps:</h3>
 
         <div className='MyBootcamps'>
@@ -25,15 +49,12 @@ class MyBootcamps extends Component {
               <Link to={'/bootcamp/' + bootcamp._id} className='listBootcamps' key={bootcamp._id}>
                 {bootcamp.title} </Link>            
 
+>>>>>>> dbac8008e5e894f388572dfde14f15fa329f6cc5
           ))}
 
-          {/* <Link className="MyBootcamps" to={'/bootcamp/' + props.bootcamp.user.id} >
-            <h1></h1>
-            <p></p>
-          </Link> */}
-        </div>
       </section>
     );
+        }
   }
 }
 
