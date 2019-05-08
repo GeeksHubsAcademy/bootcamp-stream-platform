@@ -1,6 +1,6 @@
-
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
+import { deleteImage } from '../../redux/actions';
 
 // edit button
 import Grid from '@material-ui/core/Grid';
@@ -10,7 +10,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import Avatar from './Avatar';
 
-// image path
+// Image path
 var apiImageUrl = "http://localhost:3001/uploads/profilePics/";
 
 class FileInput extends Component {
@@ -24,7 +24,7 @@ class FileInput extends Component {
   state = {   
     disabled: true,
     file: '',
-    // TODO error avatar undefined:1 GET http://localhost:3001/uploads/profilePics/undefined 404 (Not Found)
+    imagePath: this.props.user.imagePath,
     imagePreviewUrl: apiImageUrl + this.props.user.imagePath,
   };
 
@@ -37,6 +37,7 @@ class FileInput extends Component {
 
     reader.onloadend = () => {
       this.setState({
+        imagePath: reader.result,
         file: file,
         imagePreviewUrl: reader.result
       });
@@ -55,24 +56,29 @@ class FileInput extends Component {
 
   removeImage = () => {
 
-     // send image
+     // send image preview empty
      const image  =  '';
      this.props.onChange(image);
      // to change color
 
     this.setState(state => ({ 
-      // TODO send image empty to imageBlob // delete imagePath field, not exist by default
-      image: '',
+      imagePath: '',
       file: '',
       imagePreviewUrl: '',      
       disabled: false
-    }));
+    }),()=>{
+     // delete image DB
+    deleteImage(this.state.imagePath)
+        .then(() => this.setState({ successMessage: 'Great! removed photo!' }))
+        .catch(e => this.setState({ error: e.message }));
+        //.then(() => this.handleClick());  
+  
+    });
   };
 
   render() {
-
-    let {imagePreviewUrl} = this.state;
-
+    let {imagePreviewUrl, imagePath } = this.state;
+    
     return (
      
         <Grid
@@ -81,10 +87,8 @@ class FileInput extends Component {
           justify="center"
           alignItems="center"
           >
-       
-          {/* TODO error ruta */}
-          {/* <Avatar name={this.props.name} src={!!imagePreviewUrl && apiImageUrl + imagePreviewUrl} /> */}
-          <Avatar name={this.props.name} src={!!imagePreviewUrl && imagePreviewUrl} />
+          <Avatar name={this.props.name} 
+                  src={ imagePath !== "" && imagePreviewUrl } />                  
 
           <div>         
             <input
@@ -110,7 +114,7 @@ class FileInput extends Component {
             {/* NOTE div for tooltip target when fab is disabled */}
             <div>
               <Fab onClick={this.removeImage} 
-                   disabled={ !this.props.user.imagePath && !this.state.file}
+                   disabled={!imagePreviewUrl && !this.state.file}
                    className="removeButton"
                    color={ !!this.state.disabled ? 'default' : 'secondary'}>
                 <Icon>delete_icon</Icon>

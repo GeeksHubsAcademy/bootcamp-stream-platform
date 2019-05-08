@@ -106,6 +106,21 @@ export async function updateProfile(userData, image) {
   });
 }
 
+export async function deleteImage() {
+  const user = store.getState().user;
+  let token = user && user.token;
+  let bodyFormData = new FormData();
+  bodyFormData.set("imagePath", '');
+  let response = await Axios.patch('http://localhost:3001/user', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token } });
+  let updatedUser = response.data;
+  console.log(updatedUser);
+  updatedUser.token = token;
+  dispatch({
+    type: 'UPDATE_PROFILE',
+    user: updatedUser,
+  });
+}
+
 export async function editBootcamp(bootcamp) {
   console.log('editBootcamp', bootcamp);
 
