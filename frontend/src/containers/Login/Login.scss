@@ -1,56 +1,59 @@
-.LoginSquare{
+.LoginSquare {
 
 
-    h1{
-        display:flex;
-        padding:1em;
+    h1 {
+        display: flex;
+        padding: 1em;
         justify-content: center;
-        margin:0 auto;
-    
+        margin: 0 auto;
+
     }
-    
-    
-    
-    .errorLoginView{
-    
-        display:flex;
+
+
+
+    .errorLoginView {
+
+        display: flex;
         flex-direction: row;
         justify-content: center;
-        color:red;
-        margin:0 auto;
-        width:320px;
+        color: red;
+        margin: 0 auto;
+        width: 320px;
+        margin-top: 1em;
+        margin-bottom: 1em;
+
     }
-    
-    .loginView{
-    
+
+    .loginView {
+
         border: 1px solid rgb(202, 201, 201);
-        display:flex;
+        display: flex;
         flex-direction: column;
         align-items: center;
-        padding:1em;
-        margin:0px auto;
-        width:320px;
+        padding: 1em;
+        margin: 0px auto;
+        width: 320px;
         background-color: white;
-    
-        .formControl + .formControl {
+        border-radius: 15px;
+
+        .formControl+.formControl {
             margin-top: 1em;
-          }
-    
-        .botonLogin{
-    
-            margin-top:35px;           
-            width: 14em;;
         }
-    
-        .linkLogin{
-    
-            margin-top:20px;
+
+        .botonLogin {
+
+            margin-top: 35px;
+            width: 14em;
+            ;
+        }
+
+        .linkLogin {
+
+            margin-top: 20px;
             margin-right: -140px;
         }
-    
-        
+
+
     }
-    
-    }
-    
-    
+
+}
