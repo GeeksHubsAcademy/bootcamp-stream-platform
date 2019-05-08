@@ -6,7 +6,7 @@ import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 // import 'brace/mode/markdown';
 import 'brace/theme/github';
-import 'brace/theme/monokai';
+// import 'brace/theme/monokai';
 import 'brace/ext/language_tools';
 
 
@@ -20,15 +20,17 @@ const Code = ({ onChange, ...props }) => (
     height='100%'
     enableBasicAutocompletion
     enableLiveAutocompletion
+    highlightActiveLine={false}
+    showGutter={true}
     setOptions={{
-        printMargin: false,
-        showLineNumbers: false,
-        scrollPastEnd: true,
-        showInvisibles: false,
-        showPrintMargin: false,
-        // enableEmmet: true,
-        // enableBasicAutocompletion: true,
-        // enableLiveAutocompletion: true,
+      printMargin: false,
+      showLineNumbers: true,
+      scrollPastEnd: true,
+      showInvisibles: false,
+      showPrintMargin: false,
+      // enableEmmet: true,
+      // enableBasicAutocompletion: true,
+      // enableLiveAutocompletion: true,
     }}
     editorProps={{ $blockScrolling: Infinity }}
     onChange={value => {

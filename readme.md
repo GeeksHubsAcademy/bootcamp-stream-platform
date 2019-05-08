@@ -57,3 +57,4 @@ CREACIÓN DE POST
 - https://github.com/kkfor/for-editor
 - https://github.com/thlorenz/brace
 - https://github.com/securingsincity/react-ace
+- https://github.com/CookPete/react-player

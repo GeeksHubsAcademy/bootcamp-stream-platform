@@ -7,7 +7,7 @@ import PostActivity from './PostActivity';
 import PostCode from '../DisplayPost/PostCode';
 import FontAwesome from '../FontAwesome';
 import {removePost} from '../../redux/actions';
-import PostVideo from './Reproductor'
+import PostVideo from './PostVideo';
 
 import './Post.scss';
 
