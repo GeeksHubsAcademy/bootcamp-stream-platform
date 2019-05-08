@@ -1,16 +1,5 @@
 import React from 'react';
 
-// data = {
-// "postType":"activity",
-// "authorId": "2",
-// "content": {
-//         "title":"",
-//         "body":"",
-//         "repo":""
-//     }
-// }};
-
-
 const PostActivity = ({data}) => (
 
 <div className='postActivity'>

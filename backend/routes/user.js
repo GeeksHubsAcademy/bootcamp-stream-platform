@@ -58,8 +58,8 @@ router.patch('/',authorization,uploadProfilePics.single('image'), async(req, res
             const hash = await bcrypt.hash(req.body.password, 9);
             req.body.password = hash;
         }
-        const { _id, name, lastname, email, imagePath }= await UserModel.findByIdAndUpdate(req.user._id,req.body, { new: true, useFindAndModify:false})
-        res.send({ _id, name, lastname, email, imagePath })
+        const { _id, name, lastname, email, imagePath, role }= await UserModel.findByIdAndUpdate(req.user._id,req.body, { new: true, useFindAndModify:false})
+        res.send({ _id, name, lastname, email, imagePath, role })
     }catch(error){
         res.status(500).json({error,message:"Something went wrong, our apologies"})
     }

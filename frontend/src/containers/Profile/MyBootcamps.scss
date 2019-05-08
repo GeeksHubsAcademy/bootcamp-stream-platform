@@ -2,27 +2,73 @@
     
     display:flex;
     flex-direction: column;
+    background-color: rgb(214, 228, 228);
+    border-radius: 5px;
+    color: black;
            
     
-    .MyBootcamps{
-        border:1px solid black;
+    .content-bootcamp{
         display: flex;
-        padding: 1em;
-        justify-content: center;
-        flex-direction: column;
+        padding: 5px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
         margin: 0 auto;
-        width: 100%;
-        background: white;
+        width: 80%;
+        min-height: 130px;
+        // border:1px solid black;
+        // border-radius: 10px;
+        
+        .boot-card{
+            min-width: 160px;
+            min-height: 50px;
+            width: 240px;
+            border: 1px solid red;
+            margin: 8px;
+            border-radius: 5px;
+            background-size: cover;
+            transition: all 0.7s ease;
+            h4{
+                color: rgb(122, 122, 236);
+                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
-        .listBootcamps{
-            border:1px solid black;
-            padding:1em;
-            margin:5px;
-            
-
-
+            }
+            p{
+                // color: rgba(166, 166, 172, 0.692);
+                color: transparent;
+                font-style: italic;
+            }
+            &:hover{
+                opacity: 0.85;
+                width: 260px;
+                height: 180px;
+                p{
+                    font-size: 18px;
+                    color: rgba(166, 166, 172, 0.692);
+                }
+                h4{
+                    font-size: 22px;
+                }
+            }
         }
-
-    }
-    
+        
+        // .listBootcamps{
+        //     all: unset;
+        //     height: 240px;
+        //     width: 200px;
+        //     margin: 5px auto;
+        //     border: 1px solid black;
+        //     border-radius: 15px;     
+        //     .boot-card{
+        //         border-radius: inherit;
+        //         height: 200px;
+        //     }
+        //     .boot-title{
+        //         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        //     }          
+        // }    
+    } 
+}
+.center{
+    text-align: center;
 }

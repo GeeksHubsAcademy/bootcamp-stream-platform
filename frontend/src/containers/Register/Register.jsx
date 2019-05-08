@@ -5,6 +5,24 @@ import validator from 'validator';
 import { postRegister } from '../../redux/actions';
 import './Register.scss';
 
+
+//import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+// form icons (npm install @material-ui/icons)
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Link from '@material-ui/core/Link';
+
+
+
+
+
+
 class _Register extends Component {
 
   constructor(props) {
@@ -69,20 +87,97 @@ class _Register extends Component {
     const { errorname, errorlastname, erroremail, errorpassword, errorparssword2, name, lastname, email, password, password2 }
       = this.state;//esto lo hacemos para no tener que escribir tol rato this.name...
     return (
-      <section className='RegisterView'>
+      <section className='RegisterSquare'>
         <h1>Register</h1>
-        <form className='Form' onSubmit={this.handleSubmit}>
-          <input name='name' type='text' placeholder='name' onKeyUp={this.validate} value={name} onChange={this.handleChange} />
+
+        <form className='RegisterView' onSubmit={this.handleSubmit}>
+          {/* <input name='name' type='text' placeholder='name' onKeyUp={this.validate} value={name} onChange={this.handleChange} /> */}
+          <FormControl className='formControl' error={!!this.state.errorName}>
+            <InputLabel htmlFor='component-name'>Nombre</InputLabel>
+            <Input
+              name='name'
+              type='text'
+              placeholder='name'
+              onKeyUp={this.validate}
+              value={name}
+              onChange={this.handleChange}
+
+            />
+          </FormControl>
+
+
           <div className='error'>{errorname}</div>
-          <input name='lastname' type='text' placeholder='lastname' onChange={this.handleChange} value={lastname} />
+          {/* <input name='lastname' type='text' placeholder='lastname' onChange={this.handleChange} value={lastname} /> */}
+          <FormControl className='formControl' error={!!this.state.errorName}>
+            <InputLabel htmlFor='component-name'>Lastname</InputLabel>
+            <Input
+              name='lastname'
+              type='text'
+              placeholder='Lastname'
+              onKeyUp={this.validate}
+              value={lastname}
+              onChange={this.handleChange}
+
+            />
+          </FormControl>
+
           <div className='error'>{errorlastname}</div>
-          <input name='email' type='email' placeholder='email' onChange={this.handleChange} value={email} />
+          {/* <input name='email' type='email' placeholder='email' onChange={this.handleChange} value={email} /> */}
+          <FormControl className='formControl' error={!!this.state.errorName}>
+            <InputLabel htmlFor='component-name'>Email</InputLabel>
+            <Input
+              name='email'
+              type='email'
+              placeholder='email'
+              onKeyUp={this.validate}
+              value={email}
+              onChange={this.handleChange}
+
+            />
+          </FormControl>
           <div className='error'>{erroremail}</div>
-          <input name='password' type='password' placeholder='password' onChange={this.handleChange} value={password} />
+          {/* <input name='password' type='password' placeholder='password' onChange={this.handleChange} value={password} /> */}
+          <FormControl className='formControl' error={!!this.state.errorName}>
+            <InputLabel htmlFor='component-name'>Password</InputLabel>
+            <Input
+              name='password'
+              type='password'
+              placeholder='password'
+              onKeyUp={this.validate}
+              value={password}
+              onChange={this.handleChange}
+
+            />
+          </FormControl>
+
           <div className='error'>{errorpassword}</div>
-          <input name='password2' type='password' placeholder='repeat password' onChange={this.handleChange} value={password2} />
+          {/* <input name='password2' type='password' placeholder='repeat password' onChange={this.handleChange} value={password2} /> */}
+          <FormControl className='formControl' error={!!this.state.errorName}>
+            <InputLabel htmlFor='component-name'>Repeat Password</InputLabel>
+            <Input
+              name='password2'
+              type='password'
+              placeholder='Repeat password'
+              onKeyUp={this.validate}
+              value={password2}
+              onChange={this.handleChange}
+
+            />
+          </FormControl>
+
           <div className='error'>{errorparssword2}</div>
-          <input name='registrarme' type='submit' />
+
+          {/* <input name='registrarme' type='submit' /> */}
+
+          <Button
+            variant='contained'
+            className='botonRegister'
+            color='secondary'
+            onClick={this.handleSubmit}>
+            Register
+          </Button>
+
+
           <h1>{this.state.message}</h1>
         </form>
       </section>
@@ -104,4 +199,3 @@ export default () => (
     <Register />
   </PublicZone>
 );
-

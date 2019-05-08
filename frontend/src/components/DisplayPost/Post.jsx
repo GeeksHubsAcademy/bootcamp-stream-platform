@@ -1,21 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from '@reach/router';
+
 import PostText from './PostText';
-import './PostActivity';
-import './Post.scss';
 import PostActivity from './PostActivity';
-import PostCode from '../CreatePost/CreatePostCode/CreatePostCode';
+import PostCode from '../DisplayPost/PostCode';
 import FontAwesome from '../FontAwesome';
 import {removePost} from '../../redux/actions';
-import { connect } from 'react-redux';
-import PostVideo from './Reproductor'
+import PostVideo from './PostVideo';
 
-// const PostCode = ({data}) => <div className='postCode'>postCode  {JSON.stringify(data)} </div>;
-//const PostVideo = ({data}) => <div className='postVideo'>postVideo  {JSON.stringify(data)}  </div>;
+import './Post.scss';
 
-//const PostActivity = ({data}) => <div className='postActivity'>postActivity  {JSON.stringify(data)} </div>;
 
 const Post = ({data, user}) =>  {
-  console.log(data.authorId);
 
   function deletePost() {
 
@@ -40,9 +37,14 @@ const Post = ({data, user}) =>  {
       post = 'no valid postType';
   }
   return (
-    <div className='postItem'>
+    <div className='postItem' id={data._id}>
+      <div className='actions'>
+        <a href={'#'+data._id}>
+          <FontAwesome icon='link' family='fas' />
+        </a>
+        {user._id === data.authorId && <FontAwesome onClick={deletePost} icon='trash' family='fas' />}
+      </div>
       {post}
-      {user._id === data.authorId && <FontAwesome onClick={deletePost} icon='trash' family='fas' />}
     </div>
   );
 };

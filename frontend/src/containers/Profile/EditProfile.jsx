@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import { Redirect } from '@reach/router';
 
 // redux
 import { updateProfile, deleteUser } from '../../redux/actions';
@@ -162,9 +161,8 @@ class EditProfile extends Component {
   };
 
   handleNewImageSelected = (imageBlob) => {
-    // TODO image empty => send empty field 
-    this.setState(({ image: imageBlob || ''}));
-    console.log('handleNewImageSelected:', imageBlob);
+    this.setState(({ image: imageBlob }));
+    // console.log('handleNewImageSelected:', imageBlob);
     this.handleClickShowEdit();
   }
 
@@ -303,7 +301,7 @@ class EditProfile extends Component {
               horizontal: 'left',
             }}
             open={this.state.open}
-            autoHideDuration= {!!this.state.successMessage ? '6000' : null}
+            autoHideDuration= {!!this.state.successMessage ? 6000 : null}
             onClose={this.handleClose}
             ContentProps={{
               'aria-describedby': 'message-id',
@@ -332,7 +330,7 @@ class EditProfile extends Component {
           alignItems="center"
           className="endSection"
           >
-          <Button size="small" variant="outlined" color="primary" 
+          <Button size="small" variant="contained" color="primary" 
                   onClick={this.onClickDialog}>
             Delete my {this.state.role} account
           </Button>
