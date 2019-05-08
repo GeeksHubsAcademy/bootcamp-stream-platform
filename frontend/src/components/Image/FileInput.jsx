@@ -8,6 +8,11 @@ import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
 
+// forms messages : snackbar
+import Snackbar from '@material-ui/core/Snackbar';
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
+
 import Avatar from './Avatar';
 
 // Image path
@@ -26,6 +31,8 @@ class FileInput extends Component {
     file: '',
     imagePath: this.props.user.imagePath,
     imagePreviewUrl: apiImageUrl + this.props.user.imagePath,
+    successMessage: undefined,
+    error: undefined
   };
 
   handleSubmit(e) {
@@ -70,10 +77,21 @@ class FileInput extends Component {
      // delete image DB
     deleteImage(this.state.imagePath)
         .then(() => this.setState({ successMessage: 'Great! removed photo!' }))
-        .catch(e => this.setState({ error: e.message }));
-        //.then(() => this.handleClick());  
+        .catch(e => this.setState({ error: e.message }))
+        .then(() => this.handleClick());  // show snackbar message
   
     });
+  };
+
+  // snackbar component
+  handleClick = () => {
+    this.setState({ open: true });
+  };
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    this.setState({ open: false });
   };
 
   render() {
@@ -121,7 +139,29 @@ class FileInput extends Component {
               </Fab>
               </div>
             </Tooltip>
+
+            <Snackbar
+              className={!!this.state.successMessage ? 'success' : 'error'}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              open={this.state.open}
+              autoHideDuration= {!!this.state.successMessage ? 6000 : null}
+              onClose={this.handleClose}
+              ContentProps={{
+                'aria-describedby': 'message-id',
+              }}
+              message={<span id='message-id'>{this.state.successMessage} {this.state.error}</span>}
+              action={[
+                <IconButton key='close' aria-label='Close' color='inherit' onClick={this.handleClose}>
+                  <CloseIcon />
+                </IconButton>,
+              ]}
+              /> 
         </Grid>
+
+        
 
     );
   }
