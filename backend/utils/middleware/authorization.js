@@ -4,7 +4,6 @@ const { PostModel } = require( '../../models/Post' );
 const Bootcamp = require( '../../models/Bootcamp' );
 const password = require( '../../config/password' )
 const authorization = async ( req, res, next ) => {
-
     try {
         const authToken = req.headers.authorization
         const { _id } = jwt.verify( authToken, password.SECRET );
@@ -26,34 +25,26 @@ const authorization = async ( req, res, next ) => {
     }
 }
 const isAdmin = async ( req, res, next ) => {
-    if ( req.user.role !== 'admin' ) {
-        return res.status( 401 ).send( 'You are not authorized' )
-    }
+    if ( req.user.role !== 'admin' )return res.status( 401 ).send( 'You are not authorized' )
     next();
 }
 const isMember = async ( req, res, next ) => {
-    /**Should be middleware that checks if the user is a bootcamp member and have the right to post */
-    if ( req.user.role === 'admin' )  next();
+    if ( req.user.role === 'admin' ) return next();
     const bootcamp = await Bootcamp.findOne( {
         _id: req.params.bootcamp_id,
-        $elemMatch: {
-            userIds: req.user._id
-        }
-    } )
-    if ( bootcamp ) return res.send( 'is member' )
-    else return res.send( 'is not a member' )
+        userIds:req.user._id
+        });
+    if ( !bootcamp ) res.status(401).json( {message:"You are not a member of this bootcamp"} );
+    else return next();
 }
 const isAuthor = async ( req, res, next ) => {
-    /**Should be middleware that checks if the user is the post author and have the right to edit the post */
-    if ( req.user.role === 'admin' )  next();
-    const Post=PostModel.findOne({
+    if ( req.user.role === 'admin' )return  next();
+    const Post=await PostModel.findOne({
         _id: req.params.post_id,
-        $elemMatch: {
-            authorId: req.user._id
-        }
+        authorId: req.user._id
      })
      if(!Post) return res.status(401).send('You are not the author of the post')
-     next()
+     return next();
 }
 
 module.exports = {

@@ -20,6 +20,7 @@ class MyBootcamps extends Component {
     }else{
     return (
       <section className='MyBootcampsView'>
+<<<<<<< HEAD
         <h2 className="center">Pertenece a los siguientes Bootcamps:</h2>
           {this.props.bootcamps.map(bootcamp => (
         <div className='content-bootcamp'>
@@ -39,6 +40,16 @@ class MyBootcamps extends Component {
               <div className="center boot-card">
                 c</div>
         </div>
+=======
+        <h3>Pertenece a los siguientes Bootcamps:</h3>
+
+        <div className='MyBootcamps'>
+          { this.props.bootcamps.map(bootcamp => (
+
+              <Link to={'/bootcamp/' + bootcamp._id} className='listBootcamps' key={bootcamp._id}>
+                {bootcamp.title} </Link>            
+
+>>>>>>> dbac8008e5e894f388572dfde14f15fa329f6cc5
           ))}
 
       </section>
