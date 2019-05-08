@@ -1,21 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import PostText from './PostText';
-import './PostActivity';
-import './Post.scss';
 import PostActivity from './PostActivity';
-import PostCode from '../CreatePost/CreatePostCode/CreatePostCode';
+import PostCode from '../DisplayPost/PostCode';
 import FontAwesome from '../FontAwesome';
 import {removePost} from '../../redux/actions';
-import { connect } from 'react-redux';
 import PostVideo from './Reproductor'
 
-// const PostCode = ({data}) => <div className='postCode'>postCode  {JSON.stringify(data)} </div>;
-//const PostVideo = ({data}) => <div className='postVideo'>postVideo  {JSON.stringify(data)}  </div>;
+import './Post.scss';
 
-//const PostActivity = ({data}) => <div className='postActivity'>postActivity  {JSON.stringify(data)} </div>;
 
 const Post = ({data, user}) =>  {
-  console.log(data.authorId);
 
   function deletePost() {
 
