@@ -46,13 +46,6 @@ router.patch( '/:id', authorization, isAdmin, async ( req, res, next ) => {
   }
 }, findAndResponseBootcamps );
 
-router.patch( '/unsubscribed/:id', authorization, ( req, res, next ) => {
-    Bootcamp.findByIdAndUpdate( req.params.id, { $pull: { users: req.user._id } }, { useFindAndModify: false } ).then( bootcamp => {
-        if ( !bootcamp ) return res.send( 'bootcamp not found' )
-        next();
-    } ).catch( console.log )
-}, findAndResponseBootcamps );
-
 router.delete( '/delete/:id', authorization, isAdmin, ( req, res, next ) => {
     Bootcamp.findByIdAndDelete( req.params.id ).then( bootcampDeleted => {
         if ( !bootcampDeleted ) return res.status(400).send( 'bootcamp not found' )

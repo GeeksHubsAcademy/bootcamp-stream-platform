@@ -21,7 +21,8 @@
     "redux": "^4.0.1",
     "redux-localstorage-simple": "^2.1.6",
     "validator": "^10.11.0",
-    "video-react": "^0.13.7"
+    "video-react": "^0.13.7",
+    "for-editor": "^0.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
