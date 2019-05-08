@@ -15,7 +15,7 @@ const CreatePostActivity = () => <div className='postActivity'>postActivity</div
 const CreatePost = ({streamId}) => {
 
 
-  const [postType, setPostType] = useState('text');
+  const [postType, setPostType] = useState('code');
   const [body, setBody] = useState('');
   const [creating, setCreating] = useState(false);
   function savePost() {

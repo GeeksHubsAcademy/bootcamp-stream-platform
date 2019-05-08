@@ -1,33 +1,41 @@
 import React from 'react';
-// import brace from 'brace';
+import brace from 'brace';
 import AceEditor from 'react-ace';
 
-import 'brace/mode/java';
+// import 'brace/mode/java';
+import 'brace/mode/javascript';
+// import 'brace/mode/markdown';
 import 'brace/theme/github';
 import 'brace/theme/monokai';
+import 'brace/ext/language_tools';
 
 
-
-const Code = ({ ...props }) => (
-    <AceEditor
+const Code = ({ onChange, ...props }) => (
+  <AceEditor
     mode='javascript'
-    theme='monokai'
+    theme='github'
     focus
     fontSize={18}
     width='100%'
     height='100%'
+    enableBasicAutocompletion
+    enableLiveAutocompletion
     setOptions={{
-        enableEmmet:true,
-        printMargin:true,
-        scrollPastEnd:true,
-        showInvisibles:false,
-         showPrintMargin:false,
-        showLineNumbers:true,
-         enableBasicAutocompletion:true,
-        enableLiveAutocompletion:true
+        printMargin: false,
+        showLineNumbers: false,
+        scrollPastEnd: true,
+        showInvisibles: false,
+        showPrintMargin: false,
+        // enableEmmet: true,
+        // enableBasicAutocompletion: true,
+        // enableLiveAutocompletion: true,
     }}
-    editorProps={{ $blockScrolling: true }}
-    {...props} />
+    editorProps={{ $blockScrolling: Infinity }}
+    onChange={value => {
+      onChange(value);
+    }}
+    {...props}
+  />
 );
 
 export default Code;
