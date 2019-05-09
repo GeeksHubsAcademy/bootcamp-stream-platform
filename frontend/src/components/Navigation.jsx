@@ -8,6 +8,7 @@ import FontAwesome2 from './FontAwesome2';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import TemporaryDrawer from './TemporaryDrawer/TemporaryDrawer';
 
 import './Navigation.scss';
 
@@ -23,7 +24,9 @@ export const Navigation = props => {
             <nav className='menu'>
               <div className='menu2'>
                 {/*menu nuevo con varias opciones dandole al boton */}
-
+                <TemporaryDrawer>
+                  Menu
+                </TemporaryDrawer>
                 <Button aria-owns='simple-menu' aria-haspopup='true' onClick={() => setMenuVisible(true)}>
                   <FontAwesome2 icon='bars' />
                 </Button>

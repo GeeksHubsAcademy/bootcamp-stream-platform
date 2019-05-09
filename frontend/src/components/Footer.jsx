@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import { Link } from '@reach/router';
 import FontAwesome from './FontAwesome';
 
 import './Footer.scss';
@@ -16,7 +15,7 @@ const Footer = () => (
       </p>
       <p className='rights'>All Content © GeeksHubs. VLC FSD class of 2019. All Rights Reserved</p>
     </div>
-    
+
     <div className='social'>
     <div> <h5>Follow us</h5> </div>
       <span className='facebook'/>

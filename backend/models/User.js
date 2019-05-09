@@ -70,8 +70,8 @@ const UserSchema = new mongoose.Schema(
 );
 
 UserSchema.methods.toJSON = function() {
-  const { _id, name, lastname, email, imagePath } = this;
-  return { _id, name, lastname, email, imagePath };
+  const { _id, name, lastname, email, imagePath, role } = this;
+  return { _id, name, lastname, email, imagePath, role };
 };
 
 UserSchema.pre('save', function(next) {

@@ -4,9 +4,7 @@ import { Link } from '@reach/router';
 import Card from '@material-ui/core/Card';
 import './MyBootcamps.scss';
 
-
 class MyBootcamps extends Component {
-
   render() {
     if (!this.props.bootcamps) {
       return (
@@ -47,7 +45,6 @@ class MyBootcamps extends Component {
 }
 
 //export default MyBootcamps;
-
 
 //export default MyBootcamps;
 const mapStateToProps = ({ bootcamps }) => ({ bootcamps });

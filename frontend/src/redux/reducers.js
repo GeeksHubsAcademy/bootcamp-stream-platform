@@ -52,14 +52,7 @@ export let initialState = {
 //           authorId: 2,
 //           content: {
 //             title: 'Recursos sobre react',
-//             code: `
-//             export let initialState = {
-//   bootcamps: [],
-//   user: null,
-//   allUsers: []
-// };
-
-//             `,
+//             code: 'export default 42',
 //             format: 'js',
 //           },
 //         },
@@ -120,6 +113,7 @@ export let initialState = {
 //   ],
 // };
 // initialState = sampleState;
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'LOGGED_IN':
@@ -148,6 +142,11 @@ const reducer = (state = initialState, action) => {
         user: action.user,
       };
     case 'DELETE_USER':
+      return {
+        ...state,
+        user: action.user,
+      };
+      case 'UNSUSCRIBE_USER':
       return {
         ...state,
         user: action.user,

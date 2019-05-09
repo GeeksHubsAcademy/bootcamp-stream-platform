@@ -28,3 +28,4 @@ app.use( '/bootcamp', bootcampRoutes )
 app.use( '/post', postRoutes )
 
 app.listen( port, () => console.log( 'Servidor levantado en ' + port ) );
+module.exports = app
