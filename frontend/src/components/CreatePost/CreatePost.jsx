@@ -3,6 +3,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Fab from '@material-ui/core/Fab';
 import CreatePostText from './CreatePostText'
+import CreatePostActivity from './CreatePostActivity'
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -11,7 +12,7 @@ import CreatePostCode from './CreatePostCode/CreatePostCode';
 import './CreatePost.scss';
 
 const CreatePostVideo = () => <div className='postVideo'>postVideo</div>;
-const CreatePostActivity = () => <div className='postActivity'>postActivity</div>;
+// const CreatePostActivity = () => <div className='postActivity'>postActivity</div>;
 
 const CreatePost = ({streamId}) => {
 
