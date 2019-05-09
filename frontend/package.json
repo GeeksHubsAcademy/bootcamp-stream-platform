@@ -25,7 +25,6 @@
     "redux-localstorage-simple": "^2.1.6",
     "validator": "^10.11.0",
     "react-player": "^1.11.0"
-
   },
   "scripts": {
     "start": "react-scripts start",
