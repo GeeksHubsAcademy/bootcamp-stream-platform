@@ -27,9 +27,9 @@ export const Navigation = props => {
                 <TemporaryDrawer>
                   Menu
                 </TemporaryDrawer>
-                {/* <Button aria-owns='simple-menu' aria-haspopup='true' onClick={() => setMenuVisible(true)}>
+                <Button aria-owns='simple-menu' aria-haspopup='true' onClick={() => setMenuVisible(true)}>
                   <FontAwesome2 icon='bars' />
-                </Button> */}
+                </Button>
                 <Menu id='menu-dropdown' open={menuVisible} onClose={() => setMenuVisible(false)}>
                   <MenuItem onClick={() => setMenuVisible(false)}>
                     <Link to='/profile'>profile</Link>
