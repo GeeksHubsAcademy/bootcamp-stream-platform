@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "export NODE_ENV=test || NODE_ENV=test || SET \"NODE_ENV=test\" && nodemon index.js",
+    "test": "export NODE_ENV=test || NODE_ENV=test || SET \"NODE_ENV=test\" && mocha ./test --recursive",
     "mongo_start": "~/Downloads/mongodb-osx-x86_64-4.0.6/bin/mongod --dbpath=/data/db",
     "start": "export NODE_ENV=production || NODE_ENV=production || SET \"NODE_ENV=production\" && node index.js",
     "dev": "export NODE_ENV=development || NODE_ENV=development || SET \"NODE_ENV=development\" && nodemon index.js"
   },
   "keywords": [],
-  "author": "jupegarnica",
+  "author": "david-pinilla",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.5",
@@ -23,7 +23,10 @@
     "validator": "^10.11.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10",
-    "morgan": "^1.9.1"
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^6.1.4",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.10"
   }
 }
