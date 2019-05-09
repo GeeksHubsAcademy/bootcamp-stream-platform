@@ -52,7 +52,6 @@ class EditBootcamp extends Component {
       .catch(console.error);;
   };
   usersChanged = users => {
-      console.log(users);
 
     this.setState({ users }, () => console.log(this.state));
   };
@@ -72,7 +71,7 @@ class EditBootcamp extends Component {
               <TextField onChange={this.handleChange} label='title' value={this.state.title} name='title' type='text' required />
               <TextField onChange={this.handleChange} label='description' value={this.state.description} name='description' type='text' required />
               <DateFormatInput name='startsAt' onChange={date => this.handleChange({ target: { value: date, name: 'startsAt' } })} value={date} />
-              <TextField className="week-duration" required onChange={this.handleChange} 
+              <TextField className="week-duration" required onChange={this.handleChange}
                name='weeksDuration' type='number' label='Duración en semanas'
                inputProps={{ min: "1", max: "15", step: "1" }} />
            </div>
@@ -82,10 +81,10 @@ class EditBootcamp extends Component {
          </div>
        );
        }
-  
+
       }
     }
-  
+
 const mapStateToProps = ({ bootcamps }, { id }) => ({ bootcamp: bootcamps.find(el => String(el._id) === id) });
 const mapDispatchToProps = () => ({ editBootcamp, newBootcamp });
 

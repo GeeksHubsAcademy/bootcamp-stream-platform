@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PublicZone from '../../components/PublicZone';
+import PublicZone from '../../guards/PublicZone';
 import validator from 'validator';
 import { postRegister } from '../../redux/actions';
 import './Register.scss';
@@ -11,12 +11,8 @@ import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 // form icons (npm install @material-ui/icons)
-import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Link from '@material-ui/core/Link';
+
 
 
 
@@ -53,13 +49,16 @@ class _Register extends Component {
     ev.preventDefault();//esto es para que no se refresque
     console.log('handleSubmit', this.state);
     if (this.state.password2 === this.state.password && this.state.password) {
-      postRegister(this.state.name, this.state.lastname, this.state.email, this.state.password)
-        .then(response => this.setState({ message: response }))
-        .catch(error => this.setState({ message: error.message }));
+      postRegister(this.state)
+        .then(response => this.setState({ message: "Registro completado, ya puedes" }))
+        .catch(error => {
+          console.dir(error);
+           this.setState({ message: error.message });
+        });
+    } else {
+        this.setState({ message: 'completa los campos correctamente' });
     }
-    // loggedIn(pass, email)
-    //     .then(() => this.setState({ error: 'logged!!' }))
-    //     .catch(e => this.setState({ error: 'email o contraseña incorrecta' }));
+
   }
   handleChange = (ev) => {
     console.log('ENTRA en handlechange');
@@ -67,19 +66,18 @@ class _Register extends Component {
     this.validate();
   }
 
-  handleSubmit = (ev) => {
-    ev.preventDefault();//esto es para que no se refresque
-    postRegister(this.state);
-    // loggedIn(pass, email)
-    //     .then(() => this.setState({ error: 'logged!!' }))
-    //     .catch(e => this.setState({ error: 'email o contraseÃ±a incorrecta' }));
-  }
+
   validate = () => {//only validate email
     if (validator.isEmail(this.state.email)) {
       this.setState({ erroremail: undefined });
     }
     else {
       this.setState({ erroremail: 'Por favor, introduce un email válido' });
+    }
+    if (this.state.password === this.state.password2) {
+      this.setState({ errorparssword2: undefined });
+    } else {
+      this.setState({ errorparssword2: 'Las contraseñas no coinciden' });
     }
   }
 
