@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PublicZone from '../../components/PublicZone';
+import PublicZone from '../../guards/PublicZone';
 import validator from 'validator';
 import { postRegister } from '../../redux/actions';
 import './Register.scss';

@@ -5,7 +5,12 @@ import { connect } from 'react-redux';
 const PublicZone = ({ children, user }) => (
   <Match path='/hot/:item'>
     {({ location }) => {
-      const to = location.search && location.search.replace('?to=', '');
+      const to =
+        location.search &&
+        location.search
+          .replace('?to=', '')
+          .replace('/login', '')
+          .replace('/register', '');
       const redirectTo = to || '/bootcamps';
       return user ? <Redirect from='' to={redirectTo} noThrow /> : children;
     }}
