@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import { DateFormatInput } from 'material-ui-next-pickers';
 import { editBootcamp, newBootcamp } from '../../redux/actions';
 import './EditBootcamp.scss';
+import Button from '@material-ui/core/Button';
 
 class EditBootcamp extends Component {
   constructor(props) {
@@ -66,18 +67,32 @@ class EditBootcamp extends Component {
       const date = this.state.startsAt ? new Date(this.state.startsAt): new Date();
        return (
          <div className='editBootcamp'>
-           <h1>{this.props.bootcamp ? 'Editar': 'Crear'} bootcamp</h1>
+           <h1>{this.props.bootcamp ? 'Editar' : 'Crear'} bootcamp</h1>
            <div className='content-edit'>
-              <TextField onChange={this.handleChange} label='title' value={this.state.title} name='title' type='text' required />
-              <TextField onChange={this.handleChange} label='description' value={this.state.description} name='description' type='text' required />
-              <DateFormatInput name='startsAt' onChange={date => this.handleChange({ target: { value: date, name: 'startsAt' } })} value={date} />
-              <TextField className="week-duration" required onChange={this.handleChange}
-               name='weeksDuration' type='number' label='Duración en semanas'
-               inputProps={{ min: "1", max: "15", step: "1" }} />
+             <TextField onChange={this.handleChange} label='title' value={this.state.title} name='title' type='text' required />
+             <TextField onChange={this.handleChange} label='description' value={this.state.description} name='description' type='text' required />
+             <DateFormatInput name='startsAt' onChange={date => this.handleChange({ target: { value: date, name: 'startsAt' } })} value={date} />
+             <TextField
+               className='week-duration'
+               required
+               onChange={this.handleChange}
+               name='weeksDuration'
+               type='number'
+               label='Duración en semanas'
+               inputProps={{ min: '1', max: '15', step: '1' }}
+             />
            </div>
 
            <UsersManager users={this.state.users} onChange={this.usersChanged} />
-           <div className='content-action'>{this.props.bootcamp ? <button onClick={this.saveBootcamp}>saveBootcamp</button> : <button onClick={this.createBootcamp}>Create</button>}</div>
+           <div className='content-action'>
+             {this.props.bootcamp ?
+             <Button variant='outlined' size='large' color='secondary' onClick={this.saveBootcamp}>
+               Save Bootcamp
+             </Button> :
+             <Button variant='outlined' size='large' color='secondary' onClick={this.createBootcamp}>
+               Create
+             </Button>}
+           </div>
          </div>
        );
        }
