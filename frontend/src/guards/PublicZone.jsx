@@ -3,7 +3,7 @@ import { Redirect, Match } from '@reach/router';
 import { connect } from 'react-redux';
 
 const PublicZone = ({ children, user }) => (
-  <Match path='/hot/:item'>
+  <Match path='*'>
     {({ location }) => {
       const to =
         location.search &&
