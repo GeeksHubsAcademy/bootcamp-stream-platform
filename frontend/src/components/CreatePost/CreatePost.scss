@@ -1,48 +1,46 @@
 .createPost {
-    background: white;
-    width: 95vw;
-    height:  95vh;
-    outline: 'none';
+  background: white;
+  width: 95vw;
+  height: 95vh;
+  outline: 'none';
+  display: flex;
+  flex-direction: column;
+  .create {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    .create {
-        flex:1;
-        display:flex;
-        flex-direction: column;
-        & > :nth-child(2) {
-            flex:1
-        }
-        .title {
-            display:flex;
-            justify-content:center;
-
-        }
-         input[type=text],
-         .MuiFormControl-root-91 {
-                width:90%;
-                max-width: 400px;
-
-            }
-            .MuiFormControl-root-91 {
-                margin: 1em;
-            }
+    & > :nth-child(2) {
+      flex: 1;
     }
-    .actions {
-        display: flex;
-        justify-content: center;
-        padding: 0.5em;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        & > * {
-            margin: 1em;
-        }
-
+    .title {
+      display: flex;
+      justify-content: center;
     }
-
-}
-[role="presentation"] {
+    input[type='text'],
+    .MuiFormControl-root-91 {
+      width: 90%;
+      max-width: 400px;
+    }
+    .MuiFormControl-root-91 {
+      margin: 1em;
+    }
+  }
+  .actions {
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding: 0.5em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    pointer-events: none;
+    & > * {
+      margin: 1em;
+      pointer-events: auto;
+    }
+  }
+}
+[role='presentation'] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

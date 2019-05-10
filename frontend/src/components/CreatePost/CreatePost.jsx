@@ -61,7 +61,7 @@ const CreatePost = ({streamId}) => {
         </Tabs>
         <div className='create'>
           <div className='title'>
-            <TextField required id='title' label='Título' value={title} onChange={e => setTitle(e.target.value)} margin='normal' />
+            <TextField required autoFocus id='title' label='Título' value={title} onChange={e => setTitle(e.target.value)} margin='normal' />
           </div>
 
           {postType === 'code' && <CreatePostCode value={body} onChange={setBody} />}

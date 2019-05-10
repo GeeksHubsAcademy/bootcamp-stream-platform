@@ -1,0 +1,9 @@
+.postVideo {
+  .player {
+        height: 350px;
+
+    & > * {
+          height: 350px !important;
+    }
+  }
+}
