@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from '@reach/router';
-
 import PostText from './PostText';
 import PostActivity from './PostActivity';
 import PostCode from '../DisplayPost/PostCode';

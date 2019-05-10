@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from '@reach/router';
-import Card from '@material-ui/core/Card';
 import './MyBootcamps.scss';
 
 class MyBootcamps extends Component {

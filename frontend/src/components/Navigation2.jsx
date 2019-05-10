@@ -14,10 +14,7 @@ export const Navigation = props => (
                <div className='logged'>
                  <div className='avatar'>avatar</div>
                  <nav className='menu'>
-                   {/* <Link to='movies/top_rated'>top rated</Link> */}
-
                    {props.user.role === 'admin' && <Link to='/admin'>admin</Link>}
-                   {/* <Link to='Login'>popular</Link> */}
                    <button onClick={loggedOut}>log out</button>
                  </nav>
                </div>

@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import  {connect} from 'react-redux';
+import './UsersManager.scss';
 
-import './UsersManager.css';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 const UsersManager = ({ users = [], onChange, allUsers }) => {
   const [usersSelected, setSeleted] = useState(users);
   const [search, setSearch] = useState('');
@@ -19,30 +27,40 @@ const UsersManager = ({ users = [], onChange, allUsers }) => {
        <span className='_id'>{user._id}:&nbsp; </span>
        <span className='_id'>{user.name}&nbsp; </span>
        <span className='email'>{user.email}</span>
-       <button onClick={() => onRemove(user)}>-</button>
+       <IconButton onClick={() => onRemove(user)} aria-label='Delete'>
+         <DeleteIcon fontSize='small' />
+       </IconButton>
      </div>
    ));
   return (
     <div className='usersManager'>
       <div className='selected'>
         <h1>Users:</h1>
-        {selectedMapped.length > 0 ? selectedMapped : <span>not user selected, select some from bellow</span>}
+        {selectedMapped.length > 0 ? selectedMapped : <span className='nousers'>no user selected, select one bellow</span>}
       </div>
       <div className='select'>
-        <input type='text' value={search} placeholder='filter users to add' onChange={e => setSearch(e.target.value)} />
-        <div className='toSelect' />
-        <h1>Select Users:</h1>
+        {/* <input type='text' value={search} placeholder='filter users to add' onChange={e => setSearch(e.target.value)} />
+        <div className='toSelect' /> */}
+        <FormControl className='toSelect'>
+          <InputLabel htmlFor='component-name'>filter users to add</InputLabel>
+          <Input name='pass' type='text' onChange={e => setSearch(e.target.value)} />
+        </FormControl>
 
-        {allUsers
-          .filter(u => JSON.stringify(u).match(search))
-          .map(user => (
-            <div key={user._id}>
-              <span className='_id'>{user._id}:&nbsp; </span>
-              <span className='_id'>{user.name}&nbsp; </span>
-              <span className='email'>{user.email}</span>
-              <button onClick={() => onSelect(user)}>+</button>
-            </div>
-          ))}
+        <h1>Select Users:</h1>
+        <div className='allusers'>
+          {allUsers
+            .filter(u => JSON.stringify(u).match(search))
+            .map(user => (
+              <div key={user._id}>
+                <span className='_id'>{user._id}:&nbsp; </span>
+                <span className='_id'>{user.name}&nbsp; </span>
+                <span className='email'>{user.email}</span>
+                <Fab className='buttons' size='small' color='primary'onClick={() => onSelect(user)}>
+                  <AddIcon />
+                </Fab>
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );

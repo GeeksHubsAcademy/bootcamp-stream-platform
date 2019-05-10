@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from '@reach/router';
 import { loggedOut } from '../redux/actions';
-// import FontAwesome from './FontAwesome';
 import FontAwesome from './FontAwesome';
 
 import Button from '@material-ui/core/Button';
@@ -18,6 +17,9 @@ export const Navigation = props => {
   return (
     <nav className='navigation'>
       <img src='https://geekshubsacademy.com/img/logo_Geeks_Alfatec.svg' alt='GeeksHubs Academy' />
+      <div className='network'>
+        Social Network
+      </div>
       <div className='user'>
         {props.user ? (
           <div className='logged'>
