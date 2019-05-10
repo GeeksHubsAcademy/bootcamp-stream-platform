@@ -58,3 +58,4 @@ CREACIÓN DE POST
 - https://github.com/thlorenz/brace
 - https://github.com/securingsincity/react-ace
 - https://github.com/CookPete/react-player
+- https://microlink.io/docs/sdk/integrations/react/

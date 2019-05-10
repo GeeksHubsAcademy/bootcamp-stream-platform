@@ -67,7 +67,7 @@ const CreatePost = ({streamId}) => {
           {postType === 'code' && <CreatePostCode value={body} onChange={setBody} />}
           {postType === 'text' && <CreatePostText value={body} onChange={setBody} onSave={savePost} />}
           {postType === 'video' && <CreatePostVideo value={body} onChange={setBody} />}
-          {postType === 'activity' && <CreatePostActivity />}
+          {postType === 'activity' && <CreatePostActivity value={body} onChange={setBody} />}
         </div>
         <div className='actions'>
           <Button onClick={savePost} color='secondary' variant='contained' size='medium'>

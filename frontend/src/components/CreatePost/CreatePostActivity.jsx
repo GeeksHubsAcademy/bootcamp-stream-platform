@@ -1,29 +1,20 @@
 import React from 'react';
 import './CreatePostActivity.scss';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
+import Reproductor from '../VideoPlayer';
+import { TextField } from '@material-ui/core';
+import FontAwesome from '../FontAwesome';
+import Microlink from '@microlink/react';
 
-
-
-const CreatePostActivity = ({data, onChange}) => (null
-// <div>
-//   <FormControl className='formControl'>
-//     <InputLabel htmlFor='component-name'>Title</InputLabel>
-//     <Input name='title' type='text' placeholder='title' value={data.content.title} onChange={this.handleChange} />
-//   </FormControl>
-
-//   <FormControl className='formControl'>
-//     <InputLabel htmlFor='component-name'>Body</InputLabel>
-//     <Input name='body' type='text' placeholder='activity' value={data.content.body} onChange={this.handleChange} />
-//   </FormControl>
-
-//   <FormControl className='formControl'>
-//     <InputLabel htmlFor='component-name'>Url</InputLabel>
-//     <Input name='url' type='text' placeholder='url' value={data.content.url} onChange={this.handleChange} />
-//   </FormControl>
-// </div>
+const CreatePostActivity = ({ value, onChange }) => (
+  <div className='CreatePostActivity'>
+    <TextField required id='body' label='Url' margin='normal' onChange={ev => onChange(ev.target.value)} value={value} />
+    {value ? (
+      <Microlink url={value} />
+    ) : (
+      <div className='noPreview'>
+        <FontAwesome icon='url' />
+      </div>
+    )}
+  </div>
 );
-
-
 export default CreatePostActivity;
