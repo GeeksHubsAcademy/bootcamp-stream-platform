@@ -1,15 +1,10 @@
 import React from 'react';
+import Microlink from '@microlink/react';
 
-const PostActivity = ({data}) => (
-
-<div className='postActivity'>
-Post Activity
-    <h3>{data.content.title}</h3>
-    <p>{data.content.body}</p>
-    <h6>{data.content.url}</h6>
-</div>
-
-
+const PostActivity = ({ data }) => (
+  <div className='postActivity'>
+    <Microlink url={data.content.body} />
+  </div>
 );
 
 

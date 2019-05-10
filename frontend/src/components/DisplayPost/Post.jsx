@@ -4,17 +4,14 @@ import PostText from './PostText';
 import PostActivity from './PostActivity';
 import PostCode from '../DisplayPost/PostCode';
 import FontAwesome from '../FontAwesome';
-import {removePost} from '../../redux/actions';
+import { removePost } from '../../redux/actions';
 import PostVideo from './PostVideo';
 
 import './Post.scss';
 
-
-const Post = ({data, user}) =>  {
-
+const Post = ({ data, user }) => {
   function deletePost() {
-
-      removePost(data._id);
+    removePost(data._id);
   }
   let post;
   switch (data.postType) {
@@ -37,14 +34,16 @@ const Post = ({data, user}) =>  {
   return (
     <div className='postItem' id={data._id}>
       <div className='actions'>
-        <a href={'#'+data._id}>
+        <a href={'#' + data._id}>
           <FontAwesome icon='link' family='fas' />
         </a>
         {user._id === data.authorId && <FontAwesome onClick={deletePost} icon='trash' family='fas' />}
       </div>
+      <h1 className='title'>{data.content.title}</h1>
+
       {post}
     </div>
   );
 };
 
-export default connect(({user}) => ({user}))(Post);
+export default connect(({ user }) => ({ user }))(Post);
