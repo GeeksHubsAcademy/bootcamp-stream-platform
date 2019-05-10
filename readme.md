@@ -53,9 +53,9 @@ CREACIÓN DE POST
 
 ##  vendor code
 
-- https://jpuri.github.io/react-draft-wysiwyg/#/
+<!-- - https://jpuri.github.io/react-draft-wysiwyg/#/ -->
 - https://github.com/kkfor/for-editor
 - https://github.com/thlorenz/brace
 - https://github.com/securingsincity/react-ace
 - https://github.com/CookPete/react-player
-- https://microlink.io/docs/sdk/integrations/react/
+- winhtaikaung.github.io/react-tiny-link/
