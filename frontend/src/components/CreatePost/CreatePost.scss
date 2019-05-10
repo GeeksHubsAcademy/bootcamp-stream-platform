@@ -9,18 +9,31 @@
         flex:1;
         display:flex;
         flex-direction: column;
+        & > :nth-child(2) {
+            flex:1
+        }
         .title {
             display:flex;
             justify-content:center;
-            & > * {
-                min-width: 300px;
-            }
+
         }
+         input[type=text],
+         .MuiFormControl-root-91 {
+                width:90%;
+                max-width: 400px;
+
+            }
+            .MuiFormControl-root-91 {
+                margin: 1em;
+            }
     }
     .actions {
         display: flex;
         justify-content: center;
         padding: 0.5em;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
         & > * {
             margin: 1em;
         }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Player from '../Reproductor'
+import Player from '../VideoPlayer'
 const PostVideo = ({ data }) => {
     return (
       <div className='postVideo'>
