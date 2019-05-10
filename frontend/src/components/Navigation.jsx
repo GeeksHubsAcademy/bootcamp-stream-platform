@@ -18,6 +18,9 @@ export const Navigation = props => {
   return (
     <nav className='navigation'>
       <img src='https://geekshubsacademy.com/img/logo_Geeks_Alfatec.svg' alt='GeeksHubs Academy' />
+      <div className='network'>
+        Social Network
+      </div>
       <div className='user'>
         {props.user ? (
           <div className='logged'>
@@ -61,8 +64,8 @@ export const Navigation = props => {
             <Link to='/login'>login</Link>
             <br/>
             <Link to='/register'>Register</Link>
-           
-            
+
+
             <FontAwesome2 icon='sign-in-alt' />
           </div>
         )}
