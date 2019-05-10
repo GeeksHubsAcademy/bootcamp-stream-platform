@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import PostText from './PostText';
 import PostActivity from './PostActivity';
@@ -10,6 +10,7 @@ import PostVideo from './PostVideo';
 import './Post.scss';
 
 const Post = ({ data, user }) => {
+  const [expanded, setExpanded] = useState(false)
   function deletePost() {
     removePost(data._id);
   }
@@ -32,7 +33,7 @@ const Post = ({ data, user }) => {
       post = 'no valid postType';
   }
   return (
-    <div className='postItem' id={data._id}>
+    <div className={'postItem ' + (expanded ? 'expanded':'')} onClick={()=>setExpanded(!expanded)} id={data._id}>
       <div className='actions'>
         <a href={'#' + data._id}>
           <FontAwesome icon='link' family='fas' />

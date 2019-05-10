@@ -3,7 +3,7 @@ import Microlink from '@microlink/react';
 
 const PostActivity = ({ data }) => (
   <div className='postActivity'>
-    <Microlink url={data.content.body} />
+    <Microlink url={data.content.body} size='large' />
   </div>
 );
 

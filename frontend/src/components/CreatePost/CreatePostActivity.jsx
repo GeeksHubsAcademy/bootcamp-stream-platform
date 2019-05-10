@@ -9,7 +9,7 @@ const CreatePostActivity = ({ value, onChange }) => (
   <div className='CreatePostActivity'>
     <TextField required id='body' label='Url' margin='normal' onChange={ev => onChange(ev.target.value)} value={value} />
     {value ? (
-      <Microlink url={value} />
+      <Microlink url={value} size='large' />
     ) : (
       <div className='noPreview'>
         <FontAwesome icon='url' />

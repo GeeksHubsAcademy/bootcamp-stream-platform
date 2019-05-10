@@ -13,6 +13,7 @@ code {
     monospace;
 }
 
+/* layout */
 .main {
   padding: 2em;
   display: flex;
@@ -26,4 +27,44 @@ code {
 .main > div {
   max-width: 1000px;
   width: 100%;
+}
+
+/* scroll */
+
+::-webkit-resizer {
+    background: transparent;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    background: transparent;
+
+}
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: transparent;
+    background: #ccc;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-button {
+    background: transparent;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+::-webkit-scrollbar-track-piece {
+    background: transparent;
 }
