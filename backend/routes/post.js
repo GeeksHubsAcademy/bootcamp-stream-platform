@@ -6,13 +6,17 @@ const findAndResponseBootcamps = require( '../utils/middleware/findAndReturnBoot
 const ObjectId = require('mongodb').ObjectID
 router.post( '/:bootcamp_id', authorization,isMember, async ( req, res, next ) => {
     try {
-        req.body.authorId = req.user._id   /* **/
-        const post = await new PostModel( req.body ).save() /* Here we save the new post in the Post collection**/
+        const newPost = {
+          ...req.body,
+          authorId:req.user._id,
+          keywords:['#'+req.body.postType]
+        };
+        const post = await new PostModel( newPost).save() /* Here we save the new post in the Post collection**/
         await Bootcamp.findByIdAndUpdate( req.params.bootcamp_id, { $push: { postIds: post._id } }, { useFindAndModify: false } )
         /* In the line above we update the bootcamp pushing the new post into the array of Posts inside the Bootcamp collection**/
         next()
     } catch ( error ) {
-        res.status( 500 ).json( { error, message: "Something went wrong, our apologies" } )
+        res.status(400).json(error);
     }
 }, findAndResponseBootcamps );
 router.patch('/:post_id', authorization,isAuthor, async ( req, res, next ) => {

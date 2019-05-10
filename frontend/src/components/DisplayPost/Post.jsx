@@ -56,7 +56,7 @@ const Post = ({ data, user, author }) => {
       break;
 
     default:
-      post = 'no valid postType';
+      post = <pre className='AnyPostType'>{JSON.stringify(data)}</pre>;
   }
   return (
     <div className={'postItem ' + (expanded ? 'expanded' : '')} onClick={() => setExpanded(!expanded)} id={data._id}>

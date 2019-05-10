@@ -32,8 +32,9 @@ const CreatePost = ({streamId}) => {
       sendPost(post, streamId)
         .then(() => {
           setBody('');
+          setTitle('');
         })
-        .catch(console.error);
+        .catch(alert);
    } else {
      alert('title and body required')
    }
@@ -57,6 +58,7 @@ const CreatePost = ({streamId}) => {
           <Tab label='Code' value='code' />
           <Tab label='Text' value='text' />
           <Tab label='Video' value='video' />
+          <Tab label='Link' value='link' />
           <Tab label='Activity' value='activity' />
         </Tabs>
         <div className='create'>
@@ -67,6 +69,7 @@ const CreatePost = ({streamId}) => {
           {postType === 'code' && <CreatePostCode value={body} onChange={setBody} />}
           {postType === 'text' && <CreatePostText value={body} onChange={setBody} onSave={savePost} />}
           {postType === 'video' && <CreatePostVideo value={body} onChange={setBody} />}
+          {postType === 'link' && <CreatePostActivity value={body} onChange={setBody} />}
           {postType === 'activity' && <CreatePostActivity value={body} onChange={setBody} />}
         </div>
         <div className='actions'>
