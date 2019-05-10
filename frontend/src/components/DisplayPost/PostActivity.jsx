@@ -1,9 +1,9 @@
 import React from 'react';
-import Microlink from '@microlink/react';
+import UrlPreview from '../UrlPreview';
 
 const PostActivity = ({ data }) => (
   <div className='postActivity'>
-    <Microlink url={data.content.body} size='large' />
+    <UrlPreview url={data.content.body}   />
   </div>
 );
 
