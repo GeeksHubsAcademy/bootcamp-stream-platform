@@ -18,10 +18,7 @@
   "author": "jupegarnica",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^4.1.0",
-    "react": "^16.8.6",
-    "react-ace": "^6.5.0",
-    "react-dom": "^16.8.6"
+    "concurrently": "^4.1.0"
   },
   "devDependencies": {}
 }
