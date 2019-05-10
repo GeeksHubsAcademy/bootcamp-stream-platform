@@ -6,7 +6,7 @@ import { loggedIn } from '../../redux/actions';
 
 //importamos scss
 import './Login.scss';
-import PublicZone from '../../components/PublicZone';
+import PublicZone from '../../guards/PublicZone';
 //material-ui
 //import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -36,7 +36,7 @@ class _Login extends Component {
   };
 
   login = event => {
-    
+
     event.preventDefault();
     let { pass, email } = this.state;
 
@@ -53,7 +53,7 @@ class _Login extends Component {
         // .then(() => this.setState({ error: 'logged!!' }))
         .catch(e => this.setState({ error: 'El email y/o la contraseña incorrecta' }));
     }
-    
+
   };
 
   render() {
@@ -114,7 +114,7 @@ class _Login extends Component {
                     alert("I'm a button.");
                   }}
                   >
-                  
+
                 Recuperar password
                 </Link> */}
 

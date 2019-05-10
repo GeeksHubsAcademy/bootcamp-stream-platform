@@ -17,7 +17,7 @@
             align-content: center;
             padding: 10px;
             margin: 5px;
-            
+
             div{
                 height: 55px;
 
@@ -26,12 +26,13 @@
                     width: 50%;
                     font-size: 10px;
                 }
-            
+
 
         }
         .content-action{
             display: flex;
             justify-content: space-around;
+            margin: 20px;
 
         }
 }

@@ -11,7 +11,8 @@ import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import AdminEditBootcamp from './containers/Admin/EditBootcamp.jsx';
 import AdminBootcamps from './containers/Admin/bootcamps.jsx';
-import PrivateZone from './components/PrivateZone';
+import PrivateZone from './guards/PrivateZone';
+import AdminZone from './guards/AdminZone';
 
 import './App.scss';
 
@@ -24,10 +25,12 @@ function App() {
           <Bootcamp path='bootcamp/:id' />
           <EditProfile path='profile' />
           <MyBootcamps path='bootcamps' />
-          <AdminBootcamps path='admin/bootcamps' />
-          <AdminEditBootcamp path='admin/bootcamp/new' />
-          <AdminEditBootcamp path='admin/bootcamp/:id' />
-          <Redirect from='admin' to='admin/bootcamps' noThrow />
+          <AdminZone path="admin">
+            <AdminBootcamps path='bootcamps' />
+            <AdminEditBootcamp path='bootcamp/new' />
+            <AdminEditBootcamp path='bootcamp/:id' />
+            <Redirect from='/' to='admin/bootcamps' noThrow />
+          </AdminZone>
           <Redirect from='*' to='bootcamps' noThrow />
         </PrivateZone>
         <Register path='register' />

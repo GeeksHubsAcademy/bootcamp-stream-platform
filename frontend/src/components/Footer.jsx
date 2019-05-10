@@ -34,17 +34,17 @@ const Footer = () => (
     <div>
       <ul className='links'>
         <li>
-          <a href='https://geekshubsacademy.com/terms' target='_blank' style={{ color: 'white', textDecoration: 'none' }}>
+          <a href='https://geekshubsacademy.com/terms' target='terms' style={{ color: 'white', textDecoration: 'none' }}>
             Terms and Conditions
           </a>
         </li>
         <li>
-          <a href='https://geekshubsacademy.com/privacy' target='_blank' style={{ color: 'white', textDecoration: 'none' }}>
+          <a href='https://geekshubsacademy.com/privacy' target='privacy' style={{ color: 'white', textDecoration: 'none' }}>
             Privacy
           </a>
         </li>
         <li>
-          <a href='https://geekshubsacademy.com/cookies' target='_blank' style={{ color: 'white', textDecoration: 'none' }}>
+          <a href='https://geekshubsacademy.com/cookies' target='cookies' style={{ color: 'white', textDecoration: 'none' }}>
             Cookies policy
           </a>
         </li>

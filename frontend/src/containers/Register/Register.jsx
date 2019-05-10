@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PublicZone from '../../components/PublicZone';
+import PublicZone from '../../guards/PublicZone';
 import validator from 'validator';
 import { postRegister } from '../../redux/actions';
 import './Register.scss';
@@ -11,12 +11,8 @@ import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 // form icons (npm install @material-ui/icons)
-import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Link from '@material-ui/core/Link';
+
 
 
 
