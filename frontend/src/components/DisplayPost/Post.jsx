@@ -44,7 +44,7 @@ const Post = ({ data, user, author }) => {
         <div className={`postType ${data.postType}`}>#{data.postType}</div>
         <div className='author'>{author && author.name}</div>
         <DateDisplay date={data.updatedAt}/>
-        <div className='actions'>{user._id === data.authorId && <FontAwesome onClick={deletePost} icon='trash' family='fas' />}</div>
+        <div className='post-actions'>{user._id === data.authorId && <FontAwesome onClick={deletePost} icon='trash' family='fas' />}</div>
       </div>
 
       <h1 className='title'>

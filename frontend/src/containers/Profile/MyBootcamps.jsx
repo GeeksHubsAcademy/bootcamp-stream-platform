@@ -16,14 +16,13 @@ class MyBootcamps extends Component {
     return (
       <section className='MyBootcampsView'>
         <h2 className='center'>Pertenece a los siguientes Bootcamps:</h2>
-        {this.props.bootcamps.map(({ title, _id, description, posts, ...bootcamp }) => (
+        {this.props.bootcamps.map(({ title, _id, description, posts, startsAt, ...bootcamp }) => (
           <div className='content-bootcamps'>
             <Link to={'/bootcamp/' + _id} key={_id} className='listBootcamps'>
               <h2>{title}</h2>
-              <DateDisplay date={'12/1/19'}/>
+              <DateDisplay date={startsAt} />
               <p>{description}</p>
               <div>{posts.length} posts creados</div>
-              {/* <pre>{JSON.stringify(bootcamp, null, 2)}</pre> */}
             </Link>
           </div>
         ))}

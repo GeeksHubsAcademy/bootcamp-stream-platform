@@ -5,13 +5,11 @@ import CreatePost from '../../components/CreatePost/CreatePost';
 import NotFound from '../../components/NotFound';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
-import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import DirectionsIcon from '@material-ui/icons/Directions';
 
 import './Bootcamp.scss';
+import DateDisplay from '../../components/DateDisplay';
 
 const Bootcamp = ({ bootcamp, id }) => {
   const [search, setSearch] = useState('');
@@ -31,8 +29,10 @@ const Bootcamp = ({ bootcamp, id }) => {
 
   return (
     <section className='bootcampView'>
-      <h1>{bootcamp.title}</h1>
-      <h4>{bootcamp.weeksDuration} Semanas</h4>
+      <h2>{bootcamp.title}</h2>
+      <DateDisplay date={bootcamp.startsAt} />
+      <p>{bootcamp.description}</p>
+      <div>{bootcamp.posts.length} posts creados</div>
       <div className='posts'>
         {bootcamp.posts
           .filter(post => JSON.stringify(post).match(search))
@@ -44,7 +44,7 @@ const Bootcamp = ({ bootcamp, id }) => {
         <CreatePost streamId={id} />
         <Paper elevation={1}>
           <InputBase placeholder='Buscar' value={search} onChange={e => setSearch(e.target.value)} />
-          <IconButton aria-label='Buscar' disableRipple>
+          <IconButton aria-label='Buscar' disableRipple disabled>
             <SearchIcon />
           </IconButton>
         </Paper>
