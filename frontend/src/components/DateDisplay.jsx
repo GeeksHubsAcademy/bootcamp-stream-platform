@@ -1,6 +1,6 @@
 import React from 'react';
 
-const formater = new Intl.DateTimeFormat('es', {
+const formatter = new Intl.DateTimeFormat('es', {
     // weekday: 'narrow' | 'short' | 'long',
     // era: 'narrow' ,//| 'short' | 'long',
     year: 'numeric',
@@ -20,7 +20,13 @@ const formater = new Intl.DateTimeFormat('es', {
     // hourCycle: 'h11' | 'h12' | 'h23' | 'h24',
     // formatMatcher: 'basic' | 'best fit',
   })
-const formatDate = _date => formater.format(new Date(_date));
+const formatDate = _date => {
+  try {
+     return formatter.format(new Date(_date));
+  } catch (error) {
+    return _date
+  }
+}
 
 const DateDisplay = ({ date }) => <span className='DateDisplay'>{formatDate(date)}</span>;
 
