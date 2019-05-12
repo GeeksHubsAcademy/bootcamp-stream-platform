@@ -3,7 +3,7 @@ const chai=require('chai')
 const chaiHttp = require('chai-http');
 const expect=chai.expect;
 chai.use(chaiHttp);
-it('should throw an error if no authorization header is present',(done)=>{
+it('should ask for jwt if no authorization header is present',(done)=>{
     chai.request(server)
     .get('/user/')
     .end((err, res) => {
