@@ -1,9 +1,10 @@
 import React from 'react';
 import UrlPreview from '../UrlPreview';
-
+import UrlPreviewInIframe from '../UrlPreviewInIframe';
+import './PostActivity.scss'
 const PostActivity = ({ data }) => (
   <div className='postActivity'>
-    <h5>{data.content.body}</h5>
+    <UrlPreviewInIframe to={data.content.body}>{data.content.body}</UrlPreviewInIframe>
     <UrlPreview url={data.content.body} />
   </div>
 );
