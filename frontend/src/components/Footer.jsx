@@ -8,28 +8,27 @@ const Footer = () => (
   <footer className='footer'>
     <div className='footerLogo'>
       <img src='https://geekshubsacademy.com/img/logo_Geeks_Alfatec.svg' alt='GeeksHubs Academy' />
-      <p className='blurb'>
-        {' '}
-        "If at first you don't succeed,{' '}
-        try and try again.{' '}
-      </p>
+      <p className='blurb'> "If at first you don't succeed, try and try again. </p>
       <p className='rights'>All Content © GeeksHubs. VLC FSD class of 2019. All Rights Reserved</p>
     </div>
 
     <div className='social'>
-    <div> <h5>Follow us</h5> </div>
-      <span className='facebook'/>
-      <FontAwesome icon='facebook-f' />
+      <div>
+        {' '}
+        <h5>Follow us</h5>{' '}
+      </div>
+      <span className='facebook' />
+      <FontAwesome family='fab' icon='facebook-f' />
       <span className='twitter' />
-      <FontAwesome icon='twitter' />
+      <FontAwesome family='fab' icon='twitter' />
       <span className='linkedin-in' />
-      <FontAwesome icon='linkedin-in' />
+      <FontAwesome family='fab' icon='linkedin-in' />
       <span className='instagram' />
-      <FontAwesome icon='instagram' />
+      <FontAwesome family='fab' icon='instagram' />
       <span className='youtube' />
-      <FontAwesome icon='youtube' />
+      <FontAwesome family='fab' icon='youtube' />
       <span className='github' />
-      <FontAwesome icon='github' />
+      <FontAwesome family='fab' icon='github' />
     </div>
     <div>
       <ul className='links'>
@@ -52,6 +51,5 @@ const Footer = () => (
     </div>
   </footer>
 );
-
 
 export default Footer;

@@ -10,14 +10,13 @@ import TextField from '@material-ui/core/TextField';
 import {sendPost} from '../../redux/actions';
 import CreatePostCode from './CreatePostCode/CreatePostCode';
 import './CreatePost.scss';
-
-const CreatePostVideo = () => <div className='postVideo'>postVideo</div>;
-// const CreatePostActivity = () => <div className='postActivity'>postActivity</div>;
-
+import CreatePostVideo from './CreatePostVideo'
+// import { ButtonBase } from '@material-ui/core';
+import SaveIcon from '@material-ui/icons/Save';
 const CreatePost = ({streamId}) => {
 
 
-  const [postType, setPostType] = useState('code');
+  const [postType, setPostType] = useState('video');
   const [body, setBody] = useState('');
   const [title, setTitle] = useState('');
 
@@ -33,8 +32,9 @@ const CreatePost = ({streamId}) => {
       sendPost(post, streamId)
         .then(() => {
           setBody('');
+          setTitle('');
         })
-        .catch(console.error);
+        .catch(alert);
    } else {
      alert('title and body required')
    }
@@ -58,24 +58,27 @@ const CreatePost = ({streamId}) => {
           <Tab label='Code' value='code' />
           <Tab label='Text' value='text' />
           <Tab label='Video' value='video' />
+          <Tab label='Link' value='link' />
           <Tab label='Activity' value='activity' />
         </Tabs>
         <div className='create'>
           <div className='title'>
-            <TextField required id='title' label='Título' value={title} onChange={e => setTitle(e.target.value)} margin='normal' />
+            <TextField required autoFocus id='title' label='Título' value={title} onChange={e => setTitle(e.target.value)} margin='normal' />
           </div>
 
           {postType === 'code' && <CreatePostCode value={body} onChange={setBody} />}
           {postType === 'text' && <CreatePostText value={body} onChange={setBody} onSave={savePost} />}
-          {postType === 'video' && <CreatePostVideo />}
-          {postType === 'activity' && <CreatePostActivity />}
+          {postType === 'video' && <CreatePostVideo value={body} onChange={setBody} />}
+          {postType === 'link' && <CreatePostActivity value={body} onChange={setBody} />}
+          {postType === 'activity' && <CreatePostActivity value={body} onChange={setBody} />}
         </div>
         <div className='actions'>
-          <Button onClick={savePost} variant='outlined' color='secondary' component='span'>
-            Save
+          <Button onClick={savePost} color='secondary' variant='contained' size='medium'>
+            <SaveIcon />
+            Guardar
           </Button>
-          <Button component='span' onClick={() => setCreating(false)}>
-            Cancel
+          <Button variant='contained' size='medium' onClick={() => setCreating(false)}>
+            Cancelar
           </Button>
         </div>
       </div>

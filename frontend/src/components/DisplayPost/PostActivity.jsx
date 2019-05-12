@@ -1,15 +1,12 @@
 import React from 'react';
-
-const PostActivity = ({data}) => (
-
-<div className='postActivity'>
-Post Activity
-    <h3>{data.content.title}</h3>
-    <p>{data.content.body}</p>
-    <h6>{data.content.url}</h6>
-</div>
-
-
+import UrlPreview from '../UrlPreview';
+import UrlPreviewInIframe from '../UrlPreviewInIframe';
+import './PostActivity.scss'
+const PostActivity = ({ data }) => (
+  <div className='postActivity'>
+    <UrlPreviewInIframe to={data.content.body}>{data.content.body}</UrlPreviewInIframe>
+    <UrlPreview url={data.content.body} />
+  </div>
 );
 
 

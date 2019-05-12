@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from '@reach/router';
 import { loggedOut } from '../redux/actions';
-// import FontAwesome from './FontAwesome';
-import FontAwesome2 from './FontAwesome2';
+import FontAwesome from './FontAwesome';
 
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
@@ -31,7 +30,7 @@ export const Navigation = props => {
                   Menu
                 </TemporaryDrawer>
                 <Button aria-owns='simple-menu' aria-haspopup='true' onClick={() => setMenuVisible(true)}>
-                  <FontAwesome2 icon='bars' />
+                  <FontAwesome icon='bars' />
                 </Button>
                 <Menu id='menu-dropdown' open={menuVisible} onClose={() => setMenuVisible(false)}>
                   <MenuItem onClick={() => setMenuVisible(false)}>
@@ -52,7 +51,7 @@ export const Navigation = props => {
                     }}
                   >
                     <Link to='/bootcamp'>
-                      <FontAwesome2 icon='sign-out-alt' />
+                      <FontAwesome icon='sign-out-alt' />
                     </Link>
                   </MenuItem>
                 </Menu>
@@ -66,7 +65,7 @@ export const Navigation = props => {
             <Link to='/register'>Register</Link>
 
 
-            <FontAwesome2 icon='sign-in-alt' />
+            <FontAwesome icon='sign-in-alt' />
           </div>
         )}
       </div>

@@ -6,7 +6,7 @@ const NotFound = () => (
   <section className='404'>
     <h1>Página no encontrada</h1>
     <h2>404</h2>
-    <Link to="login">Logeate</Link>
+    <Link to="login">Sacame de aquí</Link>
   </section>
 );
 

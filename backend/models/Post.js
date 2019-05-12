@@ -3,7 +3,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 const PostSchema = new mongoose.Schema( {
     postType: {
         type: String,
-        enum: [ 'text', 'video', 'activity', 'code' ],
+        enum: [ 'text', 'video', 'activity', 'code', 'link' ],
         required: true,
     },
     authorId: {
@@ -17,6 +17,7 @@ const PostSchema = new mongoose.Schema( {
         format: String,
         url: String,
     },
+    keywords: [ String ],
     reactions: {
         Likes: [ ObjectId ],
         Loves: [ ObjectId ],

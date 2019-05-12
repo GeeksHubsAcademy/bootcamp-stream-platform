@@ -22,8 +22,10 @@
     "react-player": "^1.11.0",
     "react-redux": "^7.0.2",
     "react-scripts": "3.0.0",
+    "react-tiny-link": "^1.0.1",
     "redux": "^4.0.1",
     "redux-localstorage-simple": "^2.1.6",
+    "styled-components": "^4.2.0",
     "validator": "^10.11.0"
   },
   "scripts": {

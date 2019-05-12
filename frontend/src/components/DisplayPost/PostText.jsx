@@ -7,8 +7,6 @@ import Markdown from 'markdown-to-jsx';//importamos componente MarkDown
 const PostText = ({ data }) => {
     return (
       <div className='postText'>
-        <h1>{data.content.title}</h1>
-
         <Markdown>{data.content.body}</Markdown>
       </div>
     );

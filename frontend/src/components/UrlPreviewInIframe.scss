@@ -1,0 +1,40 @@
+.UrlPreviewInIframe {
+  cursor: pointer;
+  iframe {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+  .icon {
+      margin:0 0.5em ;
+      font-size:1.5em;
+      color: #555;
+  }
+
+  .embed-iframe {
+    position: relative;
+    padding-bottom: 0;
+    transition: all 1s ease;
+    overflow: hidden;
+
+}
+.embed-iframe.opened {
+    padding-bottom: 56.25%;
+    margin:0.5em 0;
+  }
+
+  .embed-iframe iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  a {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100%;
+    display: inline-block;
+  }
+}

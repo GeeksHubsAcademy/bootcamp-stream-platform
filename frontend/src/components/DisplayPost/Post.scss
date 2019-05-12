@@ -1,32 +1,97 @@
-.postVideo{
-height: 50%;
-
-}
 
 .postItem {
-    background: white;
-    color: black;
-    padding: 2em;
-    margin: 1em 0;
-    border-radius: 5px;
-    box-shadow: 2px 2px black;
-    position: relative;
+  background: white;
+  color: black;
+  padding: 2em;
+  padding-top: 1em;
+  margin: 2em 0;
+  border-radius: 0.6em;
+  box-shadow: 2px 2px black;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  // truncate-text-multiline
+  overflow: auto;
+  max-height: 520px;
+  transition: all 2s ease-in;
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    cursor: ns-resize;
+    height: 5em;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0), white 70%);
+  }
+  &.expanded:after {
+    display: none;
+  }
+  &.expanded {
+    max-height: 9999px;
+    cursor: initial;
+  }
+  .meta {
+    color: grey;
     display: flex;
-    flex-direction: column;
-    .actions {
-        position: absolute;
-        top:8px;
-        right:8px;
-        color: purple;
-        display: none;
-        cursor: pointer;
-        & > * {
-            margin: 3px;
-        }
+    align-items: center;
+    flex-direction: row-reverse;
 
+    & > * {
+        margin-left: 0.5em;
+        font-size:0.8em;
+      }
+      .postType {
+          font-weight: 800;
+          font-size: 1.1em;
+          text-transform: uppercase;
+          &.code {
+              color: red;
+          }
+          &.activity {
+              color: green;
+          }
+          &.text {
+              color: blue;
+          }
+          &.video {
+              color: orange;
+          }
+          &.link {
+              color: purple;
+          }
+      }
+    .post-actions {
+      visibility: hidden;
+      cursor: pointer;
+      // & > * {
+      //   margin: 5px;
+      // }
     }
-    &:hover .actions{
-        display: initial;
+  }
+  &:hover .post-actions {
+    visibility: initial;
+  }
+  .title {
+    font-size: 2.5em;
+    margin:  0 0 0.6em 0;
+    text-transform: capitalize;
+    text-decoration: underline;
+    color: black;
+    a {
+        color:inherit;
     }
-
+    .permalink {
+      visibility: hidden;
+      margin-left: 0.6em;
+      color: #ccc;
+      font-size: 0.7em;
+    }
+    &:hover {
+      .permalink {
+        visibility: initial;
+      }
+    }
+  }
 }
