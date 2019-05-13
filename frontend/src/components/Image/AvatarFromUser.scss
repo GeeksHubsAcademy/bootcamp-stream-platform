@@ -1,0 +1,17 @@
+$w: 50px;
+$h: 50px;
+
+.AvatarFromUser {
+  width: $w;
+  height: $h;
+    margin: 0 0.6em;
+
+//   img {
+//     width: $w !important;
+//     height: $h !important;
+//   }
+  &.MuiAvatar-colorDefault-31 {
+    color: #fafafa;
+    background-color: purple;
+  }
+}

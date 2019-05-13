@@ -26,7 +26,7 @@ class FileInput extends Component {
     this.fileInput = React.createRef();
   }
 
-  state = {   
+  state = {
     disabled: true,
     file: '',
     imagePath: this.props.user.imagePath,
@@ -68,10 +68,10 @@ class FileInput extends Component {
      this.props.onChange(image);
      // to change color
 
-    this.setState(state => ({ 
+    this.setState(state => ({
       imagePath: '',
       file: '',
-      imagePreviewUrl: '',      
+      imagePreviewUrl: '',
       disabled: false
     }),()=>{
      // delete image DB
@@ -79,7 +79,7 @@ class FileInput extends Component {
         .then(() => this.setState({ successMessage: 'Great! removed photo!' }))
         .catch(e => this.setState({ error: e.message }))
         .then(() => this.handleClick());  // show snackbar message
-  
+
     });
   };
 
@@ -96,28 +96,28 @@ class FileInput extends Component {
 
   render() {
     let {imagePreviewUrl, imagePath } = this.state;
-    
+
     return (
-     
+
         <Grid
           container
           direction="row"
           justify="center"
           alignItems="center"
           >
-          <Avatar name={this.props.name} 
-                  src={ imagePath !== "" && imagePreviewUrl } />                  
+          <Avatar name={this.props.name}
+                  src={ imagePath !== "" && imagePreviewUrl } />
 
-          <div>         
+          <div>
             <input
               className="inputButton"
               accept="image/*"
               id="contained-button-file"
               type="file"
-              ref={this.fileInput} 
-              onChange={this.handleSubmit} 
+              ref={this.fileInput}
+              onChange={this.handleSubmit}
               name='file-input'
-            />  
+            />
             <label htmlFor="contained-button-file" >
               <Tooltip title="Edit your photo" aria-label="Photo">
                 {/* IMPORTANT component="span" to input file */}
@@ -131,7 +131,7 @@ class FileInput extends Component {
             <Tooltip title="Remove your photo" aria-label="Remove">
             {/* NOTE div for tooltip target when fab is disabled */}
             <div>
-              <Fab onClick={this.removeImage} 
+              <Fab onClick={this.removeImage}
                    disabled={!imagePreviewUrl && !this.state.file}
                    className="removeButton"
                    color={ !!this.state.disabled ? 'default' : 'secondary'}>
@@ -158,10 +158,10 @@ class FileInput extends Component {
                   <CloseIcon />
                 </IconButton>,
               ]}
-              /> 
+              />
         </Grid>
 
-        
+
 
     );
   }
