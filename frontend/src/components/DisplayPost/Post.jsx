@@ -21,14 +21,14 @@ const Post = ({ data, user, author }) => {
     const targetNode = ev.target.parentNode;
     // TODO
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Interact_with_the_clipboard
-    console.log(targetNode);
-
     try {
       await copyToClipboard(targetNode.href);
-      targetNode.scrollIntoView({
-        behavior: 'smooth',
+      await targetNode.scrollIntoView({
+         block: "start",
+         behavior: 'smooth',
       });
-      alert('PERMALINK COPIED TO CLIPBOARD');
+      window.scrollBy(0, -10);;
+      // alert('PERMALINK COPIED TO CLIPBOARD');
     } catch (error) {
       console.error(error);
     }
@@ -52,7 +52,8 @@ const Post = ({ data, user, author }) => {
       post = <pre className='AnyPostType'>{JSON.stringify(data)}</pre>;
   }
   return (
-    <div className={'postItem ' + (expanded ? 'expanded' : '')} onClick={() => setExpanded(!expanded)} id={data._id}>
+    <div className={'postItem ' + (expanded ? 'expanded' : '')} onClick={() => setExpanded(!expanded)} >
+      <div className='id'  id={data._id}></div>
       <div className='meta'>
         <div className={`postType ${data.postType}`}>#{data.postType}</div>
         <div className='author'>{author && author.name}</div>

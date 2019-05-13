@@ -18,7 +18,7 @@ const Bootcamp = ({ bootcamp, id }) => {
       window.scroll({
       top: 9999999999999999,
       left: 0,
-      behavior: 'smooth',
+      behavior: 'auto',
     });
     }
   }, [bootcamp]);
