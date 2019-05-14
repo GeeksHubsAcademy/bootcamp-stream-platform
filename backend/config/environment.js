@@ -4,13 +4,15 @@ const environments = {
     test: "test"
 }
 const ENV = process.env.NODE_ENV || environments.development;
+const MONGO_HOST = process.env.MONGO_HOST || 'localhost';
+
 console.log( 'Your environment is ' + ENV )
 const config = {
     [ environments.production ]: {
         PORT: 80,
         MongoDB: {
             PORT: 27017,
-            HOST: 'localhost',
+            HOST: MONGO_HOST,
             DB: 'Bootcamp-Stream-Platform'
         }
     },
@@ -19,7 +21,7 @@ const config = {
         DOMAIN: 'localhost',
         MongoDB: {
             PORT: 27017,
-            HOST: 'localhost',
+            HOST: MONGO_HOST,
             DB: 'Bootcamp-Stream-Platform_dev'
         }
     },
@@ -28,7 +30,7 @@ const config = {
         PORT: 3001,
         MongoDB: {
             PORT: 27017,
-            HOST: 'localhost',
+            HOST: MONGO_HOST,
             DB: 'Bootcamp-Stream-Platform_test'
         }
     }

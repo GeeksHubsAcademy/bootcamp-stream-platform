@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  backend:
+    image: node:12.2
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+    environment:
+      - MONGO_HOST=mongodb
+    command: bash -c "cd /usr/src/app && npm install && npm start"
+    container_name: "streams-backend"
+    volumes:
+      - ./backend/:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+        - 3001:3001
+
+    # restart: always
+
+  frontend:
+    image: node:12.2
+    depends_on:
+      - mongodb
+    command: bash -c "cd /usr/src/app && yarn install && yarn start"
+    container_name: "streams-frontend"
+    volumes:
+      - ./frontend/:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+        - 3000:3000
+    # restart: always
+
+  mongodb:
+    image: mongo:latest
+    container_name: "streams-mongodb"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      # - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./mongoDb/db:/data/db
+    ports:
+        - 27017:27017
+    command: mongod --smallfiles
+    # command: mongod --smallfiles --logpath=/dev/null # --quiet
+    restart: always
+    # networks:
+      # backend:

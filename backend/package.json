@@ -8,7 +8,7 @@
     "mongo_start": "~/Downloads/mongodb-osx-x86_64-4.0.6/bin/mongod --dbpath=/data/db",
     "_start": "export NODE_ENV=production || NODE_ENV=production || SET \"NODE_ENV=production\" && node index.js",
     "start": "npm run dev",
-    "predev": "npm run mongo_start || service mongod start",
+    "_predev": "npm run mongo_start || service mongod start",
     "dev": "export NODE_ENV=development || NODE_ENV=development || SET \"NODE_ENV=development\" && nodemon index.js"
   },
   "keywords": [],

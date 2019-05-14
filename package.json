@@ -8,7 +8,7 @@
     "dev:back": "cd backend && npm run dev",
     "start": "concurrently \"yarn run start:front\" \"npm run start:back\"",
     "dev": "concurrently \"yarn run start:front\" \"npm run dev:back\"",
-    "postinstall": "yarn run install:front && npm run install:back",
+    "postinstall": "npm run install:front && npm run install:back",
     "install:front": "cd frontend && yarn install",
     "install:back": "cd backend && npm install",
     "test:front": "cd frontend && npm test",
