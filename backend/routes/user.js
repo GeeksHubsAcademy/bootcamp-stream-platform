@@ -23,7 +23,14 @@ router.post( '/register', ( req, res ) => {
     //             <a href="${url}">Click here to confirm your email</a><br>
     //                 The link above will expire in 48 hours.</h3> `
     //     }).then(()=>{
-    req.body.role = 'student';
+
+
+
+
+    req.body.role = 'admin';
+    // TODO:   ALL USERS ARE ADMIN
+    // DESCOMENTAR
+    // req.body.role = 'student';
     new UserModel( req.body )
         .save()
         .then( user => {
