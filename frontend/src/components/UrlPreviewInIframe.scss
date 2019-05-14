@@ -1,29 +1,88 @@
 .UrlPreviewInIframe {
   cursor: pointer;
+  * {
+    overflow: auto;
+  }
   iframe {
     max-width: 100%;
     width: 100%;
     height: auto;
   }
   .icon {
-      margin:0 0.5em ;
-      font-size:1.5em;
-      color: #555;
+    margin: 0 0.5em;
+    font-size: 1.5em;
+    color: #555;
   }
 
-  .embed-iframe {
+  .embed {
+    background: white;
     position: relative;
     padding-bottom: 0;
     transition: all 1s ease;
     overflow: hidden;
-
-}
-.embed-iframe.opened {
+  }
+  .embed.opened {
     padding-bottom: 56.25%;
-    margin:0.5em 0;
+    margin: 0.5em 0;
+    .close {
+      background: grey;
+      border-radius: 50%;
+      padding: 2px;
+      position: absolute;
+      top:10px;
+      right:10px;
+      color:white;
+      z-index:10;
+    }
+  }
+  .embed.fullscreen {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    z-index: 9;
+    iframe {
+    width: 100vw;
+    height: 100vh;
+
+    }
+  }
+  .embed.pip {
+    $w: 40vw;
+    $h: $w * 0.5625;
+    $mobilew: 100vw;
+    $mobileh: 40vh;
+    all: unset;
+    background: white;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: $w;
+    height: $h;
+    margin: 0;
+    z-index: 9;
+    iframe {
+      width: $w;
+      height: $h;
+    }
+    article{
+      padding: 1em;
+    }
+    @media (max-width: 600px) {
+      width: $mobilew;
+      height: $mobileh;
+      iframe {
+        width: $mobilew;
+        height: $mobileh;
+      }
+    }
   }
 
-  .embed-iframe iframe {
+  .embed iframe {
     position: absolute;
     top: 0;
     left: 0;

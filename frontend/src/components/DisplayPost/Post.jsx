@@ -16,6 +16,7 @@ const Post = ({ data, user, author }) => {
   function deletePost() {
     removePost(data._id);
   }
+
   async function onPermalink(ev) {
     ev.preventDefault();
     const targetNode = ev.target.parentNode;
@@ -27,7 +28,7 @@ const Post = ({ data, user, author }) => {
          block: "start",
          behavior: 'smooth',
       });
-      window.scrollBy(0, -10);;
+      // window.scrollBy(0, -10);;
       // alert('PERMALINK COPIED TO CLIPBOARD');
     } catch (error) {
       console.error(error);
@@ -45,6 +46,9 @@ const Post = ({ data, user, author }) => {
       post = <PostVideo data={data} />;
       break;
     case 'activity':
+      post = <PostActivity data={data} />;
+      break;
+    case 'link':
       post = <PostActivity data={data} />;
       break;
 
