@@ -1,8 +1,8 @@
 const router = require( 'express' ).Router();
 const Bootcamp = require( '../models/Bootcamp' );
 const { PostModel } = require( '../models/Post' );
-const { authorization, isMember, isAuthor } = require( '../utils/middleware/authorization' );
-const findAndResponseBootcamps = require( '../utils/middleware/findAndReturnBootcamps' );
+const { authorization, isMember, isAuthor } = require( '../middleware/authorization' );
+const findAndResponseBootcamps = require( '../middleware/findAndReturnBootcamps' );
 const ObjectId = require( 'mongodb' ).ObjectID
 router.post( '/:bootcamp_id', authorization, isMember, async ( req, res, next ) => {
     try {

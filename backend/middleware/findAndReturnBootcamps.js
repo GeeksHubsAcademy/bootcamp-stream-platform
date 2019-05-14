@@ -1,4 +1,4 @@
-const Bootcamp = require( '../../models/Bootcamp' );
+const Bootcamp = require( '../models/Bootcamp' );
 const lookupUsersByUserIdsFromBootcamps = [ {
         $lookup: {
             from: 'users',

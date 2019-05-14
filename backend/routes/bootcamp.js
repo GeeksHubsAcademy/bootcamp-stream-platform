@@ -1,7 +1,7 @@
 const router = require( 'express' ).Router();
 const Bootcamp = require( '../models/Bootcamp' );
-const { authorization, isAdmin } = require( '../utils/middleware/authorization' );
-const findAndResponseBootcamps = require( '../utils/middleware/findAndReturnBootcamps' )
+const { authorization, isAdmin } = require( '../middleware/authorization' );
+const findAndResponseBootcamps = require( '../middleware/findAndReturnBootcamps' )
 
 router.get( '/mine', authorization, findAndResponseBootcamps );
 

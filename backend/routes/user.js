@@ -2,7 +2,7 @@ const router = require( 'express' ).Router();
 const { UserModel } = require( '../models/User' );
 const bcrypt = require( 'bcrypt' );
 const uploadProfilePics = require( '../config/multer' );
-const { authorization, isAdmin } = require( '../utils/middleware/authorization' );
+const { authorization, isAdmin } = require( '../middleware/authorization' );
 
 router.get( '/', authorization, ( req, res ) => {
     UserModel.find( {} ).then( users => res.send( users ) )

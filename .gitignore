@@ -6,3 +6,5 @@ backend/package-lock.json
 backend/public/uploads/profilePics/*
 *.log
 **/.vscode
+
+mongoDb/

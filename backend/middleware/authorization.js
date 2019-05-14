@@ -1,8 +1,8 @@
 const jwt = require( 'jsonwebtoken' );
-const { UserModel } = require( '../../models/User' );
-const { PostModel } = require( '../../models/Post' );
-const Bootcamp = require( '../../models/Bootcamp' );
-const password = require( '../../config/password' )
+const { UserModel } = require( '../models/User' );
+const { PostModel } = require( '../models/Post' );
+const Bootcamp = require( '../models/Bootcamp' );
+const password = require( '../config/password' )
 const authorization = async ( req, res, next ) => {
     try {
         const authToken = req.headers.authorization
