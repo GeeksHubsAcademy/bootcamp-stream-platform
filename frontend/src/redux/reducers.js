@@ -1,7 +1,8 @@
 export let initialState = {
   bootcamps: [],
   user: null,
-  allUsers: []
+  allUsers: [],
+  notifications: []
 };
 
 // const sampleState = {
@@ -562,10 +563,21 @@ const reducer = (state = initialState, action) => {
         ...state,
         user: action.user,
       };
-      case 'UNSUSCRIBE_USER':
+    case 'UNSUSCRIBE_USER':
       return {
         ...state,
         user: action.user,
+      };
+
+    case 'CLOSE_NOTIFY':
+      return {
+        ...state,
+        notifications: state.notifications.filter(n => n.id !== action.id),
+      };
+    case 'OPEN_NOTIFY':
+      return {
+        ...state,
+        notifications: [...state.notifications, action.notification],
       };
     default:
       return state;

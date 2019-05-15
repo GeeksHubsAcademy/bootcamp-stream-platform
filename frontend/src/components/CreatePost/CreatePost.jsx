@@ -8,6 +8,7 @@ import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { sendPost } from '../../redux/actions';
+import { openNotification } from '../../redux/actions';
 import CreatePostCode from './CreatePostCode/CreatePostCode';
 import './CreatePost.scss';
 import CreatePostVideo from './CreatePostVideo';
@@ -40,16 +41,22 @@ const CreatePost = ({ streamId }) => {
         })
         .catch(alert);
     } else {
-      alert(' body or url required');
+      openNotification(' body or url required');
     }
   }
 
   if (!creating) {
-    return (
+    return ([
+
       <Fab onClick={() => setCreating(true)} variant='extended' size='large' color='secondary' aria-label='Add'>
         +
       </Fab>
-    );
+    ,
+      <Fab onClick={() => openNotification('hola?')} variant='extended' size='large' color='secondary' aria-label='notify!'>
+        +
+      </Fab>
+
+  ]);
   }
   return (
     <Modal open={creating} onClose={() => setCreating(false)}>

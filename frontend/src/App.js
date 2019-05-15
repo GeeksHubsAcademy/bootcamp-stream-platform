@@ -14,6 +14,8 @@ import AdminBootcamps from './containers/Admin/bootcamps.jsx';
 import PrivateZone from './guards/PrivateZone';
 import AdminZone from './guards/AdminZone';
 
+import Notify from './components/Notify';
+
 import './App.scss';
 
 function App() {
@@ -25,7 +27,7 @@ function App() {
           <Bootcamp path='bootcamp/:id' />
           <EditProfile path='profile' />
           <MyBootcamps path='bootcamps' />
-          <AdminZone path="admin">
+          <AdminZone path='admin'>
             <AdminBootcamps path='bootcamps' />
             <AdminEditBootcamp path='bootcamp/new' />
             <AdminEditBootcamp path='bootcamp/:id' />
@@ -39,6 +41,7 @@ function App() {
         <Redirect default from='*' to='notFound' noThrow />
       </Router>
       <Footer />
+      <Notify/>
     </div>
   );
 }
