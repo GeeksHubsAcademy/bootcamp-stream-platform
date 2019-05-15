@@ -32,7 +32,7 @@ const Code = ({ onChange, ...props }) => (
       // enableLiveAutocompletion: true,
     }}
     editorProps={{ $blockScrolling: Infinity }}
-    defaultValue="puedes escribir codigo , texto o markdown"
+    placeholder="puedes escribir codigo , texto o markdown"
     onChange={value => {
       onChange(value);
     }}

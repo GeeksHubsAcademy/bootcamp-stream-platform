@@ -14,6 +14,7 @@ import './CreatePost.scss';
 import CreatePostVideo from './CreatePostVideo';
 import SaveIcon from '@material-ui/icons/Save';
 import Radio from '@material-ui/core/Radio';
+import UrlPreviewInIframe from '../UrlPreviewInIframe';
 
 const KeyWord = ({ text, className = '' }) => <span className={`Keyword ${text} ${className}`}>#{text}</span>
 
@@ -100,6 +101,8 @@ const CreatePost = ({ streamId }) => {
             </div>
             <TextField variant='outlined' required autoFocus id='title' label='Título' value={title} onChange={e => setTitle(e.target.value)} margin='normal' />
             <TextField variant='outlined' id='url' label='Url' value={url} onChange={e => setUrl(e.target.value)} margin='normal' />
+            {url && <UrlPreviewInIframe to={url} />}
+
           </div>
           <div className='more' />
         </header>
