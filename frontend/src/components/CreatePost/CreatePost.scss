@@ -1,14 +1,65 @@
 .createPost {
   background: white;
-  width: 95vw;
-  height: 95vh;
+  padding: 2em;
+  width: calc(100vw - 4em);
+  height: calc(100vh - 4em);
   outline: 'none';
   display: flex;
   flex-direction: column;
+  align-content: center;
+  align-items: stretch;
+  box-sizing: content-box;
+  overflow: auto;
+  .Keyword {
+    font-size: 0.6em;
+    opacity: 0.4;
+    font-weight: 800;
+    &.code {
+      color: red;
+    }
+    &.activity {
+      color: green;
+    }
+    &.text {
+      color: blue;
+    }
+    &.video {
+      color: orange;
+    }
+    &.link {
+      color: purple;
+    }
+    &.selected {
+      opacity: 1;
+    text-transform: uppercase;
+
+    }
+  }
+  header {
+    margin-bottom: 1em;
+    display: flex;
+    & > * {
+      flex: 1;
+    }
+  }
+  .inputs {
+    display: flex;
+    flex-flow: column;
+  }
   .create {
-    flex: 1;
+    flex: 1 1;
     display: flex;
     flex-direction: column;
+
+    padding: 1em;
+    border: 1px #aaa solid;
+    border-radius: 6px;
+    &:focus,
+    &:active,
+    &hover {
+      border: 1px blue solid;
+    }
+
     & > :nth-child(2) {
       flex: 1;
     }
@@ -16,20 +67,21 @@
       display: flex;
       justify-content: center;
     }
-    input[type='text'],
-    .MuiFormControl-root-91 {
-      width: 90%;
-      max-width: 400px;
-    }
-    .MuiFormControl-root-91 {
-      margin: 1em;
-    }
+    // input[type='text'],
+    // .MuiFormControl-root-91 {
+    //   width: 90%;
+    //   max-width: 400px;
+    // }
+    // .MuiFormControl-root-91 {
+    //   margin: 1em;
+    // }
   }
   .actions {
     display: flex;
     justify-content: center;
     padding: 0.5em;
     position: absolute;
+    z-index: 10;
     bottom: 0;
     width: 100%;
     pointer-events: none;
@@ -39,8 +91,9 @@
     }
   }
 }
-[role='presentation'] {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
+// [role='presentation'] {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }

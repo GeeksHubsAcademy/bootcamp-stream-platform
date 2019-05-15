@@ -3,7 +3,7 @@ import React from 'react';
 
 
 
-const FontAwesome = ({ className, icon, family = 'fas', ...rest }) => <i {...rest} className={className +' '+ family + ' icon  fa-' + icon} />;
+const FontAwesome = ({ className = '', icon, family = 'fas', ...rest }) => <i {...rest} className={className +' '+ family + ' icon  fa-' + icon} />;
 
 
 export default FontAwesome;

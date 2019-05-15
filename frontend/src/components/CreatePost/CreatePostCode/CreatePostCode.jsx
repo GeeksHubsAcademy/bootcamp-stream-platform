@@ -13,14 +13,14 @@ const Code = ({ onChange, ...props }) => (
   <AceEditor
     mode='javascript'
     theme='github'
-    focus
+    // focus
     fontSize={18}
     width='100%'
     height='100%'
     enableBasicAutocompletion
     enableLiveAutocompletion
     highlightActiveLine={false}
-    showGutter={true}
+    showGutter={false}
     setOptions={{
       printMargin: false,
       showLineNumbers: true,
@@ -32,6 +32,7 @@ const Code = ({ onChange, ...props }) => (
       // enableLiveAutocompletion: true,
     }}
     editorProps={{ $blockScrolling: Infinity }}
+    defaultValue="puedes escribir codigo , texto o markdown"
     onChange={value => {
       onChange(value);
     }}
