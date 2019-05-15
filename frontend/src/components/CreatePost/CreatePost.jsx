@@ -47,12 +47,11 @@ const CreatePost = ({ streamId }) => {
   }
 
   if (!creating) {
-    return ([
-
+    return (
       <Fab onClick={() => setCreating(true)} variant='extended' size='large' color='secondary' aria-label='Add'>
         +
       </Fab>
-  ]);
+    );
   }
   return (
     <Modal open={creating} onClose={() => setCreating(false)}>
@@ -122,39 +121,39 @@ const CreatePost = ({ streamId }) => {
     </Modal>
   );
 
-  return (
-    <Modal open={creating} onClose={() => setCreating(false)}>
-      <div className='createPost'>
-        <Tabs value={postType} onChange={(event, newValue) => setPostType(newValue)} indicatorColor='secondary' textColor='secondary' variant='fullWidth'>
-          <Tab label='Code' value='code' />
-          <Tab label='Text' value='text' />
-          <Tab label='Video' value='video' />
-          <Tab label='Link' value='link' />
-          <Tab label='Activity' value='activity' />
-        </Tabs>
-        <div className='create'>
-          <div className='title'>
-            <TextField required autoFocus id='title' label='Título' value={title} onChange={e => setTitle(e.target.value)} margin='normal' />
-          </div>
+  // return (
+  //   <Modal open={creating} onClose={() => setCreating(false)}>
+  //     <div className='createPost'>
+  //       <Tabs value={postType} onChange={(event, newValue) => setPostType(newValue)} indicatorColor='secondary' textColor='secondary' variant='fullWidth'>
+  //         <Tab label='Code' value='code' />
+  //         <Tab label='Text' value='text' />
+  //         <Tab label='Video' value='video' />
+  //         <Tab label='Link' value='link' />
+  //         <Tab label='Activity' value='activity' />
+  //       </Tabs>
+  //       <div className='create'>
+  //         <div className='title'>
+  //           <TextField required autoFocus id='title' label='Título' value={title} onChange={e => setTitle(e.target.value)} margin='normal' />
+  //         </div>
 
-          {postType === 'code' && <CreatePostCode value={body} onChange={setBody} />}
-          {postType === 'text' && <CreatePostText value={body} onChange={setBody} onSave={savePost} />}
-          {postType === 'video' && <CreatePostVideo value={body} onChange={setBody} />}
-          {postType === 'link' && <CreatePostActivity value={body} onChange={setBody} />}
-          {postType === 'activity' && <CreatePostActivity value={body} onChange={setBody} />}
-        </div>
-        <div className='actions'>
-          <Button onClick={savePost} color='secondary' variant='contained' size='medium'>
-            <SaveIcon />
-            Guardar
-          </Button>
-          <Button variant='contained' size='medium' onClick={() => setCreating(false)}>
-            Cancelar
-          </Button>
-        </div>
-      </div>
-    </Modal>
-  );
+  //         {postType === 'code' && <CreatePostCode value={body} onChange={setBody} />}
+  //         {postType === 'text' && <CreatePostText value={body} onChange={setBody} onSave={savePost} />}
+  //         {postType === 'video' && <CreatePostVideo value={body} onChange={setBody} />}
+  //         {postType === 'link' && <CreatePostActivity value={body} onChange={setBody} />}
+  //         {postType === 'activity' && <CreatePostActivity value={body} onChange={setBody} />}
+  //       </div>
+  //       <div className='actions'>
+  //         <Button onClick={savePost} color='secondary' variant='contained' size='medium'>
+  //           <SaveIcon />
+  //           Guardar
+  //         </Button>
+  //         <Button variant='contained' size='medium' onClick={() => setCreating(false)}>
+  //           Cancelar
+  //         </Button>
+  //       </div>
+  //     </div>
+  //   </Modal>
+  // );
 };
 
 export default CreatePost;
