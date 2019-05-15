@@ -72,7 +72,7 @@ const Post = ({ data, user, author }) => {
       </h1>
 
       { url && <div className="url">
-        <a href={url}>{url}</a>
+        <a target='_blank' href={url}>{url}</a>
         <UrlPreviewInIframe to={url} />
 
       </div>}
