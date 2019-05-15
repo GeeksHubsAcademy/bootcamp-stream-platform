@@ -11,6 +11,7 @@ import DateDisplay from '../DateDisplay';
 import UrlPreviewInIframe from '../UrlPreviewInIframe';
 import PostText from './PostText';
 import PostCode from '../DisplayPost/PostCode';
+import PostVideo from '../DisplayPost/PostVideo';
 
 const Post = ({ data, user, author }) => {
   const [expanded, setExpanded] = useState(false);
@@ -36,16 +37,19 @@ const Post = ({ data, user, author }) => {
       console.error(error);
     }
   }
-  let body;
+  const { body, url, title } = data.content;
+  let _body;
   switch (data.postType) {
     case 'code':
-      body = <PostCode data={data.content.body} />;
+      _body = <PostCode data={body} />;
+      break;
+    case 'video':
+      _body = <PostVideo data={body || url} />;
       break;
 
     default:
-      body = <PostText data={data.content.body} />;
-  }
-  return (
+      _body = <PostText data={body} />;
+  }  return (
     <div className={'postItem ' + (expanded ? 'expanded' : '')} onClick={() => setExpanded(!expanded)} >
       <div className='id' id={data._id}></div>
       <div className='meta'>
@@ -63,17 +67,17 @@ const Post = ({ data, user, author }) => {
 
       <h1 className='title'>
         <a href={'#' + data._id} onClick={onPermalink}>
-          {data.content.title} <FontAwesome className='permalink' icon='link' family='fas' />
+          {title} <FontAwesome className='permalink' icon='link' family='fas' />
         </a>
       </h1>
 
-      {data.content.url && <div className="url">
-        <a href={data.content.url}>{data.content.url}</a>
-        <UrlPreviewInIframe to={data.content.url}/>
+      { url && <div className="url">
+        <a href={url}>{url}</a>
+        <UrlPreviewInIframe to={url} />
 
       </div>}
       <div className="body">
-        {body}
+        {_body}
       </div>
 
     </div>

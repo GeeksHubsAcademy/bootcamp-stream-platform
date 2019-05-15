@@ -73,7 +73,7 @@
     visibility: initial;
   }
   .title {
-    font-size: 2.5em;
+    font-size: 1.5em;
     margin: 0 0 0.6em 0;
     text-transform: capitalize;
     text-decoration: underline;
@@ -98,5 +98,8 @@
     position: relative;
     top: -90px;
     visibility: hidden;
+  }
+  .body {
+    margin: 1em 0;
   }
 }

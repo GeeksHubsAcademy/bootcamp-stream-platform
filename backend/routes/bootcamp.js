@@ -15,6 +15,8 @@ router.post( '/', authorization, isAdmin, async ( req, res, next ) => {
         await new Bootcamp( body).save();
         next();
     } catch ( error ) {
+        console.log(error);
+
         res.status( 500 ).send( error )
     }
 }, findAndResponseBootcamps );
