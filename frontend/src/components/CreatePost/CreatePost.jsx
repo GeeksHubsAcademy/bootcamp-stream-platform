@@ -51,11 +51,6 @@ const CreatePost = ({ streamId }) => {
       <Fab onClick={() => setCreating(true)} variant='extended' size='large' color='secondary' aria-label='Add'>
         +
       </Fab>
-    ,
-      <Fab onClick={() => openNotification('hola?')} variant='extended' size='large' color='secondary' aria-label='notify!'>
-        +
-      </Fab>
-
   ]);
   }
   return (
