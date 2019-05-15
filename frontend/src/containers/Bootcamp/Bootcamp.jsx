@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createRef } from 'react';
 import { connect } from 'react-redux';
 import Post from '../../components/DisplayPost/Post';
 import CreatePost from '../../components/CreatePost/CreatePost';
@@ -12,6 +12,7 @@ import './Bootcamp.scss';
 import DateDisplay from '../../components/DateDisplay';
 
 const Bootcamp = ({ bootcamp, id }) => {
+
   const [search, setSearch] = useState('');
   useEffect(() => {
     if (!window.location.hash) {
@@ -22,6 +23,30 @@ const Bootcamp = ({ bootcamp, id }) => {
     });
     }
   }, [bootcamp]);
+  useEffect(() => {
+    const onKeyup = ev => {
+      switch (ev.keyCode) {
+        case 27:
+          setSearch('');
+          document.querySelector('#search-input').blur()
+
+          break;
+
+        case 70:
+          document.querySelector('#search-input').focus()
+
+          break;
+
+        default:
+          break;
+      }
+
+    }
+    document.addEventListener('keyup',onKeyup)
+
+    return () => document.removeEventListener('keyup', onKeyup)
+
+  }, [search]);
 
   if (!bootcamp) {
     return <NotFound/>
@@ -43,7 +68,7 @@ const Bootcamp = ({ bootcamp, id }) => {
       <div className='actions'>
         <CreatePost streamId={id} />
         <Paper elevation={1}>
-          <InputBase placeholder='Buscar' value={search} onChange={e => setSearch(e.target.value)} />
+          <InputBase id="search-input" placeholder='Buscar' value={search} onChange={e => setSearch(e.target.value)} />
           <IconButton aria-label='Buscar' disableRipple disabled>
             <SearchIcon />
           </IconButton>
