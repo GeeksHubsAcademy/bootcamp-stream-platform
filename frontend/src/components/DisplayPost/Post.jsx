@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import PostText from './PostText';
-import PostActivity from './PostActivity';
-import PostCode from '../DisplayPost/PostCode';
-import FontAwesome from '../FontAwesome';
-import { removePost } from '../../redux/actions';
-import PostVideo from './PostVideo';
-import { copyToClipboard } from '../../Utils/clipboard';
+
 import './Post.scss';
+
+import { removePost } from '../../redux/actions';
+import { copyToClipboard } from '../../Utils/clipboard';
+
+import FontAwesome from '../FontAwesome';
 import DateDisplay from '../DateDisplay';
+import UrlPreviewInIframe from '../UrlPreviewInIframe';
+import PostText from './PostText';
+import PostCode from '../DisplayPost/PostCode';
 
 const Post = ({ data, user, author }) => {
   const [expanded, setExpanded] = useState(false);
@@ -25,8 +27,8 @@ const Post = ({ data, user, author }) => {
     try {
       await copyToClipboard(targetNode.href);
       await targetNode.scrollIntoView({
-         block: "start",
-         behavior: 'smooth',
+        block: "start",
+        behavior: 'smooth',
       });
       // window.scrollBy(0, -10);;
       // alert('PERMALINK COPIED TO CLIPBOARD');
@@ -34,30 +36,18 @@ const Post = ({ data, user, author }) => {
       console.error(error);
     }
   }
-  let post;
+  let body;
   switch (data.postType) {
-    case 'text':
-      post = <PostText data={data} />;
-      break;
     case 'code':
-      post = <PostCode data={data} />;
-      break;
-    case 'video':
-      post = <PostVideo data={data} />;
-      break;
-    case 'activity':
-      post = <PostActivity data={data} />;
-      break;
-    case 'link':
-      post = <PostActivity data={data} />;
+      body = <PostCode data={data.content.body} />;
       break;
 
     default:
-      post = <pre className='AnyPostType'>{JSON.stringify(data)}</pre>;
+      body = <PostText data={data.content.body} />;
   }
   return (
     <div className={'postItem ' + (expanded ? 'expanded' : '')} onClick={() => setExpanded(!expanded)} >
-      <div className='id'  id={data._id}></div>
+      <div className='id' id={data._id}></div>
       <div className='meta'>
         <div className={`postType ${data.postType}`}>#{data.postType}</div>
         <div className='author'>{author && author.name}</div>
@@ -77,7 +67,15 @@ const Post = ({ data, user, author }) => {
         </a>
       </h1>
 
-      {post}
+      {data.content.url && <div className="url">
+        <a href={data.content.url}>{data.content.url}</a>
+        <UrlPreviewInIframe to={data.content.url}/>
+
+      </div>}
+      <div className="body">
+        {body}
+      </div>
+
     </div>
   );
 };

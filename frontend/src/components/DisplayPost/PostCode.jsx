@@ -1,17 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Highlight from 'react-highlight';
 
-import './PostCode.scss';
+// import './PostCode.scss';
 
-class CreatePostCode extends Component {
-  render() {
-    return (
-      <div className='CreatePostCode'>
-        <Highlight>{this.props.data.content.body}</Highlight>
-      </div>
-    );
-  }
-}
+
+const CreatePostCode = ({ data }) => <Highlight>{data}</Highlight>
 
 export default CreatePostCode;
