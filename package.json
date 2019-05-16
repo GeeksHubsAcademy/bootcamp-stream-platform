@@ -10,7 +10,7 @@
     "start:back": "cd backend && npm start",
     "dev:back": "cd backend && npm run dev",
 
-    "mongo": "npm run mongo_mac || service mongod start",
+    "mongo": "service mongod start || mongod --config /usr/local/etc/mongod.conf || brew services start mongodb-community@4.0  || npm run mongo_mac",
     "mongo_mac": "~/Downloads/mongodb-osx-x86_64-4.0.6/bin/mongod --dbpath=/data/db",
 
     "postinstall": "yarn run install:front && npm run install:back",
