@@ -1,8 +1,8 @@
 **/node_modules
-package-lock.json
+
 **/package-lock.json
-frontend/package-lock.json
-backend/package-lock.json
+**/yarn.lock
+
 backend/public/uploads/profilePics/*
 *.log
 **/.vscode
