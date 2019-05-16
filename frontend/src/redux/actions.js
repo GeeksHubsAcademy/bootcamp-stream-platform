@@ -52,10 +52,12 @@ export async function loggedIn(password, email) {
 }
 
 export async function loggedOut() {
-  // const user = store.getState().user
-  // let token = user && user.token;
+  const user = store.getState().user;
+  let token = user && user.token;
   // let response = await Axios.get('http://localhost:3001/user/logout', {headers: {Authorization:token }} );
   // console.log(response);
+  // Remove user on store even if not network
+  Axios.get('http://localhost:3001/user/logout', { headers: { Authorization: token } });
 
   dispatch({
     type: 'LOGGED_OUT',
@@ -73,7 +75,7 @@ export async function getBootcamps() {
       bootcamps,
     });
   } catch (error) {
-    console.error( error.message);
+    console.error(error.message);
 
     openNotification("Couldn't get data:\n" + error.message, 'error');
   }
