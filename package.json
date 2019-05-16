@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "start": "concurrently \"npm run mongo\" \"npm run dev\"",
+    "dev": "concurrently \"yarn run start:front\" \"npm run dev:back\"",
+
     "start:front": "cd frontend && npm start",
     "start:back": "cd backend && npm start",
     "dev:back": "cd backend && npm run dev",
-    "start": "concurrently \"yarn run start:front\" \"npm run start:back\"",
-    "dev": "concurrently \"yarn run start:front\" \"npm run dev:back\"",
+
+    "mongo": "npm run mongo_mac || service mongod start",
+    "mongo_mac": "~/Downloads/mongodb-osx-x86_64-4.0.6/bin/mongod --dbpath=/data/db",
+
     "postinstall": "yarn run install:front && npm run install:back",
     "install:front": "cd frontend && yarn install",
     "install:back": "cd backend && npm install",
