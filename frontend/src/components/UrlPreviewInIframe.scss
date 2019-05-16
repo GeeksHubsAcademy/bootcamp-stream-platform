@@ -1,5 +1,6 @@
 .UrlPreviewInIframe {
   cursor: pointer;
+
   * {
     overflow: auto;
   }
@@ -49,6 +50,7 @@
     height: 100vh;
     margin: 0;
     z-index: 9;
+    overflow: auto;
     iframe {
     width: 100vw;
     height: 100vh;
