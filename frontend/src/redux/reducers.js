@@ -539,10 +539,8 @@ const reducer = (state = initialState, action) => {
         user: action.user,
       };
     case 'LOGGED_OUT':
-      return {
-        ...state,
-        user: null,
-      };
+      return initialState;
+
     case 'BOOTCAMPS_LOADED':
       return {
         ...state,
