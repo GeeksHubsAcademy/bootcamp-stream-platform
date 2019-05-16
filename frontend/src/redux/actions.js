@@ -30,25 +30,12 @@ export async function sendPost(post, streamId) {
 export async function loggedIn(password, email) {
   let response = await Axios.post('http://localhost:3001/user/login', { password, email });
   let user = response.data;
-  //user.role = 'admin';
   dispatch({
     type: 'LOGGED_IN',
     user,
   });
   getUsers();
   getBootcamps();
-  // dispatch({
-  //   type: 'LOGGED_IN',
-  //   user: {
-  //     _id: 123,
-  //     name: 'Juan',
-  //     lastname: 'Garnica',
-  //     role: 'admin',
-  //     email: 'juan@geekhubs.com',
-  //     imagePath: null,
-  //     token: 'AASFDSDFQ298723ÑLKJWD98723HJDW76D2YBD623YB326D',
-  //   },
-  // });
 }
 
 export async function loggedOut() {
@@ -56,6 +43,7 @@ export async function loggedOut() {
   let token = user && user.token;
   // let response = await Axios.get('http://localhost:3001/user/logout', {headers: {Authorization:token }} );
   // console.log(response);
+
   // Remove user on store even if not network
   Axios.get('http://localhost:3001/user/logout', { headers: { Authorization: token } });
 
