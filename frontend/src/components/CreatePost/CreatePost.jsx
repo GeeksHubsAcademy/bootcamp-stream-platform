@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import Fab from '@material-ui/core/Fab';
-import CreatePostText from './CreatePostText';
-import CreatePostActivity from './CreatePostActivity';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -11,10 +7,10 @@ import { sendPost } from '../../redux/actions';
 import { openNotification } from '../../redux/actions';
 import CreatePostCode from './CreatePostCode/CreatePostCode';
 import './CreatePost.scss';
-// import CreatePostVideo from './CreatePostVideo';
 import SaveIcon from '@material-ui/icons/Save';
 import Radio from '@material-ui/core/Radio';
 import UrlPreviewInIframe from '../UrlPreviewInIframe';
+import FontAwesome from '../FontAwesome';
 
 const KeyWord = ({ text, className = '' }) => <span className={`Keyword ${text} ${className}`}>#{text}</span>
 
@@ -49,7 +45,7 @@ const CreatePost = ({ streamId }) => {
   if (!creating) {
     return (
       <Fab onClick={() => setCreating(true)} variant='extended' size='large' color='secondary' aria-label='Add'>
-        +
+        <FontAwesome icon='plus' />
       </Fab>
     );
   }

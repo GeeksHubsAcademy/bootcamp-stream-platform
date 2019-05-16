@@ -69,7 +69,7 @@ const Bootcamp = ({ bootcamp, id }) => {
       </div>
       <div className='actions'>
         <CreatePost streamId={id} />
-        <Fab color='white' onClick={() => getBootcamps()}>
+        <Fab onClick={() => getBootcamps()} variant='extended' size='large'  aria-label='Add'>
           <FontAwesome icon='sync-alt' />
         </Fab>
         <Paper elevation={1}>
