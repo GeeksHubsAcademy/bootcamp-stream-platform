@@ -1,6 +1,6 @@
 # Bootcamp Stream
 
-Una plataforma de comunicación entre alumnos
+Una plataforma de comunicación más
 
 ## Tech MERN
 
