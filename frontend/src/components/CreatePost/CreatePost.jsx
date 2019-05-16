@@ -11,7 +11,7 @@ import { sendPost } from '../../redux/actions';
 import { openNotification } from '../../redux/actions';
 import CreatePostCode from './CreatePostCode/CreatePostCode';
 import './CreatePost.scss';
-import CreatePostVideo from './CreatePostVideo';
+// import CreatePostVideo from './CreatePostVideo';
 import SaveIcon from '@material-ui/icons/Save';
 import Radio from '@material-ui/core/Radio';
 import UrlPreviewInIframe from '../UrlPreviewInIframe';

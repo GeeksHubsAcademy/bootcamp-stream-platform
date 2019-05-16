@@ -63,14 +63,20 @@ export async function loggedOut() {
 }
 
 export async function getBootcamps() {
-  const user = store.getState().user;
-  let token = user && user.token;
-  let response = await Axios.get('http://localhost:3001/bootcamp/mine/', { headers: { Authorization: token } });
-  let bootcamps = response.data;
-  dispatch({
-    type: 'BOOTCAMPS_LOADED',
-    bootcamps,
-  });
+  try {
+    const user = store.getState().user;
+    let token = user && user.token;
+    let response = await Axios.get('http://localhost:3001/bootcamp/mine/', { headers: { Authorization: token } });
+    let bootcamps = response.data;
+    dispatch({
+      type: 'BOOTCAMPS_LOADED',
+      bootcamps,
+    });
+  } catch (error) {
+    console.error( error.message);
+
+    openNotification("Couldn't get data:\n" + error.message, 'error');
+  }
 }
 
 export async function postRegister({ name, lastname, email, password }) {
@@ -121,8 +127,6 @@ export async function deleteImage() {
 }
 
 export async function editBootcamp(bootcamp) {
-  console.log('editBootcamp', bootcamp);
-
   const user = store.getState().user;
   let token = user && user.token;
   let response = await Axios.patch('http://localhost:3001/bootcamp/' + bootcamp._id, bootcamp, { headers: { Authorization: token } });
@@ -179,8 +183,7 @@ export async function closeNotification(id) {
   });
 }
 
-
-export async function openNotification(text,type) {
+export async function openNotification(text, type) {
   dispatch({
     type: 'OPEN_NOTIFY',
     notification: {
@@ -190,3 +193,13 @@ export async function openNotification(text,type) {
     },
   });
 }
+
+(async function onStartUp() {
+  try {
+    await getBootcamps();
+    await getUsers();
+  } catch (error) {
+    console.error(error.message);
+    openNotification("Couldn't get data:\n" + error.message, 'error');
+  }
+})();

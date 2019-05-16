@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Post from '../../components/DisplayPost/Post';
 import CreatePost from '../../components/CreatePost/CreatePost';
@@ -10,7 +10,9 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import './Bootcamp.scss';
 import DateDisplay from '../../components/DateDisplay';
-
+import FontAwesome from '../../components/FontAwesome';
+import Fab from '@material-ui/core/Fab';
+import { getBootcamps } from '../../redux/actions';
 const Bootcamp = ({ bootcamp, id }) => {
 
   const [search, setSearch] = useState('');
@@ -67,12 +69,16 @@ const Bootcamp = ({ bootcamp, id }) => {
       </div>
       <div className='actions'>
         <CreatePost streamId={id} />
+        <Fab color='white' onClick={() => getBootcamps()}>
+          <FontAwesome icon='sync-alt' />
+        </Fab>
         <Paper elevation={1}>
           <InputBase id="search-input" placeholder='Buscar' value={search} onChange={e => setSearch(e.target.value)} />
           <IconButton aria-label='Buscar' disableRipple disabled>
             <SearchIcon />
           </IconButton>
         </Paper>
+
       </div>
     </section>
   );
