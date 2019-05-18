@@ -7,16 +7,16 @@ const ObjectId = require( 'mongodb' ).ObjectID
 router.post( '/:bootcamp_id', authorization, isMember, async ( req, res, next ) => {
     try {
         const newPost = {
-          ...req.body,
-          authorId:req.user._id,
-          keywords:['#'+req.body.postType]
+            ...req.body,
+            authorId: req.user._id,
+            keywords: [ '#' + req.body.postType ]
         };
-        const post = await new PostModel( newPost).save() /* Here we save the new post in the Post collection**/
+        const post = await new PostModel( newPost ).save() /* Here we save the new post in the Post collection**/
         await Bootcamp.findByIdAndUpdate( req.params.bootcamp_id, { $push: { postIds: post._id } }, { useFindAndModify: false } )
         /* In the line above we update the bootcamp pushing the new post into the array of Posts inside the Bootcamp collection**/
         next();
     } catch ( error ) {
-        res.status(400).json(error);
+        res.status( 400 ).json( error );
     }
 }, findAndResponseBootcamps );
 router.patch( '/:post_id', authorization, isAuthor, async ( req, res, next ) => {
@@ -43,12 +43,15 @@ router.delete( '/:post_id', authorization, isAuthor, async ( req, res, next ) =>
 
 router.patch( '/reactions/add/:post_id', authorization, isMember, async ( req, res, next ) => {
     try {
-        const post=await PostModel.findById( req.params.post_id);
-        post.reactions[req.body.reactionType]=[...post.reactions[req.body.reactionType], req.user._id]
-        await PostModel.update({_id:req.params.post_id},{reactions:post.reactions})
+        const reactionType = req.body.reactionType
+        const postFound = await PostModel.findOne( { _id: req.params.post_id } )
+        if ( postFound.reactions[ reactionType ].includes( req.user._id ) ) return res.status( 403 ).json( { message: "You cannot react twice with the same reactionType" } )
+        const post = await PostModel.findById( req.params.post_id );
+        post.reactions[ reactionType ] = [ ...post.reactions[ reactionType ], req.user._id ]
+        await PostModel.update( { _id: req.params.post_id }, { reactions: post.reactions } )
         next();
     } catch ( error ) {
-        console.log(error)
+        console.log( error )
         res.status( 500 ).json( { error, message: "Something went wrong, our apologies" } );
     }
 }, findAndResponseBootcamps );
