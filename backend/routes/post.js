@@ -43,10 +43,12 @@ router.delete( '/:post_id', authorization, isAuthor, async ( req, res, next ) =>
 
 router.patch( '/reactions/add/:post_id', authorization, isMember, async ( req, res, next ) => {
     try {
-        await PostModel.findByIdAndUpdate( req.params.post_id, { reactions: {
-                $push: {  [ req.body.reactionType ]: req.user._id } } }, { useFindAndModify: false } );
+        const post=await PostModel.findById( req.params.post_id);
+        post.reactions[req.body.reactionType]=[...post.reactions[req.body.reactionType], req.user._id]
+        await PostModel.update({_id:req.params.post_id},{reactions:post.reactions})
         next();
     } catch ( error ) {
+        console.log(error)
         res.status( 500 ).json( { error, message: "Something went wrong, our apologies" } );
     }
 }, findAndResponseBootcamps );
