@@ -8,6 +8,7 @@ import { openNotification } from '../../redux/actions';
 import CreatePostCode from './CreatePostCode/CreatePostCode';
 import './CreatePost.scss';
 import SaveIcon from '@material-ui/icons/Save';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Radio from '@material-ui/core/Radio';
 import UrlPreviewInIframe from '../UrlPreviewInIframe';
 import FontAwesome from '../FontAwesome';
@@ -99,7 +100,17 @@ const CreatePost = ({ streamId }) => {
             {url && <UrlPreviewInIframe to={url} />}
 
           </div>
-          <div className='more' />
+          <div className='more' >
+
+          <Button variant="contained" color="default" >
+              Uploads
+                  <CloudUploadIcon />
+          </Button>
+
+          </div>
+
+
+
         </header>
         <div className='create'>
           <CreatePostCode value={body} onChange={setBody} />
