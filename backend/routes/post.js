@@ -1,6 +1,7 @@
 const router = require( 'express' ).Router();
 const Bootcamp = require( '../models/Bootcamp' );
 const { PostModel } = require( '../models/Post' );
+const {uploadFiles} = require( '../config/multer' );
 const { authorization, isMember, isAuthor } = require( '../middleware/authorization' );
 const findAndResponseBootcamps = require( '../middleware/findAndReturnBootcamps' );
 const ObjectId = require( 'mongodb' ).ObjectID
@@ -55,4 +56,22 @@ router.patch( '/reactions/add/:post_id', authorization, isMember, async ( req, r
         res.status( 500 ).json( { error, message: "Something went wrong, our apologies" } );
     }
 }, findAndResponseBootcamps );
+
+router.patch('/addFile', authorization, uploadFiles.single('file'), async (req, res) =>{
+    
+    if (req.file){
+        console.log('receiving file'+ req.file.filename);
+        try{
+            req.body.filePath = req.file.filename;
+            await PostModel.findByIdAndUpdate(req.post._id, req.body, {new: true, useFindAndModify:false});
+        }catch(e){
+            console.error(e);
+        }   
+    }else{
+        console.log
+    };
+})
+
+
+
 module.exports = router;

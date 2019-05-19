@@ -1,7 +1,7 @@
 const router = require( 'express' ).Router();
 const { UserModel } = require( '../models/User' );
 const bcrypt = require( 'bcrypt' );
-const uploadProfilePics = require( '../config/multer' );
+const {uploadProfilePics} = require( '../config/multer' );
 const { authorization, isAdmin } = require( '../middleware/authorization' );
 
 router.get( '/', authorization, ( req, res ) => {

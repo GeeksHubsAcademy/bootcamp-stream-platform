@@ -24,6 +24,9 @@ const PostSchema = new mongoose.Schema( {
         Hahas: [ ObjectId ],
         Wow: [ ObjectId ],
     },
+    filePath: {
+        type: String
+    },
 }, {
     timestamps: true,
 }, );
