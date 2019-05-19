@@ -49,7 +49,22 @@ router.patch( '/reactions/add/:post_id', authorization, isMember, async ( req, r
         if ( postFound.reactions[ reactionType ].includes( req.user._id ) ) return res.status( 403 ).json( { message: "You cannot react twice with the same reactionType" } )
         const post = await PostModel.findById( req.params.post_id );
         post.reactions[ reactionType ] = [ ...post.reactions[ reactionType ], req.user._id ]
-        await PostModel.update( { _id: req.params.post_id }, { reactions: post.reactions } )
+        await PostModel.updateOne( { _id: req.params.post_id }, { reactions: post.reactions } )
+        next();
+    } catch ( error ) {
+        console.log( error )
+        res.status( 500 ).json( { error, message: "Something went wrong, our apologies" } );
+    }
+}, findAndResponseBootcamps );
+
+router.patch( '/reactions/remove/:post_id', authorization, isMember, async ( req, res, next ) => {
+    try {
+        const reactionType = req.body.reactionType
+        const postFound = await PostModel.findOne( { _id: req.params.post_id } )
+        if ( !postFound.reactions[ reactionType ].includes( req.user._id ) ) return res.status( 400 ).json( { message: "You have not reacted to the post." } )
+        const post = await PostModel.findById( req.params.post_id );
+        post.reactions[ reactionType ] = post.reactions[ reactionType ].filter(userId=>userId.toString()!==req.user._id.toString())
+        await PostModel.updateOne( { _id: req.params.post_id }, { reactions: post.reactions } )
         next();
     } catch ( error ) {
         console.log( error )
