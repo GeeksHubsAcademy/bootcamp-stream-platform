@@ -26,7 +26,6 @@ router.post( '/register', ( req, res ) => {
 
 
 
-
     req.body.role = 'admin';
     // TODO:   ALL USERS ARE ADMIN
     // DESCOMENTAR
