@@ -1,6 +1,7 @@
 const Multer = require( 'multer' );
 const path = require( 'path' )
-const mimetypes = [ 'image/png', 'image/jpg', 'image/jpeg' ]
+const mimetypes = [ 'image/png', 'image/jpg', 'image/jpeg' ];
+const fileTypes = ['application/msword', 'application/pdf', 'application/vnd.ms-powerpoint', 'application/vnd.ms-excel'];
 const uploadProfilePics = Multer( {
     storage: Multer.diskStorage( {
         destination: ( req, file, callback ) => {
@@ -30,7 +31,7 @@ const uploadFiles = Multer({
         },
     }),
     fileFilter: (req, file, callback) => {
-        if ( mimetypes.includes( file.mimetype ) ) {
+        if ( fileTypes.includes( file.mimetype ) ) {
             callback( null, true )
         } else {
             callback( null, false )
