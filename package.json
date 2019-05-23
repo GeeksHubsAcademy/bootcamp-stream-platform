@@ -11,6 +11,8 @@
     "mongo": "service mongod start || mongod --config /usr/local/etc/mongod.conf || brew services start mongodb-community@4.0  || npm run mongo_mac",
     "mongo_mac": "~/Downloads/mongodb-osx-x86_64-4.0.6/bin/mongod --dbpath=/data/db",
     "postinstall": "yarn run install:front && npm run install:back",
+    "preinstall:front": "cd frontend && rm -rf node_modules && rm yarn.lock",
+    "preinstall:back": "cd backend && rm -rf node_modules && rm package-lock.json",
     "install:front": "cd frontend && yarn install",
     "install:back": "cd backend && npm install",
     "test:front": "cd frontend && npm test",
