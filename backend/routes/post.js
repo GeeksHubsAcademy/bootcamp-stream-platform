@@ -83,7 +83,7 @@ router.patch('/addFile', authorization, uploadFiles.single('file'), async (req, 
             console.error(e);
         }   
     }else{
-        console.log
+        console.log(req);
     };
 })
 
