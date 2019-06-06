@@ -7,7 +7,7 @@ const ENV = process.env.NODE_ENV || environments.development;
 console.log( 'Your environment is ' + ENV )
 const config = {
   [environments.production]: {
-    PORT: 80,
+    PORT: process.env.PORT,
     MongoDB: {
       URI: 'mongodb+srv://dbUser:' + process.env.MONGOPASS + '@cluster0-bc0aq.gcp.mongodb.net/stream?retryWrites=true&w=majority'
     },
