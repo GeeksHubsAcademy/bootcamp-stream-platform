@@ -1,12 +1,18 @@
 import store from './index.js';
 import Axios from 'axios';
 
+const baseurl =
+process.env.NODE_ENV === 'production'
+? 'https://murmuring-crag-16002.herokuapp.com'
+: 'http://localhost:3001';
+
+
 let { dispatch } = store;
 
 export async function removePost(postId) {
   const user = store.getState().user;
   let token = user && user.token;
-  let response = await Axios.delete('http://localhost:3001/post/' + postId, { headers: { Authorization: token } });
+  let response = await Axios.delete(baseurl + '/post/' + postId, { headers: { Authorization: token } });
 
   let bootcamps = response.data;
   dispatch({
@@ -18,7 +24,7 @@ export async function removePost(postId) {
 export async function sendPost(post, streamId) {
   const user = store.getState().user;
   let token = user && user.token;
-  let response = await Axios.post('http://localhost:3001/post/' + streamId, post, { headers: { Authorization: token } });
+  let response = await Axios.post(baseurl + '/post/' + streamId, post, { headers: { Authorization: token } });
 
   let bootcamps = response.data;
   dispatch({
@@ -28,7 +34,7 @@ export async function sendPost(post, streamId) {
 }
 
 export async function loggedIn(password, email) {
-  let response = await Axios.post('http://localhost:3001/user/login', { password, email });
+  let response = await Axios.post(baseurl + '/user/login', { password, email });
   let user = response.data;
   dispatch({
     type: 'LOGGED_IN',
@@ -41,11 +47,11 @@ export async function loggedIn(password, email) {
 export async function loggedOut() {
   const user = store.getState().user;
   let token = user && user.token;
-  // let response = await Axios.get('http://localhost:3001/user/logout', {headers: {Authorization:token }} );
+  // let response = await Axios.get(baseurl + '/user/logout', {headers: {Authorization:token }} );
   // console.log(response);
 
   // Remove user on store even if not network
-  Axios.get('http://localhost:3001/user/logout', { headers: { Authorization: token } });
+  Axios.get(baseurl + '/user/logout', { headers: { Authorization: token } });
 
   dispatch({
     type: 'LOGGED_OUT',
@@ -56,7 +62,7 @@ export async function getBootcamps() {
   try {
     const user = store.getState().user;
     let token = user && user.token;
-    let response = await Axios.get('http://localhost:3001/bootcamp/mine/', { headers: { Authorization: token } });
+    let response = await Axios.get(baseurl + '/bootcamp/mine/', { headers: { Authorization: token } });
     let bootcamps = response.data;
     dispatch({
       type: 'BOOTCAMPS_LOADED',
@@ -71,7 +77,7 @@ export async function getBootcamps() {
 
 export async function postRegister({ name, lastname, email, password }) {
   try {
-    let res = await Axios.post('http://localhost:3001/user/register', { name, lastname, email, password });
+    let res = await Axios.post(baseurl + '/user/register', { name, lastname, email, password });
     console.log('registro completado', res);
   } catch (error) {
     console.dir(error);
@@ -92,7 +98,7 @@ export async function updateProfile(userData, image) {
   }
   image && bodyFormData.append('image', image);
   // To view server error bodyFormData/{}
-  let response = await Axios.patch('http://localhost:3001/user', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token } });
+  let response = await Axios.patch(baseurl + '/user', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token } });
   let newUser = response.data;
   newUser.token = token;
   dispatch({
@@ -106,7 +112,7 @@ export async function deleteImage() {
   let token = user && user.token;
   let bodyFormData = new FormData();
   bodyFormData.set('imagePath', '');
-  let response = await Axios.patch('http://localhost:3001/user', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token } });
+  let response = await Axios.patch(baseurl + '/user', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: token } });
   let updatedUser = response.data;
   console.log(updatedUser);
   updatedUser.token = token;
@@ -119,7 +125,7 @@ export async function deleteImage() {
 export async function editBootcamp(bootcamp) {
   const user = store.getState().user;
   let token = user && user.token;
-  let response = await Axios.patch('http://localhost:3001/bootcamp/' + bootcamp._id, bootcamp, { headers: { Authorization: token } });
+  let response = await Axios.patch(baseurl + '/bootcamp/' + bootcamp._id, bootcamp, { headers: { Authorization: token } });
   let bootcamps = response.data;
   console.log(bootcamps);
   dispatch({
@@ -133,7 +139,7 @@ export async function newBootcamp(bootcamp) {
 
   const user = store.getState().user;
   let token = user && user.token;
-  let response = await Axios.post('http://localhost:3001/bootcamp/', bootcamp, { headers: { Authorization: token } });
+  let response = await Axios.post(baseurl + '/bootcamp/', bootcamp, { headers: { Authorization: token } });
 
   let bootcamps = response.data;
   dispatch({
@@ -145,7 +151,7 @@ export async function newBootcamp(bootcamp) {
 export async function getUsers() {
   const user = store.getState().user;
   let token = user && user.token;
-  let response = await Axios.get('http://localhost:3001/user/', { headers: { Authorization: token } });
+  let response = await Axios.get(baseurl + '/user/', { headers: { Authorization: token } });
 
   let users = response.data;
   dispatch({
@@ -157,7 +163,7 @@ export async function getUsers() {
 export async function deleteUser() {
   const user = store.getState().user;
   let token = user && user.token;
-  let response = await Axios.delete('http://localhost:3001/user/delete/', { headers: { Authorization: token } });
+  let response = await Axios.delete(baseurl + '/user/delete/', { headers: { Authorization: token } });
   let deletedUser = response.data;
   deletedUser.token = token;
   dispatch({

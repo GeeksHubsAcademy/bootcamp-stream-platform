@@ -2,6 +2,7 @@
   "name": "express-demo",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://murmuring-crag-16002.herokuapp.com/",
   "main": "index.js",
   "scripts": {
     "test": "export NODE_ENV=test || NODE_ENV=test || SET \"NODE_ENV=test\" && mocha ./test --recursive",
