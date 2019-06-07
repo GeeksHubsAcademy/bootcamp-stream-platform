@@ -5,7 +5,8 @@ const morgan = require( 'morgan' )
 const path = require( 'path' )
 const userRoutes = require( './routes/user' )
 const bootcampRoutes = require( './routes/bootcamp' )
-const postRoutes = require( './routes/post' )
+const postRoutes = require('./routes/post');
+const heartbeatRoutes = require('./routes/heartbeat');
 const port = process.env.PORT || 3001;
 // BODY PARSE TO JSON
 app.use( express.json() );
@@ -25,7 +26,8 @@ app.use( '/', express.static( path.join( __dirname, 'public' ) ) )
 
 app.use( '/user', userRoutes )
 app.use( '/bootcamp', bootcampRoutes )
-app.use( '/post', postRoutes )
+app.use( '/post', postRoutes);
+app.use( '/heartbeat', heartbeatRoutes )
 
 app.listen( port, () => console.log( 'Servidor levantado en ' + port ) );
 module.exports = app
