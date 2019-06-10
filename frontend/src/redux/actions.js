@@ -250,7 +250,7 @@ export async function openNotification(text, type) {
     await getBootcamps();
     await getUsers();
     sendHeartBeat();
-    // setInterval(sendHeartBeat, 1000 * 60 * 15); // every 15 min
+    setInterval(sendHeartBeat, 1000 * 60 * 15); // every 15 min
   } catch (error) {
     console.error(error.message);
     openNotification("Couldn't get data:\n" + error.message, 'error');

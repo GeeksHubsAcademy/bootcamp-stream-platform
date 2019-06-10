@@ -78,6 +78,9 @@ PresenceSchema.statics.newRecord = async function(location, userId) {
   }
 };
 
+// PresenceSchema.statics.totalTimeRecorded = async function( userId) {
+
+// };
 var PresenceModel = mongoose.model('presence', PresenceSchema);
 
 module.exports = PresenceModel;
