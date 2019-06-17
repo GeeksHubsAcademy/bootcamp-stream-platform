@@ -1,5 +1,6 @@
 # Bootcamp Stream
 
+
 Una plataforma de comunicación más
 
 ## Tech MERN

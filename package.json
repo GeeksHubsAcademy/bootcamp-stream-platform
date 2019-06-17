@@ -1,6 +1,6 @@
 {
-  "name": "bootcamp-stream-platform",
-  "version": "1.0.0",
+  "name": "stream-platform",
+  "version": "1.0.1",
   "description": "",
   "scripts": {
     "start": "concurrently \"npm run mongo\" \"npm run dev\"",
