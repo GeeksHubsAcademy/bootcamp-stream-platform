@@ -1,8 +1,9 @@
 {
   "name": "stream-platform",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "",
   "scripts": {
+    "readme":"npx readme-md-generator",
     "start": "concurrently \"npm run mongo\" \"npm run dev\"",
     "dev": "concurrently \"yarn run start:front\" \"npm run start:back\"",
     "deploy:backend":"git subtree push --prefix backend heroku-backend master",
